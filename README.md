@@ -32,7 +32,7 @@ problem's `audit.md` with classification (ADMIN/LOGISTICS).
 | P06 | Spectral graph theory | 🟡 Candidate | HIGH (NO, K_n counterexample) | ~14/300 msgs |
 | P07 | Lattices in Lie groups | -- | -- | 0 |
 | P08 | Symplectic geometry | -- | -- | 0 |
-| P09 | Tensor polynomial map | -- | -- | 0 |
+| P09 | Tensor polynomial map | 📊 Conjecture | MEDIUM (YES, D=4) | ~21/300 msgs |
 | P10 | RKHS CP-ALS | ✅ Submitted | HIGH | ~12/120 msgs |
 
 Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | ❌ Parked
@@ -44,6 +44,20 @@ Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | 
 - `PXX/experiments/` — verification scripts and outputs
 - `PXX/transcript.md` — complete AI interaction log
 - `CONTAMINATION.md` — search log and exposure declarations
+
+## Extended Model Tooling
+
+Shared scout tooling is in `tools/`:
+
+- `tools/scout_api.py` — unified OpenAI-compatible caller for `groq`, `moonshot`, `fireworks`, and custom providers.
+- `tools/model_capability_probe.py` — repeatable cross-model benchmark harness for quick model triage before using a scout in a proof loop.
+- `tools/README.md` — commands, provider setup, and probe usage.
+
+Recommended use:
+
+- Use scouts sparingly when blocked on a narrow microdomain or a core-lemma sanity check.
+- Prefer local derivation and in-repo experiments first.
+- Avoid web-searching foundational lemmas for llm-only runs; keep contamination policy in `CONTAMINATION.md`.
 
 ## License
 
