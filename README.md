@@ -29,7 +29,7 @@ problem's `audit.md` with classification (ADMIN/LOGISTICS).
 | P03 | Algebraic combinatorics | -- | -- | 0 |
 | P04 | Finite free convolution | 📊 Conjecture | MEDIUM (n=2 proved) | ~18/300 msgs |
 | P05 | Equivariant homotopy | -- | -- | 0 |
-| P06 | Spectral graph theory | -- | -- | 0 |
+| P06 | Spectral graph theory | 🟡 Candidate | HIGH (NO, K_n counterexample) | ~14/300 msgs |
 | P07 | Lattices in Lie groups | -- | -- | 0 |
 | P08 | Symplectic geometry | -- | -- | 0 |
 | P09 | Tensor polynomial map | -- | -- | 0 |
