@@ -1,0 +1,35 @@
+P10 Verification Results — 2026-02-10
+Seed: 42
+Dimensions: n=4, r=2, M=6, N=24, q=8, d=3
+
+=== MATVEC COMPARISON ===
+Matrix-free matvec vs explicit A*vec(W)
+Relative error = 1.59e-16
+MATCH: True
+
+=== RHS COMPARISON ===
+Matrix-free RHS vs explicit (I_r kron K)*vec(B)
+Relative error = 1.74e-16
+MATCH: True
+
+=== GRAM IDENTITY ===
+Z^T Z (explicit) vs Hadamard of (A_j^T A_j)
+Relative error = 9.91e-17
+MATCH: True
+
+=== PCG (no preconditioner) ===
+CG converged: True
+||x_cg - x_direct|| / ||x_direct|| = 7.78e-11
+MATCH: True
+
+=== PCG (preconditioner B: lambda*(I_r kron K)) ===
+PCG converged: True
+||x_pcg - x_direct|| / ||x_direct|| = 6.47e-14
+MATCH: True
+
+=== PCG (preconditioner A: Kronecker approx) ===
+PCG converged: True
+||x_pcgA - x_direct|| / ||x_direct|| = 2.13e-15
+MATCH: True
+
+ALL TESTS PASSED
