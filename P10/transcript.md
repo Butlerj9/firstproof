@@ -13,7 +13,7 @@
 |--------|-------|
 | Total Implementer messages | ~8 |
 | Total Reviewer messages | 1 (G6 adversarial review) |
-| Scout deployments | 1 (GPT Pro, provided by Producer as logistics) |
+| Scout deployments | 1 (GPT-5.2-pro initial candidate, generated during Producer's solvability evaluation) |
 | Estimated Implementer tokens (input) | ~80,000 |
 | Estimated Implementer tokens (output) | ~25,000 |
 | Estimated Reviewer tokens (input) | ~8,000 |
@@ -36,7 +36,7 @@ Produced G0 report: full dimension table, object glossary, equivalence check. Id
 
 ### [PRODUCER → IMPLEMENTER] Message 2
 **Type**: LOGISTICS (Scout deployment)
-**Action**: Provided GPT Pro solution for P10 as scout reference. No mathematical interpretation added by Producer.
+**Action**: Provided GPT-5.2-pro initial candidate solution for P10, generated during Producer's solvability evaluation of all 10 problems. No mathematical interpretation added by Producer — the candidate was relayed verbatim as scout input.
 
 ### [IMPLEMENTER] Message 2 — Scout evaluation
 Evaluated GPT Pro scout response against independent analysis:

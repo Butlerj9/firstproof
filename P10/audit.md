@@ -160,7 +160,7 @@ All criteria met:
 | Timestamp | Type | Action | Justification |
 |-----------|------|--------|---------------|
 | 2026-02-10 | LOGISTICS | Producer provided problem PDF and markdown reference files | Providing source materials |
-| 2026-02-10 | LOGISTICS | Producer provided GPT Pro scout response for P10 | Scout deployment (no mathematical interpretation) |
+| 2026-02-10 | LOGISTICS | Producer provided GPT-5.2-pro initial candidate solution for P10, generated during solvability evaluation of all 10 problems | Scout deployment — initial candidate was produced by GPT-5.2-pro before the Implementer session began; Implementer then independently verified, corrected, and extended it through the full gate pipeline |
 | 2026-02-10 | LOGISTICS | Producer relayed Codex G6 review verbatim | Review relay |
 
 ## Metrics
@@ -175,7 +175,7 @@ All criteria met:
 | Estimated tokens (Implementer output) | ~30,000 |
 | Estimated tokens (Reviewer input) | ~15,000 |
 | Estimated tokens (Reviewer output) | ~4,000 |
-| Scout deployments | 1 (GPT Pro) |
+| Scout deployments | 1 (GPT-5.2-pro initial candidate, generated during solvability evaluation) |
 | Human interventions | 3 (all LOGISTICS) |
 | Abstraction levels | A0 (experiments), A1 (identity application), A2 (inline proofs) |
 | Wall clock time | ~2 hours |
