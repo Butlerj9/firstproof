@@ -27,7 +27,7 @@ problem's `audit.md` with classification (ADMIN/LOGISTICS).
 | P01 | Stochastic analysis | -- | -- | 0 |
 | P02 | Representation theory | -- | -- | 0 |
 | P03 | Algebraic combinatorics | -- | -- | 0 |
-| P04 | Finite free convolution | -- | -- | 0 |
+| P04 | Finite free convolution | 📊 Conjecture | MEDIUM (n=2 proved) | ~18/300 msgs |
 | P05 | Equivariant homotopy | -- | -- | 0 |
 | P06 | Spectral graph theory | -- | -- | 0 |
 | P07 | Lattices in Lie groups | -- | -- | 0 |
