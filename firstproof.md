@@ -108,6 +108,34 @@ Gates G0–G7 are conceptual phases stored as **sections inside `audit.md`**, no
 
 ---
 
+## 3A. Latent-Limit Escalation (Relaxed Pass)
+
+Use a second-pass mode when a problem appears blocked by missing machinery, not by proof hygiene.
+
+Observed signal from current artifacts:
+- `P04`: ~76k-token transcript, repeated review cycles, unresolved finite-n theorem gap -> 📊.
+- `P06`: review faults were boundary/quantifier issues and closed cleanly -> no relaxed pass needed.
+
+### Trigger (all required)
+- G6 completed with >=1 unresolved MAJOR/FATAL red flag.
+- Same bottleneck persists across >=2 route attempts or >=2 patch cycles.
+- Token log indicates heavy spend (>=50k tokens OR >=25% of problem budget after first full G5/G6 cycle).
+- At least one independent scout pass and one high-precision/exact experiment pass already done.
+
+### Relaxations allowed in this pass
+1. Budget extension: +100 messages (GREEN) or +60 messages (YELLOW) for one additional pass.
+2. Broader source search for primary references on adjacent machinery (identities, inequalities, finite analogs), while still avoiding direct-solution searches for numbered First Proof questions.
+3. Scout expansion to >=3 model families, with prompts targeted at falsification and missing hypotheses (not confirmation-only prompts).
+4. Stronger computation stack: exact/symbolic small-case derivations + high-precision numerics for boundary regimes.
+5. Explicit dependency ledger update in `audit.md`: blocked statement, hypotheses needed, what was verified, what remains unproved.
+
+### Exit criteria
+- If blocker closes and G6 passes: upgrade status normally.
+- If blocker remains: publish as 📊/❌ with explicit label "unsolved after relaxed pass."
+- If contamination event occurs: freeze problem and mark `CONTAMINATED_EXTERNAL_SOLUTION`.
+
+---
+
 ## 4. Gates (G0–G7) as sections inside `audit.md`
 
 **G0 — Formalize**: Restate with explicit quantifiers and object types. Define every symbol. Describe what a counterexample would look like. *Cap: 10 messages.*

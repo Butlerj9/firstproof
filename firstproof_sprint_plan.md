@@ -81,6 +81,22 @@ If **10 consecutive messages** produce no new lemma closure, no new experiment r
 
 If 3 successive revisions of the same proof section are >90% similar (by inspection or embedding) with no new lemma closures, **force a route change or park**. Do not allow a 4th revision of the same approach.
 
+### Latent-limit trigger (relaxed pass gate)
+
+Use a relaxed second pass only when the stall is theorem-level, not hygiene-level.
+
+Trigger a relaxed pass when all are true:
+- G6 still has >=1 unresolved MAJOR/FATAL red flag.
+- Same bottleneck persists across >=2 route attempts or >=2 patch cycles.
+- Transcript token log shows heavy spend (>=50k tokens or >=25% of per-problem budget after first full G5/G6 cycle).
+- At least one scout check and one high-precision/exact experiment pass are already completed.
+
+Relaxed pass allowances:
+- Extend budget by +100 messages (GREEN) or +60 messages (YELLOW), once per problem.
+- Expand source search to primary references on adjacent machinery (still no direct-solution searches).
+- Require >=3 scout model families with falsification-focused prompts.
+- Require exact/symbolic small-case checks plus high-precision numeric boundary checks.
+
 ### Multi-LLM validation minimums (required for 🟡/✅ on GREEN problems)
 
 Before claiming 🟡 or ✅ on P10, P4, or P6:
@@ -196,6 +212,16 @@ Route maps, lemma DAGs, background notes, and review notes are **sections inside
 | Feb 13, 14:00 | Post to X/social with #1stProof (Section 9.2) | Producer |
 | **Feb 13, 23:59 PT** | Encrypted answers released at 1stproof.org | — |
 | Feb 14+ | Compare, post-mortem, update repo | Producer + Agent I |
+
+### Phase 5: Relaxed replay (next pass for blocked problems)
+**Post-release / next sprint window**
+
+| When (PT) | Action | Owner |
+|-----------|--------|-------|
+| Next pass start | Select only problems flagged by latent-limit trigger | Producer + Agent R |
+| +0-24h | Run relaxed pass (expanded sources + multi-scout + exact/symbolic checks) | Agent I |
+| +24-36h | Adversarial re-review + status update (✅/🟡/📊/❌/contaminated) | Agent R |
+| +36h | Commit/push revised artifacts + changelog in audit/transcript | Producer |
 
 ---
 
@@ -514,6 +540,7 @@ If a direct solution to a First Proof problem is found online during research:
 | P10 takes >8 hours | Skip to P4/P6 counterexample search (can run in parallel) |
 | No problem fully solved by Feb 11 noon | Publish 📊 conjecture + evidence for P4/P6. This is still valuable. |
 | Counterexample found for P4 or P6 | Major win. Write up immediately as ✅. |
+| Problem remains 📊 after G6 with persistent theorem bottleneck and high token burn | Enter one relaxed pass (trigger above) before final park. |
 | Solution found online during research | FREEZE that problem. Log in CONTAMINATION.md. Do NOT use. |
 | Adversarial review finds fatal flaw late | Publish as 🟡 with flaw documented. More useful than hiding it. |
 | P9 diverges without converging | Park by Feb 11 18:00 PT. Publish as ❌ with routes explored. |

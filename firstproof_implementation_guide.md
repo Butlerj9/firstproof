@@ -95,8 +95,21 @@ For each problem, for each gate:
   3. If reject: I patches (max 3 cycles per gate)
   4. If still failing: deploy Scout for alternative perspective
   5. If still failing: escalate to H for logistics (fetch specific paper, run tool)
-  6. If still failing after scout + logistics: park problem, advance curriculum, return later
+  6. If still failing after scout + logistics: run latent-limit trigger check (firstproof.md §3A)
+  7. If trigger met: execute one relaxed pass (expanded sources + multi-scout + exact/symbolic checks)
+  8. If still failing after relaxed pass: park problem, advance curriculum, return later
 ```
+
+### 1.3A Relaxed-pass checklist (for latent-limit problems)
+
+Run this only when firstproof.md §3A trigger conditions are all satisfied.
+
+- Confirm unresolved blocker is theorem-level (not notation/boundary hygiene).
+- Log trigger evidence in `audit.md`: unresolved red flag IDs + token/budget burn.
+- Expand source search to primary references for the blocked machinery; keep contamination rules.
+- Run >=3 scout model families with falsification-focused prompts.
+- Add exact/symbolic small-case checks and high-precision numeric boundary checks.
+- End with explicit status: resolved / unresolved / contaminated.
 
 ### 1.4 Scout deployment strategy
 

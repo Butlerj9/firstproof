@@ -168,4 +168,5 @@ If you catch yourself doing something that might be MATHEMATICAL, STOP. Log it a
 - **Stall (10 msgs no progress)**: If I is spinning, paste: "STALL DETECTED. You have spent [N] messages with no lemma closure. Produce a stall report OR park."
 - **Budget >80%**: Paste: "BUDGET WARNING: [X] of [Y] messages used. Produce best-available output at current status."
 - **3 reject cycles**: Paste: "3 reject cycles on G[N]. ROUTE_CHANGE or PARK. Do not attempt a 4th revision of the same approach."
+- **Latent-limit trigger**: If G6 still has unresolved MAJOR/FATAL faults and transcript token burn is high, paste: "LATENT-LIMIT ESCALATION: run one relaxed pass per firstproof.md §3A (expanded primary-source search, >=3 scouts, exact/symbolic + high-precision checks), then re-review."
 - **Accidental math input**: If you accidentally said something mathematical, immediately paste: "RETRACT: My previous message contained mathematical content. Disregard it. Logging as CONTAMINATED_HUMAN_MATH."
