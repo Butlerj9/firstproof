@@ -1,0 +1,171 @@
+P04 CE-1: Numeric sweep for Φ_n inequality under ⊞_n
+============================================================
+
+============================================================
+CE-1 Sweep: n = 2, trials = 100000
+============================================================
+
+Results for n = 2:
+  Total trials: 100000
+  Failures (margin < -1e-10): 0
+  Near-failures (0 <= margin < 1e-6): 100000
+  Min margin: -1.0658141036e-14
+  Complex root issues (max|Im| > 1e-6): 0
+  Simplicity issues (min gap < 1e-10): 0
+  Min convolution root gap: 3.841274e-03
+
+  Worst case (trial 82569):
+    p roots: [-3.31171243  2.23230874]
+    q roots: [0.06058122 3.01998869]
+    conv roots: [-2.14163996  4.14280618]
+    Φ(p)=6.506991e-02, Φ(q)=2.283602e-01, Φ(p⊞q)=5.064027e-02
+    LHS=1/Φ(p⊞q)=1.9747131649e+01
+    RHS=1/Φ(p)+1/Φ(q)=1.9747131649e+01
+    margin=-1.0658141036e-14
+    min conv root gap=6.284446e+00
+
+  STATUS: PASS
+
+============================================================
+CE-1 Sweep: n = 3, trials = 100000
+============================================================
+
+Results for n = 3:
+  Total trials: 100000
+  Failures (margin < -1e-10): 0
+  Near-failures (0 <= margin < 1e-6): 2
+  Min margin: 5.3372356479e-08
+  Complex root issues (max|Im| > 1e-6): 0
+  Simplicity issues (min gap < 1e-10): 0
+  Min convolution root gap: 1.836079e-02
+
+  Worst case (trial 87477):
+    p roots: [-0.26965959  0.4041961   1.31038395]
+    q roots: [-0.75769137 -0.75628573 -0.75496986]
+    conv roots: [-1.02597656 -0.35211932  0.55406936]
+    Φ(p)=7.641135e+00, Φ(q)=2.437312e+06, Φ(p⊞q)=7.641108e+00
+    LHS=1/Φ(p⊞q)=1.3087106567e-01
+    RHS=1/Φ(p)+1/Φ(q)=1.3087101230e-01
+    margin=5.3372356479e-08
+    min conv root gap=6.738572e-01
+
+  STATUS: PASS
+
+============================================================
+CE-1 Sweep: n = 4, trials = 50000
+============================================================
+
+Results for n = 4:
+  Total trials: 50000
+  Failures (margin < -1e-10): 0
+  Near-failures (0 <= margin < 1e-6): 0
+  Min margin: 8.3764685979e-06
+  Complex root issues (max|Im| > 1e-6): 0
+  Simplicity issues (min gap < 1e-10): 0
+  Min convolution root gap: 2.724380e-02
+
+  Worst case (trial 55):
+    p roots: [-0.59568172 -0.57818299 -0.56581402 -0.55191727]
+    q roots: [-0.10494414  0.4960047   0.98072283  1.840475  ]
+    conv roots: [-0.67811159 -0.07699243  0.4079815   1.26778492]
+    Φ(p)=3.614564e+04, Φ(q)=2.008785e+01, Φ(p⊞q)=2.007332e+01
+    LHS=1/Φ(p⊞q)=4.9817374818e-02
+    RHS=1/Φ(p)+1/Φ(q)=4.9808998350e-02
+    margin=8.3764685979e-06
+    min conv root gap=4.849739e-01
+
+  STATUS: PASS
+
+============================================================
+CE-1 Sweep: n = 5, trials = 20000
+============================================================
+
+Results for n = 5:
+  Total trials: 20000
+  Failures (margin < -1e-10): 0
+  Near-failures (0 <= margin < 1e-6): 0
+  Min margin: 4.8822545294e-05
+  Complex root issues (max|Im| > 1e-6): 0
+  Simplicity issues (min gap < 1e-10): 0
+  Min convolution root gap: 6.436465e-02
+
+  Worst case (trial 18104):
+    p roots: [-0.09028208 -0.06101243 -0.05937819 -0.04518306 -0.04292738]
+    q roots: [-1.3255933  -1.09132458 -0.29908301 -0.03455898  1.13127146]
+    conv roots: [-1.38581598 -1.15096014 -0.35899544 -0.09398584  1.07168588]
+    Φ(p)=1.179646e+06, Φ(q)=7.628502e+01, Φ(p⊞q)=7.599706e+01
+    LHS=1/Φ(p⊞q)=1.3158403290e-02
+    RHS=1/Φ(p)+1/Φ(q)=1.3109580745e-02
+    margin=4.8822545294e-05
+    min conv root gap=2.348558e-01
+
+  STATUS: PASS
+
+============================================================
+CE-1 Sweep: n = 6, trials = 10000
+============================================================
+
+Results for n = 6:
+  Total trials: 10000
+  Failures (margin < -1e-10): 0
+  Near-failures (0 <= margin < 1e-6): 0
+  Min margin: 2.0131468269e-04
+  Complex root issues (max|Im| > 1e-6): 0
+  Simplicity issues (min gap < 1e-10): 0
+  Min convolution root gap: 9.548843e-02
+
+  Worst case (trial 1693):
+    p roots: [-0.37826785 -0.29559299 -0.20858739 -0.13916583 -0.10142202  0.02509304]
+    q roots: [-0.50997086  0.09546022  0.52556737  0.96000707  1.51186878  2.24363588]
+    conv roots: [-0.70715118 -0.09772865  0.34043694  0.78218191  1.33795475  2.07293163]
+    Φ(p)=3.082628e+03, Φ(q)=4.876338e+01, Φ(p⊞q)=4.754455e+01
+    LHS=1/Φ(p⊞q)=2.1032905536e-02
+    RHS=1/Φ(p)+1/Φ(q)=2.0831590854e-02
+    margin=2.0131468269e-04
+    min conv root gap=4.381656e-01
+
+  STATUS: PASS
+
+============================================================
+CE-1 Sweep: n = 7, trials = 5000
+============================================================
+
+Results for n = 7:
+  Total trials: 5000
+  Failures (margin < -1e-10): 0
+  Near-failures (0 <= margin < 1e-6): 0
+  Min margin: 1.4718925505e-03
+  Complex root issues (max|Im| > 1e-6): 0
+  Simplicity issues (min gap < 1e-10): 0
+  Min convolution root gap: 9.335790e-02
+
+  Worst case (trial 1193):
+    p roots: [-0.1297015  -0.05888889 -0.02470167  0.02308338  0.37802758  0.39433529
+  1.53190261]
+    q roots: [-2.15146253  0.4388074   0.50968919  0.53144701  0.57521228  0.68083058
+  0.88782533]
+    conv roots: [-1.9301369   0.42959179  0.52294969  0.63613208  0.85779733  1.05260637
+  2.0174657 ]
+    Φ(p)=1.116674e+04, Φ(q)=6.953082e+03, Φ(p⊞q)=5.864190e+02
+    LHS=1/Φ(p⊞q)=1.7052652737e-03
+    RHS=1/Φ(p)+1/Φ(q)=2.3337272315e-04
+    margin=1.4718925505e-03
+    min conv root gap=9.335790e-02
+
+  STATUS: PASS
+
+============================================================
+SUMMARY
+============================================================
+  n |   Trials | Status |      Min margin | Failures
+------------------------------------------------------------
+  2 |   100000 |   PASS |   -1.065814e-14 |        0
+  3 |   100000 |   PASS |    5.337236e-08 |        0
+  4 |    50000 |   PASS |    8.376469e-06 |        0
+  5 |    20000 |   PASS |    4.882255e-05 |        0
+  6 |    10000 |   PASS |    2.013147e-04 |        0
+  7 |     5000 |   PASS |    1.471893e-03 |        0
+
+OVERALL: ALL PASS
+
+No counterexamples found. Proceed to CE-2 (structured stress tests).
