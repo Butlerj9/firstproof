@@ -243,4 +243,4 @@ All criteria met:
 | Gates completed | G0-G7 (all) |
 | Status | 📊 Conjecture (YES, Mallows/ASEP) |
 | G6 cycles | 1 reject + 1 accept = 2 cycles |
-| Budget | 300 messages (GREEN) |
+| Budget | 200 messages (YELLOW — ~22 used) |

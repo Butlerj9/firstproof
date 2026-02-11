@@ -149,4 +149,4 @@ The background is partially accessible from general knowledge, but the specific 
 | Messages used | ~2 |
 | Gate | G2 (route map) |
 | Status | ❌ Parked (blocked on references) |
-| Budget | 30-80 messages (GREEN — ~2 used) |
+| Budget | 30-80 messages (RED — ~2 used) |

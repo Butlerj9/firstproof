@@ -181,4 +181,4 @@ The problem lives in deep analytic number theory / automorphic forms territory. 
 | Messages used | ~2 |
 | Gate | G2 (route map) |
 | Status | ❌ Parked (blocked on specialized references) |
-| Budget | 80 messages (GREEN — ~2 used) |
+| Budget | 80 messages (RED — ~2 used) |

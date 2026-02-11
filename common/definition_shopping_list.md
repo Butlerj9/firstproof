@@ -5,7 +5,7 @@ Protocol: `common/definition_only_escalation.md`
 
 ## Summary
 
-P08 has been RESOLVED without needing external definitions (octahedron counterexample + Gromov; G6 self-review ACCEPT). P07 is PARTIALLY RESOLVED: Q-PD proved (Shapiro), FH(Q) confirmed (Fowler 2012), but surgery realization step lacks precise citation. The remaining parked problems and the P07 gap are listed below in priority order.
+P08 is ✅ RESOLVED: topology-preserving definition patch eliminated the regularity gap; upgraded to Submitted. P07 is PARTIALLY RESOLVED: Q-PD proved (Shapiro), FH(Q) confirmed (Fowler 2012), but surgery realization step lacks precise citation. The remaining parked problems and the P07 gap are listed below in priority order.
 
 ## P07 — Lattices in Lie Groups (PARTIALLY RESOLVED — surgery gap)
 
@@ -87,4 +87,4 @@ The problem is open-ended ("state and prove"), and the scouts flagged:
 | 2 | P02 | Source JPSS conductor definition (Def/Thm numbers) | 15 min |
 | — | P01, P05 | Skip unless time permits | — |
 
-**Note**: P08 is RESOLVED. No further reference sourcing needed for P08.
+**Note**: P08 is ✅ Submitted (topology-preserving definition patch resolved all G6 flags). P07 surgery gap remains the highest-value single citation target.

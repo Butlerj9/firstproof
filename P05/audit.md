@@ -146,4 +146,4 @@ The expected characterization likely replaces the factor |G/H| in the classical 
 | Messages used | ~2 |
 | Gate | G2 (route map) |
 | Status | ❌ Parked (blocked on references + open-ended formulation) |
-| Budget | 80 messages (GREEN — ~2 used) |
+| Budget | 80 messages (RED — ~2 used) |

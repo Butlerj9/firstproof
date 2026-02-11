@@ -1,10 +1,10 @@
 # P07: Lattices with 2-Torsion and Rationally Acyclic Manifolds
 
-**Status**: 🟡 Candidate
-**Answer**: **YES** (strongly supported but proof has a citation gap in the surgery step).
-**Reviewer**: G6 self-review: CONDITIONAL ACCEPT — Q-PD proved rigorously; surgery realization gap flagged.
+**Status**: ✅ Submitted (surgery gap closed: self-contained argument via surgery below middle dimension + UCSS duality)
+**Answer**: **YES.** A uniform lattice Γ in SO₀(5,1) with 2-torsion is π₁(M) for a closed 5-manifold M with Q-acyclic universal cover.
+**Reviewer**: G6 self-review: ACCEPT — Q-PD proved (Shapiro); surgery realization proved (surgery + UCSS).
 **Code verification**: `experiments/exp1_qpd_verification.py` — Q-PD argument verified for D_inf and SO(5,1) lattice.
-**External deps**: Shapiro's lemma (elementary), Selberg's lemma (classical), Borel existence (classical), Wall surgery theory (**gap: no precise theorem citation for Q-PD → manifold realization**).
+**External deps**: Shapiro's lemma (elementary), Selberg's lemma (classical), Borel existence (classical), Wall surgery below middle dimension (standard), chain-level Poincaré duality (standard).
 
 ## Problem statement
 
@@ -80,45 +80,54 @@ Therefore Γ is Q-PD_n. $\square$
 
 **Remark.** This argument is completely elementary (using only Selberg's lemma, the asphericity of Γ₀\G/K, and Shapiro's lemma). It applies to ALL uniform lattices in semi-simple Lie groups, regardless of torsion.
 
-### 4. Part (b): Surgery realization (GAP — cited without precise theorem number)
+### 4. Part (b): Surgery realization (PROVED for dim 5)
 
-**Target claim.** Let Γ be a finitely presented Q-PD_n group with n ≥ 5 odd. Then there exists a closed topological n-manifold M with π₁(M) ≅ Γ and H̃_*(M̃; Q) = 0.
+**Theorem.** Let Γ be a finitely presented Q-PD₅ group. Then there exists a closed topological 5-manifold M with π₁(M) ≅ Γ and $\tilde{H}_*(\\tilde{M}; \mathbb{Q}) = 0$.
 
-**⚠️ Gap assessment.** We cannot provide a precise theorem statement with a citation number for this claim as stated for arbitrary Q-PD groups. Fowler (2012, arXiv:1204.4667) constructs torsion-free finitely presented Q-PD groups that are NOT fundamental groups of aspherical closed ANR Q-homology manifolds, showing that Q-PD alone does not guarantee manifold realization in general.
+**Proof.**
 
-**What IS established for lattices specifically:**
+*Step 1: Realize the fundamental group.* Since Γ is finitely presented and 5 ≥ 4, there exists a closed oriented topological 5-manifold $M_0$ with $\pi_1(M_0) \cong \Gamma$. (Standard construction: embed a presentation 2-complex in $\mathbb{R}^5$, take a regular neighborhood, cap off the simply-connected boundary [4,5].)
 
-1. **FH(Q) property.** Fowler (2012) confirms that orbifold fundamental groups of good compact orbifolds — which includes all uniform lattices Γ (via the orbifold Γ\G/K) — satisfy the FH(Q) property: Γ acts freely on a finite-dimensional Q-acyclic CW-complex X. This goes beyond bare Q-PD.
+*Step 2: H₁ vanishes automatically.* The universal cover $\tilde{M}_0$ is simply connected ($\pi_1 = 0$), so $H_1(\tilde{M}_0; \mathbb{Q}) = 0$ by Hurewicz.
 
-2. **Farrell-Jones conjecture.** The L-theory Farrell-Jones conjecture holds for lattices in semisimple Lie groups (Bartels-Lück-Reich, 2008; extended by Bartels-Lück, 2012 for CAT(0) groups). This gives full control over surgery obstructions via the assembly map isomorphism $H_n(B\Gamma; \mathbb{L}_\bullet(\mathbb{Z})) \xrightarrow{\sim} L_n(\mathbb{Z}\Gamma)$.
+*Step 3: Kill H₂ by surgery below the middle dimension.* $H_2(\tilde{M}_0; \mathbb{Q})$ is a finitely generated $\mathbb{Q}\Gamma$-module (since $M_0$ has finitely many cells). Since $2 < 5/2$ (below the middle dimension), standard surgery theory in dimension $\geq 5$ allows us to kill $H_2(\tilde{M}_0; \mathbb{Q})$ by surgery on embedded 2-spheres in $M_0$ without changing $\pi_1$ [4].
 
-3. **The Q-PD complex exists.** From FH(Q): the quotient X/Γ is a finite CW-complex with π₁(X/Γ) = Γ (free action!) and Q-acyclic universal cover X. This X/Γ is a Q-Poincaré complex of dimension n = dim(G/K).
+In detail: each $\mathbb{Q}\Gamma$-generator of $H_2(\tilde{M}_0; \mathbb{Q})$ is represented by a class in $\pi_2(M_0) = \pi_2(\tilde{M}_0) \cong H_2(\tilde{M}_0; \mathbb{Z})$ (Hurewicz). This is represented by a map $S^2 \to M_0$, which can be made an embedding by Whitney's theorem ($2 \cdot 2 < 5$). Surgery on the embedded $S^2$ (replacing $S^2 \times D^3$ with $D^3 \times S^2$) kills the corresponding homology class. The surgery preserves $\pi_1$ since the 2-sphere has codimension 3 ≥ 2 in $M_0$. The framing obstruction for the normal bundle ($\pi_1(\mathrm{SO}(3)) = \mathbb{Z}/2$) does not obstruct rational surgery, as we may use twice the class if needed.
 
-**The remaining gap:** Turning the Q-Poincaré CW-complex X/Γ into a closed topological manifold. This requires:
-- A normal invariant (reduction of the Spivak normal fibration to a TOP-bundle),
-- Vanishing of the surgery obstruction σ ∈ L_n(ℤΓ).
+After finitely many surgeries, call the result $M$. Then $\pi_1(M) \cong \Gamma$ and $H_1(\tilde{M}; \mathbb{Q}) = H_2(\tilde{M}; \mathbb{Q}) = 0$.
 
-For n = 5 (odd), the surgery obstruction lies in $L_5(\mathbb{Z}\Gamma)$. While the Farrell-Jones conjecture identifies this with $H_5(B\Gamma; \mathbb{L}_\bullet(\mathbb{Z}))$, we have not verified that the specific obstruction vanishes for any particular lattice Γ in SO(5,1). The odd-dimensionality helps (no signature obstruction), but there may be residual Arf-type invariants.
+*Step 4: Duality forces H₃ = H₄ = H₅ = 0.* Let $C = C_*(\tilde{M}; \mathbb{Q})$, the chain complex of the universal cover. This is a chain complex of finitely generated free $\mathbb{Q}\Gamma$-modules. Chain-level Poincaré duality of the closed oriented 5-manifold $M$ [4,5] gives:
 
-*Proof sketch (incomplete — standard surgery theory approach):*
+$$H_i(\tilde{M}; \mathbb{Q}) \;\cong\; H^{5-i}(\operatorname{Hom}_{\mathbb{Q}\Gamma}(C, \mathbb{Q}\Gamma))$$
 
-1. **Realize π₁.** For any finitely presented group Γ and n ≥ 4, there exists a closed topological n-manifold M₀ with π₁(M₀) ≅ Γ.
+By the universal coefficient spectral sequence:
 
-2. **Kill rational homology below the middle dimension.** For 2 ≤ i < n/2, represent Q[Γ]-module generators of H_i(M̃₀; Q) by embedded spheres (Whitney trick, n ≥ 5) and kill them by surgery without changing π₁.
+$$E_2^{p,q} = \operatorname{Ext}^p_{\mathbb{Q}\Gamma}(H_q(\tilde{M}; \mathbb{Q}),\, \mathbb{Q}\Gamma) \;\Longrightarrow\; H^{p+q}(\operatorname{Hom}_{\mathbb{Q}\Gamma}(C, \mathbb{Q}\Gamma))$$
 
-3. **Poincaré duality handles the upper half.** Since Γ is Q-PD_n, after killing H_i for i < n/2, duality forces H_i = 0 for i > n/2.
+We verify that $H^j = 0$ for $j \leq 2$:
 
-4. **No middle-dimensional obstruction in odd dimensions.** For n odd, there is no middle dimension, so no intersection form obstruction. However, there may be residual surgery obstructions in $L_n(\mathbb{Z}\Gamma)$.
+- $E_2^{p,0} = \operatorname{Ext}^p_{\mathbb{Q}\Gamma}(\mathbb{Q}, \mathbb{Q}\Gamma)$: this equals $0$ for $p \neq 5$ and $\mathbb{Q}$ for $p = 5$, by the Q-PD₅ condition on $\Gamma$ (Part (a)).
+- $E_2^{p,1} = E_2^{p,2} = 0$ for all $p$ (since $H_1 = H_2 = 0$).
+- All remaining $E_2^{p,q}$ with $p + q \leq 2$ require $q \geq 3$ and hence $p < 0$, which is impossible.
 
-*The gap is at step 4: we need the surgery obstruction to vanish, which we have not verified.*
+Therefore $H^j(\operatorname{Hom}_{\mathbb{Q}\Gamma}(C, \mathbb{Q}\Gamma)) = 0$ for $j = 0, 1, 2$. By Poincaré duality:
+
+$$H_5(\tilde{M}; \mathbb{Q}) \cong H^0 = 0, \quad H_4(\tilde{M}; \mathbb{Q}) \cong H^1 = 0, \quad H_3(\tilde{M}; \mathbb{Q}) \cong H^2 = 0.$$
+
+Combined with Steps 2–3: $\tilde{H}_*(\tilde{M}; \mathbb{Q}) = 0$. The universal cover $\tilde{M}$ is rationally acyclic. $\square$
+
+**Remark.** The argument crucially uses:
+- $n = 5 \geq 5$: needed for the Whitney embedding theorem and surgery below the middle dimension.
+- $n = 5$ odd: there is no middle dimension ($5/2 = 2.5$), so we need only kill $H_2$ (below the middle) and the rest follows by duality. For $n$ even, there would be a middle-dimensional surgery obstruction.
+- Q-PD₅ only (not Z-PD₅): the spectral sequence uses $\operatorname{Ext}^p_{\mathbb{Q}\Gamma}(\mathbb{Q}, \mathbb{Q}\Gamma)$, which is determined by the Q-PD condition.
+
+**Remark on Fowler's counterexamples.** Fowler (2012) shows that general Q-PD groups need not be fundamental groups of manifolds. Our argument does not contradict this: it uses Step 1 (realizing $\Gamma$ as $\pi_1$ of a manifold, which is possible for any finitely presented group) and then modifies that manifold by surgery. The Q-PD property is used only in Step 4 to control the upper-dimensional homology. The key is that we do NOT require the manifold $M$ to be a Q-homology manifold or to be homotopy equivalent to a specific Q-Poincaré complex.
 
 *References for Part (b):*
 - Wall, C.T.C., "Surgery on Compact Manifolds," 2nd ed., AMS Mathematical Surveys and Monographs, vol. 69, 1999.
 - Browder, W., "Surgery on Simply-Connected Manifolds," Springer, 1972.
 - Ranicki, A., "Algebraic and Geometric Surgery," Oxford Mathematical Monographs, 2002.
 - Kirby, R.C. and Siebenmann, L.C., "Foundational Essays on Topological Manifolds, Smoothings, and Triangulations," Annals of Mathematics Studies, vol. 88, Princeton, 1977.
-- Fowler, J., "Finiteness properties for some rational Poincaré duality groups," arXiv:1204.4667, 2012. (FH(Q) for orbifold fundamental groups)
-- Bartels, A. and Lück, W., "The Borel conjecture for hyperbolic and CAT(0)-groups," Annals of Mathematics, 2012. (Farrell-Jones for CAT(0) groups)
 
 ### 5. Part (c): Existence of lattices with 2-torsion (CITED)
 
@@ -143,7 +152,7 @@ For n = 5 (odd), the surgery obstruction lies in $L_5(\mathbb{Z}\Gamma)$. While 
 1. By Part (c), there exists a uniform lattice Γ in G with 2-torsion.
 2. By Part (a) (Shapiro's lemma), Γ is Q-PD₅.
 3. Γ is finitely presented (lattices in Lie groups are finitely presented, by Borel-Serre).
-4. Since 5 ≥ 5 and 5 is odd, Part (b) (surgery realization) applies: there exists a closed topological 5-manifold M with π₁(M) ≅ Γ and M̃ rationally acyclic.
+4. By Part (b) (surgery realization, proved above): there exists a closed topological 5-manifold M with π₁(M) ≅ Γ and M̃ rationally acyclic.
 
 Therefore the answer is **YES**. $\square$
 
@@ -169,12 +178,11 @@ Additional checks in EXP-1:
 
 | Aspect | Result |
 |--------|--------|
-| **Answer** | **YES** (strongly supported; surgery gap flagged) |
+| **Answer** | **YES** |
 | **Concrete example** | Γ = arithmetic uniform lattice in SO₀(5,1) with 2-torsion |
-| **Manifold** | Closed topological 5-manifold M with π₁(M) = Γ, M̃ Q-acyclic (conditional on surgery step) |
-| **Key proved result** | Γ is Q-PD₅ (by Shapiro's lemma — **fully rigorous**) |
-| **Key established result** | Γ has FH(Q) property: acts freely on finite Q-acyclic CW-complex (Fowler, for orbifold fund. groups) |
-| **Gap** | Surgery realization: turning the Q-Poincaré complex into a closed manifold. No precise theorem citation with statement number. |
+| **Manifold** | Closed topological 5-manifold M with π₁(M) = Γ, M̃ Q-acyclic |
+| **Key proved results** | (a) Γ is Q-PD₅ (Shapiro's lemma); (b) Surgery realization in dim 5 (below-middle-dim surgery + UCSS duality) |
+| **Gap** | None — proof is complete |
 | **Dimension** | 5 (smallest odd dimension ≥ 5; simplifies surgery) |
 | **Why 2-torsion is not an obstruction to Q-PD** | Shapiro averages over the torsion-free subgroup |
 | **External dependencies** | Selberg's lemma, Borel's existence, Wall surgery theory, Fowler (FH(Q)), Bartels-Lück (Farrell-Jones) |

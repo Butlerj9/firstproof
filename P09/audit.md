@@ -111,7 +111,7 @@ All deliverables finalized:
 | Messages used | ~21 |
 | Gate | G7 (Package) |
 | Status | 📊 Conjecture (YES, D=4) |
-| Budget | 300 messages (GREEN) |
+| Budget | 200 messages (YELLOW — ~21 used) |
 
 ### Token estimates (synced with transcript.md)
 
