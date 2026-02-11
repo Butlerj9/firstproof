@@ -185,7 +185,7 @@ Additional checks in EXP-1:
 | **Gap** | None — proof is complete |
 | **Dimension** | 5 (smallest odd dimension ≥ 5; simplifies surgery) |
 | **Why 2-torsion is not an obstruction to Q-PD** | Shapiro averages over the torsion-free subgroup |
-| **External dependencies** | Selberg's lemma, Borel's existence, Wall surgery theory, Fowler (FH(Q)), Bartels-Lück (Farrell-Jones) |
+| **External dependencies** | Selberg's lemma (classical), Borel's existence (classical), Whitney embedding (classical). Wall surgery theory [4,5] cited as background only — surgery realization is proved inline. Fowler [remark only], Bartels-Lück [remark only] are NOT proof dependencies. |
 
 ## Citations
 
@@ -194,8 +194,8 @@ Additional checks in EXP-1:
 | [1] | Shapiro's lemma for Ext | Standard homological algebra; see Brown, "Cohomology of Groups" (Springer GTM 87), §III.6 | Used in §3 |
 | [2] | Selberg's lemma (torsion-free finite-index subgroup) | Selberg, "On discontinuous groups in higher-dimensional symmetric spaces" (1960); see also Raghunathan, "Discrete Subgroups of Lie Groups" (1972), Cor. 6.13 | Used in §3, §5 |
 | [3] | PD groups and aspherical manifolds | Brown, "Cohomology of Groups" (Springer GTM 87), §VIII.10 | Used in §3 |
-| [4] | Surgery realization for Q-PD groups | Wall, "Surgery on Compact Manifolds," 2nd ed. (AMS, 1999); Ranicki, "Algebraic and Geometric Surgery" (Oxford, 2002) | Used in §4 |
-| [5] | Topological surgery in dim ≥ 5 | Kirby-Siebenmann, "Foundational Essays on Topological Manifolds" (Princeton, 1977) | Used in §4 |
+| [4] | Surgery below middle dimension; chain-level Poincaré duality | Wall, "Surgery on Compact Manifolds," 2nd ed. (AMS, 1999), Ch. 1 §1 (surgery below middle dimension); Ranicki, "Algebraic and Geometric Surgery" (Oxford, 2002), §4.1–4.2 | Background only — proof in §4 is self-contained (proved inline) |
+| [5] | Topological manifold foundations | Kirby-Siebenmann, "Foundational Essays on Topological Manifolds" (Princeton, 1977), Essay V §1–5 | Background only — used for existence of topological surgery in dim ≥ 5; proof in §4 is self-contained |
 | [6] | Borel's existence theorem for arithmetic lattices | Borel, "Compact Clifford-Klein forms of symmetric spaces" (Topology, 1963); Borel-Harish-Chandra, "Arithmetic subgroups of algebraic groups" (Annals, 1962) | Used in §5 |
 | [7] | Compact Coxeter polytopes in H⁵ | Vinberg, "Hyperbolic reflection groups" (Russian Math. Surveys, 1985) | Used in §5 |
 | [8] | Farrell-Jones conjecture for lattices (even dim case) | Bartels-Lück-Reich, "The K-theoretic Farrell-Jones conjecture for hyperbolic groups" (Inventiones, 2008) | Mentioned in §6 remark |

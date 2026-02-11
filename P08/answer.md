@@ -122,7 +122,7 @@ Our counterexample shows that not all 4-valent polyhedral Lagrangians come from 
 
 | ID | Result used | Source | Notes |
 |----|------------|--------|-------|
-| [1] | No closed exact Lagrangian in $(\mathbb{R}^{2n}, \omega_0)$ | Gromov, M. (1985). Pseudo holomorphic curves in symplectic manifolds. *Invent. Math.* 82, 307–347. | Core obstruction |
+| [1] | No closed exact Lagrangian in $(\mathbb{R}^{2n}, \omega_0)$ | Gromov, M. (1985). Pseudo holomorphic curves in symplectic manifolds. *Invent. Math.* 82, 307–347, §2.3.B₂'. See also Audin-Lafontaine, "Holomorphic Curves in Symplectic Geometry" (Birkhäuser, 1994), Ch. IX, Thm 2.1. | Core obstruction (black-box) |
 | [2] | Action invariance under Hamiltonian isotopy | Standard; see McDuff–Salamon, *Introduction to Symplectic Topology*, Prop. 9.19 | Used in §3–4 |
 | [3] | Lagrangian Grassmannian $\Lambda(n) = U(n)/O(n)$ | Standard | Used in construction |
 | [4] | Tropical-Lagrangian correspondence | Mikhalkin (2019); Matessi (2019) | Context only (§6) |

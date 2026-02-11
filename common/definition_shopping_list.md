@@ -5,9 +5,9 @@ Protocol: `common/definition_only_escalation.md`
 
 ## Summary
 
-P08 is ✅ RESOLVED: topology-preserving definition patch eliminated the regularity gap; upgraded to Submitted. P07 is PARTIALLY RESOLVED: Q-PD proved (Shapiro), FH(Q) confirmed (Fowler 2012), but surgery realization step lacks precise citation. The remaining parked problems and the P07 gap are listed below in priority order.
+P08 is ✅ RESOLVED: topology-preserving definition patch eliminated the regularity gap; upgraded to Submitted. P07 is ✅ RESOLVED: Q-PD proved (Shapiro), surgery realization proved self-contained (below-middle-dim surgery + UCSS duality for dim 5). Upgraded to Submitted. The remaining parked problems are listed below in priority order.
 
-## P07 — Lattices in Lie Groups (PARTIALLY RESOLVED — surgery gap)
+## P07 — Lattices in Lie Groups (✅ RESOLVED — surgery gap closed)
 
 **Route**: Q-Poincaré duality for lattices with torsion → surgery theory → manifold construction.
 
@@ -83,8 +83,8 @@ The problem is open-ended ("state and prove"), and the scouts flagged:
 
 | Priority | Problem | Action | Estimated effort |
 |----------|---------|--------|-----------------|
-| 1 | P07 | Source precise surgery realization theorem for Q-PD + FH(Q) lattices (Wall/Ranicki/Quinn) | 15-30 min |
+| ~~1~~ | ~~P07~~ | ~~Surgery gap closed by self-contained argument (no external citation needed)~~ | ~~DONE~~ |
 | 2 | P02 | Source JPSS conductor definition (Def/Thm numbers) | 15 min |
 | — | P01, P05 | Skip unless time permits | — |
 
-**Note**: P08 is ✅ Submitted (topology-preserving definition patch resolved all G6 flags). P07 surgery gap remains the highest-value single citation target.
+**Note**: P08 is ✅ Submitted (topology-preserving definition patch resolved all G6 flags). P07 surgery gap was closed by self-contained argument; no longer needs external citation. Next highest-value target is P02 (JPSS conductor definition).

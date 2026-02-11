@@ -26,13 +26,13 @@ problem's `audit.md` with classification (ADMIN/LOGISTICS).
 |---------|--------|--------|------------|-------------|
 | P01 | Stochastic analysis | ❌ Parked | LOW (blocked on refs) | ~2/80 msgs |
 | P02 | Representation theory | ❌ Parked | LOW (blocked on refs) | ~2/80 msgs |
-| P03 | Algebraic combinatorics | 📊 Conjecture | HIGH (YES, Mallows/ASEP; n=2 proved) | ~22/300 msgs |
+| P03 | Algebraic combinatorics | 📊 Conjecture | HIGH (YES, Mallows/ASEP; n=2 proved) | ~22/200 msgs |
 | P04 | Finite free convolution | 📊 Conjecture | MEDIUM (n=2 proved) | ~18/300 msgs |
 | P05 | Equivariant homotopy | ❌ Parked | LOW (blocked on refs + open-ended) | ~2/80 msgs |
 | P06 | Spectral graph theory | ✅ Submitted | HIGH (NO, K_n counterexample) | ~14/300 msgs |
 | P07 | Lattices in Lie groups | ✅ Submitted | HIGH (YES, Q-PD + surgery realization proved) | ~6/80 msgs |
 | P08 | Symplectic geometry | ✅ Submitted | HIGH (NO, Lagrangian octahedron + Gromov) | ~10/80 msgs |
-| P09 | Tensor polynomial map | 📊 Conjecture | MEDIUM (YES, D=4) | ~21/300 msgs |
+| P09 | Tensor polynomial map | 📊 Conjecture | MEDIUM (YES, D=4) | ~21/200 msgs |
 | P10 | RKHS CP-ALS | ✅ Submitted | HIGH | ~12/120 msgs |
 
 Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | ❌ Parked

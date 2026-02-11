@@ -222,4 +222,4 @@ This closes the gap without needing Fowler's FH(Q), Farrell-Jones, or any extern
 | Gate | G6 (patch: ACCEPT) |
 | Status | ✅ Submitted — YES via Q-PD + surgery realization |
 | Tokens (est.) | ~20,000 |
-| Budget | 80 messages (GREEN — ~6 used) |
+| Budget | 80 messages (RED — ~6 used) |

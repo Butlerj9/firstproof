@@ -149,13 +149,13 @@ Each claim in the portfolio falls into one of three evidence tiers:
 
 | Tier | Definition | Examples |
 |------|-----------|----------|
-| **Proved inline** | Complete proof from first principles, no external citation needed | P06 counterexample; P10 SPD proofs; P07 Q-PD via Shapiro; P03 n=2 symbolic proof |
-| **Cited (statement-level)** | Argument depends on a published theorem cited with statement number | P07 FH(Q) via Fowler 2012; P08 Gromov's theorem; P04 Voiculescu inequality (motivation only) |
+| **Proved inline** | Complete proof from first principles, no external citation needed | P06 counterexample; P10 SPD proofs; P07 Q-PD via Shapiro + surgery realization (self-contained); P03 n=2 symbolic proof |
+| **Cited (statement-level)** | Argument depends on a published theorem cited with statement number | P08 Gromov §2.3.B₂'; P07 Selberg/Borel (classical, statement-level); P04 Voiculescu inequality (motivation only) |
 | **Empirical only** | Numerical/computational evidence without theorem-level proof | P03 n>=3; P04 n>=3 (285K trials); P09 kernel dimension + separation ratio; P08 construction checks |
 
 ### Characteristic failure modes observed
 
-1. **Algebra-to-geometry gap** (P07): The agent proved the algebraic claim (Q-Poincare duality) rigorously via Shapiro's lemma but could not close the geometric realization step (surgery theory) without a precise external citation. This pattern — proving the homological algebra but failing at the geometric "last mile" — appeared repeatedly.
+1. **Algebra-to-geometry gap** (P07, resolved): The agent initially proved the algebraic claim (Q-Poincaré duality) rigorously via Shapiro's lemma but stalled on the geometric realization step, seeking a general surgery citation. The gap was closed by specializing to dimension 5, where surgery below the middle dimension is elementary and UCSS duality forces Q-acyclicity — yielding a fully self-contained proof. This illustrates how a citation gap can sometimes be bypassed by finding a more elementary, dimension-specific argument.
 
 2. **Set-theoretic vs analytic convergence** (P08): The agent constructed a valid counterexample candidate and proved action invariance, but the limit argument conflated Hausdorff convergence of sets with convergence of line integrals. This highlights a systematic weakness in handling regularity questions at the boundary of point-set topology and analysis.
 

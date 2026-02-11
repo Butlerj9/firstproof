@@ -113,7 +113,7 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 |--------|-------|
 | Messages used | ~18 |
 | Gate | G7 (Package complete) |
-| Status | In progress |
+| Status | 📊 Conjecture |
 | Budget | 300 messages (GREEN) |
 
 ### Token estimates (synced with transcript.md)
