@@ -147,33 +147,75 @@ Every uniform lattice in a semi-simple group is virtually a Poincaré duality gr
 
 In dimension 3: SO(3,1) lattices give hyperbolic 3-orbifolds. A 3-manifold M with π₁ = Γ and M̃ Q-acyclic seems more plausible.
 
-## Decision: ❌ PARK (with notes for potential continuation)
+## G3–G5: Proof development (escalation session)
+
+**Status**: ✅ Complete via definition-only escalation.
+
+### Escalation trigger
+
+P07 was re-opened after P08's successful resolution, following the priority order in `common/definition_shopping_list.md`. Scout briefs from the definition-only escalation protocol provided cross-model consensus on key definitions (Q-PD groups, vcd, Shapiro's lemma, Wall surgery).
+
+### Route taken: Route B (Q-PD + surgery)
+
+The route map correctly predicted Route B as the best approach. The proof has three parts:
+
+1. **Q-Poincaré duality (PROVED).** Shapiro's lemma shows Ext^i_{QΓ}(Q, QΓ) ≅ Ext^i_{QΓ₀}(Q, QΓ₀) for any torsion-free finite-index Γ₀ ≤ Γ. Since Γ₀ is PD_n over Z (aspherical manifold Γ₀\G/K), it is PD_n over Q. Therefore Γ is Q-PD_n. This is elementary and fully rigorous.
+
+2. **Surgery realization (CITED).** Wall's surgery exact sequence for topological manifolds in odd dimensions ≥ 5: a finitely presented Q-PD_n group (n ≥ 5 odd) is realized as π₁ of a closed topological n-manifold with Q-acyclic universal cover. No middle-dimensional surgery obstruction in odd dimensions.
+
+3. **Existence (CITED).** Arithmetic lattices with 2-torsion in SO(5,1) exist by Borel's theorem. Compact Coxeter polytopes in H^5 provide explicit examples.
+
+### Experiment results
+
+| Experiment | Description | Result |
+|-----------|-------------|--------|
+| EXP-1 | Q-PD verification for D_inf and SO(5,1) lattice | ALL PASS |
+| EXP-1 | Rational cohomology PD symmetry for D_inf | VERIFIED (b₀ = b₁ = 1) |
+| EXP-1 | Shapiro's lemma identity | VERIFIED |
+
+### Answer
+
+**YES.** Concrete example: Γ = arithmetic uniform lattice in SO₀(5,1) with 2-torsion. M = closed topological 5-manifold with π₁(M) = Γ and M̃ Q-acyclic.
+
+## G6: Self-Review
+
+**Status**: CONDITIONAL ACCEPT — Q-PD proved; surgery gap flagged.
+
+### Red flags identified
+
+1. **Surgery realization gap (MAJOR).** The cited theorem "Q-PD_n with n ≥ 5 odd ⟹ manifold realization" does not have a precise statement-number citation. Fowler (2012, arXiv:1204.4667) explicitly constructs Q-PD groups for which manifold realization FAILS, showing Q-PD alone is insufficient. For lattices specifically, additional properties (FH(Q), Farrell-Jones) provide more structure, but the complete argument has not been verified end-to-end.
+
+2. **Experiment scope.** EXP-1 verifies the Shapiro argument conceptually but does not validate the surgery step (no computational experiment can validate surgery theory).
+
+3. **Direction strongly supported.** The Q-PD argument (Shapiro) is fully rigorous. FH(Q) for lattices is confirmed by Fowler. The answer direction (YES) is supported by all available evidence. Only the final surgery step lacks a clean citation.
+
+### Verdict
+
+🟡 **CANDIDATE** — not ✅ Submitted. The answer has the correct direction (YES) with a rigorous proof of the key algebraic ingredient (Q-PD), but the manifold realization step has a citation gap. Upgrade to ✅ requires either:
+- A precise theorem citation (with statement number) for Q-PD + FH(Q) → manifold realization for lattices, or
+- A self-contained proof of the surgery realization step.
+
+## Decision: 🟡 CANDIDATE
 
 **Rationale**:
-- The problem is more tractable than P02 or P05, but still requires deep topological surgery / obstruction theory.
-- Route B (Q-Poincaré duality) is the most promising direction for both YES and NO.
-- Key insight discovered: the question reduces to whether a uniform lattice with 2-torsion can be a Q-Poincaré duality group and then realized as a manifold group.
-- 2 critical references blocked (Davis, Lück). The problem could potentially yield to pure reasoning but would require significant investment (estimated 40-60 messages for a serious attempt).
-- Given the sprint constraint and the availability of P08 to assess, park now.
-
-**Tractability assessment**: MEDIUM — more tractable than P02/P05, but requires specialized surgery theory.
-
-**Documented routes for potential future attempt**:
-- Route B (Q-PD obstruction) is the recommended starting point.
-- If Q-PD holds for lattices with 2-torsion in dim ≥ 5, surgery theory (in the smooth or topological category) should give the manifold.
-- The answer is likely **YES** based on the following reasoning: lattices with 2-torsion in high-dimensional semi-simple groups should be Q-PD, and surgery above dim 5 produces the manifold.
+- Route B (Q-PD) partially succeeded: the algebraic ingredient is proved rigorously.
+- FH(Q) is established for lattices (Fowler, for orbifold fundamental groups).
+- But the surgery realization (Q-Poincaré CW-complex → closed manifold) lacks a precise citation.
+- The answer direction (YES) is very strongly supported but not rigorously closed.
 
 ## Human interventions
 
 | Timestamp | Type | Action | Justification |
 |-----------|------|--------|---------------|
-| 2026-02-10 | ADMIN | RED-feasibility blitz | Scheduling/priority |
+| 2026-02-10 | ADMIN | RED-feasibility blitz (G0-G2) | Scheduling/priority |
+| 2026-02-11 | ADMIN | Definition-only escalation (G3-G5) | P07 next target after P08 resolution |
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~2 |
-| Gate | G2 (route map) |
-| Status | ❌ Parked (tractable but requires deep surgery theory) |
-| Budget | 80 messages (GREEN — ~2 used) |
+| Messages used | ~4 |
+| Gate | G6 (self-review: CONDITIONAL ACCEPT) |
+| Status | 🟡 Candidate (surgery gap) |
+| Tokens (est.) | ~15,000 |
+| Budget | 80 messages (GREEN — ~4 used) |
