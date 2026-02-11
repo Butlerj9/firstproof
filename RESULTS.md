@@ -1,17 +1,22 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-10
-Scope: multi-agent run to date (P04, P06, P09, P10 completed; others not started)
+Snapshot date: 2026-02-10 (updated after RED-feasibility blitz)
+Scope: full portfolio (all 10 problems assessed)
 
 ## 1. Portfolio status
 
 | Problem | Status | Outcome summary |
 |---------|--------|-----------------|
-| P10 | ✅ Submitted | Matrix-free PCG solver package completed and adversarially patched. |
-| P06 | 🟡 Candidate | Answer is NO via complete-graph counterexample route; packaged and reviewed. |
+| P01 | ❌ Parked | Φ⁴₃ quasi-invariance. Blocked on 3+ refs (Hairer, Barashkov-Gubinelli). G0-G2 done. |
+| P02 | ❌ Parked | Rankin-Selberg nonvanishing. Blocked on automorphic forms refs (JPSS, Matringe). G0-G2 done. |
+| P03 | 📊 Conjecture | YES — Mallows/ASEP chain. n=2 proved exactly; n≥3 conjectured with strong numerics. G0-G7 done. |
 | P04 | 📊 Conjecture | n=2 case proved (equality); n>=3 remains conjectural with strong numerics. |
+| P05 | ❌ Parked | O-slice connectivity. Blocked on Blumberg-Hill refs; open-ended formulation. G0-G2 done. |
+| P06 | 🟡 Candidate | Answer is NO via complete-graph counterexample route; packaged and reviewed. |
+| P07 | ❌ Parked | Lattices + Q-acyclic manifolds. Needs surgery theory (Wall, Davis). Q-PD route identified. G0-G2 done. |
+| P08 | ❌ Parked | Lagrangian smoothing. Most tractable parked problem. Tropical-Lagrangian connection identified. G0-G2 done. |
 | P09 | 📊 Conjecture | Candidate D=4 mechanism found numerically; theorem-level closure still open. |
-| P01, P02, P03, P05, P07, P08 | -- | Not started. |
+| P10 | ✅ Submitted | Matrix-free PCG solver package completed and adversarially patched. |
 
 ## 2. Method escalations used
 
@@ -31,11 +36,17 @@ Source of truth: per-problem `transcript.md` and `audit.md` estimates.
 
 | Problem | Est. tokens | Prompt/message count | Notes |
 |---------|-------------|----------------------|-------|
+| P01 | ~8,000 | ~2 | G0-G2 feasibility only |
+| P02 | ~8,000 | ~2 | G0-G2 feasibility only |
+| P03 | ~65,000 | ~18 | Full G0-G7 pipeline |
 | P04 | ~76,000 | ~18 | from transcript metrics/log |
+| P05 | ~8,000 | ~2 | G0-G2 feasibility only |
 | P06 | ~53,600 | ~14 | from transcript metrics/log |
+| P07 | ~8,000 | ~2 | G0-G2 feasibility only |
+| P08 | ~8,000 | ~2 | G0-G2 feasibility only |
 | P09 | ~70,600 | ~21 | from transcript metrics/log |
 | P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (attempted set)** | **~316,200** | **~65** | all values are estimates, not API-billed absolutes |
+| **Total (all problems)** | **~421,200** | **~93** | all values are estimates, not API-billed absolutes |
 
 ## 4. What worked vs. what stalled
 
@@ -52,8 +63,11 @@ Stalled:
 
 - Fully submitted: 1 problem (P10).
 - Candidate-level: 1 problem (P06).
-- Conjecture-level: 2 problems (P04, P09).
-- Not started: 6 problems.
+- Conjecture-level: 3 problems (P03, P04, P09).
+- Parked (feasibility assessed): 5 problems (P01, P02, P05, P07, P08).
+- Not started: 0 problems.
+
+All 10 problems have been assessed to at least G2 (route map) level.
 
 ## 6. Final planned attempt (explicit)
 
