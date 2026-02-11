@@ -1,0 +1,10 @@
+Provider: moonshot
+Base URL: https://api.moonshot.ai/v1
+API key env: MOONSHOT_API_KEY (<set len=51>)
+Model: kimi-k2.5
+Loaded .env files:
+  - d:\Projects\loopforge-new\POC9\.env
+  - d:\Projects\loopforge-new\M0\.env
+HTTP 400 POST https://api.moonshot.ai/v1/chat/completions (0.62s)
+Request failed.
+{"error":{"message":"invalid temperature: only 1 is allowed for this model","type":"invalid_request_error"}}

@@ -1,7 +1,7 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-10 (updated after RED-feasibility blitz)
-Scope: full portfolio (all 10 problems assessed)
+Snapshot date: 2026-02-11 (updated after final synthesis pass)
+Scope: full portfolio (all 10 problems assessed, synthesis pass complete)
 
 ## 1. Portfolio status
 
@@ -9,10 +9,10 @@ Scope: full portfolio (all 10 problems assessed)
 |---------|--------|-----------------|
 | P01 | ❌ Parked | Φ⁴₃ quasi-invariance. Blocked on 3+ refs (Hairer, Barashkov-Gubinelli). G0-G2 done. |
 | P02 | ❌ Parked | Rankin-Selberg nonvanishing. Blocked on automorphic forms refs (JPSS, Matringe). G0-G2 done. |
-| P03 | 📊 Conjecture | YES — Mallows/ASEP chain. n=2 proved exactly; n≥3 conjectured with strong numerics. G0-G7 done. |
+| P03 | 📊 Conjecture | YES — Mallows/ASEP chain. n=2 proved exactly; n≥3 conjectured. **Synthesis pass**: identified symmetry of E\*\_{λ⁻}(q=1) as the single unproved claim (EXP-4). G0-G7 done. |
 | P04 | 📊 Conjecture | n=2 case proved (equality); n>=3 remains conjectural with strong numerics. |
 | P05 | ❌ Parked | O-slice connectivity. Blocked on Blumberg-Hill refs; open-ended formulation. G0-G2 done. |
-| P06 | 🟡 Candidate | Answer is NO via complete-graph counterexample route; packaged and reviewed. |
+| P06 | ✅ Submitted | Answer is NO via complete-graph counterexample. **Synthesis pass**: proof verified complete, all tests pass, upgraded to ✅. |
 | P07 | ❌ Parked | Lattices + Q-acyclic manifolds. Needs surgery theory (Wall, Davis). Q-PD route identified. G0-G2 done. |
 | P08 | ❌ Parked | Lagrangian smoothing. Most tractable parked problem. Tropical-Lagrangian connection identified. G0-G2 done. |
 | P09 | 📊 Conjecture | Candidate D=4 mechanism found numerically; theorem-level closure still open. |
@@ -38,7 +38,7 @@ Source of truth: per-problem `transcript.md` and `audit.md` estimates.
 |---------|-------------|----------------------|-------|
 | P01 | ~8,000 | ~2 | G0-G2 feasibility only |
 | P02 | ~8,000 | ~2 | G0-G2 feasibility only |
-| P03 | ~65,000 | ~18 | Full G0-G7 pipeline |
+| P03 | ~75,000 | ~22 | Full G0-G7 + synthesis pass (EXP-4) |
 | P04 | ~76,000 | ~18 | from transcript metrics/log |
 | P05 | ~8,000 | ~2 | G0-G2 feasibility only |
 | P06 | ~53,600 | ~14 | from transcript metrics/log |
@@ -46,7 +46,7 @@ Source of truth: per-problem `transcript.md` and `audit.md` estimates.
 | P08 | ~8,000 | ~2 | G0-G2 feasibility only |
 | P09 | ~70,600 | ~21 | from transcript metrics/log |
 | P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (all problems)** | **~421,200** | **~93** | all values are estimates, not API-billed absolutes |
+| **Total (all problems)** | **~431,200** | **~97** | all values are estimates, not API-billed absolutes |
 
 ## 4. What worked vs. what stalled
 
@@ -59,17 +59,36 @@ Stalled:
 - Theorem-level finite-n closure when numeric evidence is strong but symbolic bridge is missing (P04, P09).
 - Masked-domain equivalence and uniform-n algebraic closure (P09).
 
-## 5. Final result at this stage
+## 5. Final result after synthesis pass
 
-- Fully submitted: 1 problem (P10).
-- Candidate-level: 1 problem (P06).
+- **Fully submitted: 2 problems** (P10, P06).
 - Conjecture-level: 3 problems (P03, P04, P09).
 - Parked (feasibility assessed): 5 problems (P01, P02, P05, P07, P08).
 - Not started: 0 problems.
 
-All 10 problems have been assessed to at least G2 (route map) level.
+All 10 problems assessed to at least G2 (route map) level.
 
-## 6. Final planned attempt (explicit)
+### Synthesis pass delta (this session)
+
+| Problem | Before | After | Change |
+|---------|--------|-------|--------|
+| P06 | 🟡 Candidate | ✅ Submitted | Proof verified complete; all numerical tests pass; upgraded |
+| P03 | 📊 Conjecture | 📊 Conjecture | New EXP-4: identified E\*\_{λ⁻}(q=1) symmetry as single unproved claim; answer sharpened |
+| P04 | 📊 Conjecture | 📊 Conjecture | No closure path found (finite De Bruijn identity remains open) |
+| P09 | 📊 Conjecture | 📊 Conjecture | No closure path found (n-uniformity, masking equivalence remain open) |
+
+## 6. Escalation path for parked problems
+
+A definition-only reference escalation protocol has been established at `common/definition_only_escalation.md`. This allows re-opening parked problems by ingesting ONLY definitions, notation, and theorem statements from primary sources — no proof text, no secondary sources, no human interpretation.
+
+Priority order (by tractability):
+1. **P08** (Symplectic) — HIGH yield from 3-5 definitions (Matessi, Mikhalkin)
+2. **P07** (Lattices) — MEDIUM yield from 3-4 definitions (Davis, Wall, Lück)
+3. **P01** (Stochastic) — MEDIUM yield from 4-6 definitions (Barashkov-Gubinelli)
+4. **P02** (Rep theory) — LOW-MEDIUM yield from 5-8 definitions (JPSS, Matringe)
+5. **P05** (Eq. homotopy) — LOW yield; definitions needed even to STATE the answer
+
+## 7. GPT-5.2-pro final synthesis (planned)
 
 After all active problem tracks are settled, run one final synthesis pass with GPT-5.2-pro:
 
@@ -78,15 +97,17 @@ After all active problem tracks are settled, run one final synthesis pass with G
 3. Ask for end-to-end reconciliation of unresolved MAJOR/FATAL bottlenecks only.
 4. If GPT-5.2-pro still cannot close those bottlenecks with full artifact context, record this as evidence that the remaining gaps are not currently solvable with LLM-only methods (given current training/architecture).
 
-## 7. Artifact map
+## 8. Artifact map
 
 - Runbook: `firstproof.md`
 - Sprint pipeline: `firstproof_sprint_plan.md`
 - Progress board: `README.md`
 - Contamination policy/log: `CONTAMINATION.md`
 - Shared scout tooling: `tools/scout_api.py`, `tools/model_capability_probe.py`, `tools/README.md`
+- Handoff checklist: `common/claude_handoff_checklist.md`
+- Escalation protocol: `common/definition_only_escalation.md`
 
-## 8. Out-of-scope improvements (time-constrained sprint)
+## 9. Out-of-scope improvements (time-constrained sprint)
 
 The following were intentionally not executed in this sprint, but are plausible improvement paths:
 

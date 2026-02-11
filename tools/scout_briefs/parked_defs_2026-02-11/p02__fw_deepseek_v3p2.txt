@@ -1,0 +1,12 @@
+Provider: fireworks
+Base URL: https://api.fireworks.ai/inference/v1
+API key env: FIREWORKS_API_KEY (<set len=25>)
+Model: accounts/fireworks/models/deepseek-v3p2
+Loaded .env files:
+  - d:\Projects\loopforge-new\POC9\.env
+  - d:\Projects\loopforge-new\M0\.env
+HTTP 200 POST https://api.fireworks.ai/inference/v1/chat/completions (13.03s)
+Response:
+We are given a problem context involving non-archimedean local fields, generic irreducible admissible representations of GL_{n+1} and GL_n, Whittaker models, and an integral. We need to provide formal definitions, notation clarifications, and primary-source citation targets. We are not to provide proof ideas or answer the problem. We need to output a strict JSON with specific keys. Let's break down the problem context: - F: a non-archimedean local field. - Pi: a generic irreducible admissible representation of GL_{n+1}(F). - pi: a generic irreducible admissible representation of GL_n(F). - Whittaker models: W(Pi, psi^{-1}) and W(pi, psi), with additive character psi having conductor o (the ring of integers of F). - Conductor ideal q of pi, Q generates q^{-1} (so Q is an element such that q^{-1} = (Q)? Actually careful: q is the conductor ideal of pi. Then Q generates q^{-1}. So if q is an ideal in the ring of integers o, then q^{-1} is a fractional ideal, and Q is an element such that q^{-1} = Q o? Possibly Q is a uniformizer power? We need to clarify. - u_Q = I_{n+1} + Q E_{n,n+1}, where E_{n,n+1} is the matrix unit with 1 at position (n, n+1). - The integral is over N_n \ ...
+Usage:
+{"prompt_tokens": 302, "total_tokens": 1702, "completion_tokens": 1400, "prompt_tokens_details": {"cached_tokens": 157}}

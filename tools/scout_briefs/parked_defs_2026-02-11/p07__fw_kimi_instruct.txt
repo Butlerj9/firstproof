@@ -1,0 +1,19 @@
+Provider: fireworks
+Base URL: https://api.fireworks.ai/inference/v1
+API key env: FIREWORKS_API_KEY (<set len=25>)
+Model: accounts/fireworks/models/kimi-k2-instruct-0905
+Loaded .env files:
+  - d:\Projects\loopforge-new\POC9\.env
+  - d:\Projects\loopforge-new\M0\.env
+HTTP 200 POST https://api.fireworks.ai/inference/v1/chat/completions (22.98s)
+Traceback (most recent call last):
+Response:
+  File "D:\firstproof\tools\scout_api.py", line 374, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "D:\firstproof\tools\scout_api.py", line 353, in main
+    print(textwrap.shorten(content.replace("\r", " ").replace("\n", " ").strip(), width=1200, placeholder=" ..."))
+  File "C:\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u0393' in position 134: character maps to <undefined>

@@ -1,0 +1,32 @@
+Provider: fireworks
+Base URL: https://api.fireworks.ai/inference/v1
+API key env: FIREWORKS_API_KEY (<set len=25>)
+Model: accounts/fireworks/models/qwen3-235b-a22b-instruct-2507
+Loaded .env files:
+  - d:\Projects\loopforge-new\POC9\.env
+  - d:\Projects\loopforge-new\M0\.env
+HTTP 200 POST https://api.fireworks.ai/inference/v1/chat/completions (21.97s)
+{
+  "id": "faccb218-241d-4b2b-9ae2-383e15104acb",
+  "object": "chat.completion",
+  "created": 1770772532,
+  "model": "accounts/fireworks/models/qwen3-235b-a22b-instruct-2507",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"problem_id\": \"P02\",\n  \"core_definitions\": [\n    {\n      \"term\": \"non-archimedean local field\",\n      \"formal_definition_candidate\": \"A field F complete with respect to a discrete valuation with finite residue field, and characteristic 0 or positive characteristic.\",\n      \"confidence\": 0.99,\n      \"source_candidates\": [\n        \"Tate, J. T. 'Fourier Analysis in Number Fields and Hecke's Zeta-Functions' (1950)\",\n        \"Bushnell, C. J., and Henniart, G. 'The Local Langlands Conjecture for GL(2)', Ch. 1\",\n        \"Garrett, P. 'Buildings and Classical Groups', online notes\"\n      ]\n    },\n    {\n      \"term\": \"generic irreducible admissible representation\",\n      \"formal_definition_candidate\": \"An irreducible admissible representation of GL_n(F) that admits a Whittaker model with respect to a non-degenerate character of the standard maximal unipotent subgroup.\",\n      \"confidence\": 0.98,\n      \"source_candidates\": [\n        \"Jacquet, I., Piatetski-Shapiro, I. I., and Shalika, J. A. 'Rankin-Selberg Convolutions', Amer. J. Math. 105 (1983)\",\n        \"Cogdell, J. W. 'L-functions and Converse Theorems for GL(n)', in Automorphic Forms and Applications\"\n      ]\n    },\n    {\n      \"term\": \"Whittaker model W(\u03c0, \u03c8)\",\n      \"formal_definition_candidate\": \"The space of functions W: GL_n(F) \u2192 \u2102 such that W(ug) = \u03c8(u)W(g) for all u in the standard maximal unipotent subgroup N_n, and W lies in the representation space realizing \u03c0; here \u03c8 is a non-degenerate character of N_n.\",\n      \"confidence\": 0.99,\n      \"source_candidates\": [\n        \"Jacquet, I., Piatetski-Shapiro, I. I., Shalika, J. A. (1983)\",\n        \"Cogdell, J. W., and Piatetski-Shapiro, I. I. 'The Arithmetic and Spectral Analysis of Poincar\u00e9 Series'\"\n      ]\n    },\n    {\n      \"term\": \"additive character \u03c8 with conductor o\",\n      \"formal_definition_candidate\": \"A continuous homomorphism \u03c8: F \u2192 \u2102^\u00d7 with conductor equal to the ring of integers o_F, meaning \u03c8 is trivial on o_F but non-trivial on any fractional ideal properly containing o_F.\",\n      \"confidence\": 0.97,\n      \"source_candidates\": [\n        \"Tate, J. T. (1950)\",\n        \"Bushnell, C. J., Henniart, G. 'The Local Langlands Conjecture for GL(2)', \u00a71.7\"\n      ]\n    },\n    {\n      \"term\": \"conductor ideal q of \u03c0\",\n      \"formal_definition_candidate\": \"The smallest fractional ideal q of F such that \u03c0 contains a non-zero vector fixed by the principal congruence subgroup of GL_n(o_F) of level q; for GL_n, this coincides with the conductor of the associated L-parameter under Local Langlands.\",\n      \"confidence\": 0.95,\n      \"source_candidates\": [\n        \"Jacquet, I., Piatetski-Shapiro, I. I., Shalika, J. A. (1983)\",\n        \"Bushnell, C. J., Henniart, G. (2006), 'The Local Langlands Conjecture for GL(n)', Ch. 6\"\n      ]\n    },\n    {\n      \"term\": \"Q generates q^{-1}\",\n      \"formal_definition_candidate\": \"Q is a uniformizer or element of F such that the fractional ideal (Q) equals the inverse of the conductor ideal q, i.e., (Q) = q^{-1} as ideals in the ring of integers o_F.\",\n      \"confidence\": 0.90,\n      \"source_candidates\": [\n        \"Bushnell, C. J., Henniart, G. (2006)\",\n        \"Moy, A., and Prasad, G. 'Unrefined minimal K-types for p-adic groups'\"\n      ]\n    },\n    {\n      \"term\": \"u_Q = I_{n+1} + Q E_{n,n+1}\",\n      \"formal_definition_candidate\": \"An elementary matrix in GL_{n+1}(F) where E_{n,n+1} is the matrix with 1 in the (n,n+1)-entry and 0 elsewhere; thus u_Q is the unipotent matrix with Q in the (n,n+1) position and 1s on the diagonal.\",\n      \"confidence\": 0.99,\n      \"source_candidates\": [\n        \"Jacquet, I., Piatetski-Shapiro, I. I., Shalika, J. A. (1983)\",\n        \"Cogdell, J. W., Kim, H. H., Piatetski-Shapiro, I. I., Shahidi, F. 'On the Construction of Split Classical Groups'\"\n      ]\n    },\n    {\n      \"term\": \"N_n \\\\ GL_n(F)\",\n      \"formal_definition_candidate\": \"The quotient space of GL_n(F) by the standard maximal unipotent subgroup N_n, typically considered with respect to a right action; integration over this space requires a choice of invariant measure.\",\n      \"confidence\": 0.96,\n      \"source_candidates\": [\n        \"Bump, D. 'Automorphic Forms and Representations', \u00a74.6\",\n        \"Goldfeld, D., and Hundley, J. 'Automorphic Representations and L-Functions for the General Linear Group', Vol. 1\"\n      ]\n    }\n  ],\n  \"statement_targets\": [\n    {\n      \"needed_statement\": \"Existence and uniqueness of Whittaker models for generic irreducible admissible representations of GL_n(F).\",\n      \"likely_source\": \"Jacquet, I., Piatetski-Shapiro, I. I., Shalika, J. A. (1983)\",\n      \"likely_label_or_section\": \"Theorem 2.5\",\n      \"confidence\": 0.98\n    },\n    {\n      \"needed_statement\": \"Definition and properties of the conductor of an irreducible admissible representation of GL_n(F)."
+      },
+      "finish_reason": "length"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 309,
+    "total_tokens": 1709,
+    "completion_tokens": 1400,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  }
+}

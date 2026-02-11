@@ -33,6 +33,18 @@ try:
 except Exception:  # pragma: no cover - fallback path
     requests = None  # type: ignore
 
+# Avoid UnicodeEncodeError on Windows code pages when model output contains non-ASCII.
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+if hasattr(sys.stderr, "reconfigure"):
+    try:
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 
 DEFAULT_ENV_FILES = [
     pathlib.Path(r"d:/Projects/loopforge-new/POC9/.env"),

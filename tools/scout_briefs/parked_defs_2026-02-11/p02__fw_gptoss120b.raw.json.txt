@@ -1,0 +1,33 @@
+Provider: fireworks
+Base URL: https://api.fireworks.ai/inference/v1
+API key env: FIREWORKS_API_KEY (<set len=25>)
+Model: accounts/fireworks/models/gpt-oss-120b
+Loaded .env files:
+  - d:\Projects\loopforge-new\POC9\.env
+  - d:\Projects\loopforge-new\M0\.env
+HTTP 200 POST https://api.fireworks.ai/inference/v1/chat/completions (21.48s)
+{
+  "id": "c469f651-bf66-424a-9467-0f50f2f5bb72",
+  "object": "chat.completion",
+  "created": 1770772510,
+  "model": "accounts/fireworks/models/gpt-oss-120b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"problem_id\": \"P02\",\n  \"core_definitions\": [\n    {\n      \"term\": \"non-archimedean local field\",\n      \"formal_definition_candidate\": \"A locally compact topological field F whose topology is induced by a discrete valuation v_F, with finite residue field of cardinality q_F, and which is not isomorphic to the real or complex numbers.\",\n      \"confidence\": 0.98,\n      \"source_candidates\": [\n        \"J. W. S. Cassels, A. Fr\u00f6hlich (eds.), *Algebraic Number Theory*, Chap. I, \u00a71\",\n        \"S. Lang, *Algebraic Number Theory*, \u00a71.1\"\n      ]\n    },\n    {\n      \"term\": \"generic irreducible admissible representation of GL_m(F)\",\n      \"formal_definition_candidate\": \"An irreducible smooth representation (\u03c0, V) of GL_m(F) on a complex vector space V such that there exists a non\u2011zero linear functional \u03bb: V \u2192 \u2102 satisfying \u03bb(\u03c0(n)v)=\u03c8(n)\u03bb(v) for all n in the standard maximal unipotent subgroup N_m(F) and a fixed non\u2011trivial additive character \u03c8 of F; the pair (\u03c0,\u03bb) is called a Whittaker model of \u03c0.\",\n      \"confidence\": 0.95,\n      \"source_candidates\": [\n        \"H. Jacquet, I. Piatetski\u2011Shapiro, J. Shalika, *Rankin\u2013Selberg Convolutions*, Amer. J. Math. 105 (1983), \u00a72\",\n        \"C. M\u0153glin, J.-L. Waldspurger, *Modeles de Whittaker et caract\u00e8res de repr\u00e9sentations de GL(n)*, 1995\"\n      ]\n    },\n    {\n      \"term\": \"Whittaker model W(\u03c0,\u03c8)\",\n      \"formal_definition_candidate\": \"The space of functions W: GL_m(F) \u2192 \u2102 defined by W(g)=\u03bb(\u03c0(g)v) for some v\u2208V, where \u03bb is a \u03c8\u2011Whittaker functional as above; equipped with the right translation action of GL_m(F).\",\n      \"confidence\": 0.96,\n      \"source_candidates\": [\n        \"H. Jacquet, *Principal L\u2011functions of the linear group*, Lecture Notes in Math. 544, Springer, 1976, \u00a72\",\n        \"D. Bump, *Automorphic Forms and Representations*, Chap. 4\"\n      ]\n    },\n    {\n      \"term\": \"conductor ideal \ud835\udd2e of a representation \u03c0 of GL_n(F)\",\n      \"formal_definition_candidate\": \"The smallest non\u2011negative integer r such that \u03c0 has non\u2011zero vectors fixed by the principal congruence subgroup K_n(r)=\\\\{k\u2208GL_n(\ud835\udd2c_F) : k\u2261I_n \\\\pmod{\ud835\udd2d_F^r}\\\\}; the corresponding ideal is \ud835\udd2e=\ud835\udd2d_F^{r} where \ud835\udd2d_F is the maximal ideal of the ring of integers \ud835\udd2c_F.\",\n      \"confidence\": 0.90,\n      \"source_candidates\": [\n        \"J. P. Serre, *Linear Representations of Finite Groups*, Chap. 8 (adapted to p\u2011adic case)\",\n        \"C. J. Bushnell, G. Henniart, *The Local Langlands Conjecture for GL(2)*, \u00a72.4\"\n      ]\n    },\n    {\n      \"term\": \"element Q generating \ud835\udd2e^{-1}\",\n      \"formal_definition_candidate\": \"Choose Q\u2208F such that the fractional ideal Q\u00b7\ud835\udd2c_F equals \ud835\udd2e^{-1}; equivalently v_F(Q)= -v_F(\ud835\udd2e).\",\n      \"confidence\": 0.88,\n      \"source_candidates\": [\n        \"J. Tate, *Fourier analysis in number fields and Hecke\u2019s zeta\u2011functions*, \u00a71\",\n        \"S. Gelbart, *Automorphic Forms on Adele Groups*, Chap. I\"\n      ]\n    },\n    {\n      \"term\": \"matrix u_Q = I_{n+1}+Q E_{n,n+1}\",\n      \"formal_definition_candidate\": \"The (n+1)\u00d7(n+1) matrix obtained from the identity by adding Q in the (n, n+1) entry, i.e. (u_Q)_{ij}=\u03b4_{ij}+Q\u00b7\u03b4_{i,n}\u03b4_{j,n+1}.\",\n      \"confidence\": 0.99,\n      \"source_candidates\": [\n        \"Standard notation in Rankin\u2013Selberg integrals, see Jacquet\u2013Shalika, *On Euler products and the classification of automorphic representations*, Amer. J. Math. 103 (1981), \u00a73\"\n      ]\n    },\n    {\n      \"term\": \"integral I(s)=\u222b_{N_n\\\\GL_n(F)} W(diag(g,1)u_Q) V(g) |det g|^{s-\u00bd} dg\",\n      \"formal_definition_candidate\": \"The local Rankin\u2013Selberg integral attached to the pair (\u03a0,\u03c0), where W\u2208W(\u03a0,\u03c8^{-1}), V\u2208W(\u03c0,\u03c8), the integration is over the quotient of GL_n(F) by its standard maximal unipotent subgroup N_n(F) with respect to a right\u2011invariant Haar measure dg, and |\u00b7| denotes the normalized absolute value on F (|\u03c0_F|=q_F^{-1}).\",\n      \"confidence\": 0.94,\n      \"source_candidates\": [\n        \"H. Jacquet, I. Piatetski\u2011Shapiro, J. Shalika, *Rankin\u2013Selberg Convolutions*, Amer. J. Math. 105 (1983), \u00a73\",\n        \"F. Shahidi, *On certain L\u2011functions*, Amer. J. Math. 103",
+        "reasoning_content": "We need to output JSON with required fields. Provide candidate definitions: non-archimedean local field, generic irreducible admissible representation, Whittaker model, conductor ideal, etc. Provide statement targets: maybe Jacquet-Shalika integral, Rankin-Selberg local L-factor, functional equation, etc. Provide minimal_dependency_set: definitions needed for integral, measure, etc. Ambiguity flags: maybe notation of N_n\\GL_n(F) quotient, choice of Haar measure, normalization of additive character. Do_not_assume: assume certain normalizations.\n\nWe must not give proof ideas. Provide confidence levels.\n\nLet's craft JSON."
+      },
+      "finish_reason": "length"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 358,
+    "total_tokens": 1758,
+    "completion_tokens": 1400,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  }
+}

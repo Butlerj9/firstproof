@@ -1,0 +1,45 @@
+Provider: groq
+Base URL: https://api.groq.com/openai/v1
+API key env: GROQ_API_KEY (<set len=56>)
+Model: openai/gpt-oss-120b
+Loaded .env files:
+  - d:\Projects\loopforge-new\POC9\.env
+  - d:\Projects\loopforge-new\M0\.env
+HTTP 200 POST https://api.groq.com/openai/v1/chat/completions (3.92s)
+{
+  "id": "chatcmpl-f2ace283-d979-4e12-aea0-c91d7a074e67",
+  "object": "chat.completion",
+  "created": 1770772170,
+  "model": "openai/gpt-oss-120b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"problem_id\": \"P02\",\n  \"core_definitions\": [\n    {\n      \"term\": \"non\u2011archimedean local field\",\n      \"formal_definition_candidate\": \"A locally compact, non\u2011discrete topological field F whose topology is induced by a discrete valuation v_F : F^\\\\times \\\\to \\\\mathbb{Z}, with ring of integers \\\\mathcal{O}_F = \\\\{x\\\\in F : v_F(x)\\\\ge 0\\\\}, maximal ideal \\\\mathfrak{p}_F = \\\\{x\\\\in F : v_F(x)\\\\ge 1\\\\}, and finite residue field \\\\mathcal{O}_F/\\\\mathfrak{p}_F.\",\n      \"confidence\": 0.99,\n      \"source_candidates\": [\n        \"J. W. S. Cassels, A. Fr\u00f6hlich (eds.), *Algebraic Number Theory*, Chap.\u202fII, \u00a71\",\n        \"S. Lang, *Algebraic Number Theory*, \u00a71.1\"\n      ]\n    },\n    {\n      \"term\": \"generic irreducible admissible representation of GL_m(F)\",\n      \"formal_definition_candidate\": \"An irreducible smooth representation \\\\(\\\\Pi\\\\) of \\\\(\\\\mathrm{GL}_m(F)\\\\) on a complex vector space V such that there exists a non\u2011zero linear functional \\\\(\\\\lambda: V\\\\to \\\\mathbb{C}\\\\) satisfying \\\\(\\\\lambda(\\\\Pi(n)v)=\\\\psi^{-1}(n)\\\\lambda(v)\\\\) for all n in the standard maximal unipotent subgroup N_m(F) and a fixed non\u2011trivial additive character \\\\(\\\\psi: F\\\\to \\\\mathbb{C}^\\\\times\\\\). The representation is admissible if for every compact open subgroup K\\\\subset GL_m(F) the subspace V^K of K\u2011fixed vectors is finite\u2011dimensional.\",\n      \"confidence\": 0.97,\n      \"source_candidates\": [\n        \"H. Jacquet, I. Piatetski\u2011Shapiro, J. Shalika, *Rankin\u2013Selberg Convolutions*, Amer. J. Math. 105 (1983), \u00a72\",\n        \"C. Bushnell, G. Henniart, *The Local Langlands Conjecture for GL(2)*, \u00a71\"\n      ]\n    },\n    {\n      \"term\": \"Whittaker model \\\\(\\\\mathcal{W}(\\\\Pi,\\\\psi^{-1})\\\\)\",\n      \"formal_definition_candidate\": \"The space of smooth functions \\\\(W: \\\\mathrm{GL}_m(F)\\\\to \\\\mathbb{C}\\\\) of the form \\\\(W(g)=\\\\lambda(\\\\Pi(g)v)\\\\) for some v\\\\in V, where \\\\(\\\\lambda\\\\) is a \\\\(\\\\psi^{-1}\\\\)-Whittaker functional as above. Equivalently, \\\\(\\\\mathcal{W}(\\\\Pi,\\\\psi^{-1})\\\\) is the unique (up to scalar) realization of \\\\(\\\\Pi\\\\) on which N_m(F) acts by the character \\\\(\\\\psi^{-1}\\\\).\",\n      \"confidence\": 0.96,\n      \"source_candidates\": [\n        \"J. Shalika, *The Multiplicity One Theorem for GL_n*, Ann. Math. 100 (1974), \u00a72\",\n        \"D. Bump, *Automorphic Forms and Representations*, Chap.\u202f4\"\n      ]\n    },\n    {\n      \"term\": \"conductor ideal \\\\(\\\\mathfrak{q}\\\\) of a generic representation \\\\(\\\\pi\\\\) of \\\\(\\\\mathrm{GL}_n(F)\\\\)\",\n      \"formal_definition_candidate\": \"The smallest non\u2011negative integer \\\\(c(\\\\pi)\\\\) such that \\\\(\\\\pi\\\\) has a non\u2011zero vector fixed by the principal congruence subgroup \\\\(K_n(\\\\mathfrak{p}_F^{c(\\\\pi)}) = \\\\{k\\\\in \\\\mathrm{GL}_n(\\\\mathcal{O}_F) : k\\\\equiv I_n \\\\pmod{\\\\mathfrak{p}_F^{c(\\\\pi)}}\\\\}\\\\). The conductor ideal is then \\\\(\\\\mathfrak{q}=\\\\mathfrak{p}_F^{c(\\\\pi)}\\\\).\",\n      \"confidence\": 0.94,\n      \"source_candidates\": [\n        \"J. P. Serre, *Linear Representations of Finite Groups*, Chap.\u202f9 (adapted to p\u2011adic case)\",\n        \"C. J. Bushnell, G. Henniart, *The Local Langlands Conjecture for GL(n)*, \u00a72.4\"\n      ]\n    },\n    {\n      \"term\": \"element \\\\(Q\\\\) generating \\\\(\\\\mathfrak{q}^{-1}\\\\)\",\n      \"formal_definition_candidate\": \"Choose a uniformizer \\\\(\\\\varpi\\\\) of F. If \\\\(\\\\mathfrak{q}=\\\\mathfrak{p}_F^{c}\\\\), then \\\\(\\\\mathfrak{q}^{-1}=\\\\mathfrak{p}_F^{-c}=\\\\varpi^{-c}\\\\mathcal{O}_F\\\\). An element \\\\(Q\\\\in F\\\\) with valuation \\\\(v_F(Q)=-c\\\\) (e.g., \\\\(Q=\\\\varpi^{-c}\\\\)) generates \\\\(\\\\mathfrak{q}^{-1}\\\\) as an \\\\(\\\\mathcal{O}_F\\\\)-module.\",\n      \"confidence\": 0.92,\n      \"source_candidates\": [\n        \"J. Tate, *Fourier Analysis in Number Fields and Hecke\u2019s Zeta\u2011Functions*, \u00a71\"\n      ]\n    },\n    {\n      \"term\": \"matrix \\\\(u_Q = I_{n+1}+Q E_{n,n+1}\\\\)\",\n      \"formal_definition_candidate\": \"The (n+1)\u00d7(n+1) matrix equal to the identity except for the (n, n+1)\u2011entry, which is Q. Here \\\\(E_{i,j}\\\\) denotes the elementary matrix with a 1 in position (i,j) and 0 elsewhere.\",\n      \"confidence\": 0.99,\n      \"source_candidates\": [\n        \"Standard linear algebra notation; see e.g. G. James, M. Liebeck, *Representations and Characters of Groups*, Appendix A\"\n      ]\n    },\n    {\n      \"term\": \"integral \\\\(I(s)=\\\\int_{N_n\\\\backslash \\\\mathrm{GL}_n(F)} W\\\\bigl(\\\\operatorname{diag}(g,1)\\\\,u_Q\\\\bigr)\\\\,V(g)\\\\,|\\\\det g|^{s-1/2}\\\\,dg\\\\)\",\n      \"formal_definition_candidate\": \"Let \\\\(W\\\\in \\\\mathcal{W}(\\\\Pi,",
+        "reasoning": "We need to output JSON with required fields. Provide candidate formal definitions: non-archimedean local field, generic irreducible admissible representation, Whittaker model, conductor ideal, etc. Provide statement targets: maybe functional equation, Rankin\u2013Selberg integral, local gamma factor, etc. Minimal dependency set: definitions needed to understand integral. Ambiguity flags: any unclear notation like V(g) maybe a Whittaker function for pi. Do not assume anything else.\n\nWe must not give proof ideas. Provide confidence levels.\n\nLet's craft JSON."
+      },
+      "logprobs": null,
+      "finish_reason": "length"
+    }
+  ],
+  "usage": {
+    "queue_time": 0.054304053,
+    "prompt_tokens": 357,
+    "prompt_time": 0.016991309,
+    "completion_tokens": 1600,
+    "completion_time": 3.392874739,
+    "total_tokens": 1957,
+    "total_time": 3.409866048,
+    "completion_tokens_details": {
+      "reasoning_tokens": 115
+    }
+  },
+  "usage_breakdown": null,
+  "system_fingerprint": "fp_f73454f048",
+  "x_groq": {
+    "id": "req_01kh53xydker1v7365ry4xjj47",
+    "seed": 877692115
+  },
+  "service_tier": "on_demand"
+}

@@ -1,12 +1,12 @@
 # P06: Alpha-Light Sets in Graphs
 
-**Status**: 🟡 Candidate
+**Status**: ✅ Submitted
 **Answer**: **NO.** No universal constant $c > 0$ exists. The complete graph $K_n$ provides an explicit counterexample family.
-**Reviewer**: Codex 5.2 — G6 verdict: 🟡 (3 red flags, see below)
+**Reviewer**: Codex 5.2 — G6 final verdict: ACCEPT (initial red flags patched)
 **Code verification**: `experiments/` — eigenvalue formula verified exhaustively for $n \leq 24$; boundary condition confirmed
 **External deps**: None (self-contained linear algebra)
 
-### Reviewer red flags (G6)
+### Reviewer red flags resolved (G6)
 1. **Boundary $k = n$**: Original lemma proof's 4-subspace decomposition invalid at $k = n$ ($W_{S^c}$ has dimension $-1$). Fixed: $k = n$ handled as separate boundary case.
 2. **$c \geq 1$ logic**: Original Case 1 conflated $c = 1$ (forces $S = V$) with $c > 1$ (size impossible outright). Fixed: explicit three-way case split.
 3. **"$K_n$ hardest" overclaim**: CE-2 greedy search is not exact; claim withdrawn. The proof only requires $K_n$ as one sufficient counterexample family.

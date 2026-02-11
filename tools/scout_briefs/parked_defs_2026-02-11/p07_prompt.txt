@@ -1,0 +1,17 @@
+You are assisting a math workflow under strict contamination controls.
+Task: Provide ONLY candidate formal definitions, notation clarifications, and primary-source citation targets needed to proceed.
+Do NOT provide proof ideas, proof sketches, route strategies, or attempt to answer the problem.
+If uncertain, mark uncertainty explicitly.
+
+Output STRICT JSON with keys:
+- problem_id
+- core_definitions: [{term, formal_definition_candidate, confidence, source_candidates:[...]}]
+- statement_targets: [{needed_statement, likely_source, likely_label_or_section, confidence}]
+- minimal_dependency_set: [{item, why_critical, confidence}]
+- ambiguity_flags: [string]
+- do_not_assume: [string]
+
+Problem P07 context:
+- Gamma is a uniform lattice in a real semisimple Lie group, with 2-torsion.
+- Ask whether there exists compact manifold M with pi_1(M)=Gamma and universal cover M~ rationally acyclic.
+Need clean formal definitions and citation targets only.

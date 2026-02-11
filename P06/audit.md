@@ -66,7 +66,7 @@ Fast-tracked: counterexample is self-contained standard linear algebra.
 
 **Status**: ✅ Complete.
 
-**Final status**: 🟡 Candidate — Answer: NO.
+**Final status**: ✅ Submitted — Answer: NO.
 
 **Deliverables**:
 - `answer.md` — Full proof: eigenspace decomposition of αL_{K_n} - L_S, three-way case split, numerical verification
@@ -95,7 +95,7 @@ Fast-tracked: counterexample is self-contained standard linear algebra.
 |--------|-------|
 | Messages used | ~14 |
 | Gate | G7 (Package complete) |
-| Status | In progress |
+| Status | ✅ Submitted |
 | Budget | 300 messages (GREEN) |
 
 ### Token estimates (synced with transcript.md)

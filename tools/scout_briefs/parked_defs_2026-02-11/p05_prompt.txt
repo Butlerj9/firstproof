@@ -1,0 +1,19 @@
+You are assisting a math workflow under strict contamination controls.
+Task: Provide ONLY candidate formal definitions, notation clarifications, and primary-source citation targets needed to proceed.
+Do NOT provide proof ideas, proof sketches, route strategies, or attempt to answer the problem.
+If uncertain, mark uncertainty explicitly.
+
+Output STRICT JSON with keys:
+- problem_id
+- core_definitions: [{term, formal_definition_candidate, confidence, source_candidates:[...]}]
+- statement_targets: [{needed_statement, likely_source, likely_label_or_section, confidence}]
+- minimal_dependency_set: [{item, why_critical, confidence}]
+- ambiguity_flags: [string]
+- do_not_assume: [string]
+
+Problem P05 context:
+- Finite group G.
+- Incomplete transfer system O associated to an N∞ operad.
+- Need: define O-adapted slice filtration on G-equivariant stable category.
+- Need: characterize O-slice connectivity of a connective G-spectrum via geometric fixed points.
+Need clean formal definitions and citation targets only.

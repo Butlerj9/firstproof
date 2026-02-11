@@ -1,0 +1,32 @@
+Provider: fireworks
+Base URL: https://api.fireworks.ai/inference/v1
+API key env: FIREWORKS_API_KEY (<set len=25>)
+Model: accounts/fireworks/models/kimi-k2-instruct-0905
+Loaded .env files:
+  - d:\Projects\loopforge-new\POC9\.env
+  - d:\Projects\loopforge-new\M0\.env
+HTTP 200 POST https://api.fireworks.ai/inference/v1/chat/completions (33.70s)
+{
+  "id": "626ee8e0-e64a-4a23-a1c7-f74a5da617fe",
+  "object": "chat.completion",
+  "created": 1770772116,
+  "model": "accounts/fireworks/models/kimi-k2-instruct-0905",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```json\n{\n  \"problem_id\": \"P02\",\n  \"core_definitions\": [\n    {\n      \"term\": \"non-archimedean local field\",\n      \"formal_definition_candidate\": \"A field F that is complete with respect to a discrete valuation, has finite residue field, and is locally compact; equivalently a finite extension of \u211a_p or \ud835\udd3d_q((t)).\",\n      \"confidence\": \"high\",\n      \"source_candidates\": [\"Neukirch, Algebraic Number Theory, Ch. II \u00a75\", \"Bushnell\u2013Henniart, Local Langlands for GL(2), 1.1\"]\n    },\n    {\n      \"term\": \"generic irreducible admissible representation\",\n      \"formal_definition_candidate\": \"An irreducible smooth representation (\u03c0,V) of GL_n(F) possessing a Whittaker model with respect to some non-trivial additive character \u03c8; equivalently the space of \u03c8-Whittaker functionals is one-dimensional.\",\n      \"confidence\": \"high\",\n      \"source_candidates\": [\"Jacquet\u2013Piatetski-Shapiro\u2013Shalika, Automorphic Forms on GL(3), \u00a72\", \"Cogdell, Notes on L-functions for GL_n, Def. 2.1\"]\n    },\n    {\n      \"term\": \"Whittaker model W(\u03c0,\u03c8)\",\n      \"formal_definition_candidate\": \"The unique subspace of Ind_{N_n}^{GL_n}(\u03c8) consisting of smooth functions W: GL_n(F)\u2192\u2102 satisfying W(ng)=\u03c8(n)W(g) for n\u2208N_n, g\u2208GL_n(F), and on which GL_n(F) acts by right translation isomorphically to \u03c0.\",\n      \"confidence\": \"high\",\n      \"source_candidates\": [\"Jacquet, Generic Representations, \u00a73\", \"Bushnell\u2013Henniart, \u00a72.2\"]\n    },\n    {\n      \"term\": \"conductor ideal q of \u03c0\",\n      \"formal_definition_candidate\": \"The fractional ideal q = \ud835\udd2d^{f(\u03c0)} where f(\u03c0) is the smallest non-negative integer such that \u03c0 contains a non-zero vector fixed by the congruence subgroup K_1(\ud835\udd2d^{f(\u03c0)}) = {g\u2208GL_n(o) : g\u2261I mod \ud835\udd2d^{f(\u03c0)}}.\",\n      \"confidence\": \"high\",\n      \"source_candidates\": [\"Jacquet\u2013Piatetski-Shapiro\u2013Shalika, Conducteur des repr\u00e9sentations du groupe lin\u00e9aire, Def. 2.1\", \"Cogdell, \u00a73.2\"]\n    },\n    {\n      \"term\": \"additive character \u03c8 with conductor o\",\n      \"formal_definition_candidate\": \"A smooth group homomorphism \u03c8: F\u2192\u2102^\u00d7 that is trivial on the ring of integers o but non-trivial on \ud835\udd2d^{-1}, where \ud835\udd2d is the maximal ideal of o.\",\n      \"confidence\": \"high\",\n      \"source_candidates\": [\"Bushnell\u2013Henniart, \u00a71.4\", \"Tate, Fourier analysis in number fields, \u00a72.2\"]\n    },\n    {\n      \"term\": \"u_Q = I_{n+1} + Q E_{n,n+1}\",\n      \"formal_definition_candidate\": \"The unipotent element in GL_{n+1}(F) whose only non-diagonal entry is Q in position (n,n+1), where Q is a fixed generator of the fractional ideal q^{-1}.\",\n      \"confidence\": \"high\",\n      \"source_candidates\": [\"Jacquet\u2013Piatetski-Shapiro\u2013Shalika, Rankin\u2013Selberg integrals, \u00a72.1\"]\n    }\n  ],\n  \"statement_targets\": [\n    {\n      \"needed_statement\": \"Uniqueness and existence of Whittaker models for generic representations of GL_n(F)\",\n      \"likely_source\": \"Jacquet, Generic Representations, Thm. 3.1\",\n      \"likely_label_or_section\": \"Theorem 3.1\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"needed_statement\": \"Definition and basic properties of the conductor ideal/exponent for GL_n(F)\",\n      \"likely_source\": \"Jacquet\u2013Piatetski-Shapiro\u2013Shalika, Conducteur des repr\u00e9sentations du groupe lin\u00e9aire, \u00a72\",\n      \"likely_label_or_section\": \"D\u00e9finition 2.1\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"needed_statement\": \"Integration over quotient N_n\\GL_n(F) with invariant measure normalization\",\n      \"likely_source\": \"Cogdell, Notes on L-functions for GL_n, \u00a74.1\",\n      \"likely_label_or_section\": \"\u00a74.1\",\n      \"confidence\": \"medium\"\n    }\n  ],\n  \"minimal_dependency_set\": [\n    {\n      \"item\": \"Smoothness and admissibility of \u03c0 and \u03a0\",\n      \"why_critical\": \"Ensures vectors are fixed by open subgroups and representations have finite-length composition series, required for convergence of integral and existence of Whittaker models.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"item\": \"Genericity of \u03c0 and \u03a0\",\n      \"why_critical\": \"Guarantees existence and uniqueness of Whittaker models, hence the integral is well-defined on the chosen Whittaker functions W and V.\",\n      \"confidence\": \"high\"\n    },\n    {\n      \"item\": \"Conductor ideal q and choice of Q\u2208q^{-1}\",\n      \"why_critical\": \"Determines the specific unipotent element u_Q used in the integrand and links the integral to the conductor of \u03c0.\",\n      \"confidence\": \"high\"\n    }\n  ],\n  \"ambiguity_flags\": [\n    \"Normalization of the invariant measure on N_n\\GL_n(F) not specified.\",\n    \"Precise definition of 'generic' may vary slightly among sources (some require \u03c8-generic for all \u03c8, others for one \u03c8).\",\n    \"Conductor exponent f(\u03c0) versus conductor ideal q = \ud835\udd2d^{f(\u03c0)} usage must be distinguished.\"\n  ],\n  \"do_not_assume\": [\n    \"Do NOT assume the integral converges for all s\u2208\u2102 without further domain restriction.\",\n    \"Do NOT assume the integral computes a standard L-factor without identifying the exact Rankin\u2013Selberg construction.\",\n    \"Do NOT assume Q is unique; any generator of q^{-1} suffices.\"\n  ]\n}\n```"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 299,
+    "total_tokens": 1657,
+    "completion_tokens": 1358,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  }
+}
