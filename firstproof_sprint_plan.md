@@ -223,6 +223,21 @@ Route maps, lemma DAGs, background notes, and review notes are **sections inside
 | +24-36h | Adversarial re-review + status update (✅/🟡/📊/❌/contaminated) | Agent R |
 | +36h | Commit/push revised artifacts + changelog in audit/transcript | Producer |
 
+### Phase 6: Final synthesis pass (last attempt)
+**After all active problem tracks settle**
+
+| When (PT) | Action | Owner |
+|-----------|--------|-------|
+| Final pass start | Consolidate all finalized artifacts per attempted problem (`answer.md`, `audit.md`, `transcript.md`, experiments) | Producer |
+| +0-8h | Single GPT-5.2-pro synthesis pass on unresolved theorem bottlenecks only | Agent I |
+| +8-12h | Reviewer adversarial check on any new closure claims | Agent R |
+| +12h | If bottlenecks remain unresolved, publish explicit "LLM-only limit reached (current architectures)" note in results | Producer |
+
+Final-pass rule:
+- Use this once, at the end.
+- Do not web-search foundational lemmas in llm-only runs.
+- If GPT-5.2-pro cannot connect the dots with full artifact context, treat unresolved items as likely out-of-reach for current LLM-only methods.
+
 ---
 
 ## 7. Per-problem tactical notes

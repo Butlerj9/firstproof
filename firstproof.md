@@ -134,6 +134,30 @@ Observed signal from current artifacts:
 - If blocker remains: publish as 📊/❌ with explicit label "unsolved after relaxed pass."
 - If contamination event occurs: freeze problem and mark `CONTAMINATED_EXTERNAL_SOLUTION`.
 
+## 3B. Final Synthesis Pass (one-time, end-stage)
+
+After all active tracks are complete (or parked), run one final consolidation attempt:
+
+1. Feed GPT-5.2-pro the full artifact set for each attempted problem: `answer.md`, `audit.md`, `transcript.md`, and experiment scripts/outputs.
+2. Restrict the objective to unresolved proof bottlenecks and cross-artifact consistency, not broad re-exploration.
+3. Keep llm-only hygiene: no web-search for foundational lemmas during this pass unless the run is explicitly marked relaxed/non-llm-only.
+4. Send any newly claimed closure through standard G6 adversarial review before status upgrade.
+
+Interpretation rule:
+- If GPT-5.2-pro still cannot close the bottleneck with full multi-agent context, record this as evidence that the remaining gap is likely not solvable with current LLM-only training/architecture.
+
+## 3C. Out-of-Scope Upgrade Paths (not executed in this sprint)
+
+To preserve timeline and comparability, the following upgrades were left out of current execution:
+
+1. Fine-tuning on orthogonal-but-related proof spaces (adjacent theorem families and foundational corpora).
+2. Process-level verifier fine-tuning with step supervision.
+3. Formal-checker-coupled training loops (Lean/SMT-in-the-loop generation).
+4. Retrieval-index tuning for foundational statement/hypothesis matching.
+5. Multi-agent replay training on accumulated audit/transcript failure patterns.
+
+These are valid follow-on research directions, but not part of the current sprint claims.
+
 ---
 
 ## 4. Gates (G0–G7) as sections inside `audit.md`

@@ -24,9 +24,9 @@ problem's `audit.md` with classification (ADMIN/LOGISTICS).
 
 | Problem | Domain | Status | Confidence | Budget used |
 |---------|--------|--------|------------|-------------|
-| P01 | Stochastic analysis | -- | -- | 0 |
+| P01 | Stochastic analysis | ❌ Parked | LOW (blocked on refs) | ~2/80 msgs |
 | P02 | Representation theory | -- | -- | 0 |
-| P03 | Algebraic combinatorics | -- | -- | 0 |
+| P03 | Algebraic combinatorics | 📊 Conjecture | HIGH (YES, Mallows/ASEP; n=2 proved) | ~16/300 msgs |
 | P04 | Finite free convolution | 📊 Conjecture | MEDIUM (n=2 proved) | ~18/300 msgs |
 | P05 | Equivariant homotopy | -- | -- | 0 |
 | P06 | Spectral graph theory | 🟡 Candidate | HIGH (NO, K_n counterexample) | ~14/300 msgs |
@@ -44,6 +44,7 @@ Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | 
 - `PXX/experiments/` — verification scripts and outputs
 - `PXX/transcript.md` — complete AI interaction log
 - `CONTAMINATION.md` — search log and exposure declarations
+- `RESULTS.md` — consolidated progress, escalations, final outcomes, and token/message accounting
 
 ## Extended Model Tooling
 
