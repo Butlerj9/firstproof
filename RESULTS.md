@@ -13,8 +13,8 @@ Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation com
 | P04 | 📊 Conjecture | n=2 case proved (equality); n>=3 remains conjectural with strong numerics. |
 | P05 | ❌ Parked | O-slice connectivity. Blocked on Blumberg-Hill refs; open-ended formulation. G0-G2 done. |
 | P06 | ✅ Submitted | Answer is NO via complete-graph counterexample. **Synthesis pass**: proof verified complete, all tests pass, upgraded to ✅. |
-| P07 | ✅ Submitted | Answer is YES via Q-PD (Shapiro's lemma) + Wall surgery in dim 5. Concrete example: arithmetic lattice in SO(5,1) with 2-torsion. G0-G5 done. |
-| P08 | ✅ Submitted | Answer is NO via Lagrangian octahedron counterexample. Gromov's theorem + action invariance obstruct smoothing. G0-G6 done. |
+| P07 | 🟡 Candidate | Answer direction YES via Q-PD (Shapiro) — proved rigorously. Surgery realization has citation gap (Fowler 2012 confirms FH(Q), but manifold step unclosed). G0-G6 done. |
+| P08 | 🟡 Candidate | Answer is NO via Lagrangian octahedron counterexample. Gromov + action invariance. G6 self-review: ACCEPT; awaiting external G6. G0-G6 done. |
 | P09 | 📊 Conjecture | Candidate D=4 mechanism found numerically; theorem-level closure still open. |
 | P10 | ✅ Submitted | Matrix-free PCG solver package completed and adversarially patched. |
 
@@ -64,7 +64,8 @@ Stalled:
 
 ## 5. Final result after synthesis pass
 
-- **Fully submitted: 4 problems** (P10, P06, P07, P08).
+- **Fully submitted: 2 problems** (P10, P06).
+- Candidate (G6 pending): 2 problems (P07 — surgery gap, P08 — awaiting external G6).
 - Conjecture-level: 3 problems (P03, P04, P09).
 - Parked (feasibility assessed): 3 problems (P01, P02, P05).
 - Not started: 0 problems.
@@ -79,8 +80,8 @@ All 10 problems assessed to at least G2 (route map) level.
 | P03 | 📊 Conjecture | 📊 Conjecture | New EXP-4: identified E\*\_{λ⁻}(q=1) symmetry as single unproved claim; answer sharpened |
 | P04 | 📊 Conjecture | 📊 Conjecture | No closure path found (finite De Bruijn identity remains open) |
 | P09 | 📊 Conjecture | 📊 Conjecture | No closure path found (n-uniformity, masking equivalence remain open) |
-| P07 | ❌ Parked | ✅ Submitted | Escalation success: Q-PD via Shapiro's lemma + Wall surgery in dim 5; answer YES |
-| P08 | ❌ Parked | ✅ Submitted | Escalation success: polyhedral Lagrangian octahedron (S²) counterexample; Gromov obstruction |
+| P07 | ❌ Parked | 🟡 Candidate | Escalation partial success: Q-PD proved (Shapiro); surgery gap flagged (Fowler 2012); answer direction YES |
+| P08 | ❌ Parked | 🟡 Candidate | Escalation success: Lagrangian octahedron + Gromov; G6 self-review ACCEPT; awaiting external G6 |
 
 ## 6. Escalation path for parked problems
 
@@ -88,7 +89,7 @@ A definition-only reference escalation protocol has been established at `common/
 
 Priority order (by tractability):
 1. ~~**P08** (Symplectic)~~ — **RESOLVED**: escalation succeeded without needing external definitions. Answer: NO via Lagrangian octahedron.
-2. ~~**P07** (Lattices)~~ — **RESOLVED**: escalation succeeded. Answer: YES via Q-PD (Shapiro) + surgery (Wall) in dim 5.
+2. **P07** (Lattices) — PARTIALLY RESOLVED: Q-PD proved (Shapiro), FH(Q) confirmed (Fowler). Surgery realization gap remains. Upgrade to ✅ requires precise surgery theorem citation or self-contained proof.
 3. **P01** (Stochastic) — MEDIUM yield from 4-6 definitions (Barashkov-Gubinelli)
 4. **P02** (Rep theory) — LOW-MEDIUM yield from 5-8 definitions (JPSS, Matringe)
 5. **P05** (Eq. homotopy) — LOW yield; definitions needed even to STATE the answer

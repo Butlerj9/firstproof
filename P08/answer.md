@@ -1,8 +1,8 @@
 # P08: Lagrangian Smoothing of Polyhedral Lagrangian Surfaces
 
-**Status**: ✅ Submitted
+**Status**: 🟡 Candidate (G6 self-review: ACCEPT; awaiting external Codex G6)
 **Answer**: **NO.** Not every polyhedral Lagrangian surface with 4-valent vertices admits a Hamiltonian Lagrangian smoothing. The polyhedral Lagrangian octahedron $K \cong S^2$ is an explicit counterexample.
-**Reviewer**: Codex 5.2 — pending G6 review
+**Reviewer**: G6 self-review: ACCEPT (no mathematical errors; two minor convergence refinements noted). External Codex G6: pending.
 **Code verification**: `experiments/` — octahedron Lagrangian conditions verified; action-value obstruction verified
 **External deps**: Gromov's theorem (no closed exact Lagrangian in $\mathbb{R}^4$, standard)
 

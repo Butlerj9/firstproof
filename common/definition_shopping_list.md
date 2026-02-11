@@ -1,13 +1,13 @@
 # Definition-Only Shopping List for Producer
 
-Generated: 2026-02-11 (after P07+P08 resolution)
+Generated: 2026-02-11 (updated after G6 review: P07 surgery gap flagged)
 Protocol: `common/definition_only_escalation.md`
 
 ## Summary
 
-P08 has been RESOLVED without needing external definitions (octahedron counterexample + Gromov). P07 has been RESOLVED via Q-PD (Shapiro's lemma) + Wall surgery in dim 5 (answer: YES). The remaining parked problems that could benefit from definition-only escalation are listed below in priority order.
+P08 has been RESOLVED without needing external definitions (octahedron counterexample + Gromov; G6 self-review ACCEPT). P07 is PARTIALLY RESOLVED: Q-PD proved (Shapiro), FH(Q) confirmed (Fowler 2012), but surgery realization step lacks precise citation. The remaining parked problems and the P07 gap are listed below in priority order.
 
-## ~~P07 — Lattices in Lie Groups~~ (RESOLVED)
+## P07 — Lattices in Lie Groups (PARTIALLY RESOLVED — surgery gap)
 
 **Route**: Q-Poincaré duality for lattices with torsion → surgery theory → manifold construction.
 
@@ -83,7 +83,7 @@ The problem is open-ended ("state and prove"), and the scouts flagged:
 
 | Priority | Problem | Action | Estimated effort |
 |----------|---------|--------|-----------------|
-| ~~1~~ | ~~P07~~ | ~~RESOLVED: Q-PD via Shapiro + surgery~~ | — |
+| 1 | P07 | Source precise surgery realization theorem for Q-PD + FH(Q) lattices (Wall/Ranicki/Quinn) | 15-30 min |
 | 2 | P02 | Source JPSS conductor definition (Def/Thm numbers) | 15 min |
 | — | P01, P05 | Skip unless time permits | — |
 
