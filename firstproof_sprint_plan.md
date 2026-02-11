@@ -77,6 +77,15 @@ If **10 consecutive messages** produce no new lemma closure, no new experiment r
 - **New lemma rate**: new falsifiable lemmas generated per window. If zero → looping.
 - **Convergence score**: if successive drafts are substantively identical for 3 iterations → paraphrasing, not progressing. Switch route or park.
 
+### Producer handoff discipline (mandatory)
+
+Before starting or resuming any problem, use:
+
+- `common/claude_handoff_checklist.md`
+
+This is the standard Producer -> Claude execution checklist and logging contract.
+It is required for all remaining untouched problems (P02, P05, P07, P08) and any resumed parked tracks.
+
 ### Anti-rewrite-loop rule
 
 If 3 successive revisions of the same proof section are >90% similar (by inspection or embedding) with no new lemma closures, **force a route change or park**. Do not allow a 4th revision of the same approach.
