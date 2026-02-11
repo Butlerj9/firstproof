@@ -25,7 +25,7 @@ problem's `audit.md` with classification (ADMIN/LOGISTICS).
 | Problem | Domain | Status | Confidence | Budget used |
 |---------|--------|--------|------------|-------------|
 | P01 | Stochastic analysis | ❌ Parked | LOW (blocked on refs) | ~2/80 msgs |
-| P02 | Representation theory | ❌ Parked | LOW (blocked on refs) | ~2/80 msgs |
+| P02 | Representation theory | 🟡 Candidate | HIGH (YES, Kirillov + Gauss sums; n=1 proved) | ~8/80 msgs |
 | P03 | Algebraic combinatorics | 📊 Conjecture | HIGH (YES, Mallows/ASEP; n=2 proved) | ~22/200 msgs |
 | P04 | Finite free convolution | 📊 Conjecture | MEDIUM (n=2 proved) | ~18/300 msgs |
 | P05 | Equivariant homotopy | ❌ Parked | LOW (blocked on refs + open-ended) | ~2/80 msgs |

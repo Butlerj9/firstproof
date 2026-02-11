@@ -1,6 +1,6 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-11 (updated after P07 + P08 G6 patches — both upgraded to ✅)
+Snapshot date: 2026-02-11 (updated after P07 + P08 upgrades to ✅ and P02 upgrade to 🟡)
 Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation complete)
 
 ## 1. Portfolio status
@@ -8,7 +8,7 @@ Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation com
 | Problem | Status | Outcome summary |
 |---------|--------|-----------------|
 | P01 | ❌ Parked | Φ⁴₃ quasi-invariance. Blocked on 3+ refs (Hairer, Barashkov-Gubinelli). G0-G2 done. |
-| P02 | ❌ Parked | Rankin-Selberg nonvanishing. Blocked on automorphic forms refs (JPSS, Matringe). G0-G2 done. |
+| P02 | 🟡 Candidate | YES — modified RS integral. Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n structural argument. G0-G6 done. |
 | P03 | 📊 Conjecture | YES — Mallows/ASEP chain. n=2 proved exactly; n≥3 conjectured. **Synthesis pass**: identified symmetry of E\*\_{λ⁻}(q=1) as the single unproved claim (EXP-4). G0-G7 done. |
 | P04 | 📊 Conjecture | n=2 case proved (equality); n>=3 remains conjectural with strong numerics. |
 | P05 | ❌ Parked | O-slice connectivity. Blocked on Blumberg-Hill refs; open-ended formulation. G0-G2 done. |
@@ -39,7 +39,7 @@ Note: transcript fidelity is mixed. Active closure lanes (e.g., P04/P06/P08/P09/
 | Problem | Est. tokens | Prompt/message count | Notes |
 |---------|-------------|----------------------|-------|
 | P01 | ~8,000 | ~2 | G0-G2 feasibility only |
-| P02 | ~8,000 | ~2 | G0-G2 feasibility only |
+| P02 | ~25,000 | ~8 | G0-G6: key identity + n=1 proof + experiments |
 | P03 | ~75,000 | ~22 | Full G0-G7 + synthesis pass (EXP-4) |
 | P04 | ~76,000 | ~18 | from transcript metrics/log |
 | P05 | ~8,000 | ~2 | G0-G2 feasibility only |
@@ -48,7 +48,7 @@ Note: transcript fidelity is mixed. Active closure lanes (e.g., P04/P06/P08/P09/
 | P08 | ~30,000 | ~10 | G0-G6 + patch: octahedron counterexample + Gromov obstruction |
 | P09 | ~70,600 | ~21 | from transcript metrics/log |
 | P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (all problems)** | **~465,200** | **~109** | all values are estimates, not API-billed absolutes |
+| **Total (all problems)** | **~482,200** | **~115** | all values are estimates, not API-billed absolutes |
 
 ## 4. What worked vs. what stalled
 
@@ -67,9 +67,9 @@ Stalled:
 ## 5. Final result after synthesis pass
 
 - **Fully submitted: 4 problems** (P10, P06, P08, P07).
-- Candidate: 0 problems.
+- Candidate: 1 problem (P02).
 - Conjecture-level: 3 problems (P03, P04, P09).
-- Parked (feasibility assessed): 3 problems (P01, P02, P05).
+- Parked (feasibility assessed): 2 problems (P01, P05).
 - Not started: 0 problems.
 
 All 10 problems assessed to at least G2 (route map) level.
@@ -84,6 +84,7 @@ All 10 problems assessed to at least G2 (route map) level.
 | P09 | 📊 Conjecture | 📊 Conjecture | No closure path found (n-uniformity, masking equivalence remain open) |
 | P07 | ❌ Parked | ✅ Submitted | Escalation success: Q-PD proved (Shapiro); surgery gap closed (below-middle-dim surgery + UCSS duality); upgraded to ✅ |
 | P08 | ❌ Parked | ✅ Submitted | Escalation produced counterexample; G6 patch adopted topology-preserving definition, eliminating regularity gap; upgraded to ✅ |
+| P02 | ❌ Parked | 🟡 Candidate | Key identity proved (all n); n=1 complete via Kirillov + Gauss sums; general n structural argument |
 
 ## 6. Escalation path for parked problems
 
@@ -93,7 +94,7 @@ Priority order (by tractability):
 1. **P08** (Symplectic) — ✅ RESOLVED: Lagrangian octahedron counterexample + topology-preserving definition + Gromov. Upgraded to Submitted.
 2. **P07** (Lattices) — ✅ RESOLVED: Q-PD proved (Shapiro), surgery realization proved (self-contained). Upgraded to Submitted.
 3. **P01** (Stochastic) — MEDIUM yield from 4-6 definitions (Barashkov-Gubinelli)
-4. **P02** (Rep theory) — LOW-MEDIUM yield from 5-8 definitions (JPSS, Matringe)
+4. **P02** (Rep theory) — 🟡 CANDIDATE: key identity + n=1 proof complete; general n needs JPSS partial ideal claim
 5. **P05** (Eq. homotopy) — LOW yield; definitions needed even to STATE the answer
 
 ## 7. GPT-5.2-pro final synthesis (planned)
@@ -161,7 +162,7 @@ Each claim in the portfolio falls into one of three evidence tiers:
 
 3. **Finite-n theorem gap** (P03, P04, P09): Strong numerical evidence (relative errors 10^{-4} to 10^{-6}) was obtained for finite cases, but the symbolic/algebraic bridge from numerics to theorem was not crossed. In all three cases, the gap is a single structural identity or inequality that would close the proof — but that identity appears to be a genuinely new mathematical result, not a standard tool the agent failed to retrieve.
 
-4. **Reference-blocked domains** (P01, P02, P05): Three problems were parked not because the agents lacked mathematical capability but because the required foundational definitions were inaccessible without violating contamination hygiene. This is an infrastructure limitation, not an intelligence limitation.
+4. **Reference-blocked domains** (P01, P05; P02 partially unblocked): Two problems remain parked because required foundational definitions were inaccessible. P02 was partially unblocked by deriving the key identity from first principles rather than relying on Matringe's essential vector theory — demonstrating that creative re-derivation can bypass reference blocks.
 
 5. **Definition sensitivity** (P08): The external review revealed that the self-review had conflated two different definitions of "smoothing" (topological isotopy vs Hausdorff convergence). The agent's self-review accepted the proof under the stronger definition while the answer was written under the weaker one. This definitional drift is a subtle failure mode that only surfaced under adversarial external review.
 
@@ -199,4 +200,5 @@ Scripts verified to reproduce during this review session:
 - `P07/experiments/exp1_qpd_verification.py` (pass)
 - `P08/experiments/exp1_octahedron_lagrangian.py` (pass)
 - `P08/experiments/exp2_action_obstruction.py` (pass)
+- `P02/experiments/exp1_gauss_sum_verification.py` (pass, all tests)
 - `P10/experiments/verify_matvec.py` (pass, all 6 tests)

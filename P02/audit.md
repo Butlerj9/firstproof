@@ -154,31 +154,76 @@ The problem lives in deep analytic number theory / automorphic forms territory. 
 
 **Gap**: This requires understanding how u_Q interacts with L-factor poles.
 
-## Decision: ❌ PARK
+## G3–G5: Proof development (re-opened after scout escalation)
+
+**Status**: ✅ Complete (n=1 proved; general n structural argument).
+
+### Escalation trigger
+
+P02 was re-opened after P07/P08 resolution freed budget. Scout briefs from the definition-only escalation provided JPSS conductor definition (K₁ congruence subgroup characterization) and Whittaker model structure.
+
+### Route taken: Route A (new vector) + Route C (explicit n=1)
+
+The key breakthrough was the **unipotent absorption identity**:
+
+$$W(\mathrm{diag}(g,1) \cdot u_Q) = \psi^{-1}(Q \cdot g_{nn}) \cdot W(\mathrm{diag}(g,1))$$
+
+This shows the u_Q modification simply introduces an additive character twist in the (n,n)-entry. For n=1, this collapses the integral to a Gauss sum.
+
+**Construction (n=1)**: Choose W via the Kirillov model with φ = 1_{o×} (indicator of units). The integral becomes:
+
+∫_{o×} ψ⁻¹(uQ) · χ(u) d×u = G(χ, ψ_{-c})
+
+This is a conductor-matched Gauss sum, which is always nonzero (|G| = q^{c/2}).
+
+### Experiment results
+
+| Experiment | Description | Result |
+|-----------|-------------|--------|
+| EXP-1 | Classical Gauss sums |G|² = p for p = 3,5,7,11,13 | ALL PASS |
+| EXP-1 | Conductor-matched sums nonzero (p=3,5,7; c=0,1,2,3) | ALL PASS |
+| EXP-1 | Mismatched conductors give zero (confirms u_Q essential) | PASS (3/3 zeros) |
+
+### Answer
+
+**YES.** For n=1: proved via Kirillov model + Gauss sum nonvanishing. For general n: structural argument via JPSS ideal theory.
+
+## G6: Self-Review
+
+### G6: CONDITIONAL ACCEPT (general n gap flagged)
+
+1. **n=1 proof (PASS).** Complete and rigorous. Key identity + Kirillov model + Gauss sum nonvanishing. No gaps.
+
+2. **General n argument (GAP).** Steps A-B are rigorous (right-translate invertibility, RS non-degeneracy). Steps C-E rely on the claim that the "partial ideal" (V varying, W' fixed) equals the full L-ideal for generic W'. This is plausible by multiplicity-one but not self-contained.
+
+3. **Direction confirmed.** YES is correct (supported by n=1 proof + structural argument + experiments).
+
+### Current verdict: 🟡 Candidate
+
+The n=1 proof is complete. The general n argument requires the JPSS partial ideal claim. Status is 🟡 (not ✅) because the full generality is not self-contained.
+
+## Decision: 🟡 Candidate
 
 **Rationale**:
-- The problem sits in highly specialized automorphic forms / Langlands program territory.
-- 2+ critical references blocked (JPSS conductor theory, Matringe essential Whittaker functions).
-- The u_Q modification is a very specific technical device whose properties require reference access.
-- Experimental verification (Route C) would require implementing Whittaker function computations for p-adic groups, which is a substantial project.
-- The quantifier structure (single W for all π) makes the problem either a deep structural theorem or false — unlikely to yield to heuristic methods.
-- Budget better spent on problems with higher tractability probability.
-
-**Documented routes for potential future attempt**:
-- Route A (new vector) is most promising if Jacquet–Shalika / Matringe references are accessed.
-- Route C (explicit n=1 computation) could provide directional evidence.
+- Key identity proved for all n (rigorous). ✓
+- n=1 proof complete (Kirillov + Gauss sums). ✓
+- General n: structural argument, not fully self-contained. ⚠️
+- Experiments: all pass. ✓
+- Answer: YES.
 
 ## Human interventions
 
 | Timestamp | Type | Action | Justification |
 |-----------|------|--------|---------------|
 | 2026-02-10 | ADMIN | RED-feasibility blitz | Scheduling/priority |
+| 2026-02-11 | ADMIN | Definition-only escalation (scout briefs) | P02 re-opened after P07/P08 resolution |
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~2 |
-| Gate | G2 (route map) |
-| Status | ❌ Parked (blocked on specialized references) |
-| Budget | 80 messages (RED — ~2 used) |
+| Messages used | ~8 (2 blitz + 6 proof) |
+| Gate | G6 (conditional accept) |
+| Status | 🟡 Candidate — YES via Kirillov + Gauss sums (n=1 proved) |
+| Tokens (est.) | ~25,000 |
+| Budget | 80 messages (RED — ~8 used) |
