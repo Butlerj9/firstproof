@@ -328,6 +328,21 @@ The second-order PSD decomposition is a genuine structural advance: it shows the
 
 ---
 
+## Session 12 — Closeout Cycle 5 (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | Closeout Cycle 5 |
+| Date | 2026-02-12 |
+| Objective | Final degree-16 positivity certificate attempt — one new route not in exhausted set |
+| Message cap | 15 |
+| Token estimate | ~10K |
+| Escalation level | L4 (algebraic certificate) |
+
+**Guardrails**: No human math input. No solution contamination. Statement-level citation policy. No status upgrade without theorem-level closure.
+
+---
+
 ## Candidate-G6 Review (Closeout Cycle 4, 2026-02-12)
 
 **Scope**: Editorial audit of final 🟡 Candidate package. No new math claims.

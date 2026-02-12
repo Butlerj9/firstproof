@@ -354,6 +354,21 @@ P05 strengthened within Candidate. Two new theorems proved (Thms 6-7). The open 
 
 ---
 
+## Session 13 — Closeout Cycle 5 (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | Closeout Cycle 5 |
+| Date | 2026-02-12 |
+| Objective | Minimal final attack on Class II gap — smallest open case Z/4, O = {Z/2 ≤_O Z/4} |
+| Message cap | 10 |
+| Token estimate | ~6K |
+| Escalation level | L5 (frontier theorem) |
+
+**Guardrails**: No human math input. No solution contamination. Statement-level citation policy. No status upgrade without theorem-level closure.
+
+---
+
 ## Candidate-G6 Review (Closeout Cycle 4, 2026-02-12)
 
 **Scope**: Editorial audit of final 🟡 Candidate package. No new math claims.
