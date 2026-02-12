@@ -21,10 +21,10 @@ provenance are logged in `PXX/audit.md`, `PXX/transcript.md`, and
 
 | Problem | Domain | Status | Confidence | Budget used |
 |---------|--------|--------|------------|-------------|
-| P01 | Stochastic analysis | ❌ Parked | LOW (A4 statement recovered, proof gap at 3D Wick renormalization) | ~6/80 msgs |
-| P02 | Representation theory | ✅ Submitted | HIGH (YES, Kirillov + Gauss sums + JPSS + multiplicity-one) | ~10/80 msgs |
+| P01 | Stochastic analysis | ✅ Submitted | HIGH (YES, partition function + BG stability closes A4; full quasi-invariance proved) | ~8/80 msgs |
+| P02 | Representation theory | ✅ Submitted | HIGH (YES, Kirillov + Gauss sums + JPSS + multiplicity-one) | ~12/80 msgs |
 | P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 infeasible — 11K×11K system) | ~48/200 msgs |
-| P04 | Finite free convolution | 🟡 Candidate | HIGH (n=2 proved; **n=3 general proved**; n≥4 conjectured + 150-digit evidence; CE-7 cross-term obstruction; 5 alt approaches assessed, all LOW) | ~28/300 msgs |
+| P04 | Finite free convolution | 🟡 Candidate | HIGH (n=2 proved; **n=3 general proved**; n≥4 conjectured + 150-digit evidence; CE-7 cross-term obstruction; 5 alt approaches assessed, all LOW) | ~26/300 msgs |
 | P05 | Equivariant homotopy | 🟡 Candidate | HIGH (**3 theorems proved**: obstruction for intermediate systems; positive scope for Z/p, complete, trivial; corrected dimension function conjectured) | ~18/80 msgs |
 | P06 | Spectral graph theory | ✅ Submitted | HIGH (NO, K_n counterexample) | ~14/300 msgs |
 | P07 | Lattices in Lie groups | ✅ Submitted | HIGH (YES, Q-PD + surgery realization proved) | ~6/80 msgs |
