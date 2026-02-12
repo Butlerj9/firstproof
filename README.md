@@ -1,4 +1,4 @@
-# First Proof — Multi-Agent AI Attempt
+# First Proof — Agentic LLM Orchestration for Research-Grade Mathematics
 
 **Sprint**: Feb 10-13, 2026 | **Answers release**: Feb 13 11:59 PM PT
 **Agents**: Claude Opus 4.6 (Implementer) + Codex 5.2 (Reviewer) + multi-model scouts
