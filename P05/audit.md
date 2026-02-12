@@ -334,7 +334,7 @@ P05 strengthened within Candidate. Two new theorems proved (Thms 6-7). The open 
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~33 (2 prior + 8 definition cycle + 4 Session 7 + 4 Session 8 + 3 Session 9 + 2 Session 10 + 3 Session 11 + 4 Session 12 + 3 Session 13) |
+| Messages used | ~35 (2 prior + 8 definition cycle + 4 Session 7 + 4 Session 8 + 3 Session 9 + 2 Session 10 + 3 Session 11 + 4 Session 12 + 3 Session 13 + 2 Session 14) |
 | Gate | G5 (7 theorems; "if" direction proved for Class Ia; Class II remains open; 5 approaches blocked) |
 | Status | 🟡 Candidate (**7 theorems**: Thms 1-4 from Sessions 8-9; Thm 5 frontier classification; **Thm 6 dimension-uniform characterization + Thm 7 restricted sufficiency** from Session 12/R2; Session 13: 5th approach blocked; "if" direction OPEN only for Class II) |
 | Budget | 80 messages (used ~33) |
@@ -445,3 +445,42 @@ P05 strengthened within Candidate. Two new theorems proved (Thms 6-7). The open 
 ### Verdict
 
 **ACCEPT (0 faults, 2 minor observations).** P05 package is clean. The 7-theorem structure with proved/open classification is rigorous. Citation hygiene is strong (all CITE_ONLY properly sourced). The Class I / Ia / II frontier is precisely delineated with explicit structural gaps.
+
+---
+
+## Session 14 — Closeout Cycle 6 (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | Closeout Cycle 6 |
+| Date | 2026-02-12 |
+| Objective | Final assessment of Class II gap; determine if any 6th approach exists |
+| Message cap | 8 |
+| Token estimate | ~2K |
+
+### Assessment
+
+The Class II "if" direction has been attacked from 5 independent angles, all reducing to the same core obstruction: non-uniform dim(V^L) for V = ind_K^H(1) when K ≠ 1. This is an irreducible gap at current tooling level:
+
+1. **Equivariant Whitehead** — reduces to t-structure for non-regular cells
+2. **Orbit filtration** — non-uniform fibers block inductive step
+3. **Geometric fixed-point detection** — non-uniform representation cells not covered by standard HY
+4. **Norm/restriction adjunction** — counit map analysis blocked by same non-uniformity
+5. **Isotropy separation (Session 13)** — reduces to localized t-structure for Z/4-local spectra; still blocked
+
+No 6th approach identified. The gap requires either (a) a new representation-theoretic tool for non-regular permutation modules, or (b) an equivariant homotopy technique that bypasses dimension-uniformity (e.g., direct construction of a t-structure on the O-complete stable category using non-traditional generators). Neither is within sprint scope.
+
+**Verdict**: HOLD at 🟡 Candidate. 7 theorems + Frontier Theorem. L5 barrier confirmed.
+
+### Candidate-G6 Review (Closeout Cycle 6)
+
+| # | Item | Verdict | Notes |
+|---|------|---------|-------|
+| C1 | Proved/cited/empirical separation | **PASS** | No new claims. |
+| C2 | No unresolved claim labeled solved | **PASS** | Status 🟡 unchanged. |
+| C3 | Statement-level citation hygiene | **PASS** | No new citations. |
+| C4 | Blocker is single-sentence explicit | **PASS** | Unchanged. |
+
+**ACCEPT (0 faults).**
+
+*Cycle footer (Session 14): Assessment only. No 6th approach identified. L5 barrier reconfirmed. Status unchanged: 🟡 Candidate. ~33+2 = ~35 messages used.*

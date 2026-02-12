@@ -157,7 +157,7 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~45 (36 prior + 4 Session 11 + 5 Session 12) |
+| Messages used | ~48 (36 prior + 4 Session 11 + 5 Session 12 + 3 Session 13) |
 | Gate | G7 (Package complete) + upgrade cycle + Sessions 11-12 |
 | Status | 🟡 Candidate |
 | Budget | 300 messages (GREEN — ~45 used) |
@@ -407,3 +407,36 @@ The second-order PSD decomposition is a genuine structural advance: it shows the
 ### Verdict
 
 **ACCEPT (0 faults).** P04 package is clean. Proved scope (n≤3) is correctly separated from conjectured scope (n≥4). Barrier is explicit with 6 failed routes documented.
+
+---
+
+## Session 13 — Closeout Cycle 6 (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | Closeout Cycle 6 |
+| Date | 2026-02-12 |
+| Objective | SDP solver availability check + targeted algebraic attempt |
+| Message cap | 12 |
+| Token estimate | ~3K |
+| Escalation level | L4 (certificate; blocked) |
+
+### Assessment
+
+1. **SDP solver check**: cvxpy/MOSEK not available. scipy.optimize present but no SDP interface.
+2. **CE-13c re-run**: Confirmed -H polynomial structure. -A = 144(t₁+t₂)²(6t₁+1)(6t₂+1) ≥ 0 (manifestly). -C non-negative (provable). -B has mixed sign → 12 negative terms in all variable substitutions.
+3. **Manual SOS**: Degree-6 polynomial in 3 variables with 12 negative terms. Too complex for manual decomposition. No structural shortcut identified.
+4. **Verdict**: Solver-limited. Blocker unchanged. No new route.
+
+### Candidate-G6 Review (Closeout Cycle 6)
+
+| # | Item | Verdict | Notes |
+|---|------|---------|-------|
+| C1 | Proved/cited/empirical separation | **PASS** | No new claims. |
+| C2 | No unresolved claim labeled solved | **PASS** | Status 🟡 unchanged. |
+| C3 | Statement-level citation hygiene | **PASS** | No new citations. |
+| C4 | Blocker is single-sentence explicit | **PASS** | Unchanged from Cycle 5. |
+
+**ACCEPT (0 faults).**
+
+*Cycle footer (Session 13): SDP solver check (not available), CE-13c polynomial structure re-confirmed. No new route. Status unchanged: 🟡 Candidate. ~45+3 = ~48 messages used.*

@@ -684,14 +684,73 @@ Added to answer.md:
 
 *Cycle footer (Session 10): EXP-18 benchmark complete. n=5 projected at 247 days single-threaded; RAM not the bottleneck (4.3 GB / 192 GB). Infeasibility reconfirmed with measured timing. Status unchanged: 🟡 Candidate. ~55+3 = ~58 messages used.*
 
+## Session 11 — Closeout Cycle 6 (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | Closeout Cycle 6 |
+| Date | 2026-02-12 |
+| Objective | R1 websearch escalation: Alexandersson-Sawhney factorization lead |
+| Message cap | 12 |
+| Token estimate | ~5K |
+| Escalation level | L3 (R1 CITE_ONLY websearch for structural reduction) |
+
+**Guardrails**: No human math input. No solution contamination. Statement-level citation policy.
+
+### R1 websearch: Alexandersson-Sawhney (arXiv:1801.04550)
+
+**Paper**: "Properties of non-symmetric Macdonald polynomials at q=1 and q=0" (Annals of Combinatorics, vol. 23, pp. 219–239, 2019). Authors: Per Alexandersson, Mehtaab Sawhney.
+
+**Author correction**: Previously misattributed to "Assaf-Gonzalez" in answer.md. Corrected.
+
+**Access attempts**:
+1. ar5iv.labs.arxiv.org/html/1801.04550 → Fatal conversion error
+2. arxiv.org/abs/1801.04550 → Abstract extracted ✓
+3. arxiv.org/pdf/1801.04550 → PDF not machine-readable
+4. link.springer.com article → 303 redirect
+5. symmetricfunctions.com → No detailed theorem statements
+
+**Cited result (from abstract, CITE_ONLY)**: "E_λ(x;1,t) is symmetric and independent of t whenever λ is a partition."
+
+**Derived consequence (Hecke extension)**: For any composition μ = σ(λ) where λ is the underlying partition, E_μ(x;1,t) = t^{-ℓ(σ)} · E_λ(x;1), which is symmetric. Proof: T_i^{-1} on symmetric f gives f/t (from T_i f = tf and quadratic relation).
+
+**Assessment for Symmetry Conjecture**:
+- The Symmetry Conjecture concerns E*_{λ⁻} (INTERPOLATION polynomial, Knop-Sahi), not E_{λ⁻} (standard polynomial).
+- E*_{λ⁻} = E_{λ⁻} + lower-degree corrections (from vanishing conditions).
+- Leading homogeneous component E_{λ⁻}(x;1,t) is symmetric (by AS + Hecke extension) for all n.
+- Lower-degree corrections are NOT covered by the AS result.
+- The E_μ basis degenerates at q=1 (all compositions in same S_n orbit → proportional). Coefficient blowup in the degenerate expansion can project outside the symmetric subspace (explicit counterexample constructed).
+- **Verdict**: Meaningful structural reduction but NOT a closure. Conjecture reduces from "full E* symmetric" to "lower-degree corrections symmetric."
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E13 | 2026-02-12 | L3 | R1 websearch escalation | n≥5 Symmetry Conjecture | Alexandersson-Sawhney (1801.04550) abstract cited; Hecke extension derived; leading term symmetric for all n; full conjecture NOT closed (E* ≠ E; lower-degree gap) | WebFetch, WebSearch | answer.md R3 section updated (author correction + refined analysis), barrier summary updated | Structural reduction identified; no status change | ~5 msgs | **🟡 CANDIDATE (unchanged)** |
+
+*Cycle footer (Session 11): R1 websearch for AS factorization. Leading term E_{λ⁻} proved symmetric for all n via AS + Hecke. Full E*_{λ⁻} symmetry NOT closed: interpolation corrections not covered. Author attribution corrected. Status unchanged: 🟡 Candidate. ~58+5 = ~63 messages used.*
+
+## Candidate-G6 Review (Closeout Cycle 6, 2026-02-12)
+
+**Scope**: Audit of Session 11 additions (R3 section update, barrier summary update). No new math claims.
+
+| # | Item | Verdict | Notes |
+|---|------|---------|-------|
+| C1 | Proved/cited/empirical separation | **PASS** | AS result cited at CITE_ONLY level. Hecke extension is derived (not cited). Leading term symmetry clearly separated from full conjecture. |
+| C2 | No unresolved claim labeled solved | **PASS** | Status remains 🟡. No upgrade claim. Explicitly states "NOT a closure." |
+| C3 | Statement-level citation hygiene | **PASS** | AS abstract accessed from arxiv.org (primary source). CITE_ONLY level. No proof text used. |
+| C4 | Blocker is single-sentence explicit | **PASS** | Updated barrier summary: "A proof that the inhomogeneous lower-degree corrections in E*_{λ⁻}(q=1,t) are symmetric." Single sentence. |
+
+**ACCEPT (0 faults).**
+
 ---
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~58 (55 prior + 3 Session 10 EXP-18 benchmark) |
-| Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions + n>=5 feasibility + infeasibility cert + reduction attempts |
-| Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**; n>=5 conditional + 48-digit evidence + L5 barrier) |
-| G6 cycles | 1 reject + 1 accept + 1 Candidate-G6 accept = 3 cycles |
-| Budget | 200 messages (YELLOW -- ~55 used) |
+| Messages used | ~63 (58 prior + 5 Session 11 AS websearch) |
+| Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions + n>=5 feasibility + infeasibility cert + reduction attempts + R1 websearch |
+| Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**; n>=5 conditional + 48-digit evidence + L5 barrier + AS leading term reduction) |
+| G6 cycles | 1 reject + 1 accept + 2 Candidate-G6 accept = 4 cycles |
+| Budget | 200 messages (YELLOW -- ~63 used) |

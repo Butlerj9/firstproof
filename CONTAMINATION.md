@@ -28,6 +28,7 @@
 | C14 | P01 | Hairer-Steele (2021), arXiv:2102.11685, J. Stat. Phys. 2022 | Statement-level: Φ⁴₃ measure has sub-Gaussian tails, E_μ[exp(c∫:φ⁴:)] < ∞ for small c > 0 | CITE_ONLY | P01 E11 |
 | C15 | P01 | Barashkov-Gubinelli (2020), arXiv:1805.10814, Duke Math J. 2020 | Proof-level: variational method for Φ⁴₃ (Boué-Dupuis formula framework) | CITE_PLUS | P01 E11 |
 | C16 | P01 | Barashkov-Gubinelli (2022), arXiv:2112.05562 | Statement-level: variational method extends to P(φ)₂ theories (general polynomial potentials) | CITE_ONLY | P01 E11 |
+| C17 | P03 | Alexandersson-Sawhney (2019), arXiv:1801.04550, Annals of Combinatorics 23:219–239 | Statement-level (abstract only): E_λ(x;1,t) symmetric and t-independent for partitions λ. Hecke extension derived. Author correction from prior misattribution. | CITE_ONLY | P03 E13 |
 
 ## Scout model deployments (no web search, no solution retrieval)
 
@@ -48,6 +49,7 @@
 | 2026-02-12 | WebFetch arxiv.org/abs/2102.11685 | P01 R1: Hairer-Steele abstract extraction | NONE (abstract only, primary source) |
 | 2026-02-12 | WebFetch arxiv.org/abs/1805.10814 | P01 R1: BG variational method abstract/structure | NONE (primary source) |
 | 2026-02-12 | WebFetch arxiv.org/abs/2112.05562 | P01 R1: BG P(φ)₂ extension abstract | NONE (abstract only, primary source) |
+| 2026-02-12 | WebFetch ar5iv/1801.04550 + arxiv.org/abs/1801.04550 + arxiv.org/pdf/1801.04550 + link.springer.com + symmetricfunctions.com (×5) | P03 R1: Alexandersson-Sawhney (2019) non-symmetric Macdonald at q=1. Abstract extracted; PDF/HTML unreadable. | NONE (abstract only, primary source, no competition solution) |
 
 ## Exposure events
 None.

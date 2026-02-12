@@ -1,6 +1,6 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-12 (Closeout cycle 5: final closure attempts on P03/P04/P05; Candidate-G6 ACCEPT on all 3; portfolio reconciled)
+Snapshot date: 2026-02-12 (Closeout cycle 6: R1 websearch for P03 AS lead + SDP check for P04 + P05 assessment; Candidate-G6 ACCEPT on all 3; portfolio reconciled)
 Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation complete)
 Methodology and autonomy constraints: see `methods_extended.md`.
 
@@ -10,7 +10,7 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 |---------|--------|-----------------|
 | P01 | ✅ Submitted | **YES** — Φ⁴₃ quasi-invariance proved. **R1 CITE_PLUS (Session 10, E11)**: BG proof chain (arXiv:2004.01513) verified lemma-by-lemma for V_c; all 6 lemmas extend via (α) quartic coercivity + (β) UV scaling. **Independent path**: Hairer-Steele (arXiv:2102.11685) sub-Gaussian tails + Young directly yield A4. Two lines close the former gap. |
 | P02 | ✅ Submitted | YES — modified RS integral. Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one). G0-G6 + upgrade cycle done. |
-| P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2,3,4 proved. **L5 barrier (Session 9, E11)**: n≥5 formally infeasible; 8 structural shortcuts all fail (EXP-17: spectral collapse, restriction, Hecke degeneration, null space, S_n quotient); 3 unlock theorems identified. |
+| P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2,3,4 proved. **L5 barrier**: n≥5 formally infeasible; 8 structural shortcuts all fail; **R1 AS reduction (Cycle 6)**: leading term symmetric for all n via Alexandersson-Sawhney+Hecke; full E* gap persists. |
 | P04 | 🟡 Candidate | n=2,3 proved. n≥4: closed-form Φ₄ + additive variables (CE-10); **2nd-order PSD decomposition proved (CE-11 §9.1)**; 105K exact tests ALL PASS (CE-11 §9.2); degree-16 higher-order terms uncontrolled; **7 failed routes total** (CE-13: SOS coefficient analysis). G0-G7 + Sessions 8-12 done. |
 | P05 | 🟡 Candidate | O-slice connectivity. **7 theorems** (Thms 1-4, 6-7) + **Impossibility Frontier Theorem (Thm 5)**. **Thm 6**: dim-uniform iff K=1 in all admissible pairs. **Thm 7**: restricted sufficiency for Class Ia (regular-only). Class II (non-regular) remains open; **5 proof approaches blocked** (Session 13: isotropy separation for Z/4). Exhaustive computation: 825 total / 793 intermediate systems on 17 groups, 104 uniform. No CE found. G0-G5 + Sessions 7-13 done. |
 | P06 | ✅ Submitted | Answer is NO via complete-graph counterexample. **Synthesis pass**: proof verified complete, all tests pass, upgraded to ✅. |
@@ -41,15 +41,15 @@ Note: transcript fidelity is mixed. Active closure lanes (e.g., P04/P06/P08/P09/
 |---------|-------------|----------------------|-------|
 | P01 | ~45,000 | ~20 | G0-G2 + Sessions 3-10: A4 closed, CITE_ONLY ingest (E7), scout cross-check (E8), gap analysis (E9-E10: 7 approaches), **Session 10 (E11): R1 CITE_PLUS — BG proof chain verified + Hairer-Steele independent path; gap CLOSED** |
 | P02 | ~33,000 | ~12 | G0-G6 + upgrade cycle: key identity + n=1 proof + JPSS + multiplicity-one |
-| P03 | ~165,000 | ~58 | Full G0-G7 + synthesis + 3 closure sessions + infeasibility certificate + Session 9 (E11: 5 reduction approaches, EXP-17, L5 barrier confirmed) + **Session 10 (Cycle 5): EXP-18 n=5 benchmark — projected 247 days, INFEASIBLE** |
-| P04 | ~128,000 | ~45 | from transcript + upgrade cycle + Sessions 8-12 + CE-9/10/11/12d/12e/13 (closed-form Φ₄, additive variables, 2nd-order PSD, 105K exact tests, g-inequality decomposition, **CE-13: SOS coefficient analysis — 12 neg coefficients, SDP needed**) |
-| P05 | ~69,000 | ~33 | G0-G5 + Sessions 7-13: obstruction + formal theorems + Thm 4 + "if" analysis (5 approaches blocked) + Impossibility Frontier Theorem (Thm 5) + **Session 12 (R2): exhaustive computation + Thms 6-7** + **Session 13 (Cycle 5): isotropy separation for Z/4 — reduces to localized t-structure, BLOCKED** |
+| P03 | ~170,000 | ~63 | Full G0-G7 + synthesis + 3 closure sessions + infeasibility certificate + Session 9-10 (EXP-17/18) + **Session 11 (Cycle 6): R1 websearch Alexandersson-Sawhney — leading term symmetric for all n via AS+Hecke; full E* gap persists** |
+| P04 | ~131,000 | ~48 | from transcript + upgrade cycle + Sessions 8-13 + CE-9/10/11/12d/12e/13 + **Session 13 (Cycle 6): SDP solver check — not available; polynomial structure re-confirmed; no new route** |
+| P05 | ~71,000 | ~35 | G0-G5 + Sessions 7-14: 7 theorems + Frontier + 5 approaches blocked + **Session 14 (Cycle 6): final assessment — no 6th approach; L5 barrier reconfirmed** |
 | P06 | ~53,600 | ~14 | from transcript metrics/log |
 | P07 | ~20,000 | ~6 | G0-G6 + patch: Q-PD via Shapiro + surgery realization (self-contained) |
 | P08 | ~30,000 | ~10 | G0-G6 + patch: octahedron counterexample + Gromov obstruction |
 | P09 | ~114,000 | ~58 | from transcript metrics/log + upgrade cycle (EXP-6/6e) + formalization (EXP-10/10b) + Session 7-8: n=5 closure |
 | P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (all problems)** | **~773,600** | **~268** | all values are estimates (token_source: estimate), not API-billed absolutes; sum: 45+33+165+128+69+53.6+20+30+114+116=773.6K tokens, 20+12+58+45+33+14+6+10+58+12=268 msgs |
+| **Total (all problems)** | **~783,600** | **~278** | all values are estimates (token_source: estimate), not API-billed absolutes; sum: 45+33+170+131+71+53.6+20+30+114+116=783.6K tokens, 20+12+63+48+35+14+6+10+58+12=278 msgs |
 
 ## 4. What worked vs. what stalled
 
@@ -176,19 +176,19 @@ The following were intentionally not executed in this sprint, but are plausible 
 
 These are marked out-of-scope due schedule and reproducibility constraints for this run.
 
-## 11. Final closeout note (Cycle 5, 2026-02-12)
+## 11. Final closeout note (Cycle 6, 2026-02-12)
 
-Closeout Cycle 5: final closure attempts on all 3 🟡 problems. Candidate-G6 ACCEPT (0 faults) on all 3 lanes.
+Closeout Cycle 6: R1 websearch + SDP check + final assessment. Candidate-G6 ACCEPT (0 faults) on all 3 lanes.
 
-| Lane | Closure tier | Cycle 5 action | Unresolved core claim | Why not escalated further |
+| Lane | Closure tier | Cycle 6 action | Unresolved core claim | Why not escalated further |
 |------|-------------|---------------|----------------------|--------------------------|
-| P03 | L5 (barrier cert) | EXP-18: n=5 benchmark (714×714 in 3.65s → n=5 projected 247 days). INFEASIBLE reconfirmed. | Symmetry Conjecture for n ≥ 5 | n=5 system ~11K×11K, ~247 days compute; 8 structural shortcuts all fail; same blocker class repeats |
-| P04 | L4 (SOS cert) | CE-13: exact polynomial extraction + SOS coefficient analysis. 12 neg coefficients block term-by-term proof. SDP needed. | Degree-6 polynomial −H(w,t₁,t₂) ≥ 0 on bounded box | 7 proof routes exhausted; SDP/SOS solver not available in sprint env; same blocker class repeats |
-| P05 | L5 (frontier thm) | Session 13: isotropy separation for Z/4 with O = {Z/2 ≤_O Z/4}. Reduces to localized t-structure for non-regular cells. BLOCKED. | "If" direction for Class II: t-structure for non-regular cells | 5 proof approaches blocked; all reduce to non-uniform dim(V^L); gap confirmed irreducible at current tool level |
+| P03 | L5 (barrier cert) | **R1 websearch: Alexandersson-Sawhney (arXiv:1801.04550).** Leading term E_{λ⁻}(x;1,t) proved symmetric for all n via AS+Hecke. Full E*_{λ⁻} gap persists (interpolation corrections not covered). Author correction applied. | Symmetry Conjecture for n ≥ 5 (lower-degree corrections) | 8 shortcuts fail; R1 lead partially closes (leading term only); same blocker class |
+| P04 | L4 (SOS cert) | **SDP solver check**: cvxpy/MOSEK not available. CE-13c polynomial structure re-confirmed (12 neg coefficients). No manual SOS possible. | Degree-6 polynomial −H(w,t₁,t₂) ≥ 0 on bounded box | 7 proof routes exhausted; SDP solver not available; same blocker class repeats |
+| P05 | L5 (frontier thm) | **Final assessment**: no 6th approach identified. All 5 approaches reduce to non-uniform dim(V^L). L5 barrier reconfirmed. | "If" direction for Class II: t-structure for non-regular cells | 5 approaches blocked; irreducible at current tool level |
 
 **Escalation policy compliance**: All 4 policy rules satisfied:
 1. Current method-space exhausted (8/7/5 approaches per lane)
-2. No escalation beyond definitions attempted
+2. No escalation beyond definitions attempted (R1 websearch for P03 used CITE_ONLY)
 3. Blockers are sharply defined single-sentence statements
 4. Each lane frozen after same blocker class repeated across multiple attempts
 

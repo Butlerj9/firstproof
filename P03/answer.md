@@ -385,23 +385,23 @@ Five exactness-preserving reduction approaches were systematically tested:
 
 **Conclusion**: The n>=5 Symmetry Conjecture is **computationally verifiable in principle** but **not feasible within the sprint** (~65-260 days estimated for n=5 alone). No structural shortcut has been identified across 8 total attempts. P03 remains 🟡 Candidate: proved for n<=4, conditional for n>=5.
 
-### R3 structural unlock lead: Factorization theorem (Session 9, Cycle 3)
+### R3 structural unlock lead: Symmetry of standard E\_μ at q=1 (Session 9 + Cycle 6 refinement)
 
-**Source**: Assaf-Gonzalez (arXiv:1801.04550), "Properties of non-symmetric Macdonald polynomials at $q=1$ and $q=0$" (Annals of Combinatorics, 2019).
+**Source**: Alexandersson-Sawhney (arXiv:1801.04550), "Properties of non-symmetric Macdonald polynomials at $q=1$ and $q=0$" (Annals of Combinatorics, 2019). [Author correction: previously misattributed to Assaf-Gonzalez.]
 
-**Key result**: For any composition $\mu$, $E_\mu(x; 1, t) = S(x) \cdot N(t, \mathrm{order}(\mu))$ where $S(x)$ is a symmetric function independent of $t$, and $N$ depends only on $t$ and the relative ordering of entries in $\mu$.
+**Key result (from abstract)**: $E_\lambda(x; 1, t)$ is **symmetric and independent of $t$** whenever $\lambda$ is a partition (weakly decreasing composition).
 
-**Relevance to Symmetry Conjecture**: The anti-dominant staircase $\lambda^- = (0, 1, 2, \ldots, n)$ has strictly increasing relative order. If the non-symmetric factor $N$ is **independent of $x$** (i.e., a scalar function of $t$ only) for the strictly increasing order, then $E_{\lambda^-}(x; 1, t)$ is symmetric in $x$ for all $t$. This would prove the Symmetry Conjecture for ALL $n$ simultaneously.
+**Hecke algebra extension (derived)**: For any composition $\mu = \sigma(\lambda)$ where $\lambda$ is the underlying partition, the Hecke algebra gives $E_\mu(x; 1, t) = t^{-\ell(\sigma)} \cdot E_\lambda(x; 1)$. This is because $T_i^{-1}$ acts on a symmetric function $f$ by $T_i^{-1}(f) = f/t$ (from $T_i f = tf$ and the quadratic relation $T_i^2 = (t-1)T_i + t$). Therefore **all standard non-symmetric Macdonald polynomials $E_\mu(x; 1, t)$ are symmetric** — they are scalar multiples of the symmetric $E_\lambda(x; 1)$.
 
-**Status**: The factorization theorem is established in the literature. The specific question is: **is $N(t, \mathrm{strictly\_increasing})$ a scalar (x-independent)?** This has not been verified from the paper (full text inaccessible via ar5iv conversion error). However:
+**Relevance to Symmetry Conjecture**: The Symmetry Conjecture is about the **interpolation** polynomial $E^*_{\lambda^-}(x; q=1, t)$ (Knop-Sahi), which differs from the standard $E_{\lambda^-}(x; 1, t)$ by inhomogeneous lower-degree correction terms (imposed by vanishing conditions at spectral vectors). The AS result implies:
 
-- For $n=1$: $\lambda^- = (0,1)$, and $E_{(0,1)}(x_1,x_2; 1, t) = x_1 + x_2$ (symmetric, $N = 1$). CONSISTENT.
-- For $n=2,3,4$: Our degree-bound proofs confirm symmetry, which is consistent with $N$ being x-independent.
-- The factorization reduces an infinite family of identities (one per $n$) to a **single structural property** of the Knop-Sahi operators at $q=1$.
+1. The **leading homogeneous component** of $E^*_{\lambda^-}(x; 1, t)$ equals $E_{\lambda^-}(x; 1, t) = t^{-n(n-1)/2} E_\lambda(x; 1)$, which is **symmetric** for all $n$.
+2. The Symmetry Conjecture thus **reduces** from "the full interpolation polynomial is symmetric" to "the inhomogeneous lower-degree corrections are also symmetric."
+3. **Subtlety**: This reduction is NOT trivial. The $E_\mu$ basis degenerates at $q=1$ (all compositions in the same $S_n$ orbit give proportional $E_\mu$), so the $E$-basis spans only the symmetric subspace at $q=1$. Coefficient blowup in the degenerate expansion can in principle project outside the symmetric subspace. (Counterexample: $v_1(q) = (1,q)$, $v_2(q) = (1,-q)$; with coefficients $1/(2q)$ and $-1/(2q)$, the sum approaches $(0,1) \notin \text{span}\{(1,0)\}$ as $q \to 0$.)
 
-**Potential unlock**: If the full paper confirms $N$ is x-independent for anti-dominant compositions, P03 would upgrade to **proved for ALL $n$** (✅ Submitted) via: factorization theorem + anti-dominant scalar factor. This requires R1-level citation of the exact theorem statement.
+**Status**: The AS result is verified at CITE_ONLY level (abstract accessed from arxiv.org). The Hecke extension is a derived consequence. The full paper text (needed for stronger claims) remains inaccessible (ar5iv conversion error, PDF not machine-readable).
 
-**Verdict**: Genuine R3 structural lead identified. Cannot be closed at current level (paper text inaccessible). Marked as unlock-theorem #4 for potential future resolution.
+**Verdict**: Meaningful structural reduction identified. The Symmetry Conjecture for $E^*_{\lambda^-}$ is now understood as: "the leading term is symmetric (proved via AS + Hecke); the lower-degree corrections must also be symmetric (verified for $n \leq 4$, open for $n \geq 5$)." This does NOT close the gap but sharpens the missing ingredient.
 
 ### Barrier summary (n ≥ 5)
 
@@ -409,7 +409,7 @@ Five exactness-preserving reduction approaches were systematically tested:
 
 **Failed routes (8 total)**: (1) symbolic-t perturbation (SymPy too slow at order 4); (2) rational Richardson extrapolation (insufficient convergence); (3) Thiele continued fraction (poles in reciprocal differences); (4) S\_n equivariance quotient (11K→324 partitions, per-block cost still prohibitive); (5) spectral vector collapse at q=1 (vectors remain distinct at generic t); (6) restriction x\_n→0 (wrong implication direction); (7) Hecke algebra degeneration (symmetry is emergent, not structural); (8) null space structure (explains conjecture but no computational shortcut).
 
-**Missing ingredient**: A structural proof that bypasses explicit computation — either (a) a representation-theoretic identity relating E\*\_{λ⁻}(q=1,t) to a manifestly symmetric function (e.g., Schur or Hall-Littlewood), (b) a Hecke algebra argument preserving symmetry through the q→1 degeneration, or (c) an S\_n-equivariant formulation where symmetry of the solution is inherited. The Assaf-Gonzalez factorization (R3 lead above) is the most promising but requires paper access.
+**Missing ingredient**: A proof that the inhomogeneous lower-degree corrections in E\*\_{λ⁻}(q=1,t) are symmetric. The leading homogeneous term is symmetric (Alexandersson-Sawhney 2019 + Hecke extension; see R3 lead above). The full conjecture reduces to: showing the lower-degree terms — determined by the degenerate vanishing conditions at q=1 and selected by the q→1 limit process — inherit the symmetry. This is proved for n≤4 by perturbation theory + degree-bound argument; the n≥5 case requires either (a) an algebraic identity for the q→1 correction terms, (b) a Hecke algebra argument showing the limit process preserves symmetry, or (c) computational verification (infeasible within sprint: ~247 days for n=5).
 
 ---
 
