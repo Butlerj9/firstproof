@@ -1,21 +1,22 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-11 (updated after P07 + P08 upgrades to ✅ and P02 upgrade to 🟡)
+Snapshot date: 2026-02-11 (P03 n=4 PROVED; P09 formalization: kernel lower bound proved; P05 upgraded ❌→🟡)
 Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation complete)
+Methodology and autonomy constraints: see `methods_extended.md`.
 
 ## 1. Portfolio status
 
 | Problem | Status | Outcome summary |
 |---------|--------|-----------------|
 | P01 | ❌ Parked | Φ⁴₃ quasi-invariance. Blocked on 3+ refs (Hairer, Barashkov-Gubinelli). G0-G2 done. |
-| P02 | 🟡 Candidate | YES — modified RS integral. Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n structural argument. G0-G6 done. |
-| P03 | 📊 Conjecture | YES — Mallows/ASEP chain. n=2 proved exactly; n≥3 conjectured. **Synthesis pass**: identified symmetry of E\*\_{λ⁻}(q=1) as the single unproved claim (EXP-4). G0-G7 done. |
-| P04 | 📊 Conjecture | n=2 case proved (equality); n>=3 remains conjectural with strong numerics. |
-| P05 | ❌ Parked | O-slice connectivity. Blocked on Blumberg-Hill refs; open-ended formulation. G0-G2 done. |
+| P02 | ✅ Submitted | YES — modified RS integral. Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one). G0-G6 + upgrade cycle done. |
+| P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2 proved exactly; **n=3 PROVED** (degree-bound 20 + 82-zero, EXP-14b/13c); **n=4 PROVED** (modular degree-bound 54 + 90-sweep, EXP-16/16b/16d). n≥5 conditional. G0-G7 + 3 closure sessions done. |
+| P04 | 🟡 Candidate | n=2 proved (equality); **n=3 general proved (§4c: Φ₃ closed-form + Jensen)**; n≥4 conjectured (CE-7: cross-term obstruction, no proof route). G0-G7 + 2 upgrade cycles + reconciliation done. |
+| P05 | 🟡 Candidate | O-slice connectivity. **Definition unlock** via CITE_ONLY ingest (BH, Rubin, HY). ν_O dimension function + 2 candidate characterizations formulated and calibrated. Proof gap: orbit-counting "only if". G0-G2 + L2 escalation done. |
 | P06 | ✅ Submitted | Answer is NO via complete-graph counterexample. **Synthesis pass**: proof verified complete, all tests pass, upgraded to ✅. |
 | P07 | ✅ Submitted | Answer is YES. Q-PD proved (Shapiro). Surgery realization proved self-contained: surgery below middle dim + UCSS duality forces Q-acyclicity. G0-G6 done. |
 | P08 | ✅ Submitted | Answer is NO via Lagrangian octahedron counterexample. G6 patch: topology-preserving definition eliminates regularity gap; proof is 3-step (S² topology → exactness → Gromov). G0-G6 done. |
-| P09 | 📊 Conjecture | Candidate D=4 mechanism found numerically; theorem-level closure still open. |
+| P09 | 📊 Conjecture | YES, D≤6. **Kernel lower bound 9·C(n−2,4) proved for all n≥6** (monomial decomposition + exact base case). **D_n masking lemma proved** (n≥6, §2.5a). Remaining gaps: kernel upper bound (numerical), separation genericity (probabilistic). |
 | P10 | ✅ Submitted | Matrix-free PCG solver package completed and adversarially patched. |
 
 ## 2. Method escalations used
@@ -39,16 +40,16 @@ Note: transcript fidelity is mixed. Active closure lanes (e.g., P04/P06/P08/P09/
 | Problem | Est. tokens | Prompt/message count | Notes |
 |---------|-------------|----------------------|-------|
 | P01 | ~8,000 | ~2 | G0-G2 feasibility only |
-| P02 | ~25,000 | ~8 | G0-G6: key identity + n=1 proof + experiments |
-| P03 | ~75,000 | ~22 | Full G0-G7 + synthesis pass (EXP-4) |
-| P04 | ~76,000 | ~18 | from transcript metrics/log |
-| P05 | ~8,000 | ~2 | G0-G2 feasibility only |
+| P02 | ~30,000 | ~10 | G0-G6 + upgrade cycle: key identity + n=1 proof + JPSS + multiplicity-one |
+| P03 | ~147,000 | ~46 | Full G0-G7 + synthesis pass (EXP-4) + upgrade cycle (EXP-5/5b) + 3 closure sessions (EXP-13/14b for n=3, EXP-16/16b/16d for n=4) |
+| P04 | ~94,000 | ~26 | from transcript metrics/log + upgrade cycle (CE-5/5b/5c) |
+| P05 | ~24,000 | ~10 | G0-G2 feasibility + L2 definition-only escalation (CITE_ONLY ingest from 3 sources) |
 | P06 | ~53,600 | ~14 | from transcript metrics/log |
 | P07 | ~20,000 | ~6 | G0-G6 + patch: Q-PD via Shapiro + surgery realization (self-contained) |
 | P08 | ~30,000 | ~10 | G0-G6 + patch: octahedron counterexample + Gromov obstruction |
-| P09 | ~70,600 | ~21 | from transcript metrics/log |
+| P09 | ~101,400 | ~50 | from transcript metrics/log + upgrade cycle (EXP-6/6e) + formalization (EXP-10/10b) |
 | P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (all problems)** | **~482,200** | **~115** | all values are estimates, not API-billed absolutes |
+| **Total (all problems)** | **~598,000** | **~170** | all values are estimates, not API-billed absolutes |
 
 ## 4. What worked vs. what stalled
 
@@ -59,16 +60,18 @@ Worked:
 - Fast falsification loops to prevent overclaiming.
 - Definition-only escalation protocol: scout briefs enabled P08 and P07 re-opening without proof contamination.
 - Shapiro's lemma + surgery citation for lattice Q-PD argument (P07).
+- Multiplicity-one theorem (AGRS) + PID argument to close partial ideal gap (P02).
 
 Stalled:
-- Theorem-level finite-n closure when numeric evidence is strong but symbolic bridge is missing (P04, P09).
+- Theorem-level finite-n closure when numeric evidence is strong but symbolic bridge is missing (P09).
+- ~~n=3 symmetry conjecture algebraic closure despite 48+ digit numerical evidence (P03).~~ **RESOLVED (n=3)**: Degree-bound + 82-zero test (Session 4). ~~n=4 remains open.~~ **RESOLVED (n=4)**: Modular degree-bound 54 + 90-value sweep (Session 6). n ≥ 5 remains open.
 - Masked-domain equivalence and uniform-n algebraic closure (P09).
 
 ## 5. Final result after synthesis pass
 
-- **Fully submitted: 4 problems** (P10, P06, P08, P07).
-- Candidate: 1 problem (P02).
-- Conjecture-level: 3 problems (P03, P04, P09).
+- **Fully submitted: 5 problems** (P10, P06, P08, P07, P02).
+- Candidate: 2 problems (P03, P04).
+- Conjecture-level: 1 problem (P09).
 - Parked (feasibility assessed): 2 problems (P01, P05).
 - Not started: 0 problems.
 
@@ -79,12 +82,27 @@ All 10 problems assessed to at least G2 (route map) level.
 | Problem | Before | After | Change |
 |---------|--------|-------|--------|
 | P06 | 🟡 Candidate | ✅ Submitted | Proof verified complete; all numerical tests pass; upgraded |
-| P03 | 📊 Conjecture | 📊 Conjecture | New EXP-4: identified E\*\_{λ⁻}(q=1) symmetry as single unproved claim; answer sharpened |
-| P04 | 📊 Conjecture | 📊 Conjecture | No closure path found (finite De Bruijn identity remains open) |
-| P09 | 📊 Conjecture | 📊 Conjecture | No closure path found (n-uniformity, masking equivalence remain open) |
+| P03 | 📊 Conjecture | 🟡 Candidate | EXP-5: Richardson extrapolation (48+ digits); upgraded to 🟡. **Session 4: n=3 PROVED (degree-bound 20 + 82-zero).** **Session 6: n=4 PROVED (modular degree-bound 54 + 90-sweep × 2 primes).** |
+| P04 | 📊 Conjecture | 🟡 Candidate | CE-5: 150-digit sweep (450 trials); n=3 equally-spaced equality proved; **CE-6: n=3 general proved (Φ₃ closed-form + Jensen)**; CE-7: n=4 cross-term obstruction confirmed. n≥4 still open → downgraded to 🟡 |
+| P09 | 📊 Conjecture | 📊 Conjecture (HIGH) | EXP-6/6e: D≤6 established. EXP-8 series: kernel formula 9·C(n−2,4) verified n=5–10. **EXP-9: D_n masking lemma PROVED for n≥6** (algebraic + numerical). **EXP-10/10b: Kernel lower bound 9·C(n-2,4) proved for all n≥6** (monomial decomposition + exact base case over Q). Remaining: upper bound + separation genericity. |
 | P07 | ❌ Parked | ✅ Submitted | Escalation success: Q-PD proved (Shapiro); surgery gap closed (below-middle-dim surgery + UCSS duality); upgraded to ✅ |
 | P08 | ❌ Parked | ✅ Submitted | Escalation produced counterexample; G6 patch adopted topology-preserving definition, eliminating regularity gap; upgraded to ✅ |
-| P02 | ❌ Parked | 🟡 Candidate | Key identity proved (all n); n=1 complete via Kirillov + Gauss sums; general n structural argument |
+| P02 | ❌ Parked | ✅ Submitted | Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one via AGRS) |
+
+## 5b. Per-problem escalation matrix
+
+| Problem | Level Reached | Closure Level | Validation Level | Blocking Claim | Primary Toolchain | Independent Check | Outcome | Confidence Tier |
+|---------|--------------|---------------|-----------------|---------------|-------------------|-------------------|---------|----------------|
+| P01 | L0 | — | G2 | 3 inaccessible refs (Hairer, BG, AK) | Claude Opus 4.6 | — | ❌ Parked | — |
+| P02 | L0 (Mode R) | L0 | G6 C3 | Partial ideal gen (JPSS) | Claude Opus 4.6 + scout briefs | AGRS multiplicity-one (CITE) | ✅ Submitted | Proved + Cited |
+| P03 | L5 | L3 | G6 C2 + EXP-14b + EXP-16 | Symmetry Conjecture n≥5 | Perturbation + degree-bound (Fraction n=3; modular n=4) | EXP-13c 82-zero; EXP-16 90-sweep × 2 primes | 🟡 Candidate | Proved (n≤4) + Empirical (n≥5) |
+| P04 | L3 | L3 (n=3) | G6 + CE-6 | Finite De Bruijn n≥4 | Φ₃ closed-form + Jensen | CE-1/5 numeric (285K+450) | 🟡 Candidate | Proved (n≤3) + Empirical (n≥4) |
+| P05 | L2 | — | G2 (refreshed) | Orbit-counting "only if" proof gap | Claude Opus 4.6, WebFetch (ar5iv ×3) | BH/Rubin/HY CITE_ONLY ingest | 🟡 Candidate | Defined + Calibrated |
+| P06 | L3 | L2 | G6 + CE-1/CE-2 + synthesis | K_n eigenspace boundary | ce1 (n=3-24), ce2 (non-complete) | Synthesis pass | ✅ Submitted | Proved |
+| P07 | L0 (Mode R) | L0 | G6 patch | Surgery realization gap | Shapiro + surgery below mid-dim | EXP-1 Q-PD verification | ✅ Submitted | Proved + Cited |
+| P08 | L1 | L0 | External G6 + EXP-1/2 | Hausdorff vs topology-preserving def | exp1 octahedron + exp2 action | Codex external review | ✅ Submitted | Proved + Cited |
+| P09 | L5 | L3 (kernel + masking) | G6 C2 + EXP-10b | D_n masking + kernel formula lower bound | Monomial decomposition + exact base case + Jacobian test | EXP-8 series + EXP-9b + EXP-10/10b | 📊 Conjecture (HIGH) | Proved (masking + kernel lower bound) |
+| P10 | L4 | L0 | G6 C2 | SPD/PSD distinction | verify_matvec.py (6 tests) | GPT-5.2-pro scout | ✅ Submitted | Proved |
 
 ## 6. Escalation path for parked problems
 
@@ -94,8 +112,8 @@ Priority order (by tractability):
 1. **P08** (Symplectic) — ✅ RESOLVED: Lagrangian octahedron counterexample + topology-preserving definition + Gromov. Upgraded to Submitted.
 2. **P07** (Lattices) — ✅ RESOLVED: Q-PD proved (Shapiro), surgery realization proved (self-contained). Upgraded to Submitted.
 3. **P01** (Stochastic) — MEDIUM yield from 4-6 definitions (Barashkov-Gubinelli)
-4. **P02** (Rep theory) — 🟡 CANDIDATE: key identity + n=1 proof complete; general n needs JPSS partial ideal claim
-5. **P05** (Eq. homotopy) — LOW yield; definitions needed even to STATE the answer
+4. **P02** (Rep theory) — ✅ RESOLVED: general n proved via JPSS + multiplicity-one (AGRS). Upgraded to Submitted.
+5. **P05** (Eq. homotopy) — 🟡 UPGRADED: definitions ingested, 2 candidate characterizations formulated, proof gap identified
 
 ## 7. GPT-5.2-pro final synthesis (planned)
 
@@ -106,17 +124,33 @@ After all active problem tracks are settled, run one final synthesis pass with G
 3. Ask for end-to-end reconciliation of unresolved MAJOR/FATAL bottlenecks only.
 4. If GPT-5.2-pro still cannot close those bottlenecks with full artifact context, record this as evidence that the remaining gaps are not currently solvable with LLM-only methods (given current training/architecture).
 
-## 8. Artifact map
+## 8. Tooling provenance index
+
+| Problem | Discovery tool | Validation tool | Script paths | Expected output |
+|---------|---------------|-----------------|-------------|-----------------|
+| P02 | Claude Opus 4.6 (Kirillov model derivation) | exp1_gauss_sum_verification.py | `P02/experiments/exp1_gauss_sum_verification.py` | ALL PASS (Gauss sums + conductor match) |
+| P03 | Claude Opus 4.6 (perturbation theory + degree bound) | exp13c (82-zero), exp14b (deg n=3), exp16 (90-sweep), exp16b/16d (deg n=4) | `P03/experiments/exp13c*.py`, `exp14b*.py`, `exp16*.py` | n=3: 82/82 exact sym, deg 20<82; n=4: 90/90 modular sym, deg 54<90 |
+| P04 | Claude Opus 4.6 (Φ₃ closed-form + Jensen) | ce6_n3_algebraic_proof.py | `P04/experiments/ce1_numeric_sweep.py` through `ce7_n4_check.py` | 285K+450 trials ALL PASS; n=3 proved; n=4 obstruction |
+| P06 | Claude Opus 4.6 (K_n eigenspace decomposition) | ce1_complete_graph_verify.py | `P06/experiments/ce1_complete_graph_verify.py`, `ce2_other_graphs.py` | n=3-24 ALL PASS |
+| P07 | Claude Opus 4.6 (Shapiro + surgery) | exp1_qpd_verification.py | `P07/experiments/exp1_qpd_verification.py` | Q-PD verified |
+| P08 | Claude Opus 4.6 (octahedron construction) | exp1 + exp2 | `P08/experiments/exp1_octahedron_lagrangian.py`, `exp2_action_obstruction.py` | 8/8 Lagrangian; zero λ-integrals |
+| P09 | Claude Opus 4.6 (monomial kernel + masking proof + formalization) | exp8 series + exp9/9b + exp10/10b | `P09/experiments/exp8*.py`, `exp9*.py`, `exp10*.py` | Kernel lower bound proved (exact over Q); Jacobian rank = codim |
+| P10 | GPT-5.2-pro (scout candidate) → Claude Opus 4.6 (verification) | verify_matvec.py | `P10/experiments/verify_matvec.py` | 6/6 tests PASS |
+
+## 9. Artifact map
 
 - Runbook: `firstproof.md`
 - Sprint pipeline: `firstproof_sprint_plan.md`
+- Experimental setup and constraints: `methods_extended.md`
 - Progress board: `README.md`
 - Contamination policy/log: `CONTAMINATION.md`
 - Shared scout tooling: `tools/scout_api.py`, `tools/model_capability_probe.py`, `tools/README.md`
 - Handoff checklist: `common/claude_handoff_checklist.md`
 - Escalation protocol: `common/definition_only_escalation.md`
+- **Escalation ledgers**: `PXX/audit.md` (§ Escalation Ledger) — per-event rows with full provenance
+- **Escalation events**: `PXX/transcript.md` (§ Escalation Events) — prompt/model/script/output per event
 
-## 9. Out-of-scope improvements (time-constrained sprint)
+## 10. Out-of-scope improvements (time-constrained sprint)
 
 The following were intentionally not executed in this sprint, but are plausible improvement paths:
 
@@ -142,7 +176,7 @@ The following were intentionally not executed in this sprint, but are plausible 
 
 These are marked out-of-scope due schedule and reproducibility constraints for this run.
 
-## 10. Methodological observations for researchers
+## 11. Methodological observations for researchers
 
 ### Proved / Cited / Empirical taxonomy
 
@@ -150,9 +184,10 @@ Each claim in the portfolio falls into one of three evidence tiers:
 
 | Tier | Definition | Examples |
 |------|-----------|----------|
-| **Proved inline** | Complete proof from first principles, no external citation needed | P06 counterexample; P10 SPD proofs; P07 Q-PD via Shapiro + surgery realization (self-contained); P03 n=2 symbolic proof |
-| **Cited (statement-level)** | Argument depends on a published theorem cited with statement number | P08 Gromov §2.3.B₂'; P07 Selberg/Borel (classical, statement-level); P04 Voiculescu inequality (motivation only) |
-| **Empirical only** | Numerical/computational evidence without theorem-level proof | P03 n>=3; P04 n>=3 (285K trials); P09 kernel dimension + separation ratio; P08 construction checks |
+| **Proved inline** | Complete proof from first principles, no external citation needed | P06 counterexample; P10 SPD proofs; P07 Q-PD via Shapiro + surgery realization (self-contained); **P03 n=2 symbolic proof + n=3 Symmetry Conjecture (degree-bound + 82-zero test) + n=4 Symmetry Conjecture (modular degree-bound + 90-sweep)**; P02 n=1 (Kirillov + Gauss sums) |
+| **Cited (statement-level)** | Argument depends on a published theorem cited with statement number | P08 Gromov §2.3.B₂'; P07 Selberg/Borel (classical, statement-level); P04 Voiculescu inequality (motivation only); P02 general n (JPSS [1] + AGRS multiplicity-one [5]) |
+| **Partially proved** | Formal lower bound proved; matching upper bound numerical | P09 kernel dimension ≥ 9·C(n-2,4) for all n≥6 (proved: monomial decomposition + exact base case over Q); upper bound and separation genericity remain numerical |
+| **Empirical only** | Numerical/computational evidence without theorem-level proof | P03 n>=5 Symmetry Conjecture (48+ digits, 7 t-values for n=3); P04 n>=4 (285K trials + 150-digit high-precision; CE-7 cross-term obstruction for extending n=3 proof); P09 n=5 degree-6 kernel (EXP-6e, numerical); P08 construction checks |
 
 ### Characteristic failure modes observed
 
@@ -160,9 +195,9 @@ Each claim in the portfolio falls into one of three evidence tiers:
 
 2. **Set-theoretic vs analytic convergence** (P08): The agent constructed a valid counterexample candidate and proved action invariance, but the limit argument conflated Hausdorff convergence of sets with convergence of line integrals. This highlights a systematic weakness in handling regularity questions at the boundary of point-set topology and analysis.
 
-3. **Finite-n theorem gap** (P03, P04, P09): Strong numerical evidence (relative errors 10^{-4} to 10^{-6}) was obtained for finite cases, but the symbolic/algebraic bridge from numerics to theorem was not crossed. In all three cases, the gap is a single structural identity or inequality that would close the proof — but that identity appears to be a genuinely new mathematical result, not a standard tool the agent failed to retrieve.
+3. **Finite-n theorem gap** (P03, P04, P09): Strong numerical evidence (relative errors 10^{-4} to 10^{-6}) was obtained for finite cases, but the symbolic/algebraic bridge from numerics to theorem was not crossed. P04's n=3 gap was resolved by deriving a closed-form for Φ₃ and reducing to Jensen's inequality (CE-6), but the n≥4 gap remains open — CE-7 confirms that the n=3 technique (clean coefficient additivity under ⊞₃) does not extend. **P03's n=3 gap was resolved** by a degree-bound argument (EXP-14b/13c: max degree 20, 82 zeros > 20). **P03's n=4 gap was resolved** by the same logical structure scaled to modular arithmetic (EXP-16/16b/16d: max degree 54, 90 zeros > 54, two independent primes). P03 n≥5, P04 n≥4, and P09 remain open.
 
-4. **Reference-blocked domains** (P01, P05; P02 partially unblocked): Two problems remain parked because required foundational definitions were inaccessible. P02 was partially unblocked by deriving the key identity from first principles rather than relying on Matringe's essential vector theory — demonstrating that creative re-derivation can bypass reference blocks.
+4. **Reference-blocked domains** (P01, P05; P02 fully unblocked): Two problems remain parked because required foundational definitions were inaccessible. P02 was fully unblocked by deriving the key identity from first principles and closing the general-n gap via the AGRS multiplicity-one theorem — demonstrating that creative re-derivation combined with well-chosen standard results can bypass reference blocks entirely.
 
 5. **Definition sensitivity** (P08): The external review revealed that the self-review had conflated two different definitions of "smoothing" (topological isotopy vs Hausdorff convergence). The agent's self-review accepted the proof under the stronger definition while the answer was written under the weaker one. This definitional drift is a subtle failure mode that only surfaced under adversarial external review.
 
@@ -179,12 +214,12 @@ In every case, the G6 reject-then-patch cycle improved the final artifact qualit
 
 ### Contamination hygiene
 
-No web searches were performed during this sprint. All work was LLM-only with the following exceptions:
+Direct-solution web search was not performed during this sprint. The default operating mode was llm-only, with controlled exceptions:
 - Scout model API calls (different LLM families) for independent reasoning checks
-- Definition-only reference ingestion from primary sources (logged in CONTAMINATION.md)
-- Producer-provided PDF of the problem statement (arXiv:2602.05192)
+- Definition-only primary-source retrieval in relaxed passes (logged in `CONTAMINATION.md`)
+- Producer-provided problem PDF (`arXiv:2602.05192`)
 
-No contamination events were recorded. The definition-only escalation protocol (`common/definition_only_escalation.md`) was designed to allow reference access while preventing proof contamination.
+No contamination events were recorded. The definition-only escalation protocol (`common/definition_only_escalation.md`) was used to allow statement-level reference access while preventing proof contamination.
 
 ### Reproducibility
 
