@@ -155,6 +155,18 @@ All criteria met:
 - [x] All external dependencies resolved with statement-number citations or proved inline
 - [x] No human mathematical input
 
+## Escalation Ledger
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E1 | 2026-02-10 | L4 | Sprint kickoff | — | Scout candidate ingested + independent verification | GPT-5.2-pro (scout), Claude Opus 4.6 (implementer) | answer.md drafted from scout candidate | G0 ACCEPT | ~2 msgs | proceed |
+| E2 | 2026-02-10 | L3 | G0 complete | Matvec correctness, RHS match, Gram identity | Experiment-first validation (6 tests) | verify_matvec.py (seed=42) | experiments/ output | G4: ALL 6 PASS | ~2 msgs | proceed |
+| E3 | 2026-02-10 | L1 | G5 complete | SPD claim fails for PSD K; Gram identity proof inconsistency; complexity undercounting | G6 adversarial review Cycle 1 | Codex 5.2 (reviewer) | — | G6 C1: REJECT (4 flags) | ~2 msgs | patch |
+| E4 | 2026-02-10 | L1 | G6 C1 REJECT | SPD/PSD, Gram proof, complexity, notation | Patch all 4 faults | Claude Opus 4.6 | answer.md patched (4 sections) | G6 C2: ACCEPT (0 faults) | ~4 msgs | proceed |
+| E5 | 2026-02-10 | L0 | G6 C2 ACCEPT | — | G7 package finalized | Claude Opus 4.6 | All deliverables finalized | G7 ACCEPT | ~2 msgs | **SUBMITTED** |
+
+**Escalation summary**: Level reached: L4 (scout). Closure level: L0. Validation: G6 C2 ACCEPT + L4 scout. CONTAM: none (scout generated independently, no web search).
+
 ## Human interventions
 
 | Timestamp | Type | Action | Justification |
@@ -179,3 +191,10 @@ All criteria met:
 | Human interventions | 3 (all LOGISTICS) |
 | Abstraction levels | A0 (experiments), A1 (identity application), A2 (inline proofs) |
 | Wall clock time | ~2 hours |
+
+## Orientation Note (2026-02-12)
+
+- Method/provenance policy source: `methods_extended.md`.
+- Docs organization source: `docs/README.md`.
+- Detailed governance session logs: `P03/audit.md`, `P05/audit.md`, and `P09/audit.md`.
+- Classification: ADMIN/LOGISTICS only. No mathematical status, proof content, or experiment claims changed in this lane.

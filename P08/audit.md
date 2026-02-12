@@ -149,6 +149,17 @@ The entire 7-step limit argument is eliminated. The proof is now 3 steps with no
 | EXP-1: Octahedron construction | `experiments/exp1_octahedron_lagrangian.py` | ALL PASS: 8/8 Lagrangian, non-degenerate, embedded, 4-valent |
 | EXP-2: Action obstruction | `experiments/exp2_action_obstruction.py` | ALL PASS: all cycles give zero λ-integral; perturbation O(ε) |
 
+## Escalation Ledger
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E1 | 2026-02-10 | L0 | Sprint kickoff | Symplectic smoothing defs inaccessible | G0-G2 feasibility blitz | Claude Opus 4.6 | audit.md G0-G2 | G2 ACCEPT | ~2 msgs | PARK |
+| E2 | 2026-02-11 | L0 (Mode R) | Escalation protocol triggered | Gromov obstruction statement needed | Definition-only escalation; G3-G5 | Claude Opus 4.6 + scout briefs | answer.md drafted, exp1/exp2 scripts | G5 draft complete | ~6 msgs | proceed |
+| E3 | 2026-02-11 | L1 | G5 complete | Step 2/5 regularity gap; definition mismatch | External Codex G6 review | Codex 5.2 (external reviewer) | — | G6: REJECT (2 MAJOR) | ~1 msg | patch |
+| E4 | 2026-02-11 | L0 | G6 REJECT | Hausdorff vs topology-preserving definition | Adopt topology-preserving definition; eliminate limit argument | Claude Opus 4.6 | answer.md simplified to 3-step proof | G6 patch: ACCEPT | ~1 msg | upgrade ❌→**SUBMITTED** |
+
+**Escalation summary**: Level reached: L1 (external adversarial review). Closure level: L0. Validation: external G6 + EXP-1/EXP-2. CONTAM: Gromov (1985) §2.3.B₂' statement-level → CONTAMINATION.md row 3.
+
 ## Human interventions
 
 | Timestamp | Type | Action | Justification |
@@ -165,3 +176,10 @@ The entire 7-step limit argument is eliminated. The proof is now 3 steps with no
 | Status | ✅ Submitted — NO via Lagrangian octahedron + Gromov |
 | Budget | 80 messages (RED — ~10 used) |
 | Tokens (est.) | ~30,000 |
+
+## Orientation Note (2026-02-12)
+
+- Method/provenance policy source: `methods_extended.md`.
+- Docs organization source: `docs/README.md`.
+- Detailed governance session logs: `P03/audit.md`, `P05/audit.md`, and `P09/audit.md`.
+- Classification: ADMIN/LOGISTICS only. No mathematical status, proof content, or experiment claims changed in this lane.

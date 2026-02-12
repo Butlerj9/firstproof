@@ -167,4 +167,21 @@ Verified answer.md is internally consistent:
 
 **G6 complete. Proceeding to G7 package.**
 
+## Escalation Events
+
+| event_id | prompt author | dispatcher | model/provider | script command(s) | output file(s) | incorporated? |
+|----------|--------------|------------|---------------|-------------------|---------------|---------------|
+| E1 | Supervisor | Producer | Claude Opus 4.6, Codex 5.2 | — | audit.md G0 | YES (G0 C1 REJECT → C2 ACCEPT; K_n identified) |
+| E2 | Implementer | Auto | Claude Opus 4.6 | `python ce1_complete_graph_verify.py`, `python ce2_other_graphs.py` | experiments/ outputs | YES (eigenvalue verification n=3-24) |
+| E3 | Supervisor | Producer | Codex 5.2 | — | — | YES (G6: 3 red flags patched) |
+| E4 | Implementer | Auto | Claude Opus 4.6 | — | answer.md §2-§4 | YES (G7 ACCEPT) |
+| E5 | Supervisor | Producer | Claude Opus 4.6 | — | — | YES (synthesis pass → upgrade 🟡→✅) |
+
 ---
+
+## Orientation Note (2026-02-12)
+
+- For methodology, autonomy boundary, and producer/tooling provenance: `methods_extended.md`.
+- For docs navigation and sectioning: `docs/README.md`.
+- Repo-wide documentation-governance details are logged in `P03/transcript.md`, `P05/transcript.md`, and `P09/transcript.md`.
+- This note is administrative only; no mathematical claims in this lane were changed.

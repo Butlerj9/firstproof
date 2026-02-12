@@ -136,6 +136,15 @@ The background is partially accessible from general knowledge, but the specific 
 - Key unresolved technical question: Is exp(c ∫ :φ³:ψ dx) in L¹(Φ⁴₃)?
 - If references are sourced, Route A could potentially proceed to G3-G5
 
+## Escalation Ledger
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6 | answer.md stub, audit.md G0 | G0 ACCEPT | ~1 msg | proceed |
+| E2 | 2026-02-10 | L0 | G0 complete | Inaccessible refs: Hairer (2014), Barashkov-Gubinelli (2020), Albeverio-Kusuoka (2021) | G1-G2 route map + dependency check | Claude Opus 4.6 | audit.md G1-G2 | G2 ACCEPT (3+ refs blocked) | ~1 msg | **PARK** |
+
+**Escalation summary**: Level reached: L0. No closure level (parked). No validation beyond G2. CONTAM: none.
+
 ## Human interventions
 
 | Timestamp | Type | Action | Justification |
@@ -150,3 +159,10 @@ The background is partially accessible from general knowledge, but the specific 
 | Gate | G2 (route map) |
 | Status | ❌ Parked (blocked on references) |
 | Budget | 30-80 messages (RED — ~2 used) |
+
+## Orientation Note (2026-02-12)
+
+- Method/provenance policy source: `methods_extended.md`.
+- Docs organization source: `docs/README.md`.
+- Detailed governance session logs: `P03/audit.md`, `P05/audit.md`, and `P09/audit.md`.
+- Classification: ADMIN/LOGISTICS only. No mathematical status, proof content, or experiment claims changed in this lane.

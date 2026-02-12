@@ -59,6 +59,12 @@ Use sparingly:
 - Keep scouts as secondary checks, not primary proof generators.
 - For llm-only tracks, avoid web-searching foundational lemmas; rely on local reasoning + controlled experiments.
 
+## Tooling provenance
+
+For a per-problem index of which tool produced discovery vs validation signals, see `RESULTS.md` §8 (Tooling provenance index). Each problem's `audit.md` contains an `## Escalation Ledger` with per-event tool/model/script attribution, and each `transcript.md` has an `## Escalation Events` block mapping events to concrete commands and outputs.
+
+Cross-reference with `CONTAMINATION.md` for any external-source ingestion events.
+
 ## Capability probe
 
 `tools/model_capability_probe.py` runs deterministic exact-answer checks across multiple providers.

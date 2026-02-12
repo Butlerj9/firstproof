@@ -123,4 +123,20 @@ Updated answer.md status to ✅ Submitted. Updated audit.md with full review his
 
 ---
 
+## Escalation Events
+
+| event_id | prompt author | dispatcher | model/provider | script command(s) | output file(s) | incorporated? |
+|----------|--------------|------------|---------------|-------------------|---------------|---------------|
+| E1 | Supervisor | Producer | GPT-5.2-pro (scout), Claude Opus 4.6 | — | answer.md draft | YES (scout candidate + independent verification) |
+| E2 | Implementer | Auto | Claude Opus 4.6 | `python verify_matvec.py` | experiments/output.txt | YES (6/6 tests PASS) |
+| E3 | Supervisor | Producer | Codex 5.2 | — | — | YES (G6 C1 REJECT: 4 flags patched) |
+| E4 | Implementer | Auto | Claude Opus 4.6 | — | answer.md patched | YES (G6 C2 ACCEPT → G7 → ✅) |
+
 **P10 COMPLETE. Status: ✅ Submitted. Budget used: ~12 of 120.**
+
+## Orientation Note (2026-02-12)
+
+- For methodology, autonomy boundary, and producer/tooling provenance: `methods_extended.md`.
+- For docs navigation and sectioning: `docs/README.md`.
+- Repo-wide documentation-governance details are logged in `P03/transcript.md`, `P05/transcript.md`, and `P09/transcript.md`.
+- This note is administrative only; no mathematical claims in this lane were changed.

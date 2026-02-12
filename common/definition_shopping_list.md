@@ -1,90 +1,135 @@
-# Definition-Only Shopping List for Producer
+# Definition-Only Unblocking Queue (Claude Prep)
 
-Generated: 2026-02-11 (updated after G6 review: P07 surgery gap flagged)
+Generated: 2026-02-11  
 Protocol: `common/definition_only_escalation.md`
 
-## Summary
+This file is the single low-noise prep artifact for unsolved lanes.
+Use it to dispatch Claude immediately when available.
 
-P08 is ✅ RESOLVED: topology-preserving definition patch eliminated the regularity gap; upgraded to Submitted. P07 is ✅ RESOLVED: Q-PD proved (Shapiro), surgery realization proved self-contained (below-middle-dim surgery + UCSS duality for dim 5). Upgraded to Submitted. The remaining parked problems are listed below in priority order.
+## 0. Hygiene rules (mandatory)
 
-## P07 — Lattices in Lie Groups (✅ RESOLVED — surgery gap closed)
+- Ingest **statements only**: definitions, theorem statements, hypotheses, notation.
+- Do **not** ingest proof text, proof sketches, survey commentary, or blog summaries.
+- Primary sources only (journal/arXiv/book originals).
+- Every ingest must be logged in both:
+  - `CONTAMINATION.md` (row with source/section/tag/risk)
+  - `PXX/audit.md` (Escalation Ledger event + dependency tag)
+- If accidental direct-solution exposure occurs: freeze lane and log contamination.
 
-**Route**: Q-Poincaré duality for lattices with torsion → surgery theory → manifold construction.
+## 1. Current unsolved lanes (canonical)
 
-### Definitions needed (3-4 items)
+| Problem | Status | Bottleneck type | Priority |
+|---------|--------|-----------------|----------|
+| P05 | 🟡 Candidate | Proof gap (orbit-counting "only if"); definitions resolved | 5 (done this cycle) |
+| P01 | ❌ Parked | Definition/theorem dependency block | 2 |
+| P09 | 📊 Conjecture | Algebraic formalization gap | 3 |
+| P04 | 🟡 Candidate | n>=4 theorem gap | 4 |
+| P03 | 🟡 Candidate | n>=4 closure still open | 5 |
 
-1. **Q-Poincaré duality group** (or "Poincaré duality group over Q")
-   - Likely source: Brown, "Cohomology of Groups", Ch. VIII; or Bieri, "Homological Dimension of Discrete Groups"
-   - What we need: Formal definition of a group Γ being PD_n over Q. Specifically: Ext^i_{QΓ}(Q, QΓ) = Q if i = n, 0 otherwise.
-   - Why critical: The proof route requires showing uniform lattices with torsion ARE Q-PD groups.
+## 2. Immediate queue for Claude (gate-scoped)
 
-2. **Virtual cohomological dimension (vcd)**
-   - Likely source: Brown, "Cohomology of Groups", §VIII.11; Serre, "Cohomologie des groupes discrets"
-   - What we need: vcd(Γ) = cd(Γ₀) for any torsion-free finite-index Γ₀ ≤ Γ.
-   - Why critical: Need vcd(Γ) = dim(G/K) for uniform lattices.
+### Q1. P05 re-open (G1 only, definition unlock)
 
-3. **Surgery exact sequence for Q-PD groups** (or "Wall realization theorem over Q")
-   - Likely source: Wall, "Surgery on Compact Manifolds", 2nd ed.; or Ranicki, "Algebraic and Geometric Surgery"
-   - What we need: Statement-only: if Γ is Q-PD of dimension n ≥ 5, then Γ = π₁(M) for some compact n-manifold M with M̃ Q-acyclic. Or the relevant obstruction theorem.
-   - Why critical: This is the second half of the proof (from Q-PD to manifold existence).
+- Cap: 25 messages.
+- Goal: produce a precise candidate definition of O-adapted slice filtration with explicit dependency tags.
+- Must output:
+  - `P05/audit.md`: G1 refresh + Escalation row with citations.
+  - `P05/transcript.md`: ingest provenance and rejected/accepted statements.
+  - `P05/answer.md`: no theorem claim; definition candidates only unless fully closed.
+- Stop condition:
+  - If canonical O-adapted definition remains ambiguous after two candidate formulations, keep `❌ Parked`.
 
-4. **(Optional) Proper cocompact action → Q-PD**
-   - Likely source: Lück, "Survey on classifying spaces for families of subgroups"; or Brown-Davis, "Lattices and proper Q-PD"
-   - What we need: Statement: if Γ acts properly and cocompactly on a contractible manifold X with finite stabilizers, then Γ is Q-PD of dimension dim(X).
-   - Why critical: This gives Q-PD for all uniform lattices (with or without torsion), since Γ acts on G/K.
+### Q2. P01 re-open (G1->G2 dependency closure check)
 
-### Scout-identified sources (cross-model consensus)
-- Raghunathan 1972, Def. 1.1/1.8 — uniform lattice (known; not needed)
-- Knapp 2002, §I.8 / Helgason 1978, Ch. II §6 — semisimple Lie groups (known; not needed)
-- Davis 2008, "Geometry and Topology of Coxeter Groups" — aspherical manifold constructions
-- Lück, "Survey on classifying spaces" — classifying spaces EΓ for groups with torsion
-- Browder-Novikov-Sullivan-Wall surgery program — manifold realization
+- Cap: 20 messages.
+- Goal: resolve whether existing primary statements suffice to advance Route A without overclaim.
+- Must output:
+  - `P01/audit.md`: updated dependency ledger (resolved/unresolved).
+  - `P01/transcript.md`: exact statement references used.
+  - `P01/answer.md`: keep uncertainty explicit if any core theorem is still unresolved.
+- Stop condition:
+  - If deterministic shift quasi-invariance statement is still missing, keep `❌ Parked`.
 
-### Ambiguity flags (from scouts)
-- Does "rationally acyclic" require vanishing rational homotopy groups? → NO, just H̃_*(−; Q) = 0.
-- Is M smooth or topological? → Either works for the question (topological suffices).
-- Must M̃ be contractible? → NO, only Q-acyclic.
+### Q3. P09 closure prep (no new docs, no status upgrade by numerics alone)
 
-## P01 — Stochastic Analysis (LOW PRIORITY)
+- Cap: 30 messages.
+- Goal: target only algebraic formalization tasks from existing experiments.
+- Must output:
+  - `P09/audit.md`: exact remaining formalization claims and pass/fail checks.
+  - `P09/transcript.md`: independent check record.
+- Stop condition:
+  - If only empirical strengthening is added, status remains `📊`.
 
-### Definitions needed (4-6 items)
-1. Φ⁴₃ measure and its construction (Hairer, Barashkov-Gubinelli)
-2. Quasi-invariance of Gaussian measures under nonlinear maps
-3. Cameron-Martin space for the Φ⁴₃ model
-4. Regularity structures framework (statement level only)
+### Q4. P04 closure prep (n>=4 triage)
 
-### Scout status: NOT queried (no scout briefs for P01)
+- Cap: 35 messages.
+- Goal: bounded route test for n>=4 only; no rewrite loops.
+- Must output:
+  - `P04/audit.md`: route verdict with explicit blocker theorem.
+  - `P04/transcript.md`: verification scripts and outcomes.
+- Stop condition:
+  - If no theorem closure and no verified counterexample, remain `🟡`.
 
-## P02 — Representation Theory (LOW PRIORITY)
+### Q5. P03 monitoring prep (n>=4 hygiene checks)
 
-### Definitions needed (5-8 items)
-1. Conductor ideal q and its generator Q (JPSS)
-2. Essential Whittaker function (Matringe)
-3. Rankin-Selberg integral for GL_{n+1} × GL_n (JPSS)
-4. Non-vanishing at s = 1/2 for the local zeta integral
-5. u_Q = I_{n+1} + Q E_{n,n+1} transformation
+- Cap: 15 messages for review cycle.
+- Goal: enforce theorem-vs-empirical separation for n>=4 claims.
+- Must output:
+  - `P03/audit.md`: checklist results (degree-bound applicability, pole safety, modular consistency).
 
-### Scout-identified sources (cross-model consensus)
-- JPSS 1981/1983 — Conducteur des représentations, Rankin-Selberg convolutions
-- Matringe — essential Whittaker functions (exact source uncertain)
-- Cogdell-Piatetski-Shapiro — L-functions for GL_n
-- Bump, "Automorphic Forms and Representations" — general reference
+## 3. Minimal-contamination reference packet (statement targets only)
 
-## P05 — Equivariant Homotopy (LOWEST PRIORITY)
+## P05 core references
 
-### Definitions needed: 5+ just to STATE the answer
-The problem is open-ended ("state and prove"), and the scouts flagged:
-- "No primary source explicitly defines O-adapted slice filtration"
-- "No published theorem explicitly characterizes O-slice connectivity via geometric fixed points"
+1. Blumberg-Hill (2015), *Operadic multiplications in equivariant spectra, norms, and transfers*  
+   URL: https://arxiv.org/abs/1309.1750  
+   Extract only:
+   - `Definition` of N-infinity operad (`def:geinfop`)
+   - `Definition` of indexing system
+   - `Definition` of admissible H-set
+   - Main theorem mapping operads to indexing systems
 
-**Recommendation**: Skip unless all other escalation targets are exhausted.
+2. Rubin (2019), *Characterizations of equivariant Steiner and linear isometries operads*  
+   URL: https://arxiv.org/abs/1903.08723  
+   Extract only:
+   - `defn:indsys` (indexing system)
+   - `defn:transys` (transfer system)
+   - `thm:transys` (equivalence indexing systems <-> transfer systems)
+   - `cor:transysBH2` (transfer systems <-> indexing categories)
 
-## Action items for producer
+3. Hill-Yarnall (2017), *A new formulation of the equivariant slice filtration...*  
+   URL: https://arxiv.org/abs/1703.10526  
+   Extract only:
+   - theorem characterizing slice n-connectivity via geometric fixed points (`thm:GeomFPVersion`)
+   - statement-level definitions of slice-connective categories used by that theorem
 
-| Priority | Problem | Action | Estimated effort |
-|----------|---------|--------|-----------------|
-| ~~1~~ | ~~P07~~ | ~~Surgery gap closed by self-contained argument (no external citation needed)~~ | ~~DONE~~ |
-| 2 | P02 | Source JPSS conductor definition (Def/Thm numbers) | 15 min |
-| — | P01, P05 | Skip unless time permits | — |
+## P01 core references
 
-**Note**: P08 is ✅ Submitted (topology-preserving definition patch resolved all G6 flags). P07 surgery gap was closed by self-contained argument; no longer needs external citation. Next highest-value target is P02 (JPSS conductor definition).
+1. Barashkov-Gubinelli (2018), *A variational method for Phi^4_3*  
+   URL: https://arxiv.org/abs/1805.10814  
+   Extract only:
+   - main variational theorem (`th:main`)
+   - Boue-Dupuis variational theorem statement (`th:variational`)
+   - statement defining the limiting measure / Laplace transform characterization
+
+2. Barashkov-Gubinelli (2020), *The Phi^4_3 measure via Girsanov's theorem*  
+   URL: https://arxiv.org/abs/2004.01513  
+   Extract only:
+   - theorem giving variational/Girsanov representation (`eq:th1`)
+   - coercivity / integrability theorem (`thm:equicoerc`)
+   - statement-level absolute-continuity result wrt drift measure
+   - statement-level singularity result wrt Gaussian free field (for route sanity check)
+
+## 4. Dispatch-ready checklist (paste into Claude handoff)
+
+1. Run `G0/G1` for target lane with stop-loss cap from Section 2.
+2. Use only references in Section 3 and extract statement-level text only.
+3. Update artifacts: `answer.md`, `audit.md`, `transcript.md`.
+4. Add message/token delta and escalation event row in `audit.md`.
+5. Return one of: `proceed`, `park`, `escalate`.
+
+## 5. Required logging row format
+
+Use this row format in `CONTAMINATION.md` and in `PXX/audit.md`:
+
+`| timestamp | source | section/label | item_type | tag(CITE_ONLY) | exposure_risk | used_for |`

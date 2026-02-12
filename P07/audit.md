@@ -207,6 +207,17 @@ This closes the gap without needing Fowler's FH(Q), Farrell-Jones, or any extern
 - Part (c): Lattices with 2-torsion exist in SO(5,1) by Borel/Coxeter. ✓
 - All three parts complete → answer is YES with full proof.
 
+## Escalation Ledger
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E1 | 2026-02-10 | L0 | Sprint kickoff | Davis manifold refs inaccessible | G0-G2 feasibility blitz | Claude Opus 4.6 | audit.md G0-G2 | G2 ACCEPT (2 refs blocked) | ~2 msgs | PARK |
+| E2 | 2026-02-11 | L0 (Mode R) | P08 resolved, budget freed | Q-PD definition, surgery framework | Definition-only escalation; G3-G5 | Claude Opus 4.6 + scout briefs | answer.md drafted, exp1 script | G5 draft complete | ~2 msgs | proceed |
+| E3 | 2026-02-11 | L0 | G5 complete | Surgery realization gap (Fowler shows Q-PD insufficient) | G6 self-review | Claude Opus 4.6 | — | G6: CONDITIONAL ACCEPT (gap flagged) | ~1 msg | patch |
+| E4 | 2026-02-11 | L0 | G6 surgery gap | Manifold realization of Q-PD group | Self-contained surgery proof: below-mid-dim + UCSS duality | Claude Opus 4.6 | answer.md §4 added | G6 patch: ACCEPT | ~1 msg | upgrade ❌→**SUBMITTED** |
+
+**Escalation summary**: Level reached: L0 (Mode R). Closure level: L0 (self-contained surgery). Validation: G6 patch ACCEPT + EXP-1. CONTAM: Shapiro's lemma, Borel-Serre (classical, statement-level) → CONTAMINATION.md row 4.
+
 ## Human interventions
 
 | Timestamp | Type | Action | Justification |
@@ -223,3 +234,10 @@ This closes the gap without needing Fowler's FH(Q), Farrell-Jones, or any extern
 | Status | ✅ Submitted — YES via Q-PD + surgery realization |
 | Tokens (est.) | ~20,000 |
 | Budget | 80 messages (RED — ~6 used) |
+
+## Orientation Note (2026-02-12)
+
+- Method/provenance policy source: `methods_extended.md`.
+- Docs organization source: `docs/README.md`.
+- Detailed governance session logs: `P03/audit.md`, `P05/audit.md`, and `P09/audit.md`.
+- Classification: ADMIN/LOGISTICS only. No mathematical status, proof content, or experiment claims changed in this lane.

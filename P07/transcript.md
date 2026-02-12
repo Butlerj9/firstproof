@@ -80,6 +80,22 @@ All components proved:
 
 The P07 arc illustrates how a citation gap can sometimes be bypassed by finding a more elementary argument. The initial approach sought a general surgery realization theorem for Q-PD groups (a deep result with no easily citable statement-number). The resolution was to specialize to dimension 5, where surgery below the middle dimension is elementary and the Q-PD property controls the remaining homology via UCSS duality. This specialization was available from the start (the problem only requires one example), but the agent initially pursued the general case.
 
+## Escalation Events
+
+| event_id | prompt author | dispatcher | model/provider | script command(s) | output file(s) | incorporated? |
+|----------|--------------|------------|---------------|-------------------|---------------|---------------|
+| E1 | Supervisor | Producer | Claude Opus 4.6 | — | audit.md G0-G2 | YES (feasibility → PARK) |
+| E2 | Supervisor | Producer | Claude Opus 4.6 + scout briefs | `python exp1_qpd_verification.py` | exp1 output | YES (definition-only escalation → Q-PD proved) |
+| E3 | Implementer | Auto | Claude Opus 4.6 | — | — | YES (G6 conditional accept, surgery gap flagged) |
+| E4 | Implementer | Auto | Claude Opus 4.6 | — | answer.md §4 | YES (self-contained surgery proof → ❌→✅) |
+
 ### Reconstruction note
 
 This file combines compact session summaries with methodological annotations. Detailed message-by-message logs were not reconstructed into this artifact.
+
+## Orientation Note (2026-02-12)
+
+- For methodology, autonomy boundary, and producer/tooling provenance: `methods_extended.md`.
+- For docs navigation and sectioning: `docs/README.md`.
+- Repo-wide documentation-governance details are logged in `P03/transcript.md`, `P05/transcript.md`, and `P09/transcript.md`.
+- This note is administrative only; no mathematical claims in this lane were changed.

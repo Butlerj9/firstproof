@@ -92,3 +92,19 @@ Both MAJORs resolved:
 The P08 arc illustrates the value of adversarial external review (G6). The self-review in Session 1 accepted the proof under an implicit stronger definition, while the written argument used a weaker one. The external reviewer caught this mismatch, forcing a clean resolution. The final proof is simpler and stronger than the original: the topology-preserving definition makes the argument elementary (topology + cohomology + Gromov), while the old argument required delicate regularity analysis that was never completed.
 
 The definitional question itself is mathematically interesting: under the weaker Hausdorff-only definition, the topology of K_t could differ from K, and the exactness obstruction would not directly apply. Appendix A records this conditional argument for future reference.
+
+## Escalation Events
+
+| event_id | prompt author | dispatcher | model/provider | script command(s) | output file(s) | incorporated? |
+|----------|--------------|------------|---------------|-------------------|---------------|---------------|
+| E1 | Supervisor | Producer | Claude Opus 4.6 | — | audit.md G0-G2 | YES (feasibility → PARK) |
+| E2 | Supervisor | Producer | Claude Opus 4.6 + scout briefs | `python exp1_octahedron_lagrangian.py`, `python exp2_action_obstruction.py` | exp1/exp2 output | YES (definition-only escalation → counterexample found) |
+| E3 | Supervisor | Producer | Codex 5.2 (external) | — | — | YES (external G6 REJECT: 2 MAJOR issues caught) |
+| E4 | Implementer | Auto | Claude Opus 4.6 | — | answer.md simplified | YES (topology-preserving def → 3-step proof → ❌→✅) |
+
+## Orientation Note (2026-02-12)
+
+- For methodology, autonomy boundary, and producer/tooling provenance: `methods_extended.md`.
+- For docs navigation and sectioning: `docs/README.md`.
+- Repo-wide documentation-governance details are logged in `P03/transcript.md`, `P05/transcript.md`, and `P09/transcript.md`.
+- This note is administrative only; no mathematical claims in this lane were changed.
