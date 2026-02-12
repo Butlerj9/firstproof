@@ -403,6 +403,14 @@ Five exactness-preserving reduction approaches were systematically tested:
 
 **Verdict**: Genuine R3 structural lead identified. Cannot be closed at current level (paper text inaccessible). Marked as unlock-theorem #4 for potential future resolution.
 
+### Barrier summary (n ≥ 5)
+
+**Blocker**: The Symmetry Conjecture — that E\*\_{λ⁻}(x; q=1, t) is symmetric in x₁,...,xₙ — is computationally verifiable in principle but infeasible for n ≥ 5 within sprint constraints (~65–260 days for n=5 alone; system size ~11K×11K, degree bound 112, perturbation order ~12–20).
+
+**Failed routes (8 total)**: (1) symbolic-t perturbation (SymPy too slow at order 4); (2) rational Richardson extrapolation (insufficient convergence); (3) Thiele continued fraction (poles in reciprocal differences); (4) S\_n equivariance quotient (11K→324 partitions, per-block cost still prohibitive); (5) spectral vector collapse at q=1 (vectors remain distinct at generic t); (6) restriction x\_n→0 (wrong implication direction); (7) Hecke algebra degeneration (symmetry is emergent, not structural); (8) null space structure (explains conjecture but no computational shortcut).
+
+**Missing ingredient**: A structural proof that bypasses explicit computation — either (a) a representation-theoretic identity relating E\*\_{λ⁻}(q=1,t) to a manifestly symmetric function (e.g., Schur or Hall-Littlewood), (b) a Hecke algebra argument preserving symmetry through the q→1 degeneration, or (c) an S\_n-equivariant formulation where symmetry of the solution is inherited. The Assaf-Gonzalez factorization (R3 lead above) is the most promising but requires paper access.
+
 ---
 
 ## 8. Verification scripts

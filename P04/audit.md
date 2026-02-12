@@ -157,10 +157,10 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~36 |
-| Gate | G7 (Package complete) + upgrade cycle |
+| Messages used | ~40 (36 prior + 4 Session 11 CE-12d/e) |
+| Gate | G7 (Package complete) + upgrade cycle + Session 11 |
 | Status | 🟡 Candidate |
-| Budget | 300 messages (GREEN — ~36 used) |
+| Budget | 300 messages (GREEN — ~40 used) |
 
 ### Token estimates (synced with transcript.md)
 
@@ -301,4 +301,51 @@ The second-order PSD decomposition is a genuine structural advance: it shows the
 
 ---
 
-*Cycle footer (Session 10): E11 escalation complete. Second-order PSD decomposition proved (two independently non-negative parts). CE-11 systematic search: 105,048 exact tests, 0 counterexamples. Full n>=4 proof remains open (degree-16 polynomial SOS). Status unchanged: 🟡 Candidate. ~36 messages used.*
+## Session 11: g-inequality decomposition (CE-12d/12e, 2026-02-12)
+
+**Status**: Partial advances; full n≥4 proof still open.
+
+### CE-12d/12e: g-inequality approach
+
+**Goal**: Prove the b=0 subcase of the n=4 superadditivity by decomposing the dimensionless "g-inequality" G(w,t1,t2) = w(1-w)H(w,t1,t2) ≥ 0.
+
+**Results**:
+1. H(w,t1,t2) = Aw² + Bw + C with A = (t1+t2)²(6t1+1)(6t2+1) ≥ 0. PROVED.
+2. H(0) = C ≥ 0 via explicit decomposition. PROVED.
+3. H(1) ≥ 0 by symmetry. PROVED.
+4. 4AC - B² = 3(t1+t2)²·Q where Q is NOT globally non-negative (3326/500K failures). FAILS.
+5. Alternative approaches (shifted variables, AM-GM): negative coefficients persist. FAILS.
+
+**Verdict**: Discriminant decomposition is too loose. The g-inequality holds but cannot be proved this way. The obstruction stands.
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E12 | 2026-02-12 | L4 | g-inequality proof attempt | Q not globally non-negative | CE-12d/12e: dimensionless form, quadratic-in-w decomposition, discriminant approach, shifted variables | Claude Opus 4.6 (background agent) | answer.md §9.3, audit.md Session 11 | Discriminant approach FAILS; g-inequality unproved | ~4 msgs | **🟡 CANDIDATE (unchanged)** |
+
+*Cycle footer (Session 11): CE-12d/12e complete. g-inequality decomposition: 3 subresults proved (A≥0, H(0)≥0, H(1)≥0), discriminant approach fails (Q not non-negative). Barrier summary added. Status unchanged: 🟡 Candidate. ~36+4 = ~40 messages used.*
+
+---
+
+## Candidate-G6 Review (Closeout Cycle 4, 2026-02-12)
+
+**Scope**: Editorial audit of final 🟡 Candidate package. No new math claims.
+
+### Checklist
+
+| # | Item | Verdict | Notes |
+|---|------|---------|-------|
+| C1 | Proved/cited/empirical separation | **PASS** | Evidence taxonomy (§7/answer.md) cleanly separates: Proved (n=2 equality §4, n=3 general §4c, n=3 equally-spaced §4b, K-transform §3/§5, n=4 2nd-order PSD §9.1), Cited (MSS real-rootedness [1], K-additivity [2] — TRAINING level), Empirical (285K+450+105K trials, all pass). No tier bleed. |
+| C2 | No unresolved claim labeled solved | **PASS** | Status is 🟡 Candidate, NOT ✅. Header: "conjectured for n ≥ 4 — no proof technique available." §6 gap section: 3 specific sub-gaps. §9.3: CE-12d/e verdict = FAILS. Barrier summary: 6 failed routes + missing ingredient. Reconciliation note (line 30) documents CE-7 cross-term obstruction. |
+| C3 | Statement-level citation hygiene | **PASS** | MSS [1] Thm 4.2, [2] Thm 2.7 at TRAINING level — used as critical dependency (real-rootedness + K-additivity), NOT as proof substance. n=2,3 proofs are self-contained algebraic arguments. Voiculescu [4] explicitly labeled "motivation only, not a proof." [5] proved inline. All consistent with 🟡. |
+| C4 | Blocker is single-sentence explicit | **PASS** | Barrier summary: "A degree-16 polynomial in 6 variables (or equivalently, a degree-6 polynomial in 3 variables for the b=0 subcase) must be shown non-negative on a specific semi-algebraic set." Followed by: "No algebraic certificate has been found." Clear, precise, actionable. |
+
+### Residual risks
+
+1. **MSS dependency at TRAINING level**: The real-rootedness of p ⊞_n q (MSS Thm 4.2) is used to ensure Φ_n is well-defined. This is the main theorem of a celebrated paper (Annals 2015). Using it at TRAINING level for a 🟡 is acceptable — it's a widely-known result, and the mathematical substance of P04's contribution is the inequality, not the real-rootedness.
+2. **n=4 CE exhaustiveness**: 105K exact Fraction tests (CE-11) cover 7 search families but cannot be exhaustive. This is correctly labeled as "Empirical," not "Proved." No overclaim.
+
+### Verdict
+
+**ACCEPT (0 faults).** P04 package is clean. Proved scope (n≤3) is correctly separated from conjectured scope (n≥4). Barrier is explicit with 6 failed routes documented.

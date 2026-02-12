@@ -351,3 +351,27 @@ P05 strengthened within Candidate. Two new theorems proved (Thms 6-7). The open 
 | Tier | 🟡 Candidate |
 | Delta | +2 theorems (Thms 6-7), +1 Python script, +exhaustive computation, +"smallest open case" reclassified |
 | Decision | HOLD at 🟡 Candidate. Class Ia now closed by Thm 7. Class II remains genuinely open with non-uniform representations. The 5-page proof claimed by the problem authors likely handles Class II directly; this remains the gap. |
+
+---
+
+## Candidate-G6 Review (Closeout Cycle 4, 2026-02-12)
+
+**Scope**: Editorial audit of final 🟡 Candidate package. No new math claims.
+
+### Checklist
+
+| # | Item | Verdict | Notes |
+|---|------|---------|-------|
+| C1 | Proved/cited/empirical separation | **PASS** | Evidence taxonomy (§9) cleanly separates 6 tiers: Proved (Thms 1-4, 6-7), Defined (ν_O, τ_{≥n}^O, ν_O^eff), Computed (825 TS on 17 groups), Stated (biconditional with ⇒ proved / ⇐ partially proved), Calibrated (extreme cases + Z/p + Class Ia), Conjectured ("if" for Class II only). Thm 5 correctly classified as a classification/frontier statement. No tier bleed. |
+| C2 | No unresolved claim labeled solved | **PASS** | Status is 🟡 Candidate, NOT ✅. §6.2: "if" direction explicitly labeled "Conjecture." §7.3: "What is NOT proved" section present. §7.4 Thm 5 gives complete classification with Class II "OPEN." §8.6 refined frontier correctly marks Class II as open. Smallest open case updated to Z/4 with O = {Z/2 ≤_O Z/4} (Session 12 correction). |
+| C3 | Statement-level citation hygiene | **PASS** | All 3 external sources (Blumberg-Hill, Rubin, Hill-Yarnall) at CITE_ONLY level — web-fetched from ar5iv. Used for definitions (§2.1-2.7) and one theorem reduction (Thm 2(a) → HY Thm 2.5). All inline proofs (Thms 1, 4, 6, 7) are self-contained, using only standard equivariant homotopy theory. No citation is used beyond its verified scope. |
+| C4 | Blocker is single-sentence explicit | **PASS** | §7.4 conclusion: "The common structural root of all four blocked proof approaches is the non-uniform fixed-point dimension of non-regular permutation representations across the subgroup lattice." Single sentence identifying root cause. 3 specific gaps enumerated. |
+
+### Minor observations (not faults)
+
+1. **Thm 7 proof exposition**: The proof sketch (§8.5) contains a self-correction ("wait, this inclusion goes the WRONG way") followed by a corrected argument. The corrected logic is sound (reduction to HY at S-levels with regular rep cells), but the inline self-correction is stylistically unusual for a proof document. Does not affect correctness.
+2. **Theorem count**: Header says "6 theorems proved" but 7 theorem statements exist (Thms 1-7). The audit reconciles this by excluding Thm 5 as "a classification." Internally consistent but could be clearer.
+
+### Verdict
+
+**ACCEPT (0 faults, 2 minor observations).** P05 package is clean. The 7-theorem structure with proved/open classification is rigorous. Citation hygiene is strong (all CITE_ONLY properly sourced). The Class I / Ia / II frontier is precisely delineated with explicit structural gaps.

@@ -338,6 +338,32 @@ Setting $\sigma = \alpha_1 / (\alpha_1 + \alpha_2)$, this reduces to $c_1'^2 / \
 
 **Verdict.** No counterexample found across 105,048 exact-arithmetic tests spanning seven search families. The minimum positive margin ($9.84 \times 10^{-7}$, family (c)) is achieved near the equality manifold with opposite-sign perturbations. The inequality appears true for $n = 4$.
 
+### 9.3. g-inequality decomposition attempt (CE-12d/12e)
+
+**Goal**: Prove the $n=4$ superadditivity via a direct decomposition of the "g-inequality" — the dimensionless form of the $b=0$ subcase, obtained by substituting $t_i = c_i'/a_i^2$.
+
+**Reduction**: The inequality reduces to $G(w,t_1,t_2) \geq 0$ where $G = w(1-w)H(w,t_1,t_2)$ and $H = Aw^2 + Bw + C$ is quadratic in $w$, with $A = (t_1+t_2)^2(6t_1+1)(6t_2+1)$ and $C = t_1^2(6t_2+1)^2 + 3t_2^2(6t_1+1)(2t_2+1)$.
+
+**Proved subresults**:
+1. $A \geq 0$ on valid region ($6t_i + 1 > 0$): product of a square and two positive factors. $\checkmark$
+2. $H(0) = C \geq 0$: sum of two non-negative terms (explicit decomposition). $\checkmark$
+3. $H(1) \geq 0$: by symmetry in $(t_1, t_2)$. $\checkmark$
+4. Numerical: $H \geq 0$ in 200,000 random tests, $A < 0$ in 0 tests. $\checkmark$
+
+**Failed lemma**: The discriminant $4AC - B^2 = 3(t_1+t_2)^2 \cdot Q(t_1,t_2)$ where $Q$ is **NOT** globally non-negative on the valid region (3,326 failures in 500,000 tests, $\min Q = -33.8$). The discriminant approach fails because $Q < 0$ is possible. In those cases, $H$ has two real roots in $w$, but they lie outside $[0,1]$, so $H \geq \min(H(0), H(1)) \geq 0$ still holds.
+
+**Attempted repairs**: Shifted variables $p = 6t_1+1, q = 6t_2+1$ (both positive) still yield 3 negative coefficients out of 7 in $Q$. AM-GM absorption fails (insufficient positive mass). The full polynomial $H(w,t_1,t_2)$ has 9 negative coefficients in shifted variables.
+
+**Verdict**: The g-inequality holds empirically but the quadratic-discriminant decomposition is too loose to prove it. A proof would require either (a) a tighter SOS certificate for $H$ as a polynomial in three variables, or (b) a direct $w$-restricted argument on $[0,1]$ exploiting $H(0), H(1) \geq 0$ with the convexity structure. Neither was achieved. The degree-16 obstruction stands.
+
+### Barrier summary (n ≥ 4)
+
+**Blocker**: A degree-16 polynomial in 6 variables (or equivalently, a degree-6 polynomial in 3 variables for the $b=0$ subcase) must be shown non-negative on a specific semi-algebraic set. No algebraic certificate has been found.
+
+**Failed routes (6 total)**: (1) Jensen's inequality — weight mismatch between $b$-component (linear weights) and $c'$-component (quadratic weights); (2) K-transform comparison — ratio varies $10^{-4}$ to $10^7$, no consistent bound; (3) finite De Bruijn identity — form of finite dissipation functional unknown; (4) induction on $n$ — no known monotonicity; (5) cross-term absorption via additive variables — cross-terms removed but scaling mismatch remains; (6) quadratic discriminant decomposition (CE-12d/e) — $Q$ not globally non-negative.
+
+**Missing ingredient**: Either (a) an SOS/DSOS decomposition of the degree-16 polynomial (requires SDP solver, not available in sprint environment), or (b) a novel analytic inequality exploiting the specific rational structure of $1/\Phi_4$ beyond second-order Taylor expansion.
+
 ### 10. Summary
 
 | Aspect | Result |

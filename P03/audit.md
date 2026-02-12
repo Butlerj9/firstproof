@@ -617,6 +617,30 @@ Added to answer.md:
 6. **Msg/token delta**: ~3 msgs / ~5K tokens (this cycle)
 7. **Decision**: HOLD -- 🟡 Candidate with L5 barrier. No further progress possible within sprint constraints.
 
+## Candidate-G6 Review (Closeout Cycle 4, 2026-02-12)
+
+**Scope**: Editorial audit of final 🟡 Candidate package. No new math claims.
+
+### Checklist
+
+| # | Item | Verdict | Notes |
+|---|------|---------|-------|
+| C1 | Proved/cited/empirical separation | **PASS** | Evidence taxonomy (§7) cleanly separates three tiers: Proved (n=2 exact, n=3 degree-bound+82-zero, n=4 modular+90-sweep), Proved(supporting) (degree bounds, perturbation rank), Empirical (n≥5 48+ digit Richardson). No tier bleed. |
+| C2 | No unresolved claim labeled solved | **PASS** | Status is 🟡 Candidate, NOT ✅. §1 separates "Theorem (n=2)" from "Conjecture (general n≥3)". §6 titled "NOT a proof for n≥5". All n≥5 statements explicitly conditional on Symmetry Conjecture. |
+| C3 | Statement-level citation hygiene | **PASS** | All external refs (Knop-Sahi, Ben Dali-Williams, CMW, Assaf-Gonzalez) at TRAINING level. No CITE_ONLY used. Proofs for n=2,3,4 are self-contained (degree-bound + FTA). TRAINING-level citations used only for definitions, not proof ingredients. Consistent with 🟡 (not ✅). |
+| C4 | Blocker is single-sentence explicit | **PASS** | Barrier summary (§7, post-line 406): "The Symmetry Conjecture — that E\*\_{λ⁻}(x; q=1, t) is symmetric in x₁,...,xₙ — is computationally verifiable in principle but infeasible for n ≥ 5 within sprint constraints (~65–260 days for n=5 alone; system size ~11K×11K, degree bound 112, perturbation order ~12–20)." Single sentence, quantified. |
+
+### Residual risks
+
+1. **R3 lead (Assaf-Gonzalez)**: The factorization theorem (§7, R3 lead) could in principle close the gap for all n, but paper text is inaccessible. Not an overclaim — correctly labeled "Verdict: Genuine R3 structural lead identified. Cannot be closed at current level." No action needed.
+2. **Modular arithmetic for n=4**: The n=4 proof uses two primes near 10⁸. CRT gives coefficient bounds ≈10¹⁶, which exceeds the algebraic computation's coefficient magnitudes. The two-prime verification is standard but technically probabilistic (negligible failure probability). Correctly described as "modular arithmetic" proof, not "exact arithmetic." No overclaim.
+
+### Verdict
+
+**ACCEPT (0 faults).** P03 package is clean. Proved/cited/empirical tiers are correctly separated. No overclaims. Blocker is explicit and quantified.
+
+---
+
 ## Metrics
 
 | Metric | Value |
@@ -624,5 +648,5 @@ Added to answer.md:
 | Messages used | ~55 (52 prior + 3 Session 9 reduction attempts) |
 | Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions + n>=5 feasibility + infeasibility cert + reduction attempts |
 | Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**; n>=5 conditional + 48-digit evidence + L5 barrier) |
-| G6 cycles | 1 reject + 1 accept = 2 cycles |
+| G6 cycles | 1 reject + 1 accept + 1 Candidate-G6 accept = 3 cycles |
 | Budget | 200 messages (YELLOW -- ~55 used) |

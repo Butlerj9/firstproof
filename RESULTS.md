@@ -1,6 +1,6 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-12 (Closeout cycle 3: **P01 UPGRADED to ✅** via R1 CITE_PLUS (BG proof chain + Hairer-Steele); P04/P05/P03 unchanged — 🟡 Candidate)
+Snapshot date: 2026-02-12 (Closeout cycle 4: Candidate-G6 ACCEPT on P03/P04/P05; P04 metrics updated ~36→~40 msgs; portfolio reconciled)
 Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation complete)
 Methodology and autonomy constraints: see `methods_extended.md`.
 
@@ -42,14 +42,14 @@ Note: transcript fidelity is mixed. Active closure lanes (e.g., P04/P06/P08/P09/
 | P01 | ~45,000 | ~20 | G0-G2 + Sessions 3-10: A4 closed, CITE_ONLY ingest (E7), scout cross-check (E8), gap analysis (E9-E10: 7 approaches), **Session 10 (E11): R1 CITE_PLUS — BG proof chain verified + Hairer-Steele independent path; gap CLOSED** |
 | P02 | ~33,000 | ~12 | G0-G6 + upgrade cycle: key identity + n=1 proof + JPSS + multiplicity-one |
 | P03 | ~157,000 | ~55 | Full G0-G7 + synthesis + 3 closure sessions + infeasibility certificate + Session 9 (E11: 5 reduction approaches, EXP-17, L5 barrier confirmed) |
-| P04 | ~112,000 | ~36 | from transcript + upgrade cycle + Sessions 8-10 + CE-9/10/11 (closed-form Φ₄, additive variables, 2nd-order PSD, 105K exact tests) |
+| P04 | ~116,000 | ~40 | from transcript + upgrade cycle + Sessions 8-11 + CE-9/10/11/12d/12e (closed-form Φ₄, additive variables, 2nd-order PSD, 105K exact tests, g-inequality decomposition attempt) |
 | P05 | ~63,000 | ~30 | G0-G5 + Sessions 7-12: obstruction + formal theorems + Thm 4 + "if" analysis (4 approaches blocked) + Impossibility Frontier Theorem (Thm 5) + **Session 12 (R2): exhaustive computation + Thms 6-7 (dim-uniform char + restricted sufficiency)** |
 | P06 | ~53,600 | ~14 | from transcript metrics/log |
 | P07 | ~20,000 | ~6 | G0-G6 + patch: Q-PD via Shapiro + surgery realization (self-contained) |
 | P08 | ~30,000 | ~10 | G0-G6 + patch: octahedron counterexample + Gromov obstruction |
 | P09 | ~114,000 | ~58 | from transcript metrics/log + upgrade cycle (EXP-6/6e) + formalization (EXP-10/10b) + Session 7-8: n=5 closure |
 | P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (all problems)** | **~743,600** | **~253** | all values are estimates (token_source: estimate), not API-billed absolutes; sum: 45+33+157+112+63+53.6+20+30+114+116=743.6K tokens, 20+12+55+36+30+14+6+10+58+12=253 msgs |
+| **Total (all problems)** | **~747,600** | **~257** | all values are estimates (token_source: estimate), not API-billed absolutes; sum: 45+33+157+116+63+53.6+20+30+114+116=747.6K tokens, 20+12+55+40+30+14+6+10+58+12=257 msgs |
 
 ## 4. What worked vs. what stalled
 
@@ -176,7 +176,25 @@ The following were intentionally not executed in this sprint, but are plausible 
 
 These are marked out-of-scope due schedule and reproducibility constraints for this run.
 
-## 11. Methodological observations for researchers
+## 11. Final closeout note (Cycle 4, 2026-02-12)
+
+All 7 execution items from Closeout Cycle 4 payload complete. Candidate-G6 ACCEPT (0 faults) on all 3 🟡 problems.
+
+| Lane | Closure tier | Unresolved core claim | Why not escalated further |
+|------|-------------|----------------------|--------------------------|
+| P03 | L5 (barrier cert) | Symmetry Conjecture for n ≥ 5: E\*\_{λ⁻}(x; q=1, t) is symmetric | n=5 system ~11K×11K, ~65–260 days compute; 8 structural shortcuts all fail; same blocker class (computational infeasibility) repeats |
+| P04 | L4 (g-inequality) | Degree-16 polynomial non-negativity in 6 variables (n ≥ 4 superadditivity) | 6 proof routes exhausted (Jensen weight mismatch, K-transform, De Bruijn, induction, additive vars, discriminant decomposition); SOS/SDP solver not available in sprint env; same blocker class (algebraic certificate) repeats |
+| P05 | L5 (frontier thm) | "If" direction for Class II: intermediate O with non-trivial K on \|Sub(G)\| ≥ 3 | 4 proof approaches blocked (equivariant Whitehead, orbit filtration, geometric detection, norm/restriction); all reduce to non-uniform dim(V^L); same root cause repeats; problem authors claim ≤5-page proof — gap is genuinely new |
+
+**Escalation policy compliance**: All 4 policy rules satisfied:
+1. Current method-space exhausted (8/6/4 approaches per lane)
+2. No escalation beyond definitions attempted
+3. Blockers are sharply defined single-sentence statements
+4. Each lane frozen after same blocker class repeated across multiple attempts
+
+---
+
+## 12. Methodological observations for researchers
 
 ### Proved / Cited / Empirical taxonomy
 
