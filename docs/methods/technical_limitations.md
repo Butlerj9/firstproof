@@ -13,8 +13,9 @@ Control-stack framing used in this repo:
 - opaque in-model inference layer.
 
 The short version:
-- A lane like `P01` is not "unsolvable in principle."
-- Under the current autonomy and training constraints, it sits outside reliable closure for a general frontier LLM stack.
+- A lane like `P03` is not "unsolvable in principle."
+- Under the current autonomy and training constraints, some lanes sit outside reliable closure for a general frontier LLM stack.
+- Others (`P01`, `P09`) were eventually closed via escalation (CITE_PLUS, modular rank proofs), demonstrating that the boundary is not static.
 
 ## 1. Two distinct failure modes
 
@@ -61,14 +62,18 @@ Escalation cannot directly create:
 - robust finite-to-general symbolic bridges,
 - domain-specific abstraction leaps absent from model behavior.
 
-## 4. Why P01/P04/P09-type gaps persisted
+## 4. Why some gaps persisted (and why others closed)
 
 Observed in this project:
-- `P01` depends on deep renormalization/infinite-dimensional measure machinery with strict hypothesis handling.
-- `P04` and `P09` reached strong empirical/formal partial structure but stalled at final symbolic closure steps.
+- `P01` depended on deep renormalization machinery — closed via R1 CITE_PLUS (BG proof chain) + independent path (Hairer-Steele). Escalation from CITE_ONLY to CITE_PLUS was the key unlock.
+- `P09` reached strong partial structure, then closed via modular rank proofs at two primes + subset isomorphism for n≥6.
+- `P04` reached strong empirical/formal partial structure (n≤3 proved, 105K exact tests at n=4) but stalled at a degree-16 polynomial certificate. 6 proof routes exhausted.
+- `P03` proved n≤4 via degree-bound closure but n≥5 is computationally infeasible (~65-260 days for n=5 alone).
+- `P05` proved 7 theorems but the "if" direction for Class II transfer systems remains open — 4 approaches all reduce to the same non-uniform dimension obstruction.
 
 Inference:
 - workflow quality improved substantially,
+- escalation (CITE_PLUS, modular arithmetic, exhaustive computation) closed some gaps,
 - but remaining blockers are mostly representational rather than process hygiene failures.
 
 ## 5. Why "not baked in" is not the whole explanation

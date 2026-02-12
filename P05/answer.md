@@ -636,6 +636,10 @@ Therefore, the "smallest open case" identified in Session 11 is **no longer open
 
 5. **$\nu_{\mathcal{O}}^{\mathrm{eff}} = \nu_{\mathcal{O}}$ for many uniform systems** (those where the downward-closed set $\mathcal{S}$ is "convex" in the subgroup lattice), confirming the effective dimension function is correctly calibrated.
 
+## Barrier summary (Class II)
+
+The "if" direction for Class II transfer systems — those with some admissible pair $(K, H)$ where $K \neq 1$, on groups with $|\mathrm{Sub}(G)| \geq 3$ — remains open. All four proof approaches (equivariant Whitehead, orbit filtration, geometric fixed-point detection, norm/restriction adjunction) reduce to the same structural obstruction: $\mathrm{ind}_K^H(\mathbf{1}) = \mathbb{C}[H/K]$ has non-uniform fixed-point dimensions across the subgroup lattice when $K \neq 1$, unlike the regular representation. No algebraic closure has been found.
+
 ## 9. Evidence taxonomy
 
 | Tier | Content |

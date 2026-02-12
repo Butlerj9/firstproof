@@ -3,5 +3,9 @@ tools/model_probe_results*.json
 tools/scout_briefs/
 tmp_sources/
 
+# Source paper (large binary + text derivative)
+2602.05192v1.pdf
+2602.05192v1.txt
+
 # Stray local temp file seen on Windows
 nul
