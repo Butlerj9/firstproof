@@ -484,3 +484,105 @@ All three decompositions verified symbolically (`expand(LHS - RHS) == 0`).
 **Kimi K2.5 scout (Session 14)**: Truncated at 16384 tokens (all reasoning, zero content). Kimi thinking model spends all budget on internal reasoning for P04's polynomial problem. Previous scouts (Qwen3/DeepSeek) targeted b=0 case now proved; no new approaches for b≠0.
 
 *Cycle footer (Session 14): CE-16 proves -H ≥ 0 for b=0 subcase via convexity + algebraic decomposition. First proved result for n=4. General n=4 case remains open (b-c' cross-terms). Status unchanged: 🟡 Candidate. ~48+6 = ~54 messages used.*
+
+---
+
+## Session 15 — Closeout Escalation Chain (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | S15 Closeout Escalation |
+| Date | 2026-02-12 |
+| Objective | Kill-test + formal closure for general n=4 (b≠0) |
+| Message cap | 20 (P04 lane) |
+| Escalation level | L4 |
+
+### CE-17: Cumulant decomposition analysis
+
+**Script.** `experiments/ce17_cumulant_decomp.py`
+
+**Target.** Express 1/Φ₄ in additive cumulant coordinates (σ, b, c') and test concavity ⟹ superadditivity.
+
+**Results:**
+1. **Structure**: 1/Φ₄ is a genuine rational function (NOT Laurent polynomial). Denominator = `72·(6c'+σ²)·(27b²+24c'σ-4σ³)` — 4 terms.
+2. **Taylor expansion**: t⁰ = σ/18 (linear, additive); t¹ = 0; t² = (-3b²σ - 32c'²)/(8σ³) (locally concave).
+3. **Homogeneity**: Root-scaling ratio = λ² (confirmed weight-2). Additive scaling ratio ≠ λ — NOT degree-1 homogeneous under additive scaling. This blocks the "concavity ⟹ superadditivity" argument.
+4. **Hessian (3×3)**: NOT NSD — only NSD at b=0,c'=0. Positive eigenvalue at every other test point.
+5. **Superadditivity sweep (UNFILTERED)**: 19,675 negative M out of 60,025 evaluations.
+
+**Verdict**: Concavity approach FAILS. But the unfiltered sweep counts are misleading (see CE-17b).
+
+### CE-17b: Filtered sweep (Delta > 0 only)
+
+**Script.** `experiments/ce17b_filtered_sweep.py`
+
+**Target.** Re-run sweep filtering by discriminant Delta > 0.
+
+**Results:**
+1. CE-17 "counterexample" points all had Delta < 0 — invalid.
+2. **With Delta > 0 filter: Min M = -4.11e-03, 4 negative cases out of 508,260 valid evaluations.**
+3. Hessian NSD on valid region: only 5 of 343 valid points are NSD.
+
+**Critical bug discovered**: For quartics, Delta > 0 means 0 OR 4 real roots (not just 4). Additional conditions needed.
+
+### CE-18b/18c: Exact arithmetic verification
+
+**Scripts.** `experiments/ce18_exact_violation_check.py`, `experiments/ce18b_focused_exact.py`, `experiments/ce18c_counterexample_verify.py`
+
+**Target.** Verify CE-17b violations with exact SymPy Rational arithmetic.
+
+**Key finding**: The "counterexample" at (σ₁=3/10, σ₂=1/2, b₁=-1/20, b₂=-1/20, c'₁=1/25, c'₂=0) was confirmed with exact arithmetic: M = -11375537/2767723200 < 0. BUT polynomial p has **A·B > 0** (A = 33/50, B = 33/400), meaning:
+- 1/Φ₄(p) = -17/1440 < 0
+- p has 0 real roots (all complex), despite Delta > 0
+
+**Diagnosis**: The quartic discriminant being positive guarantees either 0 or 4 real roots. For 4 real roots, the additional condition **A·B < 0** (where A = a²+12c, B = 2a³-8ac+9b²) is required. Equivalently, **1/Φ₄ > 0** (since Φ₄ > 0 for polynomials with real simple roots, and the formula gives 1/Φ₄ = -Delta/(4AB)).
+
+### CE-19: Corrected validity sweep (exact arithmetic)
+
+**Script.** `experiments/ce19_corrected_validity.py`
+
+**Target.** Re-run full superadditivity sweep with CORRECT filter: Delta > 0 AND A·B < 0 (equivalently 1/Φ₄ > 0).
+
+**Grid**: σ ∈ {3/10, 1/2, 1, 3/2, 2, 3, 5} × b ∈ {-3/10,...,3/10} step 1/20 × c' ∈ {-1/20,...,1/20} step 1/100. All pairs tested.
+
+**Results (exact Rational arithmetic, 236.7s)**:
+- **Total checked**: 1,002,001
+- **Valid (all 3 polynomials real-rooted)**: 495,616
+- **Negative M**: **0**
+- **Min M**: 0 (equality at b=c'=0)
+- **ALL M ≥ 0**: **YES**
+- b=0 control: 2,809 valid, 0 negative (consistent with CE-16 proof)
+- False positives from CE-17b filter: 0.9% of single polynomials had Delta>0 but A·B>0 (not real-rooted)
+
+**Verdict**: The CE-17b "violations" were ALL from non-real-rooted polynomials. With the corrected filter, **superadditivity holds for all 495,616 valid test triples** with exact arithmetic. No counterexample exists on this grid.
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | validation gate/result | msg delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|----------------------|-----------|----------|
+| E14 | 2026-02-12 | L4 | cumulant decomposition | 1/Φ₄ concavity | CE-17: FAILS (not NSD, not deg-1 homo) | SymPy | Concavity approach killed | ~3 msgs | **🟡 unchanged** |
+| E15 | 2026-02-12 | L4 | Delta>0 filter bug | apparent CE | CE-17b→18b→19: bug found, CE invalidated, corrected sweep ALL PASS | SymPy exact | 495K valid tests, 0 violations | ~6 msgs | **🟡 unchanged (strengthened)** |
+| E16 | 2026-02-12 | L5 | perturbative b expansion | b-correction sign | CE-20: f_bb computed; b-correction NOT always non-neg (7585/100K violations); 4th-order needed; Jensen structure fails for b-component when cp≠0 | SymPy + numpy | Route #9 killed | ~3 msgs | **🟡 unchanged** |
+
+### Metrics
+
+| Metric | Value |
+|--------|-------|
+| Messages used (this session) | ~12 |
+| Cumulative messages | ~66 |
+| New experiments | CE-17, CE-17b, CE-18/18b/18c, CE-19, CE-20 |
+| Status | 🟡 Candidate (unchanged — empirical evidence strengthened to 495K+ exact tests; 9 failed proof routes documented) |
+
+### Failed route summary (updated)
+
+1. Direct De Bruijn identity (general n) — no finite analog
+2. K-transform Taylor expansion — n=3 only
+3. Coefficient-level algebraic identity — breaks for n≥4 (cross-terms)
+4. Cauchy-Schwarz / Jensen (n≥4) — weight mismatch obstruction
+5. Numerical SOS — 12 negative coefficients
+6. Discriminant decomposition — superseded by convexity (§9.4)
+7. SDP solver (CE-14) — not available; Putinar deg 6 insufficient
+8. **Cumulant concavity (CE-17)** — 1/Φ₄ NOT concave, NOT deg-1 homogeneous
+9. **Perturbative b-expansion (CE-20)** — b-correction not always non-negative (7.6% failure rate); higher-order cancellation needed
+
+*Cycle footer (Session 15): CE-17 kills concavity approach. CE-17b through CE-19 discover and fix quartic validity filter bug (Delta>0 insufficient, need A·B<0). Corrected sweep: 495,616 valid exact-arithmetic tests, ALL PASS. CE-20 kills perturbative approach. 9 routes failed. Status unchanged: 🟡 Candidate. ~54+12 = ~66 messages used.*

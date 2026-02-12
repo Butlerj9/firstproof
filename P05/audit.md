@@ -486,3 +486,54 @@ No 6th approach identified. The gap requires either (a) a new representation-the
 **ACCEPT (0 faults).**
 
 *Cycle footer (Session 14): Assessment only. No 6th approach identified. L5 barrier reconfirmed. Status unchanged: 🟡 Candidate. ~33+2 = ~35 messages used.*
+
+---
+
+## Session 15 — Closeout Escalation Chain (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | S15 Closeout Escalation |
+| Date | 2026-02-12 |
+| Objective | Kill-test Kimi scout approaches + formal assessment |
+| Message cap | 14 (P05 lane) |
+| Escalation level | L5 (barrier confirmed) |
+
+### Kimi K2.5 scout approaches (evaluated)
+
+Three approaches from Kimi K2.5 streaming (kimi_p05_16k.json):
+1. **O-Cellular Homology Detection** (conf 65): Defines O-cellular chain complex. Blocked by same non-uniform dim obstruction.
+2. **Equivariant Euler Class Annihilation** (conf 70): Uses Euler class of ind_{Z/2}^{Z/4}(1). Blocked: Euler class action doesn't detect O-cellular connectivity due to mixed degree shifts from non-trivial V^{Z/2}.
+3. **Simplicial O-Resolution via Γ-Spaces** (conf 55): Γ-space models for connective spectra. Blocked: Segal maps for non-regular representations may not split correctly.
+
+**Kill-test**: All three reduce to variants of the same core obstruction — non-uniform dim(V^L) across the subgroup lattice for non-regular representations. None provide a genuinely new path around the L5 barrier.
+
+### Z/4 counterexample search (attempted)
+
+Agent launched to search for counterexample: a Z/4-Mackey functor where geometric fixed-point connectivity holds but O-slice connectivity fails. Agent got stuck reading context (P05 answer is very long) and failed to produce a usable script. The search was not completed.
+
+**Assessment**: No counterexample found (consistent with 5 sessions of searching). The "if" direction for Class II is genuinely open — neither proved nor disproved.
+
+### Final P05 assessment
+
+**Proved scope (7 theorems)**:
+- Thm 1: Obstruction for intermediate systems (Z/p² counterexample)
+- Thm 2: Positive scope (complete/trivial on any G)
+- Thm 3: All transfer systems on Z/p
+- Thm 4: Corrected "only if" with ν_O^eff for ALL G
+- Thm 5: Impossibility Frontier (Class I vs Class II classification)
+- Thm 6: Dimension-uniform iff K=1 in all admissible pairs
+- Thm 7: Restricted sufficiency for Class Ia (regular-only systems)
+
+**Open**: Class II "if" direction (non-regular intermediate systems). 5+3=8 approaches blocked. Smallest open case: Z/4 with O={Z/2 ≤_O Z/4}. Barrier: non-uniform dim(V^L) for ind_{K}^{H}(1) with K≠1.
+
+### Metrics
+
+| Metric | Value |
+|--------|-------|
+| Messages used (this session) | ~2 |
+| Cumulative messages | ~37 |
+| New experiments | None (Kimi approaches evaluated, Z/4 search incomplete) |
+| Status | 🟡 Candidate (unchanged — 7 theorems proved, Class II open, L5 barrier) |
+
+*Cycle footer (Session 15): Kimi approaches evaluated (all reduce to same obstruction). Z/4 CE search incomplete. Status unchanged: 🟡 Candidate. ~35+2 = ~37 messages used.*

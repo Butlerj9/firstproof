@@ -1,6 +1,6 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-12 (Session 14: CE-16 proves P04 b=0 subcase; Kimi K2.5 recovery complete (P03/P05 success, P04 truncated); scout acceptance gate complete)
+Snapshot date: 2026-02-12 (Session 15: Closeout Escalation Chain complete. CE-19 corrects quartic validity filter, 495K exact tests ALL PASS. EXP-20 kills P03 branching. 9 proof routes failed for P04 b≠0. All 3 🟡 barriers confirmed genuine.)
 Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation complete)
 Methodology and autonomy constraints: see `methods_extended.md`.
 
@@ -10,9 +10,9 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 |---------|--------|-----------------|
 | P01 | ✅ Submitted | **YES** — Φ⁴₃ quasi-invariance proved. **R1 CITE_PLUS (Session 10, E11)**: BG proof chain (arXiv:2004.01513) verified lemma-by-lemma for V_c; all 6 lemmas extend via (α) quartic coercivity + (β) UV scaling. **Independent path**: Hairer-Steele (arXiv:2102.11685) sub-Gaussian tails + Young directly yield A4. Two lines close the former gap. |
 | P02 | ✅ Submitted | YES — modified RS integral. Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one). G0-G6 + upgrade cycle done. |
-| P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2,3,4 proved. **L5 barrier**: n≥5 formally infeasible; 8 structural shortcuts all fail; **R1 AS reduction (Cycle 6)**: leading term symmetric for all n via Alexandersson-Sawhney+Hecke; full E* gap persists. |
-| P04 | 🟡 Candidate | n=2,3 proved. **n=4 even quartic (b=0) subcase PROVED (CE-16 §9.4: convexity in w + algebraic decomposition at endpoints).** General n=4 (b≠0): b-c' cross-terms uncontrolled. 105K exact tests ALL PASS (CE-11). G0-G7 + Sessions 8-14 done. |
-| P05 | 🟡 Candidate | O-slice connectivity. **7 theorems** (Thms 1-4, 6-7) + **Impossibility Frontier Theorem (Thm 5)**. **Thm 6**: dim-uniform iff K=1 in all admissible pairs. **Thm 7**: restricted sufficiency for Class Ia (regular-only). Class II (non-regular) remains open; **5 proof approaches blocked** (Session 13: isotropy separation for Z/4). Exhaustive computation: 825 total / 793 intermediate systems on 17 groups, 104 uniform. No CE found. G0-G5 + Sessions 7-13 done. |
+| P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2,3,4 proved. **L5 barrier**: n≥5 formally infeasible; branching rule induction killed (EXP-20: 4 obstructions); AS reduction partial; 4 approaches all fail. |
+| P04 | 🟡 Candidate | n=2,3 proved. **n=4 even quartic (b=0) PROVED (CE-16).** General n=4 (b≠0): **495K exact tests ALL PASS (CE-19, corrected quartic validity filter)**; 9 proof routes failed; b-c' cross-terms uncontrolled. |
+| P05 | 🟡 Candidate | O-slice connectivity. **7 theorems** + **Impossibility Frontier Theorem**. Class Ia proved; Class II open; **8+ proof approaches blocked**. 825 total / 793 intermediate systems exhaustively tested. No CE found. |
 | P06 | ✅ Submitted | Answer is NO via complete-graph counterexample. **Synthesis pass**: proof verified complete, all tests pass, upgraded to ✅. |
 | P07 | ✅ Submitted | Answer is YES. Q-PD proved (Shapiro). Surgery realization proved self-contained: surgery below middle dim + UCSS duality forces Q-acyclicity. G0-G6 done. |
 | P08 | ✅ Submitted | Answer is NO via Lagrangian octahedron counterexample. G6 patch: topology-preserving definition eliminates regularity gap; proof is 3-step (S² topology → exactness → Gromov). G0-G6 done. |
@@ -41,15 +41,15 @@ Note: transcript fidelity is mixed. Active closure lanes (e.g., P04/P06/P08/P09/
 |---------|-------------|----------------------|-------|
 | P01 | ~45,000 | ~20 | G0-G2 + Sessions 3-10: A4 closed, CITE_ONLY ingest (E7), scout cross-check (E8), gap analysis (E9-E10: 7 approaches), **Session 10 (E11): R1 CITE_PLUS — BG proof chain verified + Hairer-Steele independent path; gap CLOSED** |
 | P02 | ~33,000 | ~12 | G0-G6 + upgrade cycle: key identity + n=1 proof + JPSS + multiplicity-one |
-| P03 | ~170,000 | ~63 | Full G0-G7 + synthesis + 3 closure sessions + infeasibility certificate + Session 9-10 (EXP-17/18) + **Session 11 (Cycle 6): R1 websearch Alexandersson-Sawhney — leading term symmetric for all n via AS+Hecke; full E* gap persists** |
-| P04 | ~139,000 | ~54 | from transcript + upgrade cycle + Sessions 8-14 + CE-9/10/11/12d/12e/13/16 + **Session 14: CE-16 proves b=0 subcase via convexity + algebraic decomposition** |
-| P05 | ~71,000 | ~35 | G0-G5 + Sessions 7-14: 7 theorems + Frontier + 5 approaches blocked + **Session 14 (Cycle 6): final assessment — no 6th approach; L5 barrier reconfirmed** |
+| P03 | ~175,000 | ~67 | Full G0-G7 + synthesis + Sessions 9-11 + **Session 15: EXP-20 branching test (4 obstructions → BRANCHING_FAILS)** |
+| P04 | ~155,000 | ~66 | Sessions 8-15 + CE-9/10/11/12d/12e/13/16/17/18/19/20 + **Session 15: quartic validity filter corrected (CE-19: 495K exact ALL PASS); 9 routes failed** |
+| P05 | ~73,000 | ~37 | G0-G5 + Sessions 7-15: 7 theorems + Frontier + 8+ approaches blocked + Kimi scout eval |
 | P06 | ~53,600 | ~14 | from transcript metrics/log |
 | P07 | ~20,000 | ~6 | G0-G6 + patch: Q-PD via Shapiro + surgery realization (self-contained) |
 | P08 | ~30,000 | ~10 | G0-G6 + patch: octahedron counterexample + Gromov obstruction |
 | P09 | ~114,000 | ~58 | from transcript metrics/log + upgrade cycle (EXP-6/6e) + formalization (EXP-10/10b) + Session 7-8: n=5 closure |
 | P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (all problems)** | **~791,600** | **~284** | all values are estimates (token_source: estimate), not API-billed absolutes; sum: 45+33+170+139+71+53.6+20+30+114+116=791.6K tokens, 20+12+63+54+35+14+6+10+58+12=284 msgs |
+| **Total (all problems)** | **~814,600** | **~300** | all values are estimates (token_source: estimate), not API-billed absolutes; sum: 45+33+175+155+73+53.6+20+30+114+116=814.6K tokens, 20+12+67+66+37+14+6+10+58+12=302 msgs |
 
 ## 4. What worked vs. what stalled
 

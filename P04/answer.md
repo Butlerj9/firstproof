@@ -1,9 +1,9 @@
 # P04: Inequality for Φₙ under Finite Free Convolution ⊞ₙ
 
 **Status**: 🟡 Candidate (proved for $n=2$, $n=3$, and $n=4$ even subcase; general $n \geq 4$ open)
-**Answer**: YES for $n = 2$ (proved, equality holds exactly). YES for $n = 3$ (proved, §4c: closed-form Φ₃ + Jensen's inequality). YES for $n = 4$, even quartics (proved, §9.4: convexity + algebraic decomposition). YES for $n \geq 4$ general (conjectured, supported by 285K+ trials + 105K exact Fraction tests).
-**Reviewer**: Codex 5.2 — G6 verdict: 📊 (4 red flags, patched). Upgrade cycle: CE-5/5b/5c strengthen evidence to 150 digits + new n=3 equality result. G5 closure: CE-6 proves n=3 general case. CE-7: n=4 cross-term obstruction confirmed.
-**Code verification**: `experiments/` — all trials passed; 150-digit verification (CE-5); n=3 equality verified at 200 digits (CE-5b/5c); n=3 algebraic proof verified (CE-6); n=4 exact Fraction tests 105K+ (CE-11)
+**Answer**: YES for $n = 2$ (proved, equality holds exactly). YES for $n = 3$ (proved, §4c: closed-form Φ₃ + Jensen's inequality). YES for $n = 4$, even quartics (proved, §9.4: convexity + algebraic decomposition). YES for $n \geq 4$ general (conjectured, supported by 285K+ trials + 105K exact Fraction tests + 495K exact tests with corrected validity filter CE-19).
+**Reviewer**: Codex 5.2 — G6 verdict: 📊 (4 red flags, patched). Upgrade cycle: CE-5/5b/5c strengthen evidence to 150 digits + new n=3 equality result. G5 closure: CE-6 proves n=3 general case. CE-7: n=4 cross-term obstruction confirmed. CE-19: quartic validity filter corrected (Delta>0 insufficient, need A·B<0); 495K exact tests ALL PASS.
+**Code verification**: `experiments/` — all trials passed; 150-digit verification (CE-5); n=3 equality verified at 200 digits (CE-5b/5c); n=3 algebraic proof verified (CE-6); n=4 exact Fraction tests 105K+ (CE-11); 495K exact tests with corrected validity filter (CE-19)
 **External deps**: MSS (2015) real-rootedness preservation (cited, not proved)
 
 ### Reviewer red flags (G6)
@@ -263,7 +263,7 @@ Clustered-root stress tests at 150 digits: all cases $n = 4, 5, 6$ with $\vareps
 |------|---------|
 | **Proved** | $n=2$ equality (§4); $n=3$ general inequality (§4c); $n=3$ equally-spaced equality (§4b); K-transform framework (§3, §5); $n=4$ second-order margin PSD (§9.1); **$n=4$ even quartic ($b=0$) subcase (§9.4)** |
 | **Cited** | MSS real-rootedness [1] Thm 4.2; K-additivity [2] Thm 2.7 |
-| **Empirical (exact + 150 digits)** | General $n \geq 4$ inequality: 285K trials (CE-1) + 450 trials at 150 digits (CE-5) + 105K exact Fraction tests (CE-11) |
+| **Empirical (exact + 150 digits)** | General $n \geq 4$ inequality: 285K trials (CE-1) + 450 at 150 digits (CE-5) + 105K exact Fraction tests (CE-11) + 495K exact tests with corrected quartic validity filter (CE-19) |
 
 ### 9. Closed-form $\Phi_4$ and additive variables (NEW, CE-10)
 
@@ -399,7 +399,9 @@ where $Q(t_1, t_2) = (1+6t_2)(6t_1+3) + 36t_2^2$.
 
 **Remaining blocker ($b \neq 0$).** The general $n=4$ case is a degree-16 polynomial in 6 variables $(a_1, b_1, c_1', a_2, b_2, c_2')$. The $b$-component of the margin is proved by Jensen (§9.1), and the $c'$-component ($b=0$ case) is proved (§9.4), but the **cross-terms between $b$ and $c'$** in $1/\Phi_4$ are not controlled.
 
-**Failed routes for general case**: (1)–(7) as before. Route (6) discriminant decomposition is superseded by the convexity argument (§9.4) for the $b=0$ case. Routes (1)–(5) and (7) remain relevant for the $b \neq 0$ case.
+**Failed routes for general case**: (1)–(7) as before, plus (8) concavity in cumulant coordinates (CE-17: 1/Φ₄ is NOT globally concave in (σ,b,c'), NOT degree-1 homogeneous under additive scaling). Route (6) discriminant decomposition is superseded by the convexity argument (§9.4) for the $b=0$ case. Routes (1)–(5), (7), and (8) remain relevant for the $b \neq 0$ case.
+
+**Validity note (CE-19).** For quartics, $\Delta > 0$ implies either 0 or 4 real roots. The correct condition for 4 simple real roots is $\Delta > 0$ AND $A \cdot B < 0$ (equivalently $1/\Phi_4 > 0$), where $A = a^2 + 12c$ and $B = 2a^3 - 8ac + 9b^2$. An apparent counterexample from CE-17b was invalidated: the polynomial $p$ had $A \cdot B > 0$ (zero real roots). With the corrected filter, **495,616 exact-arithmetic tests all pass** (CE-19).
 
 **Missing ingredient**: A method to control the $b$-$c'$ cross-terms in the 6-variable superadditivity margin, or an SDP-based SOS certificate for the full degree-16 polynomial (requires SDP solver not in sprint environment).
 
@@ -413,7 +415,7 @@ where $Q(t_1, t_2) = (1+6t_2)(6t_1+3) + 36t_2^2$.
 | **$n = 4$, $b=0$** | **Proved (§9.4)**: convexity in $w$ + algebraic decomposition at both endpoints. Closes even-quartic subcase completely |
 | **$n = 4$, general** | Closed-form $\Phi_4$; additive variables; second-order margin PSD (§9.1); $b$-$c'$ cross-terms uncontrolled |
 | **General $n \geq 5$** | No proof; candidate strategies via finite free Fisher information (§6) |
-| **Numerical** | 285,000+ trials + 450 at 150 digits + 5,000 at 30 digits + 105K exact Fraction tests (CE-11), ALL PASS |
+| **Numerical** | 285,000+ trials + 450 at 150 digits + 5,000 at 30 digits + 105K exact Fraction tests (CE-11) + 495K exact tests with corrected validity filter (CE-19), ALL PASS |
 | **Proof gap** | General $n=4$: $b$-$c'$ cross-terms (§9). General $n \geq 5$: finite De Bruijn identity (§6) |
 | **Connection** | Finite analog of Voiculescu's free Fisher information inequality (motivation only) |
 
