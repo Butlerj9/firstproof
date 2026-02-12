@@ -4,6 +4,7 @@ Primary method specification and autonomy constraints:
 
 - `methods_extended.md` (repo root)
 - `docs/methods/technical_limitations.md` (escalation rationale and current system limits)
+- `docs/methods/future_work.md` (boundary-shift directions beyond this sprint)
 
 Related enforcement and operations:
 

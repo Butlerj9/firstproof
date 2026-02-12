@@ -89,7 +89,57 @@ It is weaker at:
 
 This is the practical boundary observed in the sprint.
 
-## 7. Repo-level evidence pattern
+## 7. Emergent resonant coherence for representative model refinement
+
+This project used a practical reliability signal we call emergent resonant coherence:
+- independent model families converge on similar structural decompositions,
+- those decompositions survive adversarial review,
+- and they remain stable under deterministic checks.
+
+Here, "representative model refinement" means selecting diverse model roles/families (implementer, reviewer, scouts), then refining claims only when cross-model structure and executable evidence remain consistent.
+
+### 7.1 What this addresses
+
+It addresses common single-model failure modes:
+- prompt-fragile reasoning,
+- self-confirmation loops,
+- narrow route fixation,
+- and low-visibility hypothesis drift.
+
+Operationally, it improves triage: when independent models converge and checks pass, the lane is prioritized for closure; when they diverge, escalation or park decisions are triggered earlier.
+
+### 7.2 What this augments vs human-insight-driven workflows
+
+Compared to standard human-insight-driven work, this mechanism augments:
+- route selection (from one-model intuition to multi-model structural agreement),
+- early fault detection (from manual spot-checking to adversarial and scripted checks),
+- and claim confidence calibration (from narrative confidence to convergence-plus-validation evidence).
+
+It can partially replace informal human "sanity filtering" in early and middle phases, especially for:
+- candidate route ranking,
+- falsification targeting,
+- and patch-cycle prioritization.
+
+### 7.3 What this does not replace
+
+It does not replace:
+- theorem-level proof obligations,
+- discovery of genuinely new invariants when no model supplies the bridge,
+- deep domain taste that identifies fundamentally new organizing principles,
+- or formal correctness guarantees by itself.
+
+Resonance is a reliability amplifier, not a proof substitute. Cross-model agreement can still converge to a shared mistake; deterministic validation and adversarial review remain mandatory.
+
+### 7.4 Why it still matters under autonomy constraints
+
+Under strict no-human-math constraints, resonant coherence is one of the few available mechanisms to increase reliability without injecting human mathematical content.
+
+It does not remove representational ceilings, but it:
+- reduces wasted budget on unstable routes,
+- increases reproducibility of intermediate claims,
+- and makes escalation decisions auditable.
+
+## 8. Repo-level evidence pattern
 
 Closed or strongly closed lanes clustered in domains with:
 - direct algebraic reductions,
@@ -103,7 +153,7 @@ Stalled lanes clustered where closure required:
 
 This pattern supports the need for escalation and strict claim-tier separation.
 
-## 8. Implication for claim policy
+## 9. Implication for claim policy
 
 The correct policy is:
 - keep `proved / cited / empirical` separation strict,
@@ -112,7 +162,7 @@ The correct policy is:
 
 This is a strength, not a weakness: it avoids result laundering and preserves high-value failure information.
 
-## 9. If pushing beyond the current boundary
+## 10. If pushing beyond the current boundary
 
 Likely required improvements include:
 - domain-adaptive fine-tuning on adjacent theorem families,
@@ -122,7 +172,7 @@ Likely required improvements include:
 
 Workflow improvements alone are unlikely to close every remaining lane.
 
-## 10. Takeaway
+## 11. Takeaway
 
 For this project, escalation was necessary for reliability and rigor, but insufficient for full closure in all domains.
 

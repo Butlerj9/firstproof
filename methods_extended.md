@@ -375,3 +375,30 @@ This is a laboratory protocol, not a prompt demo. It is intended to measure what
 - Outputs are auditable: proofs/counterexamples where achieved, and explicit, high-value failure analyses where not.
 
 ---
+
+## 15. Observed Capability Boundaries and Future Work
+
+This sprint identified a practical boundary between:
+
+- lanes that close under structured orchestration plus adversarial review, and
+- lanes that stall at abstraction-bridging steps despite strong evidence and process discipline.
+
+Observed stalls were concentrated in domains requiring new structural glue (for example finite-to-uniform symbolic closure), not primarily in domains requiring only better workflow hygiene.
+
+Key implication:
+- escalation improves reliability, but does not itself create new representational capacity.
+
+Future boundary shifts are more likely to come from:
+
+- domain-adaptive fine-tuning on adjacent theorem families,
+- theorem retrieval with structural matching,
+- formal verifier coupling (Lean/Coq/SMT),
+- process-level verifier training from audit/failure corpora,
+- and neural-symbolic architecture improvements.
+
+Extended discussion:
+
+- `docs/methods/technical_limitations.md`
+- `docs/methods/future_work.md`
+
+---

@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it using the metadata below."
+title: "First Proof - Multi-Agent AI Attempt"
+type: software
+authors:
+  - family-names: "Butler"
+    given-names: "Joshua"
+    email: "josh.d.butler@gmail.com"
+license: "CC-BY-4.0"
+repository-code: "https://github.com/Butlerj9/firstproof"
+url: "https://github.com/Butlerj9/firstproof"
+date-released: 2026-02-12
+version: "2026-sprint"
+keywords:
+  - "agentic llm"
+  - "proof orchestration"
+  - "adversarial review"
+  - "deterministic verification"
+  - "autonomy constraints"
+abstract: >
+  Repository for a multi-agent LLM proof-attempt pipeline with strict no-human-math
+  constraints, adversarial review gates, deterministic experiment verification,
+  escalation for blocked dependencies, and full audit/transcript provenance.

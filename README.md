@@ -24,12 +24,12 @@ provenance are logged in `PXX/audit.md`, `PXX/transcript.md`, and
 | P01 | Stochastic analysis | ❌ Parked | LOW (blocked on refs) | ~2/80 msgs |
 | P02 | Representation theory | ✅ Submitted | HIGH (YES, Kirillov + Gauss sums + JPSS + multiplicity-one) | ~10/80 msgs |
 | P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 conditional + 48-digit evidence) | ~46/200 msgs |
-| P04 | Finite free convolution | 🟡 Candidate | HIGH (n=2 proved; **n=3 general proved**; n≥4 conjectured + 150-digit evidence; CE-7 cross-term obstruction) | ~28/300 msgs |
-| P05 | Equivariant homotopy | 🟡 Candidate | MEDIUM (definition unlock + 2 calibrated routes; proof gap in orbit-counting) | ~10/80 msgs |
+| P04 | Finite free convolution | 🟡 Candidate | HIGH (n=2 proved; **n=3 general proved**; n≥4 conjectured + 150-digit evidence; CE-7 cross-term obstruction; 5 alt approaches assessed, all LOW) | ~28/300 msgs |
+| P05 | Equivariant homotopy | 🟡 Candidate | MEDIUM (definition unlock + 2 calibrated routes; **Z/p² counterexample**: characterization fails for intermediate transfer systems) | ~14/80 msgs |
 | P06 | Spectral graph theory | ✅ Submitted | HIGH (NO, K_n counterexample) | ~14/300 msgs |
 | P07 | Lattices in Lie groups | ✅ Submitted | HIGH (YES, Q-PD + surgery realization proved) | ~6/80 msgs |
 | P08 | Symplectic geometry | ✅ Submitted | HIGH (NO, Lagrangian octahedron + Gromov) | ~10/80 msgs |
-| P09 | Tensor polynomial map | 📊 Conjecture | HIGH (YES, D≤6; **kernel lower bound proved all n≥6** via exact base case + monomial decomposition; **D_n masking lemma proved n≥6**) | ~50/200 msgs |
+| P09 | Tensor polynomial map | 🟡 Candidate | HIGH (YES, D≤6; **all 4 gaps closed n≥6**: kernel formula exact, masking proved, separation genericity proved algebraically) | ~54/200 msgs |
 | P10 | RKHS CP-ALS | ✅ Submitted | HIGH | ~12/120 msgs |
 
 Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | ❌ Parked
@@ -58,6 +58,14 @@ Recommended use:
 - Use scouts sparingly when blocked on a narrow microdomain or a core-lemma sanity check.
 - Prefer local derivation and in-repo experiments first.
 - Avoid web-searching foundational lemmas for llm-only runs; keep contamination policy in `CONTAMINATION.md`.
+
+## Citation and Attribution
+
+- License: `CC-BY-4.0` (see `LICENSE`).
+- Preferred citation metadata: `CITATION.cff` (and `CITATION.bib`).
+- Attribution notice: `NOTICE`.
+- Detailed policy (legal baseline + strong scholarly credit requests):
+  `docs/reference/attribution_and_citation_policy.md`.
 
 ## License
 

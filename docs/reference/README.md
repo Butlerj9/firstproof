@@ -16,3 +16,10 @@ Integrity and provenance:
 
 - `CONTAMINATION.md`
 - `tools/README.md`
+
+Citation and attribution:
+
+- `CITATION.cff`
+- `CITATION.bib`
+- `NOTICE`
+- `docs/reference/attribution_and_citation_policy.md`
