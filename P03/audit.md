@@ -654,13 +654,43 @@ Added to answer.md:
 
 **Guardrails**: No human math input. No solution contamination. Statement-level citation policy. No status upgrade without theorem-level closure.
 
+### EXP-18: n=5 feasibility benchmark (measured)
+
+**Script**: `P03/experiments/exp18_n5_benchmark.py`
+
+| Parameter | n=4 (measured) | n=5 (projected) |
+|-----------|----------------|-----------------|
+| System size N | 714 (C(13,4)-1) | 11,627 (C(19,5)-1) |
+| Gauss time/order | 3.65s (augmented [A\|I]) | 15,765s = 4.4 hrs |
+| Perturbation orders | 8 | 8-16 (est. 12) |
+| Time/t-value | 29.2s | 52.6 hrs (12 orders) |
+| Values needed | >54 | >112 |
+| Total compute | ~55 min (90 values) | **247 days** (113 values, 12 orders) |
+| RAM needed | <1 GB | 4.3 GB |
+| RAM available | 192 GB | 192 GB |
+| Bottleneck | — | **CPU time** (not RAM) |
+
+**Scaling**: O(N³) Gaussian elimination; N grows 714→11,627 (16.3×); scaling factor 4,318×.
+
+**Verdict**: INFEASIBLE. 247 days single-threaded, 247× over 1-day sprint constraint. RAM is NOT the bottleneck (4.3 GB needed vs 192 GB available). No parallelization shortcut — perturbation orders are sequential.
+
+**Stop-loss**: Benchmark confirms prior infeasibility certificate (Session 7-9) with measured data. No proxy run needed; the scaling extrapolation is definitive. Status unchanged.
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E12 | 2026-02-12 | L5 | 192GB RAM feasibility test | n≥5 Symmetry Conjecture | EXP-18: timed n=4 Gauss (3.65s on 714×714), projected n=5 (247 days) | numpy, exp18_n5_benchmark.py | audit.md Session 10 | INFEASIBLE confirmed with measured data | ~3 msgs | **🟡 CANDIDATE (unchanged)** |
+
+*Cycle footer (Session 10): EXP-18 benchmark complete. n=5 projected at 247 days single-threaded; RAM not the bottleneck (4.3 GB / 192 GB). Infeasibility reconfirmed with measured timing. Status unchanged: 🟡 Candidate. ~55+3 = ~58 messages used.*
+
 ---
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~55 (52 prior + 3 Session 9 reduction attempts) |
+| Messages used | ~58 (55 prior + 3 Session 10 EXP-18 benchmark) |
 | Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions + n>=5 feasibility + infeasibility cert + reduction attempts |
 | Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**; n>=5 conditional + 48-digit evidence + L5 barrier) |
 | G6 cycles | 1 reject + 1 accept + 1 Candidate-G6 accept = 3 cycles |

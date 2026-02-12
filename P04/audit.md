@@ -157,10 +157,10 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~40 (36 prior + 4 Session 11 CE-12d/e) |
-| Gate | G7 (Package complete) + upgrade cycle + Session 11 |
+| Messages used | ~45 (36 prior + 4 Session 11 + 5 Session 12) |
+| Gate | G7 (Package complete) + upgrade cycle + Sessions 11-12 |
 | Status | 🟡 Candidate |
-| Budget | 300 messages (GREEN — ~40 used) |
+| Budget | 300 messages (GREEN — ~45 used) |
 
 ### Token estimates (synced with transcript.md)
 
@@ -340,6 +340,49 @@ The second-order PSD decomposition is a genuine structural advance: it shows the
 | Escalation level | L4 (algebraic certificate) |
 
 **Guardrails**: No human math input. No solution contamination. Statement-level citation policy. No status upgrade without theorem-level closure.
+
+### CE-13: Case decomposition + polynomial extraction (b=0 subcase)
+
+**Scripts**: `ce13_case_decomposition.py`, `ce13b_numerator_extract.py`, `ce13c_sos_attempt.py`
+
+**Approach**: New route (7th) — extract exact numerator polynomial of the b=0 margin and attempt SOS decomposition.
+
+**Results**:
+1. **Exact polynomial**: margin numerator = w(1-w) · H(w,t₁,t₂) where H is degree 2 in w, degree 6 total. Denominator < 0 on valid region, so margin ≥ 0 iff **H ≤ 0**.
+2. **Coefficients**: -A = 144(t₁+t₂)²(6t₁+1)(6t₂+1) ≥ 0 (exact factorization); -C has clean non-negative form; -B = -144(t₁+t₂)(72t₁t₂²+12t₁t₂-t₁+12t₂²+3t₂) has mixed sign.
+3. **SOS attempt**: In shifted variables pᵢ = 12tᵢ+1 ∈ (0,3), the polynomial has 19 positive and 12 negative coefficients. No term-by-term non-negativity proof possible.
+4. **Domain**: tᵢ ∈ (-1/12, 1/6), w ∈ (0,1). Bounded → ideal for SDP/SOS solver.
+
+**Blocker**: Solver/tooling-limited. The exact degree-6 polynomial in 3 variables on a bounded box is now available as an explicit target for SDP-based SOS certification. No SDP solver available in sprint environment.
+
+**Delta from prior state**: New route #7 tried, new concrete polynomial target extracted. Status unchanged.
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E13 | 2026-02-12 | L4 | polynomial extraction + SOS attempt | H ≤ 0 (degree-6, 3 vars) | CE-13/13b/13c: numerator extraction, factoring, coefficient analysis | SymPy, exact arithmetic | audit.md Session 12, 3 experiment scripts | Polynomial extracted; 12 neg coefficients block term-by-term proof; SDP needed | ~5 msgs | **🟡 CANDIDATE (unchanged)** |
+
+*Cycle footer (Session 12): CE-13 complete. Exact degree-6 polynomial extracted for b=0 subcase. 7 failed routes total. Blocker type: solver/tooling-limited (SDP/SOS). Status unchanged: 🟡 Candidate. ~40+5 = ~45 messages used.*
+
+---
+
+## Candidate-G6 Review (Closeout Cycle 5, 2026-02-12)
+
+**Scope**: Adversarial audit of Session 12 additions (CE-13/13b/13c). No status change from prior Cycle 4 review.
+
+### Checklist
+
+| # | Item | Verdict | Notes |
+|---|------|---------|-------|
+| C1 | Proved/cited/empirical separation | **PASS** | CE-13 results are purely computational (polynomial extraction, coefficient analysis). No new "proved" claims added. Barrier summary updated from 6→7 failed routes. Evidence taxonomy unchanged. |
+| C2 | No unresolved claim labeled solved | **PASS** | Status remains 🟡 Candidate. CE-13 cycle footer explicitly states "Status unchanged." Barrier summary: 7 failed routes + explicit SDP blocker. |
+| C3 | Statement-level citation hygiene | **PASS** | No new citations. Existing citations unchanged from Cycle 4 review. |
+| C4 | Blocker is single-sentence explicit | **PASS** | Updated missing ingredient: "an SDP-based SOS certificate for the degree-6 polynomial −H(w,t₁,t₂) ≥ 0 on the bounded box w ∈ (0,1), tᵢ ∈ (−1/12, 1/6)." Precise, actionable, references explicit target. |
+
+### Verdict
+
+**ACCEPT (0 faults).** Session 12 added computational exploration only; no new math claims. Barrier summary correctly updated. Status unchanged at 🟡 Candidate.
 
 ---
 

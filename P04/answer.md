@@ -360,9 +360,9 @@ Setting $\sigma = \alpha_1 / (\alpha_1 + \alpha_2)$, this reduces to $c_1'^2 / \
 
 **Blocker**: A degree-16 polynomial in 6 variables (or equivalently, a degree-6 polynomial in 3 variables for the $b=0$ subcase) must be shown non-negative on a specific semi-algebraic set. No algebraic certificate has been found.
 
-**Failed routes (6 total)**: (1) Jensen's inequality — weight mismatch between $b$-component (linear weights) and $c'$-component (quadratic weights); (2) K-transform comparison — ratio varies $10^{-4}$ to $10^7$, no consistent bound; (3) finite De Bruijn identity — form of finite dissipation functional unknown; (4) induction on $n$ — no known monotonicity; (5) cross-term absorption via additive variables — cross-terms removed but scaling mismatch remains; (6) quadratic discriminant decomposition (CE-12d/e) — $Q$ not globally non-negative.
+**Failed routes (7 total)**: (1) Jensen's inequality — weight mismatch between $b$-component (linear weights) and $c'$-component (quadratic weights); (2) K-transform comparison — ratio varies $10^{-4}$ to $10^7$, no consistent bound; (3) finite De Bruijn identity — form of finite dissipation functional unknown; (4) induction on $n$ — no known monotonicity; (5) cross-term absorption via additive variables — cross-terms removed but scaling mismatch remains; (6) quadratic discriminant decomposition (CE-12d/e) — $Q$ not globally non-negative; (7) SOS coefficient analysis (CE-13/13c) — exact polynomial extracted via SymPy; 12 negative coefficients in shifted variables prevent term-by-term proof.
 
-**Missing ingredient**: Either (a) an SOS/DSOS decomposition of the degree-16 polynomial (requires SDP solver, not available in sprint environment), or (b) a novel analytic inequality exploiting the specific rational structure of $1/\Phi_4$ beyond second-order Taylor expansion.
+**Missing ingredient**: Either (a) an SDP-based SOS certificate for the degree-6 polynomial $-H(w,t_1,t_2) \geq 0$ on the bounded box $w \in (0,1)$, $t_i \in (-1/12, 1/6)$ (explicit target now available; requires SDP solver not in sprint environment), or (b) a novel analytic inequality exploiting the specific rational structure of $1/\Phi_4$ beyond second-order Taylor expansion.
 
 ### 10. Summary
 

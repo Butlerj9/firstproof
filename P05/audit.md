@@ -334,10 +334,10 @@ P05 strengthened within Candidate. Two new theorems proved (Thms 6-7). The open 
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~30 (2 prior + 8 definition cycle + 4 Session 7 + 4 Session 8 + 3 Session 9 + 2 Session 10 + 3 Session 11 + 4 Session 12) |
-| Gate | G5 (6 theorems proved; "if" direction proved for Class Ia; Class II remains open) |
-| Status | 🟡 Candidate (**6 theorems proved**: Thms 1-4 from Sessions 8-9; Thm 5 frontier classification; **Thm 6 dimension-uniform characterization + Thm 7 restricted sufficiency** from Session 12/R2; "if" direction OPEN only for Class II) |
-| Budget | 80 messages (used ~30) |
+| Messages used | ~33 (2 prior + 8 definition cycle + 4 Session 7 + 4 Session 8 + 3 Session 9 + 2 Session 10 + 3 Session 11 + 4 Session 12 + 3 Session 13) |
+| Gate | G5 (7 theorems; "if" direction proved for Class Ia; Class II remains open; 5 approaches blocked) |
+| Status | 🟡 Candidate (**7 theorems**: Thms 1-4 from Sessions 8-9; Thm 5 frontier classification; **Thm 6 dimension-uniform characterization + Thm 7 restricted sufficiency** from Session 12/R2; Session 13: 5th approach blocked; "if" direction OPEN only for Class II) |
+| Budget | 80 messages (used ~33) |
 
 ## Session 12 cycle footer
 
@@ -366,6 +366,61 @@ P05 strengthened within Candidate. Two new theorems proved (Thms 6-7). The open 
 | Escalation level | L5 (frontier theorem) |
 
 **Guardrails**: No human math input. No solution contamination. Statement-level citation policy. No status upgrade without theorem-level closure.
+
+### Approach 5: Isotropy separation for Z/4 with O = {Z/2 ≤_O Z/4}
+
+**Target**: Smallest open case. V = ind_{Z/2}^{Z/4}(1) = 1 ⊕ χ (order-2 character). ν_O^eff = (1, 1, 2) for (1, Z/2, Z/4).
+
+**Step 1 (Integer-graded control).** From the connectivity hypotheses (Φ^1, Φ^{Z/2} are n-connective; Φ^{Z/4} is ⌈n/2⌉-connective), the isotropy separation sequences yield: π_j^1(E) = 0 for j < n; π_j^{Z/2}(E) = 0 for j < n (since χ|_{Z/2} = trivial, so (E^1)_{hZ/2} is n-connective); π_j^{Z/4}(E) = 0 for j < ⌈n/2⌉.
+
+**Step 2 (Isotropy decomposition).** The cofibration EP_{Z/4,+} ∧ E → E → ẼP_{Z/4} ∧ E decomposes E into a "proper subgroup part" and a "Z/4-local part."
+
+- **Proper part**: EP_{Z/4,+} ∧ E is supported on Z/4/Z/2 and Z/4/1 orbits. Φ^1 and Φ^{Z/2} are n-connective, Φ^{Z/4} vanishes. By Theorem 2(b), this is in τ_{≥n}^{O_min} ⊆ τ_{≥n}^O. ✓
+- **Z/4-local part**: ẼP_{Z/4} ∧ E has Φ^{Z/4}-connectivity ⌈n/2⌉.
+- By extension closure: E ∈ τ_{≥n}^O **iff** ẼP_{Z/4} ∧ E ∈ τ_{≥n}^O.
+
+**Step 3 (Reduction to localized t-structure).** The Z/4-local generators of τ_{≥n}^O are {S^{kV} ∧ ẼP_{Z/4} : k ≥ ⌈n/2⌉}. Since V^{Z/4} = 1, these have Z/4-connectivity exactly k. The question becomes: for X = ẼP_{Z/4} ∧ E supported at the Z/4-orbit, does Φ^{Z/4}(X) being m-connective imply X ∈ Loc(S^{kV} ∧ ẼP_{Z/4} : k ≥ m)?
+
+**Step 4 (Obstruction).** For V = ρ_{Z/4} (regular rep), this is exactly the Hill-Yarnall t-structure theorem. For V = 1 ⊕ χ (non-regular), the localized spheres S^{kV} ∧ ẼP_{Z/4} have a different RO(G)-graded cell structure: ρ_{Z/4} = V ⊕ (σ ⊕ σ³), so S^{kρ} = S^{kV} ∧ S^{k(σ⊕σ³)}. The O-cells "miss" the σ ⊕ σ³ part, meaning the localized t-structure must be proved with strictly fewer cells. No technique available to do this.
+
+**Verdict**: CONFIRMED IRREDUCIBLE. Even for the smallest open case, the "if" direction reduces (via isotropy separation Steps 1-3) to Gap 1 restricted to Z/4-local spectra: a t-structure theorem for non-regular representation spheres. The isotropy separation successfully isolates the problem to a single localized question but cannot resolve it. No counterexample found; no new bridge lemma obtained.
+
+**Delta from prior state**: New approach (5th) attempted. Achieves clean reduction to Z/4-local t-structure but cannot close. Confirms Gap 1 is the irreducible core even at the minimal case level. Status unchanged.
+
+### Cycle footer (Session 13)
+
+| Metric | Value |
+|--------|-------|
+| Proved | No new theorems. 7 theorems total (Thms 1-7) stand from prior sessions. |
+| New analysis | Approach 5 (isotropy separation for Z/4): reduces to localized t-structure for non-regular cells. BLOCKED. |
+| Unresolved | "If" direction for Class II (unchanged). Smallest open: Z/4 with O = {Z/2 ≤_O Z/4}. |
+| Decision | **HOLD at 🟡 Candidate.** 5th approach blocked. Gap confirmed irreducible. |
+| Messages | ~30 + 3 = ~33 messages used (vs 80 cap). |
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E10 | 2026-02-12 | L5 | Closeout Cycle 5: final attack | Class II "if" direction | Approach 5: isotropy separation for Z/4 with O = {Z/2 ≤_O Z/4}; reduces to localized t-structure | Claude Opus 4.6 | audit.md Session 13 | 5th approach BLOCKED; gap confirmed irreducible | ~3 msgs | **🟡 CANDIDATE (unchanged)** |
+
+---
+
+## Candidate-G6 Review (Closeout Cycle 5, 2026-02-12)
+
+**Scope**: Adversarial audit of Session 13 analysis. No status change.
+
+### Checklist
+
+| # | Item | Verdict | Notes |
+|---|------|---------|-------|
+| C1 | Proved/cited/empirical separation | **PASS** | Session 13 adds analysis only (no new theorems, no empirical claims). Evidence taxonomy unchanged. |
+| C2 | No unresolved claim labeled solved | **PASS** | Status remains 🟡 Candidate. Session 13 explicitly says "CONFIRMED IRREDUCIBLE" and "No new theorems." |
+| C3 | Statement-level citation hygiene | **PASS** | No new citations. Existing citations unchanged. |
+| C4 | Blocker is single-sentence explicit | **PASS** | Barrier summary unchanged. Session 13 adds: "reduces to Gap 1 restricted to Z/4-local spectra: a t-structure theorem for non-regular representation spheres." |
+
+### Verdict
+
+**ACCEPT (0 faults).** Session 13 is analysis-only (no new math claims). 5th approach documented and blocked. Status unchanged at 🟡 Candidate.
 
 ---
 
