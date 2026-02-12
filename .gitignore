@@ -1,0 +1,7 @@
+# Transitory planning/scouting artifacts (local working files)
+tools/model_probe_results*.json
+tools/scout_briefs/
+tmp_sources/
+
+# Stray local temp file seen on Windows
+nul
