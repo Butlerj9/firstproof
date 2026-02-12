@@ -1,0 +1,34 @@
+ {
+  "approaches": [
+    {
+      "name": "O-Cellular Homology Detection",
+      "bridge_lemma": "Define the O-cellular chain complex C^O_*(E) by C^O_n(E) = ⊕_{K ≤_O H, |H:K|=n} π_0^H(E ∧ S^{-n·ind_K^H(1)}). Then E ∈ τ_{≥n}^O if and only if the homology H_k(C^O_*(E)) vanishes for all k < n.",
+      "falsifiable_test": "For G=Z/4 and O={Z/2 ≤_O Z/4}, compute the O-cellular homology H_0(C^O_*(H\underline{Z})) where H\underline{Z} is the Eilenberg-MacLane spectrum for the constant Mackey functor at Z. This reduces to calculating the colimit of the diagram of abelian groups π_0^{Z/2}(H\underline{Z}) → π_0^{Z/4}(H\underline{Z} ∧ S^{-V}) where V=ind_{Z/2}^{Z/4}(1), and checking if the map from the free O-cellular part is surjective. Computation involves 4×4 matrices over Z for the Mackey functor structure and should complete in under 5 minutes.",
+      "failure_mode": "The O-cellular chain complex may fail to detect the difference between O-cellular spectra and arbitrary spectra with the same geometric fixed point connectivity because the ind_K^H(1) spheres are not compact generators in the range where the dimension function is non-uniform.",
+      "external_theorem": "no_known_theorem",
+      "confidence": 65,
+      "novelty": 9,
+      "anti_dup": "This defines a new homology theory using colimits over the O-category rather than attempting to characterize τ_{≥n}^O as a t-structure (#1), using the orbit filtration (#2), detecting via geometric fixed points directly (#3), using norm adjunctions (#4), or employing isotropy separation (#5)."
+    },
+    {
+      "name": "Equivariant Euler Class Annihilation",
+      "bridge_lemma": "Let V = ind_{Z/2}^{Z/4}(1) = 1 ⊕ χ. For a connective Z/4-spectrum E, E ∈ τ_{≥n}^O if and only if multiplication by the Euler class e(V) ∈ H^2_{Z/4}(pt; \underline{Z}) induces an isomorphism on the Bredon cohomology groups H^k_{Z/4}(E; \underline{M}) for k < n - ν_O^eff(Z/4) and all Mackey functors \underline{M}, where ν_O^eff(Z/4) = 2.",
+      "falsifiable_test": "Compute the Bredon cohomology ring H^*_{Z/4}(pt; \underline{Z}) and the Euler class e(V) for V=1⊕χ. Then compute the action of e(V) on H^*_{Z/4}(S^V ∧ H\underline{Z}; \underline{Z}) by identifying the cohomology as a module over the Burnside ring A(Z/4). Verify whether multiplication by e(V) raises degree by exactly 2 and whether the annihilator of the cokernel vanishes below degree n. This is a calculation in the cohomology of the cyclic group of order 4, involving the classification of Z/4-Mackey functors (finite list) and their Ext groups, computable in 10-15 minutes.",
+      "failure_mode": "The Euler class e(V) may not generate the correct ideal in the Burnside ring or its action may not detect the O-cellular connectivity due to the non-trivial fixed points V^{Z/2} = 1 causing mixed degree shifts.",
+      "external_theorem": "no_known_theorem",
+      "confidence": 70,
+      "novelty": 8,
+      "anti_dup": "This approach uses characteristic classes and the multiplicative structure of equivariant cohomology rather than t-structures (#1), filtrations (#2), geometric fixed point detection (#3), norm maps (#4), or isotropy separation (#5)."
+    },
+    {
+      "name": "Simplicial O-Resolution via Γ-Spaces",
+      "bridge_lemma": "Under the equivalence between connective G-spectra and very special Γ-G-spaces, E ∈ τ_{≥n}^O if and only if the associated Γ-space Γ(E) satisfies π_k(Γ(E)(S^V)) = 0 for k < n + dim(V^G) for all O-admissible representations V = ind_K^H(1), where S^V denotes the value at the finite set representing the representation sphere.",
+      "falsifiable_test": "Construct the Γ-space associated to the Eilenberg-MacLane spectrum H\underline{F}_2 for G=Z/4. Evaluate it on the finite set corresponding to the representation sphere S^V (where V=1⊕χ) by computing the simplicial set Γ(H\underline{F}_2)(S^1_+ ∧_{Z/2} S^1) and calculating its homotopy groups π_0 and π_1. Check if the connectivity matches the bound ⌈n/ν_O^eff⌉ for n=2. This involves simplicial homotopy calculations with finite simplicial sets, feasible in under 20 minutes.",
+      "failure_mode": "The Γ-space model may not see the difference between O-cellular connectivity and ordinary connectivity because the Segal maps for non-regular representations may not split correctly in the homotopy category.",
+      "external_theorem": "no_known_theorem",
+      "confidence": 55,
+      "novelty": 9,
+      "anti_dup": "This uses the Dold-Kan correspondence and Γ-space models for connective spectra rather than Whitehead theorems (#1), Postnikov towers (#2), geometric fixed point methods (#3), norm techniques (#4), or isotropy separation (#5)."
+    }
+  ]
+}

@@ -441,3 +441,46 @@ The second-order PSD decomposition is a genuine structural advance: it shows the
 **ACCEPT (0 faults).**
 
 *Cycle footer (Session 13): SDP solver check (not available), CE-13c polynomial structure re-confirmed. No new route. Status unchanged: 🟡 Candidate. ~45+3 = ~48 messages used.*
+
+---
+
+## Session 14 — P04 Closure Push (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | Truncation Fix + P04 Closure Push |
+| Date | 2026-02-12 |
+| Objective | Prove -H(w,t₁,t₂) ≥ 0 algebraically for b=0 subcase |
+| Message cap | 12 |
+| Token estimate | ~8K |
+| Escalation level | L4 → L5 (b=0 subcase proved) |
+
+### CE-16: Algebraic proof of -H ≥ 0 (b=0 subcase)
+
+**Target.** Prove $P(w,t_1,t_2) = \alpha w^2 + \beta w + \gamma \geq 0$ on $[0,1] \times [-1/12, 1/6]^2$ where $\alpha, \beta, \gamma$ are the dimensionless coefficients from CE-15.
+
+**Key insight.** The leading coefficient $\alpha = (t_1+t_2)^2(6t_1+1)(6t_2+1) \geq 0$ on the domain, so $P$ is **convex in $w$**. Minimum of a convex function on a closed interval is at an endpoint. This eliminates the need for discriminant analysis entirely.
+
+**Proof chain:**
+1. $\alpha \geq 0$ ⟹ $P$ convex in $w$ ⟹ $P \geq \min(P(0), P(1))$
+2. $P(0) = \gamma = t_1^2(6t_2+1)^2 + t_2^2(6t_1+1)(6t_2+3) \geq 0$ (algebraic decomposition, each term non-negative)
+3. $P(1) = t_1^2 Q + t_2^2(12t_1+1) \geq 0$ where $Q = (1+6t_2)(6t_1+3)+36t_2^2 \geq 5/4 > 0$
+
+All three decompositions verified symbolically (`expand(LHS - RHS) == 0`).
+
+**What this proves.** The $\Phi_4$ superadditivity inequality holds for ALL pairs of centered even quartics ($b = 0$). This is the first algebraically proved result beyond $n = 3$.
+
+**What remains open.** The general $n=4$ case with $b \neq 0$ (cross-terms between $b$ and $c'$ in $1/\Phi_4$). The full case is a degree-16 polynomial in 6 variables.
+
+### Metrics
+
+| Metric | Value |
+|--------|-------|
+| Messages used (this session) | ~6 |
+| Cumulative messages | ~54 |
+| New experiments | CE-16 (3 iterations: v1 hung on sympy.solve, v2 hung on factor, v3 numeric-first → algebraic proof found) |
+| Status | 🟡 Candidate (unchanged — b=0 subcase proved, general case open) |
+
+**Kimi K2.5 scout (Session 14)**: Truncated at 16384 tokens (all reasoning, zero content). Kimi thinking model spends all budget on internal reasoning for P04's polynomial problem. Previous scouts (Qwen3/DeepSeek) targeted b=0 case now proved; no new approaches for b≠0.
+
+*Cycle footer (Session 14): CE-16 proves -H ≥ 0 for b=0 subcase via convexity + algebraic decomposition. First proved result for n=4. General n=4 case remains open (b-c' cross-terms). Status unchanged: 🟡 Candidate. ~48+6 = ~54 messages used.*

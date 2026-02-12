@@ -1,6 +1,6 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-12 (Closeout cycle 6: R1 websearch for P03 AS lead + SDP check for P04 + P05 assessment; Candidate-G6 ACCEPT on all 3; portfolio reconciled)
+Snapshot date: 2026-02-12 (Session 14: CE-16 proves P04 b=0 subcase; Kimi truncation recovery in progress; scout acceptance gate pending)
 Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation complete)
 Methodology and autonomy constraints: see `methods_extended.md`.
 
@@ -11,7 +11,7 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 | P01 | ✅ Submitted | **YES** — Φ⁴₃ quasi-invariance proved. **R1 CITE_PLUS (Session 10, E11)**: BG proof chain (arXiv:2004.01513) verified lemma-by-lemma for V_c; all 6 lemmas extend via (α) quartic coercivity + (β) UV scaling. **Independent path**: Hairer-Steele (arXiv:2102.11685) sub-Gaussian tails + Young directly yield A4. Two lines close the former gap. |
 | P02 | ✅ Submitted | YES — modified RS integral. Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one). G0-G6 + upgrade cycle done. |
 | P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2,3,4 proved. **L5 barrier**: n≥5 formally infeasible; 8 structural shortcuts all fail; **R1 AS reduction (Cycle 6)**: leading term symmetric for all n via Alexandersson-Sawhney+Hecke; full E* gap persists. |
-| P04 | 🟡 Candidate | n=2,3 proved. n≥4: closed-form Φ₄ + additive variables (CE-10); **2nd-order PSD decomposition proved (CE-11 §9.1)**; 105K exact tests ALL PASS (CE-11 §9.2); degree-16 higher-order terms uncontrolled; **7 failed routes total** (CE-13: SOS coefficient analysis). G0-G7 + Sessions 8-12 done. |
+| P04 | 🟡 Candidate | n=2,3 proved. **n=4 even quartic (b=0) subcase PROVED (CE-16 §9.4: convexity in w + algebraic decomposition at endpoints).** General n=4 (b≠0): b-c' cross-terms uncontrolled. 105K exact tests ALL PASS (CE-11). G0-G7 + Sessions 8-14 done. |
 | P05 | 🟡 Candidate | O-slice connectivity. **7 theorems** (Thms 1-4, 6-7) + **Impossibility Frontier Theorem (Thm 5)**. **Thm 6**: dim-uniform iff K=1 in all admissible pairs. **Thm 7**: restricted sufficiency for Class Ia (regular-only). Class II (non-regular) remains open; **5 proof approaches blocked** (Session 13: isotropy separation for Z/4). Exhaustive computation: 825 total / 793 intermediate systems on 17 groups, 104 uniform. No CE found. G0-G5 + Sessions 7-13 done. |
 | P06 | ✅ Submitted | Answer is NO via complete-graph counterexample. **Synthesis pass**: proof verified complete, all tests pass, upgraded to ✅. |
 | P07 | ✅ Submitted | Answer is YES. Q-PD proved (Shapiro). Surgery realization proved self-contained: surgery below middle dim + UCSS duality forces Q-acyclicity. G0-G6 done. |
@@ -42,14 +42,14 @@ Note: transcript fidelity is mixed. Active closure lanes (e.g., P04/P06/P08/P09/
 | P01 | ~45,000 | ~20 | G0-G2 + Sessions 3-10: A4 closed, CITE_ONLY ingest (E7), scout cross-check (E8), gap analysis (E9-E10: 7 approaches), **Session 10 (E11): R1 CITE_PLUS — BG proof chain verified + Hairer-Steele independent path; gap CLOSED** |
 | P02 | ~33,000 | ~12 | G0-G6 + upgrade cycle: key identity + n=1 proof + JPSS + multiplicity-one |
 | P03 | ~170,000 | ~63 | Full G0-G7 + synthesis + 3 closure sessions + infeasibility certificate + Session 9-10 (EXP-17/18) + **Session 11 (Cycle 6): R1 websearch Alexandersson-Sawhney — leading term symmetric for all n via AS+Hecke; full E* gap persists** |
-| P04 | ~131,000 | ~48 | from transcript + upgrade cycle + Sessions 8-13 + CE-9/10/11/12d/12e/13 + **Session 13 (Cycle 6): SDP solver check — not available; polynomial structure re-confirmed; no new route** |
+| P04 | ~139,000 | ~54 | from transcript + upgrade cycle + Sessions 8-14 + CE-9/10/11/12d/12e/13/16 + **Session 14: CE-16 proves b=0 subcase via convexity + algebraic decomposition** |
 | P05 | ~71,000 | ~35 | G0-G5 + Sessions 7-14: 7 theorems + Frontier + 5 approaches blocked + **Session 14 (Cycle 6): final assessment — no 6th approach; L5 barrier reconfirmed** |
 | P06 | ~53,600 | ~14 | from transcript metrics/log |
 | P07 | ~20,000 | ~6 | G0-G6 + patch: Q-PD via Shapiro + surgery realization (self-contained) |
 | P08 | ~30,000 | ~10 | G0-G6 + patch: octahedron counterexample + Gromov obstruction |
 | P09 | ~114,000 | ~58 | from transcript metrics/log + upgrade cycle (EXP-6/6e) + formalization (EXP-10/10b) + Session 7-8: n=5 closure |
 | P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (all problems)** | **~783,600** | **~278** | all values are estimates (token_source: estimate), not API-billed absolutes; sum: 45+33+170+131+71+53.6+20+30+114+116=783.6K tokens, 20+12+63+48+35+14+6+10+58+12=278 msgs |
+| **Total (all problems)** | **~791,600** | **~284** | all values are estimates (token_source: estimate), not API-billed absolutes; sum: 45+33+170+139+71+53.6+20+30+114+116=791.6K tokens, 20+12+63+54+35+14+6+10+58+12=284 msgs |
 
 ## 4. What worked vs. what stalled
 
@@ -82,7 +82,7 @@ All 10 problems assessed to at least G2 (route map) level.
 |---------|--------|-------|--------|
 | P06 | 🟡 Candidate | ✅ Submitted | Proof verified complete; all numerical tests pass; upgraded |
 | P03 | 📊 Conjecture | 🟡 Candidate | EXP-5: Richardson extrapolation (48+ digits); upgraded to 🟡. **Session 4: n=3 PROVED (degree-bound 20 + 82-zero).** **Session 6: n=4 PROVED (modular degree-bound 54 + 90-sweep × 2 primes).** |
-| P04 | 📊 Conjecture | 🟡 Candidate | CE-5/6: n=3 proved. CE-10: closed-form Φ₄ + additive vars. **CE-11: 2nd-order PSD decomposition proved; 105K exact tests ALL PASS; degree-16 higher-order terms remain open.** |
+| P04 | 📊 Conjecture | 🟡 Candidate | CE-5/6: n=3 proved. CE-10: closed-form Φ₄ + additive vars. CE-11: 2nd-order PSD + 105K exact tests. **CE-16: n=4 even quartic (b=0) subcase PROVED (convexity + algebraic decomposition).** General n=4 (b≠0) remains open. |
 | P09 | 📊 Conjecture | **✅ Submitted** | EXP-6/6e: D≤6 established. EXP-8 series: kernel formula 9·C(n−2,4). **EXP-9: D_n masking PROVED n≥6.** **EXP-10/10b: Kernel formula exact.** **Session 7: All 4 gaps closed n≥6.** **Session 8: n=5 kernel=15 proved exactly (EXP-11b: modular rank 1756 at 2 primes).** Upgraded to ✅. |
 | P07 | ❌ Parked | ✅ Submitted | Escalation success: Q-PD proved (Shapiro); surgery gap closed (below-middle-dim surgery + UCSS duality); upgraded to ✅ |
 | P08 | ❌ Parked | ✅ Submitted | Escalation produced counterexample; G6 patch adopted topology-preserving definition, eliminating regularity gap; upgraded to ✅ |
@@ -96,7 +96,7 @@ All 10 problems assessed to at least G2 (route map) level.
 | P01 | **L3** | **L3** | **G7 (unconditional; G6 ACCEPT, G7 ACCEPT)** | ~~BG Thm 3 gap~~ CLOSED | Claude Opus 4.6 + CITE_PLUS (BG proof chain) + Hairer-Steele | R1 CITE_PLUS: all 6 BG lemmas verified for V_c; Hairer-Steele independent path | **✅ Submitted** | Proved + CITE_PLUS verified |
 | P02 | L0 (Mode R) | L0 | G6 C3 | Partial ideal gen (JPSS) | Claude Opus 4.6 + scout briefs | AGRS multiplicity-one (CITE) | ✅ Submitted | Proved + Cited |
 | P03 | **L5** | L3 | G6 C2 + EXP-14b + EXP-16 + EXP-17 | Symmetry Conjecture n≥5 | Perturbation + degree-bound + 5 reduction attempts (EXP-17) | 8 structural shortcuts all fail; L5 barrier certificate | 🟡 Candidate | Proved (n≤4) + L5 barrier (n≥5, 8 shortcuts) |
-| P04 | L4 | L3 (n=3) | G6 + CE-6 + CE-10 + CE-11 + CE-13 | Higher-order terms in degree-16 polynomial; SDP/SOS solver needed | Φ₄ closed-form + additive vars + 2nd-order PSD (CE-11) + SOS coefficient analysis (CE-13) | CE-11: 105K exact tests ALL PASS; CE-13: exact polynomial target extracted; 7 failed routes | 🟡 Candidate | Proved (n≤3) + 2nd-order PSD (n=4) + Empirical (n≥5) |
+| P04 | L4 | **L4 (n=4 b=0 proved)** | G6 + CE-6 + CE-10 + CE-11 + CE-13 + **CE-16** | General n=4 (b≠0): b-c' cross-terms; SDP/SOS solver needed | Φ₄ closed-form + additive vars + 2nd-order PSD (CE-11) + **CE-16: convexity proof for b=0** | CE-11: 105K exact ALL PASS; **CE-16: algebraic proof verified** | 🟡 Candidate | **Proved (n≤3 + n=4 b=0)** + Empirical (general n≥4) |
 | P05 | **L5** | — | G5 (7 theorems + frontier theorem) | "If" direction Class II genuinely new; t-structure for non-regular cells | Claude Opus 4.6, WebFetch (ar5iv ×3), Python exhaustive computation | 5 approaches blocked; Thms 6-7: dim-uniform char + restricted sufficiency; 825 total / 793 intermediate systems tested; Class Ia proved; no CE | 🟡 Candidate | 7 theorems + Frontier Thm + restricted sufficiency |
 | P06 | L3 | L2 | G6 + CE-1/CE-2 + synthesis | K_n eigenspace boundary | ce1 (n=3-24), ce2 (non-complete) | Synthesis pass | ✅ Submitted | Proved |
 | P07 | L0 (Mode R) | L0 | G6 patch | Surgery realization gap | Shapiro + surgery below mid-dim | EXP-1 Q-PD verification | ✅ Submitted | Proved + Cited |
@@ -183,7 +183,7 @@ Closeout Cycle 6: R1 websearch + SDP check + final assessment. Candidate-G6 ACCE
 | Lane | Closure tier | Cycle 6 action | Unresolved core claim | Why not escalated further |
 |------|-------------|---------------|----------------------|--------------------------|
 | P03 | L5 (barrier cert) | **R1 websearch: Alexandersson-Sawhney (arXiv:1801.04550).** Leading term E_{λ⁻}(x;1,t) proved symmetric for all n via AS+Hecke. Full E*_{λ⁻} gap persists (interpolation corrections not covered). Author correction applied. | Symmetry Conjecture for n ≥ 5 (lower-degree corrections) | 8 shortcuts fail; R1 lead partially closes (leading term only); same blocker class |
-| P04 | L4 (SOS cert) | **SDP solver check**: cvxpy/MOSEK not available. CE-13c polynomial structure re-confirmed (12 neg coefficients). No manual SOS possible. | Degree-6 polynomial −H(w,t₁,t₂) ≥ 0 on bounded box | 7 proof routes exhausted; SDP solver not available; same blocker class repeats |
+| P04 | L4 (b=0 proved) | **CE-16 (Session 14)**: Convexity in w + algebraic decomposition at endpoints proves −H ≥ 0 for b=0 subcase. General n=4 (b≠0) still open. | General n=4 (b≠0): b-c' cross-terms in degree-16 polynomial | b=0 RESOLVED; general case needs SDP or novel analytic technique |
 | P05 | L5 (frontier thm) | **Final assessment**: no 6th approach identified. All 5 approaches reduce to non-uniform dim(V^L). L5 barrier reconfirmed. | "If" direction for Class II: t-structure for non-regular cells | 5 approaches blocked; irreducible at current tool level |
 
 **Escalation policy compliance**: All 4 policy rules satisfied:

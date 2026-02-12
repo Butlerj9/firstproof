@@ -1,0 +1,34 @@
+ {
+  "approaches": [
+    {
+      "name": "Degree Reduction and Spectral Vanishing",
+      "bridge_lemma": "Let $d(x;t) = E^*_{\\lambda^-}(x;1,t) - E^*_{\\lambda^-}(w_0 x;1,t)$ where $w_0$ is the longest permutation. The leading homogeneous component of $E^*_{\\lambda^-}$ is the standard Macdonald polynomial $E_{\\lambda^-}(x;1,t)$, which is symmetric by the Alexandersson-Sawhney result; therefore $\\deg(d) < |\\lambda| = \\binom{n+1}{2}-1$. The polynomial $d(x;t)$ vanishes at all spectral vectors $\\bar{\\mu} = (t^{\\mu_1+n-1}, \\dots, t^{\\mu_n})$ for compositions $\\mu$ satisfying $|\\mu| < |\\lambda|$. Since the number of such compositions equals $\\binom{|\\lambda|+n-1}{n}$ which is strictly greater than the dimension of the space of non-symmetric polynomials of degree $< |\\lambda|$, and the spectral vectors are distinct for generic $t$, it follows that $d(x;t) \\equiv 0$.",
+      "falsifiable_test": "For $n=3$ and $\\lambda=(3,1,1)$ (so $|\\lambda|=5$), compute the symmetry difference $d(x;t)$ and verify that its total degree is at most $4$ (by checking that the degree-5 homogeneous part is symmetric). Then verify that $d(\\bar{\\mu};t) = 0$ for all compositions $\\mu$ of weight $4$ (there are $15$ such compositions). This involves $15$ evaluations of a degree-4 polynomial in $3$ variables, which is computationally trivial.",
+      "failure_mode": "The degree of $d(x;t)$ is not strictly less than $|\\lambda|$ (i.e., the lower-degree corrections are not symmetric), or the vanishing at the $15$ points does not force the polynomial to be zero due to algebraic dependencies among the spectral vectors at $q=1$.",
+      "external_theorem": "Alexandersson-Sawhney theorem on symmetry of $E_\\mu(x;1,t)$ for partitions $\\mu$; basic properties of Knop-Sahi interpolation polynomials (vanishing conditions).",
+      "confidence": 75,
+      "novelty": 8,
+      "anti_dup": "This is not #8 (null space structure) because it analyzes the explicit symmetry difference polynomial via its degree and vanishing on the spectral grid, rather than the isotypic decomposition of the solution space to the defining linear system; it is an external characterization of the polynomial rather than an internal analysis of the system's kernel."
+    },
+    {
+      "name": "Combinatorial Tableau Summation",
+      "bridge_lemma": "The Knop-Sahi combinatorial formula expresses $E^*_{\\lambda^-}(x;q,t)$ as a sum over reverse tableaux $T$ of shape $\\lambda^-$ with entries in $\\{1,\\dots,n\\}$: $E^*_{\\lambda^-}(x;q,t) = \\sum_T \\psi_T(q,t) \\prod_{s \\in \\lambda^-} x_{T(s)}$, where $\\psi_T(q,t)$ are explicit rational functions. At $q=1$, for the specific weight $|\\lambda| = \\binom{n+1}{2}-1$, the set of tableaux contributing to the sum is in bijection with permutations $\\sigma \\in S_n$ acting on a base tableau, and the weights $\\psi_T(1,t)$ become symmetric under this action, forcing the total sum to be symmetric in $x$.",
+      "falsifiable_test": "For $n=3$ and $\\lambda=(3,1,1)$, enumerate all reverse tableaux of shape $(1,1,3)$ with entries in $\\{1,2,3\\}$ (there are at most $3^5 = 243$, but the reverse condition reduces this significantly). Compute the sum using the explicit weight formula from Knop-Sahi (Theorem 1.1 of 'A recursion formula for Macdonald polynomials', 1997) specialized to $q=1$, and verify that the resulting rational function in $t$ and polynomial in $x$ is symmetric under swapping $x_1 \\leftrightarrow x_2$.",
+      "failure_mode": "The combinatorial sum does not exhibit the claimed symmetry for this specific weight; the bijection with permutations fails or the weights $\\psi_T(1,t)$ do not transform symmetrically under the action of $S_n$ on the tableau entries.",
+      "external_theorem": "Knop-Sahi combinatorial formula for interpolation Macdonald polynomials (Knop & Sahi, 1997).",
+      "confidence": 60,
+      "novelty": 9,
+      "anti_dup": "This is not #1 (Symbolic-t perturbation) because it evaluates a closed-form combinatorial expression (a finite sum over tableaux) rather than solving a large system of linear equations via symbolic perturbation; it bypasses the null space computation entirely by using an explicit summation formula."
+    },
+    {
+      "name": "Raising Operator Induction",
+      "bridge_lemma": "The Knop raising operator $G$ acts on interpolation Macdonald polynomials by $G \\cdot E^*_{\\mu} = \\sum_{i=1}^n A_{\\mu,i}(t) E^*_{\\mu+e_i}$ where $e_i$ adds a box to the $i$-th row and $A_{\\mu,i}(t)$ are explicit rational functions. At $q=1$, the coefficients satisfy $A_{\\mu,i}(t) = A_{\\sigma\\mu, \\sigma(i)}(t)$ for all $\\sigma \\in S_n$ (permutation symmetry of the coefficients). Since $G$ preserves the space of symmetric polynomials under this symmetry condition, and the base case $E^*_{(0,\\dots,0)} = 1$ is symmetric, by induction on $|\\lambda|$ all $E^*_{\\lambda^-}$ are symmetric.",
+      "falsifiable_test": "For $n=3$, compute the action of $G$ on $E^*_{(2,1,1)}$ (which is a partition, hence its standard $E$ is symmetric, and we assume by induction the lower corrections are symmetric). Calculate the coefficients $A_{(2,1,1),i}(t)$ for $i=1,2,3$ using the explicit formula from Knop ('Integrality of Macdonald polynomials', 1998), verify that $A_{(2,1,1),1}(t) = A_{(1,2,1),2}(t) = A_{(1,1,2),3}(t)$ under the appropriate permutations, and check that the resulting $G E^*_{(2,1,1)}$ is symmetric (or specifically that the component $E^*_{(3,1,1)}$ generated is symmetric).",
+      "failure_mode": "The coefficients $A_{\\mu,i}(t)$ do not possess the required $S_n$-covariance at $q=1$, or the induction step fails because the symmetry of $E^*_{\\mu}$ does not imply symmetry of $E^*_{\\mu+e_i}$ due to non-symmetric lower-degree terms in the expansion.",
+      "external_theorem": "Definition and properties of the raising operator $G$ for interpolation Macdonald polynomials (Knop, 1998).",
+      "confidence": 55,
+      "novelty": 7,
+      "anti_dup": "This is not #4 (S_n equivariance quotient) because it exploits the specific recursive structure and the explicit coefficients of the raising operator $G$ to propagate symmetry dynamically, rather than attempting to block-diagonalize the static system of equations defining the polynomial at a fixed weight."
+    }
+  ]
+}
