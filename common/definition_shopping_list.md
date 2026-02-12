@@ -21,7 +21,7 @@ Use it to dispatch Claude immediately when available.
 | Problem | Status | Bottleneck type | Priority |
 |---------|--------|-----------------|----------|
 | P05 | 🟡 Candidate | Proof gap (orbit-counting "only if"); definitions resolved | 5 (done this cycle) |
-| P01 | ❌ Parked | Definition/theorem dependency block | 2 |
+| P01 | 🟡 Candidate | Proof complete (conditional on BG stability extension from training knowledge); upgrade path: CITE_ONLY ingest of BG (2020) `thm:equicoerc` | 2 |
 | P09 | 📊 Conjecture | Algebraic formalization gap | 3 |
 | P04 | 🟡 Candidate | n>=4 theorem gap | 4 |
 | P03 | 🟡 Candidate | n>=4 closure still open | 5 |

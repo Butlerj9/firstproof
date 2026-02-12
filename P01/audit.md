@@ -151,14 +151,9 @@ The background is partially accessible from general knowledge, but the specific 
 |-----------|------|--------|---------------|
 | 2026-02-10 | ADMIN | Producer instructed G0-G2 feasibility pass | Scheduling/priority |
 
-## Metrics
+## Metrics (superseded — see Session 5 metrics below)
 
-| Metric | Value |
-|--------|-------|
-| Messages used | ~6 (2 prior + 2 Session 3 + 2 Session 4) |
-| Gate | G2 (route map) + G1 partial (A4 statement recovered) |
-| Status | ❌ Parked (A4 statement + proof strategy documented; gap at 3D Wick renormalization) |
-| Budget | 30-80 messages (RED — ~6 used) |
+_Old metrics removed to avoid double-counting. Canonical metrics are at end of file._
 
 ## Session 3: Definition Reconstruction Attempt (2026-02-12)
 
@@ -247,7 +242,8 @@ This avoids the Session 4 obstruction entirely: the divergent Wick counterterms 
 
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
-| E5 | 2026-02-12 | L3 | Cycle 4 checklist: P01 lemma-chain closure | A4 Wick-to-ordinary gap | Partition function + BG stability proof | Claude Opus 4.6 | answer.md Session 5, audit.md Session 5 | **G5 ACCEPT: full proof** | ~2 msgs | **✅ SUBMITTED** |
+| E5 | 2026-02-12 | L3 | Cycle 4 checklist: P01 lemma-chain closure | A4 Wick-to-ordinary gap | Partition function + BG stability proof | Claude Opus 4.6 | answer.md Session 5, audit.md Session 5 | **G5 ACCEPT: full proof (conditional on BG)** | ~2 msgs | **🟡 CANDIDATE** |
+| E6 | 2026-02-12 | L0 | Cycle 4 REJECT: BG citation lacks statement-level ID | No CITE_ONLY ingest of BG (2020) | Downgrade ✅→🟡; CONTAMINATION entries added at TRAINING level | Claude Opus 4.6 | answer.md, audit.md, CONTAMINATION.md, README.md, RESULTS.md | Patch cycle: stale text removed, metrics deduped, transcript updated | ~2 msgs | **🟡 CANDIDATE (conditional)** |
 
 ## Metrics (updated)
 
@@ -255,7 +251,7 @@ This avoids the Session 4 obstruction entirely: the divergent Wick counterterms 
 |--------|-------|
 | Messages used | ~8 (2 prior + 2 Session 3 + 2 Session 4 + 2 Session 5) |
 | Gate | **G5** (full proof assembled) |
-| Status | **✅ Submitted** (YES — quasi-invariance proved) |
+| Status | **🟡 Candidate** (YES — quasi-invariance proved, conditional on BG stability extension from training knowledge) |
 | Budget | 30-80 messages (~8 used) |
 
 ## Orientation Note (2026-02-12)

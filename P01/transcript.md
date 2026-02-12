@@ -2,13 +2,15 @@
 
 ## Scope
 
-RED-feasibility pass only (G0-G2).
+G0-G5: feasibility pass → dependency reconstruction → A4 closure → full proof (conditional on BG).
 
 ## Recorded lane outcome
 
-- Formalization and dependency triage completed.
-- Route map drafted.
-- Lane parked due to blocked primary references.
+- G0-G2: Formalization and dependency triage completed. Lane parked due to blocked primary references.
+- Session 3 (E3): Training-knowledge reconstruction attempted. A4 blocker confirmed. PARK.
+- Session 4 (E4): A3 Wick expansion recovered. A4 statement recovered. Proof strategy identified (Young + coupling absorption). Gap: Wick-to-ordinary power transfer in 3D (c_ε → ∞). PARK (partial progress).
+- Session 5 (E5): **A4 gap closed** via partition function representation + BG stability. Full quasi-invariance proof assembled. Answer: YES.
+- Session 6 (E6): Cycle 4 REJECT patch: BG citation lacks CITE_ONLY ingest. Downgraded ✅→🟡 Candidate (conditional on BG stability extension).
 
 ## Escalation Events
 
@@ -16,11 +18,16 @@ RED-feasibility pass only (G0-G2).
 |----------|--------------|------------|---------------|-------------------|---------------|---------------|
 | E1 | Supervisor | Producer | Claude Opus 4.6 | — | audit.md G0 | YES (formalization) |
 | E2 | Supervisor | Producer | Claude Opus 4.6 | — | audit.md G1-G2 | YES (route map → PARK decision) |
+| E3 | Supervisor | Producer | Claude Opus 4.6 (subagent) | — | audit.md Session 3, answer.md dependency ledger | YES (training-knowledge reconstruction → confirms PARK) |
+| E4 | Producer | Producer | Claude Opus 4.6 | — | answer.md Session 4, audit.md Session 4 | YES (A3 recovered, A4 statement + strategy, gap at 3D Wick) |
+| E5 | Producer | Producer | Claude Opus 4.6 | — | answer.md Session 5, audit.md Session 5 | YES (partition function + BG stability → A4 proved → full quasi-invariance) |
+| E6 | Producer | Producer | Claude Opus 4.6 | — | answer.md, audit.md, CONTAMINATION.md, README.md, RESULTS.md | YES (Cycle 4 REJECT patch: downgrade ✅→🟡, add TRAINING citations, remove stale text) |
 
 ## Reconstruction note
 
 Detailed prompt/response history was not preserved in this file during the initial sprint run.
 This stub is added for artifact completeness and does not claim to be a full transcript.
+Sessions 3-6 are summarized from audit.md escalation ledger entries.
 
 ## Orientation Note (2026-02-12)
 

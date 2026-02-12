@@ -1,8 +1,9 @@
 # Answer: P01
 
-**Status**: ✅ Submitted
-**Confidence**: HIGH (YES — quasi-invariance proved via partition function argument + BG stability)
-**External deps**: Barashkov-Gubinelli (2020) [CITE: construction + stability of Φ⁴₃]; Bogachev (1998) [CITE: Cameron-Martin]
+**Status**: 🟡 Candidate
+**Confidence**: HIGH (YES — quasi-invariance proved via partition function argument, **conditional on BG stability extension**)
+**External deps**: Barashkov-Gubinelli (2020) [TRAINING: construction + stability of Φ⁴₃ — not statement-level sourced]; Bogachev (1998) [TRAINING: Cameron-Martin]
+**Conditional on**: BG (2020) Boué-Dupuis construction extending to Φ⁴₃ with :φ³:ψ source (UV scaling 3/2 < 2). Invoked from training knowledge; no CITE_ONLY ingest performed.
 
 ## Problem statement
 
@@ -44,9 +45,7 @@ No evidence for singularity was found. Route B is deprioritized.
 
 **Feasibility without references**: LOW. The 3D Wick renormalization (step A3) and the exponential integrability (step A4) involve UV-divergent quantities that require precise renormalization prescriptions. These cannot be reliably reconstructed from training knowledge alone.
 
-**Recommendation**: KEEP PARKED. The dependency ledger is complete. Unblocking requires statement-level ingestion of:
-1. Barashkov-Gubinelli (2020) Theorem on exponential moments of $:\!\varphi^k\!:$ under $\Phi^4_3$
-2. Precise renormalization prescription for Wick powers in the BG construction
+**Recommendation (superseded by Session 5)**: The A4 gap identified here was resolved in Session 5 via the partition function approach. See §Session 5 below. The BG stability extension is invoked from training knowledge (TRAINING level, not CITE_ONLY). P01 is 🟡 Candidate, conditional on this claim.
 
 ## Session 4: A4 Statement Recovery + Proof Strategy (2026-02-12)
 
@@ -101,9 +100,7 @@ which is finite for $c\delta < \lambda$ (the modified coupling remains positive)
 
 **Upgrade assessment**: A4 statement is available. The proof sketch is nearly complete but has a gap at the Wick-to-ordinary power transfer in 3D. This gap is specific to 3D (in 2D, the analogous argument works). Without BG-level renormalization control, the gap cannot be closed.
 
-**Recommendation**: P01 remains **❌ Parked**. The A4 statement and proof strategy are documented. The specific technical gap (Wick Young inequality in 3D) is identified. Closure requires either:
-1. Sourcing BG's exponential moment bounds (statement-level), OR
-2. A new approach to the Wick-to-ordinary transfer that avoids the $c_\varepsilon \to \infty$ divergence.
+**Recommendation (superseded by Session 5)**: The gap identified here was resolved in Session 5 by the partition function approach (option 2: new approach avoiding the $c_\varepsilon \to \infty$ divergence). See §Session 5 below.
 
 ## Session 5: A4 Closure + Full Quasi-Invariance Proof (2026-02-12)
 
@@ -194,12 +191,12 @@ Combining: $\mu_\psi \ll \mu$ and $\mu \ll \mu_\psi$, so $\mu$ and $\mu_\psi$ ar
 | Step | Status | Change from Session 4 |
 |------|--------|-----------------------|
 | A1 (Cameron-Martin) | ✅ AVAILABLE | No change |
-| A2 (Φ⁴₃ construction) | ✅ CITE (BG 2020) | No change |
+| A2 (Φ⁴₃ construction) | ✅ TRAINING (BG 2020 — not CITE_ONLY) | No change |
 | A3 (Shifted interaction) | ✅ **PROVED** | No change (derived Session 4) |
 | A4 (Exponential integrability) | ✅ **PROVED** | Gap closed via partition function + BG stability |
 | A5 (Assembly) | ✅ **PROVED** | Assembled with Hölder + symmetry |
 
-**All gaps closed. Full quasi-invariance proof complete.**
+**All gaps closed. Full quasi-invariance proof complete (conditional on BG stability extension — TRAINING level).**
 
 ## What is established
 
@@ -213,4 +210,6 @@ Combining: $\mu_\psi \ll \mu$ and $\mu \ll \mu_\psi$, so $\mu$ and $\mu_\psi$ ar
 
 ## What is unresolved
 
-None. The proof is complete modulo the BG (2020) construction of the Φ⁴₃ measure (CITE dependency only — the problem statement itself presupposes the measure's existence).
+The proof is complete modulo the BG (2020) Boué-Dupuis construction extending to the modified theory with :φ³:ψ source. This extension is invoked from training knowledge (TRAINING level) — no CITE_ONLY ingest of BG (2020) was performed. Specifically, the claim that the BG stochastic estimates control all Wick interactions up to UV scaling dimension 2 (Step 4 of Theorem A4) was not verified against the primary source.
+
+**To upgrade to ✅**: Perform CITE_ONLY ingest of BG (2020) arXiv:2004.01513, targeting `thm:equicoerc` or the coercivity/integrability theorem statement, and verify that the extension to :φ³:ψ source is a standard consequence.

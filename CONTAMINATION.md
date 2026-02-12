@@ -23,6 +23,8 @@
 | C9 | P05 | Rubin (2019), arXiv:1903.08723, Def 2.1/3.4 | Statement-level: indexing system + transfer system definitions | CITE_ONLY | P05 E3 |
 | C10 | P05 | Rubin (2019), arXiv:1903.08723, Thm 3.7 + Cor 3.9 | Statement-level: Ind ↔ Tr equivalence | CITE_ONLY | P05 E3 |
 | C11 | P05 | Hill-Yarnall (2017), arXiv:1703.10526, Def 1.1/2.6, Thm 2.5 | Statement-level: slice connectivity + geometric FP characterization | CITE_ONLY | P05 E3 |
+| C12 | P01 | Barashkov-Gubinelli (2020), arXiv:2004.01513 | Training-knowledge: Boué-Dupuis construction of Φ⁴₃; stability under sub-scaling perturbations (UV dim < 2). Target: `thm:equicoerc` or coercivity theorem — **not statement-level sourced** | TRAINING | P01 E5 |
+| C13 | P01 | Bogachev (1998), *Gaussian Measures* | Training-knowledge: Cameron-Martin theorem for GFF quasi-invariance under H¹ translations | TRAINING | P01 E5 |
 
 ## Scout model deployments (no web search, no solution retrieval)
 

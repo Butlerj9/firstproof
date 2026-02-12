@@ -21,7 +21,7 @@ provenance are logged in `PXX/audit.md`, `PXX/transcript.md`, and
 
 | Problem | Domain | Status | Confidence | Budget used |
 |---------|--------|--------|------------|-------------|
-| P01 | Stochastic analysis | ✅ Submitted | HIGH (YES, partition function + BG stability closes A4; full quasi-invariance proved) | ~8/80 msgs |
+| P01 | Stochastic analysis | 🟡 Candidate | HIGH (YES, partition function + BG stability closes A4; **conditional on BG stability extension — TRAINING, not CITE_ONLY**) | ~8/80 msgs |
 | P02 | Representation theory | ✅ Submitted | HIGH (YES, Kirillov + Gauss sums + JPSS + multiplicity-one) | ~12/80 msgs |
 | P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 infeasible — 11K×11K system) | ~48/200 msgs |
 | P04 | Finite free convolution | 🟡 Candidate | HIGH (n=2 proved; **n=3 general proved**; n≥4 conjectured + 150-digit evidence; CE-7 cross-term obstruction; 5 alt approaches assessed, all LOW) | ~26/300 msgs |
