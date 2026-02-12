@@ -63,15 +63,14 @@ Worked:
 - Multiplicity-one theorem (AGRS) + PID argument to close partial ideal gap (P02).
 
 Stalled:
-- Theorem-level finite-n closure when numeric evidence is strong but symbolic bridge is missing (P09).
-- ~~n=3 symmetry conjecture algebraic closure despite 48+ digit numerical evidence (P03).~~ **RESOLVED (n=3)**: Degree-bound + 82-zero test (Session 4). ~~n=4 remains open.~~ **RESOLVED (n=4)**: Modular degree-bound 54 + 90-value sweep (Session 6). n ≥ 5 remains open.
-- Masked-domain equivalence and uniform-n algebraic closure (P09).
+- ~~Theorem-level finite-n closure when numeric evidence is strong but symbolic bridge is missing (P09).~~ **RESOLVED**: All 4 gaps closed algebraically for n≥6 (Session 7: §2.5b separation genericity + §2.5c base-case coverage).
+- ~~n=3 symmetry conjecture algebraic closure despite 48+ digit numerical evidence (P03).~~ **RESOLVED (n=3)**: Degree-bound + 82-zero test (Session 4). ~~n=4 remains open.~~ **RESOLVED (n=4)**: Modular degree-bound 54 + 90-value sweep (Session 6). n ≥ 5 remains open (computationally infeasible).
+- ~~Masked-domain equivalence and uniform-n algebraic closure (P09).~~ **RESOLVED**: D_n masking proved (§2.5a); kernel formula proved exact via lower bound + base-case coverage (§2.5c).
 
 ## 5. Final result after synthesis pass
 
 - **Fully submitted: 5 problems** (P10, P06, P08, P07, P02).
-- Candidate: 3 problems (P03, P04, P09).
-- Candidate (definition unlock + obstruction found): 1 problem (P05).
+- Candidate: 4 problems (P03, P04, P05, P09).
 - Parked: 1 problem (P01).
 - Not started: 0 problems.
 
@@ -113,7 +112,7 @@ Priority order (by tractability):
 2. **P07** (Lattices) — ✅ RESOLVED: Q-PD proved (Shapiro), surgery realization proved (self-contained). Upgraded to Submitted.
 3. **P01** (Stochastic) — MEDIUM yield from 4-6 definitions (Barashkov-Gubinelli)
 4. **P02** (Rep theory) — ✅ RESOLVED: general n proved via JPSS + multiplicity-one (AGRS). Upgraded to Submitted.
-5. **P05** (Eq. homotopy) — 🟡 UPGRADED: definitions ingested, 2 candidate characterizations formulated, proof gap identified
+5. **P05** (Eq. homotopy) — 🟡 UPGRADED: definitions ingested, 2 candidate characterizations formulated. **Z/p² counterexample** shows characterization fails for intermediate transfer systems on groups with ≥3 subgroups; valid for Z/p, complete, trivial only
 
 ## 7. GPT-5.2-pro final synthesis (planned)
 
