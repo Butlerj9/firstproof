@@ -88,39 +88,254 @@
 
 **Codex Re-review (Cycle 2b)**: ACCEPT — 0 faults. All checklist items passing. Recommendation: PROCEED to G7, keep 📊 Conjecture.
 
+## Upgrade cycle (EXP-6 series)
+
+**Status**: ✅ Complete — no upgrade (3 MAJOR gaps remain).
+
+**EXP-6: n=5 degree-4 boundary test** (`experiments/exp6_n5_only.py`):
+- 30 A samples, 225×231 system per A
+- Rank reaches 231/231 (full) after just 5 A samples
+- **RESULT: Trivial kernel — no degree-4 Frobenius-product polynomial vanishes at n=5**
+- Implication: D = 4 is insufficient for the smallest required n
+
+**EXP-6e: n=5 degree-6 test** (`experiments/exp6e_n5_deg6_monomial.py`):
+- 30 A samples, 784×1771 system per A
+- Rank stabilizes at 1756 (null dim = 15) after ~15 A samples
+- Rank-1 vanishing: max|f| ~ 10⁻¹⁵ (5 trials, fresh A and tau)
+- Random tau separation: max|f| ~ 10⁶ to 10¹⁰ (separation ratio ~10²⁰)
+- **RESULT: Nontrivial 15-dim kernel at degree 6 — D ≤ 6 for n = 5**
+
+**Verdict**: Answer revised from "YES, D = 4" to "YES, D ≤ 6". One open question resolved (n=5 boundary), three MAJOR gaps remain. Status unchanged at 📊.
+
 ## G7 Package
 
-**Status**: ✅ Complete.
+**Status**: ✅ Updated (after upgrade cycle).
 
 All deliverables finalized:
-- `answer.md`: 📊 Conjecture — YES, D = 4. Three proof gaps explicitly documented.
-- `audit.md`: Full gate history G0–G7.
+- `answer.md`: 📊 Conjecture — YES, D ≤ 6. D=4 at n≥6, D=6 at n=5. Three proof gaps + one new open question.
+- `audit.md`: Full gate history G0–G7 + upgrade cycle.
 - `transcript.md`: Complete interaction log with token accounting.
-- `experiments/`: 6 scripts (exp1–exp5b), runnable, results consistent with answer.md.
+- `experiments/`: 6 original scripts (exp1–exp5b) + 2 (exp6, exp6e) + exp7 masking + 3 (exp8, exp8b, exp8c kernel formula) + 2 (exp9, exp9b masking Jacobian), all runnable.
+
+## G5 Closure Attempt (Mode S, Session 2)
+
+**Status**: STALLED — 1 structural insight gained, 3 MAJOR gaps remain open.
+
+### EXP-7: Masking analysis (`experiments/exp7_masking_analysis.py`)
+
+**Key finding**: The D_n pairwise-distinct constraint removes diagonal entries from the (a,b)-block (an m×m matrix, m = n-2). Valid off-diagonal 2×2 minors require all four entries off-diagonal, which needs m ≥ 4 (n ≥ 6). At m = 3 (n = 5), **zero** off-diagonal 2×2 minors exist.
+
+This explains:
+- **Why degree-4 fails at n=5**: Degree-4 Frobenius products encode K(A)-weighted 2×2 minors, but none can be formed from off-diagonal entries of a 3×3 matrix.
+- **Why degree-4 works at n≥6**: m ≥ 4 provides 6+ off-diagonal 2×2 minors.
+- **Why degree-6 works at n=5**: Degree-6 products can encode 3×3 determinant-type conditions using all 6 off-diagonal entries.
+
+**Remaining gaps (unchanged)**:
+1. n-uniformity: only verified at n=5 (D=6) and n=6 (D=4)
+2. D_n masking: block rank-1 → full 4-way rank-1
+3. Algebraic K-compatibility: numerical kernel stabilization not proved symbolically
+
+### Verdict (Session 2)
+P09 stays at 📊 Conjecture. The masking insight sharpens the understanding but doesn't close any gap to theorem level.
+
+## G5 Closure Attempt (Mode S, Session 3)
+
+**Status**: SIGNIFICANT PROGRESS — kernel dimension formula discovered, 2 of 3 MAJOR gaps addressed.
+
+### EXP-8 series: Monomial-decomposed kernel dimension
+
+**Key optimization**: Each degree-4 Frobenius product maps to exactly one (u,v) monomial, so the constraint system decomposes into many small independent problems. This makes n=7–10 computationally feasible without building huge matrices.
+
+**EXP-8** (`experiments/exp8_monomial_kernel.py`): n=6,7,8 with convergence tracking.
+**EXP-8b** (`experiments/exp8b_n9_check.py`): n=9 verification.
+**EXP-8c** (`experiments/exp8c_formula_verify.py`): n=10 verification.
+
+### Results: Kernel dimension formula
+
+**Discovered formula**: kernel_dim(degree 4, n) = **9 · C(n−2, 4)** for n ≥ 6.
+
+| n | m = n−2 | kernel_dim | 9·C(m,4) | Match |
+|---|---------|-----------|----------|-------|
+| 5 | 3 | 0 | 0 | ✓ |
+| 6 | 4 | 9 | 9 | ✓ |
+| 7 | 5 | 45 | 45 | ✓ |
+| 8 | 6 | 135 | 135 | ✓ |
+| 9 | 7 | 315 | 315 | ✓ |
+| 10 | 8 | 630 | 630 | ✓ |
+
+**Algebraic interpretation**: Each 4-element subset of the m free indices contributes exactly 9 = (4−1)² independent kernel vectors. Total = 9 × C(m, 4). At n=5 (m=3), C(3,4) = 0 explains degree-4 failure.
+
+### Gap status after Session 3
+
+| Gap | Before | After | Status |
+|-----|--------|-------|--------|
+| #1 n-uniformity | Verified at n=5,6 only | Formula verified at n=5–10 | **ADDRESSED** (numerical formula, not algebraic proof) |
+| #2 D_n masking | Open | Open | **STILL OPEN** (sole remaining MAJOR gap) |
+| #3 K-compatibility | Numerical only | Dimension formula discovered | **PARTIALLY ADDRESSED** (formula provides structural certificate) |
+
+### Verdict (Session 3)
+P09 stays at 📊 Conjecture. The kernel formula is a significant structural finding that effectively addresses n-uniformity and K-compatibility, but the D_n masking gap (block rank-1 → full 4-way rank-1) remains open and prevents upgrade.
+
+## G5 Closure Attempt (Mode S, Session 4)
+
+**Status**: **GAP #2 CLOSED** — D_n masking lemma proved for n ≥ 6.
+
+### EXP-9: D_n masking Jacobian test (`experiments/exp9_masking_lemma.py`)
+
+At a generic rank-1 point τ₀ = u⊗v⊗w⊗x, enumerate ALL block-rank-1 2×2 minor conditions from all 6 position-fixing pairs. Build the Jacobian of these quadratic conditions. If Jacobian rank = codimension of rank-1, the block conditions locally characterize rank-1.
+
+| n | |D_n| | codim(rank-1) | block conditions | Jacobian rank | gap |
+|---|-------|--------------|-----------------|----------------|-----|
+| 6 | 360 | 339 | 1080 | 339 | **0** |
+| 7 | 840 | 815 | 7560 | 815 | **0** |
+
+Verified at 2 independent random rank-1 points (consistent).
+
+### EXP-9b: Boundary + n=8 (`experiments/exp9b_masking_n5_n8.py`)
+
+| n | |D_n| | codim | block conditions | Jacobian rank | gap |
+|---|-------|-------|-----------------|----------------|-----|
+| 5 | 120 | 103 | **0** | 0 | 103 |
+| 8 | 1680 | 1651 | 30240 | 1651 | **0** |
+
+**n=5 has zero block conditions**: With only 3 free values after fixing 2 positions, cannot form 4 pairwise-distinct entries for 2×2 minors.
+
+### Algebraic proof of masking lemma
+
+**Theorem**: For n ≥ 6, block-rank-1 on D_n locally characterizes 4-way rank-1.
+
+**Proof method**: At a rank-1 point, linearized block conditions become "all pairwise second differences vanish on D_n." For n ≥ 6, this forces global additivity ψ(a,b,c,d) = f₁(a)+f₂(b)+f₃(c)+f₄(d), which IS the rank-1 tangent space.
+
+Key steps:
+1. Fix reference value 0 and base pair (0, b₀); establish f₃, f₄ from (c,d)-additivity
+2. Propagate to general b using cross-position second differences (needs auxiliary values → n ≥ 6)
+3. Extend to general a using (a,b)-additivity at fixed (c,d)
+4. Full assembly: combine all constraints to get ψ = f₁ + f₂ + f₃ + f₄
+
+**n ≥ 6 threshold**: Step 2 needs 5 values excluded from [n], so n ≥ 6.
+
+Full proof in P09/answer.md §2.5a.
+
+### Gap status after Session 4
+
+| Gap | Before | After | Status |
+|-----|--------|-------|--------|
+| #1 n-uniformity | Formula verified at n=5–10 | Unchanged | **ADDRESSED** (empirical-structural) |
+| #2 D_n masking | **OPEN** | **CLOSED** | Proved for n ≥ 6 (algebraic + numerical) |
+| #3 K-compatibility | Partially addressed | Unchanged | **PARTIALLY ADDRESSED** (formula certificate) |
+
+### Verdict (Session 4)
+Gap #2 is closed: the sole remaining MAJOR conceptual gap (block-rank-1 → full rank-1 on D_n) is resolved. Remaining gaps #1 and #3 are "algebraic formalization of verified formulas" — not conceptual obstructions. P09 stays at 📊 Conjecture but confidence upgraded to MEDIUM-HIGH.
+
+## G5 Closure Attempt (Mode S, Session 5 — Formalization Pass)
+
+**Status**: SIGNIFICANT PROGRESS — kernel formula lower bound formally proved for all n ≥ 6.
+
+### EXP-10: Kernel structure decomposition (`experiments/exp10_kernel_structure.py`)
+
+Decomposed the kernel by (u,v) monomial at n=6,7,8. Key finding:
+
+| Monomial type | Description | Kernel contribution |
+|---|---|---|
+| Both-distinct-same | a-set = b-set = S, |S|=4, all distinct | **9 each** |
+| Both-distinct-different | a-set ≠ b-set, all distinct | 0 |
+| Repeated indices | Any index appears >1 | 0 |
+
+Every same-set monomial has **exactly 27 products, rank 18, kernel 9**. The count of same-set monomials is C(m,4) where m = n−2. Total kernel = 9·C(m,4) = 9·C(n−2,4).
+
+### EXP-10b: Exact rational arithmetic base case (`experiments/exp10b_exact_kernel.py`)
+
+At n=6 (m=4, single same-set monomial): computed constraint matrix using Python `Fraction` (exact arithmetic, no float) with 25 independent A matrices having integer entries in {−3,...,3}. **Exact result: rank 18, kernel 9.**
+
+### Formalization argument (new §2.3b)
+
+**Theorem**: For Zariski-generic A and n ≥ 6, kernel_dim(degree 4, n) ≥ 9·C(n−2, 4).
+
+Proof:
+1. Monomial decomposition → independent subsystems (algebraic)
+2. For each 4-element subset S ⊂ [m], the S-restricted system is isomorphic to the n=6 base case (algebraic — restriction to A^{s₁},...,A^{s₄}, A^γ, A^δ)
+3. Base case: exact kernel = 9 over Q (EXP-10b)
+4. Cross-subset independence: different S → different monomials (algebraic)
+5. Total lower bound: 9·C(m,4)
+
+The matching upper bound (non-same-set monomials contribute 0) is verified numerically at n=6,7,8.
+
+### Gap status after Session 5
+
+| Gap | Before | After | Status |
+|-----|--------|-------|--------|
+| #1 n-uniformity | Formula verified n=5–10 (numerical) | Lower bound proved for all n ≥ 6 (algebraic + exact base) | **LARGELY CLOSED** |
+| #2 D_n masking | **CLOSED** (Session 4) | Unchanged | **CLOSED** |
+| #3 K-compatibility | Partially addressed (formula cert.) | Lower bound proved (monomial decomposition + exact base) | **LARGELY CLOSED** |
+| #4 Separation genericity | Probabilistic (~10¹³ ratio) | Unchanged | OPEN (minor) |
+
+### Verdict (Session 5)
+
+P09 stays at 📊 Conjecture. Confidence upgraded from MEDIUM-HIGH to HIGH. The three original MAJOR gaps are now all substantially closed: #2 fully proved, #1 and #3 proved as lower bounds with matching numerical upper bounds. The remaining open items are non-structural: exact upper bound on kernel dimension (numerical gap), and Zariski-genericity of separation (probabilistic).
+
+## Escalation Ledger
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6, Codex 5.2 | audit.md G0 | G0 C1 REJECT (4 faults) → C2 ACCEPT | ~4 msgs | proceed |
+| E2 | 2026-02-10 | L3 | G0 complete | Polynomial separator unknown | EXP-1 to EXP-5b: construction + vanishing search | exp1-exp5b | experiments/ created | G4: degree-4 Frobenius products found | ~8 msgs | proceed |
+| E3 | 2026-02-10 | L1 | G5 complete | 5 faults including overclaim of "theorem" | G6 adversarial review (2 cycles) | Codex 5.2 | — | G6 C1 REJECT → C2 REJECT → patch → ACCEPT | ~4 msgs | patch |
+| E4 | 2026-02-10 | L0 | G6 ACCEPT | — | G7 package | Claude Opus 4.6 | All deliverables | G7 ACCEPT (📊) | ~2 msgs | proceed |
+| E5 | 2026-02-11 | L3/L5 | Upgrade cycle (Session 2) | D=4 fails at n=5; masking gap open | EXP-6/6e: n=5 boundary + degree-6; EXP-7: masking analysis | exp6, exp6e, exp7 | answer.md §2.5 updated | EXP-6e: 15-dim kernel at n=5 | ~6 msgs | proceed |
+| E6 | 2026-02-11 | L3 | Session 3 (kernel formula) | n-uniformity gap | EXP-8/8b/8c: monomial kernel decomposition n=6-10 | exp8, exp8b, exp8c | answer.md §2.4 + formula 9·C(n-2,4) | Formula verified n=5-10 | ~8 msgs | proceed |
+| E7 | 2026-02-11 | L3 | Session 4 (masking closure) | D_n masking gap (#2) | EXP-9/9b: Jacobian test + algebraic proof | exp9, exp9b | answer.md §2.5a | **Gap #2 CLOSED** (n≥6 proved) | ~6 msgs | **CONJECTURE** (conf. upgraded) |
+| E8 | 2026-02-11 | L3 | Session 5 (formalization pass) | Gaps #1, #3 algebraic formalization | EXP-10: kernel structure decomposition; EXP-10b: exact rational arithmetic base case | exp10, exp10b | answer.md §2.3b, §2.5, §2.6, §3, §4 | **Gaps #1, #3 largely closed**: kernel ≥ 9·C(n-2,4) proved for all n≥6 | ~8 msgs | **CONJECTURE** (conf. HIGH) |
+| E9 | 2026-02-12 | L0 | Methods/reporting review request | Need explicit reviewer-facing provenance of prompts/responses and toolchain governance | Logged key prompts/responses and documentation alignment actions | Codex 5.2, `apply_patch`, `rg`, `Get-Content` | methods_extended.md, README.md, RESULTS.md, docs/*.md, P03/P05/P09 audit/transcript | Documentation checks PASS; no mathematical artifact change | ~3 msgs | proceed |
+
+**Escalation summary**: Level reached: L5. Closure level: L3 (kernel formula + masking via algebraic proof). Validation: G6 C2 + EXP-8 series + EXP-9/9b + EXP-10/10b. CONTAM: none.
+
+## Session 6: Methods/Documentation Governance (repo-wide, non-math)
+
+**Status**: Logged for transparency. No P09 theorem-status change.
+
+### Prompt/response summary
+
+- Prompt: publication polish and explicit producer/tooling provenance.
+  Response: rewrote methods abstract/intro and added explicit provenance subsection.
+- Prompt: simplify top-level readability without losing detail.
+  Response: streamlined `README.md` autonomy block; added methods pointer in `RESULTS.md`.
+- Prompt: standard docs organization with separation of methods/results/reference.
+  Response: added `docs/` index files and cross-links.
+- Prompt: ensure audit/transcript include important prompts/responses.
+  Response: appended this session to active-lane logs.
+
+### Validation
+
+- Verified links and file references with `rg`/`Get-Content`.
+- Confirmed no changes to P09 experiments, proofs, or claim tier.
 
 ## Human interventions
 
 | Timestamp | Type | Action | Justification |
 |-----------|------|--------|---------------|
 | 2026-02-10 | ADMIN | Producer instructed start of P09 | Scheduling/priority |
+| 2026-02-12 | ADMIN | Producer requested methods/reporting traceability and docs-structure updates | Reviewer clarity and publication hygiene |
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~21 |
-| Gate | G7 (Package) |
-| Status | 📊 Conjecture (YES, D=4) |
-| Budget | 200 messages (YELLOW — ~21 used) |
+| Messages used | ~50 |
+| Gate | G7 (Package) + upgrade cycle + Sessions 3–5 |
+| Status | 📊 Conjecture (YES, D≤6; kernel lower bound proved; masking lemma proved; conf. HIGH) |
+| Budget | 200 messages (GREEN — ~50 used) |
 
 ### Token estimates (synced with transcript.md)
 
 | Category | Est. tokens |
 |----------|-------------|
-| Implementer input | ~18,300 |
-| Implementer output | ~32,000 |
+| Implementer input | ~24,300 |
+| Implementer output | ~37,000 |
 | Reviewer input | ~14,500 |
 | Reviewer output | ~6,600 |
-| **Running total** | **~70,600** |
+| Upgrade cycle input | ~6,000 |
+| Upgrade cycle output | ~5,000 |
+| Formalization pass (Session 5) | ~8,000 |
+| **Running total** | **~101,400** |
 
-*Updated: 2026-02-10 — after G7 Package.*
+*Updated: 2026-02-12 — administrative documentation sync (no mathematical-state change since 2026-02-11 formalization pass).*

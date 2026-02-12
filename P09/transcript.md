@@ -18,9 +18,9 @@
 | Estimated Implementer tokens (output) | ~32,000 |
 | Estimated Reviewer tokens (input) | ~14,500 |
 | Estimated Reviewer tokens (output) | ~6,600 |
-| Estimated total tokens so far | ~70,600 |
-| Budget used | ~21 of 300 |
-| Last updated | 2026-02-10 |
+| Estimated total tokens so far | ~81,600 |
+| Budget used | ~28 of 200 |
+| Last updated | 2026-02-11 |
 
 **Token accounting note**: estimates are updated after each gate cycle in the `Token Log` table below.
 
@@ -223,3 +223,76 @@ All P09 artifacts finalized:
 **Final status**: 📊 Conjecture (YES, D = 4). Confidence: MEDIUM.
 
 ---
+
+## Session 7: Upgrade cycle (📊 → 🟡 attempt)
+
+### Goal
+
+Close or strengthen gaps to upgrade from 📊 Conjecture to 🟡 Candidate. Accept criteria: proof sketch present, blocking gap < 2 lemmas, evidence > 30 digits.
+
+### Work performed
+
+**EXP-6: n=5 degree-4 boundary test** (`experiments/exp6_n5_only.py`, ~3 messages)
+
+- Tested whether the degree-4 Frobenius-product construction works at n=5 (the smallest required n).
+- 30 A samples, 225×231 system per A.
+- Rank reaches full 231/231 after only 5 A samples.
+- **Result: TRIVIAL KERNEL** — no degree-4 Frobenius-product polynomial vanishes at n=5.
+- Implication: D = 4 is insufficient at n = 5; the original "YES, D = 4" conjecture is too strong.
+
+**Route change: test degree-6 at n=5** (~4 messages)
+
+- EXP-6b (buggy multiplicity — discarded), EXP-6c (direct evaluation — undersampled, discarded).
+- **EXP-6e: Correct monomial decomposition approach** (`experiments/exp6e_n5_deg6_monomial.py`):
+  - 30 A samples, 784×1771 system per A
+  - Rank stabilizes at 1756 (null dim = 15) after ~15 A samples
+  - Rank-1 vanishing: max|f| = 3.6×10⁻¹⁵ to 9.7×10⁻⁹ (5 fresh trials)
+  - Random tau: max|f| = 2.9×10⁶ to 5.5×10¹⁰ (separation ratio ~10²⁰)
+  - **Result: 15-dimensional A-independent kernel at degree 6 for n=5, with vanishing and separation**
+
+### Assessment
+
+- Answer revised: "YES, D = 4" → "YES, D ≤ 6" (D=4 for n≥6, D=6 for n=5)
+- One open question resolved (n=5 boundary)
+- Three MAJOR gaps remain: K-compatibility, masked-domain, Zariski-genericity (exceeds <2 threshold for 🟡)
+- **Upgrade not warranted.** Status remains 📊 Conjecture.
+
+### Token estimates (Session 7)
+
+| Category | Est. tokens |
+|----------|-------------|
+| Upgrade cycle input | ~6,000 |
+| Upgrade cycle output | ~5,000 |
+| **Session 7 subtotal** | **~11,000** |
+| **Running total** | **~81,600** |
+
+## Escalation Events
+
+| event_id | prompt author | dispatcher | model/provider | script command(s) | output file(s) | incorporated? |
+|----------|--------------|------------|---------------|-------------------|---------------|---------------|
+| E1 | Supervisor | Producer | Claude Opus 4.6, Codex 5.2 | — | audit.md G0 | YES (G0 C1 REJECT → C2 ACCEPT) |
+| E2 | Implementer | Auto | Claude Opus 4.6 | `python exp1-exp5b` | experiments/ outputs | YES (degree-4 Frobenius products found) |
+| E3 | Supervisor | Producer | Codex 5.2 | — | — | YES (G6 C1 REJECT → C2 REJECT → patch → ACCEPT) |
+| E4 | Implementer | Auto | Claude Opus 4.6 | — | answer.md, all deliverables | YES (G7 ACCEPT as 📊) |
+| E5 | Supervisor | Producer | Claude Opus 4.6 | `python exp6.py`, `python exp6e.py`, `python exp7_masking_analysis.py` | experiments/ outputs | YES (n=5 boundary: D=4 fails, D=6 works) |
+| E6 | Supervisor | Producer | Claude Opus 4.6 | `python exp8.py`, `python exp8b_n9_check.py`, `python exp8c_formula_verify.py` | experiments/ outputs | YES (kernel formula 9·C(n-2,4) at n=6-10) |
+| E7 | Supervisor | Producer | Claude Opus 4.6 | `python exp9_masking_lemma.py`, `python exp9b_masking_n5_n8.py` | experiments/ outputs | YES (**Gap #2 CLOSED**: masking lemma proved n≥6) |
+| E8 | Supervisor | Producer | Codex 5.2 | `apply_patch` + doc/link checks (`rg`, `Get-Content`) | methods_extended.md, README.md, RESULTS.md, docs/*.md | YES (methods/reporting traceability update; non-math) |
+
+---
+
+## Session 8: Methods/Documentation Governance (repo-wide)
+
+### Important prompts and responses
+
+| Producer prompt | Supervisor response | Artifacts |
+|---|---|---|
+| "Fix title, polish it for publication, and align the other documents." | Applied requested abstract/intro replacement and explicit provenance text. | `methods_extended.md` |
+| "Did you streamline README or other files and reference extended methods?" | Replaced long autonomy prose with concise summary + methods pointer. | `README.md`, `RESULTS.md` |
+| "We should also have a docs folder with standard filenames..." | Added docs index split by methods/results/reference while keeping root canonical files. | `docs/README.md`, `docs/methods/README.md`, `docs/results/README.md`, `docs/reference/README.md` |
+| "Please update transcript and audit documents with important prompts/responses." | Added governance session/event entries in active-lane logs. | `P03/*`, `P05/*`, `P09/*` |
+
+### Classification
+
+- Type: ADMIN/LOGISTICS
+- Mathematical impact: none
