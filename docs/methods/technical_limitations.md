@@ -4,6 +4,14 @@
 
 This document explains why escalation was necessary in this project, what escalation can and cannot fix, and why some lanes stalled despite strong workflow controls.
 
+Human role note for interpretation: the Producer operated as a runtime operator under pre-decided policy rules (gates, stop-loss, escalation), not as a domain expert supplying mathematical judgment or solution content. The operator remained abstracted from problem/solution details and assessed structural process quality/classification only; correctness adjudication was delegated to agent review and deterministic validation.
+
+Control-stack framing used in this repo:
+- policy/workflow layer (runtime operation against fixed rules),
+- agent orchestration layer (implementer/reviewer/scout loops),
+- base LLM generation layer,
+- opaque in-model inference layer.
+
 The short version:
 - A lane like `P01` is not "unsolvable in principle."
 - Under the current autonomy and training constraints, it sits outside reliable closure for a general frontier LLM stack.
@@ -179,3 +187,13 @@ For this project, escalation was necessary for reliability and rigor, but insuff
 The key finding is not "some references were missing." The stronger finding is:
 - current general LLM orchestration handles deep application of known structure well,
 - but remains limited on problems requiring new structural glue under strict autonomy constraints.
+
+## 12. Prompt Equivalency Note (Documentation Heuristic)
+
+For reporting-only interpretation of orchestration effort, this repo uses a rough mapping:
+
+- `1` agent-orchestration prompt ~= `10` llm-only prompts
+- typical split: `8` short prompts + `2` long prompts
+
+This is a planning/documentation heuristic, not an empirical benchmark.
+Primary accounting remains token and message logs in `RESULTS.md` and per-lane transcripts/audits.

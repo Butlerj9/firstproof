@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This repository evaluates a tool-augmented, multi-model agentic LLM system applied to advanced mathematics problems under a strict "no human mathematical content" boundary. The human administrator ("Producer") performs workflow operations only (scheduling, budgeting, repo/logging hygiene, tool execution, publication cadence, and contamination enforcement). Models generate essentially all mathematical content: formalizations, route selection, lemma decomposition, proof/counterexample construction, experiments, and writeups.
+This repository evaluates a tool-augmented, multi-model agentic LLM system applied to advanced mathematics problems under a strict "no human mathematical content" boundary. The human administrator ("Producer") performs workflow operations only (scheduling, budgeting, repo/logging hygiene, tool execution, publication cadence, and contamination enforcement). Operationally, the Producer is a runtime operator: actions and process decisions follow pre-decided policy rules rather than expert mathematical judgment. The Producer is abstracted from problem content, solution content, and solution steps; process evaluation is limited to structural response quality (gate compliance, artifact completeness, and status classification consistency), not mathematical correctness. Models generate essentially all mathematical content: formalizations, route selection, lemma decomposition, proof/counterexample construction, experiments, and writeups.
 
 Critically, the system does not rely on a separate, human-engineered proof toolchain. Beyond commodity infrastructure (a shell, a runtime to execute code, version control, and constrained web access for references), the only active "tool" the Producer uses is prompting model agents, and the agents themselves author the tooling they need (scripts, checkers, experiment harnesses, templates, and coordination artifacts) as part of an organic bootstrapping process. The Producer runs agent-authored commands and scripts verbatim and records outputs; the Producer does not design or implement bespoke technical tooling intended to influence mathematical outcomes.
 
@@ -62,10 +62,12 @@ In this run, Producer activity is constrained to operational control:
 
 - prompt dispatch and handoffs between model roles
 - occasional administrative decisions (prioritization, budgets, park/escalate, publication timing)
+- process decisions under pre-decided rules (gate criteria, stop-loss caps, escalation triggers)
 - execution of model-authored scripts/commands (verbatim)
 - enforcement of logging, status taxonomy, and contamination policy
+- evaluation of structural response quality (coherence, completeness, and classification consistency)
 
-The Producer does not add mathematical ideas, proof strategy, or domain interpretation.
+Operationally, the Producer functions as a runtime operator, not a domain expert. The Producer does not add mathematical ideas, proof strategy, or domain interpretation, and does not exercise expert-level judgment over solution procedures or eventual solution content. Mathematical correctness is evaluated by agent review/falsification and deterministic checks, not by the Producer.
 
 ### 2.2 Disallowed human actions (mathematical content)
 
@@ -92,6 +94,17 @@ Evidence for boundary enforcement is maintained in:
 ---
 
 ## 3. System architecture (roles and rationale)
+
+### 3.0 Full control stack
+
+The run uses a layered control stack:
+
+- Layer 3 (workflow/policy): gate rules, stop-loss caps, escalation triggers, acceptance criteria, and publication cadence.
+- Layer 2 (agent orchestration): role-scoped implementer/reviewer/scout loops, handoffs, and patch cycles.
+- Layer 1 (LLM reasoning/generation): mathematical drafts, decompositions, scripts, critiques, and revisions.
+- Layer 0 (model internals): opaque in-model representations and inference behavior.
+
+In this sprint, Layer 3 is human-operated as a runtime function. The stack is automation-amenable because control logic is explicit and rule-based.
 
 ### 3.1 Roles
 
@@ -361,7 +374,7 @@ Autonomy is operationalized as:
 - no human mathematical ideas/content
 - no human isolation of core mathematical bottlenecks
 - model-authored solution and verification artifacts
-- human role restricted to operational continuity and integrity enforcement
+- human role restricted to runtime operation, operational continuity, and integrity enforcement under pre-decided rules
 
 This is a laboratory protocol, not a prompt demo. It is intended to measure what frontier models can do when human input is reduced to administrative functions that are, in principle, automatable.
 
@@ -400,5 +413,55 @@ Extended discussion:
 
 - `docs/methods/technical_limitations.md`
 - `docs/methods/future_work.md`
+
+---
+
+## 16. Agent-to-LLM Prompt Equivalency (Heuristic)
+
+For documentation and replication planning, this project uses a rough equivalency estimate between:
+
+- one orchestrated agent prompt (role-aware, gate-scoped, with artifact constraints), and
+- an equivalent amount of single-model (llm-only) prompting needed to reach comparable control and validation.
+
+### 16.1 Working conversion used in this repo
+
+Heuristic:
+
+- `1` agent-orchestration prompt ~= `10` llm-only prompts
+- split as:
+  - `8` short prompts (state updates, local repairs, checklists, narrow retries)
+  - `2` long prompts (route reset, synthesis, closure packaging)
+
+This is intentionally approximate. It is a planning aid, not a measured law.
+
+### 16.2 Why this conversion is reasonable here
+
+In this workflow, a single agent prompt usually bundles:
+
+- role assignment (Implementer/Reviewer/Scout behavior),
+- gate requirements,
+- stop-loss rules,
+- artifact write targets,
+- and acceptance tests.
+
+Without role orchestration, those controls are often reconstructed manually across many smaller prompts.
+
+### 16.3 Suggested use in reporting
+
+When reporting effort in documentation:
+
+- keep API token counts as primary quantitative accounting,
+- use the `1:10` prompt-equivalency only as secondary interpretation of orchestration overhead,
+- and always label it as heuristic (`8 short + 2 long`) rather than empirical measurement.
+
+### 16.4 Limits of the heuristic
+
+Do not use this conversion:
+
+- as a benchmark claim across unrelated projects,
+- as a model-quality metric,
+- or as evidence of theorem correctness.
+
+It is only an operational estimate for this repository's gate-driven process.
 
 ---

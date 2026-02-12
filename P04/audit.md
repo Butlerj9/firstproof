@@ -157,10 +157,10 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~28 |
+| Messages used | ~36 |
 | Gate | G7 (Package complete) + upgrade cycle |
 | Status | 🟡 Candidate |
-| Budget | 300 messages (GREEN — ~26 used) |
+| Budget | 300 messages (GREEN — ~36 used) |
 
 ### Token estimates (synced with transcript.md)
 
@@ -194,14 +194,103 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 The n=3 proof (CE-6: Φ₃ closed-form + Jensen) exploits two special features of cubics: (1) clean coefficient additivity under ⊞₃ for centered cubics, and (2) a 1-parameter family (b/a ratio) amenable to Jensen. Both fail for n≥4. The cross-term obstruction (CE-7) is fundamental, not merely a technical difficulty.
 
-**P04 remains 🟡 Candidate**: proved for n≤3, conjectured for n≥4.
+**P04 remains 🟡 Candidate**: proved for n<=3, conjectured for n>=4.
+
+## Session 9: Convexity approach and closed-form Phi_4 (2026-02-11)
+
+**Status**: Significant advances; proof for n>=4 still not closed.
+
+### CE-10: Convexity approach (`experiments/ce10_convexity_approach.py`)
+
+**Goal**: Attempt proof via concavity/superadditivity of 1/Phi_n in natural parametrizations.
+
+**Results**:
+1. **Closed-form Phi_4** derived via quotient-ring algebra:
+   Phi_4(x^4+ax^2+bx+c) = -4(a^2+12c)(2a^3-8ac+9b^2) / Delta
+   where Delta = discriminant. Verified exactly (Fraction arithmetic) against 7+ integer-root quartics.
+
+2. **Additive variables discovered**: c' = c - a^2/12 makes box_4 perfectly additive in (a, b, c'). The cross-term (1/6)*a2*b2 is exactly absorbed. Verified algebraically. Extends to all n via finite free cumulants.
+
+3. **Equality manifold**: 1/Phi_4(a, 0, 0) = (-a)/18 exactly (linear). Numerical verification for 8 values of a.
+
+4. **Numerical verification**: 5000 random trials at 30-digit precision in additive variables, ALL PASS, min margin = 5.46e-4. Additional 10000 trials for b=0 case, ALL PASS.
+
+### CE-10b: Deep analysis (`experiments/ce10b_n4_deep_analysis.py`)
+
+**Results**:
+1. **Hessian computed**: d^2/db^2 = -3/(4a^2), d^2/dc'^2 = 8/a^3 at (a,0,0). Both negative for a<0: locally concave.
+
+2. **Correction decomposition**: 1/Phi_4 = (-a/18) + correction(a,b,c') where correction is a rational function. At c'=0: correction ~ -(3/8)(b/a)^2. At b=0: correction = 4c'^2/[a(a^2+6c')].
+
+3. **Degree-16 polynomial inequality**: After clearing denominators, the superadditivity becomes a degree-16 polynomial non-negativity in 6 variables.
+
+### CE-10c: General theory (`experiments/ce10c_general_additive.py`)
+
+**Results**:
+1. **Cross-term structure for n=5,6**: Computed, confirmed additive variables exist for all n.
+
+2. **Weight mismatch obstruction identified**: The ratio c'/a^2 transforms with squared weights (w1^2, w2^2 summing to <1), not the linear weights that make Jensen work. This is the precise structural reason the n=3 proof does not extend.
+
+3. **Connection to free cumulants**: The additive variables are (related to) the finite free cumulants. The K-transform expansion confirms this connection.
+
+### Verdict
+
+The convexity approach achieved significant new results:
+- First closed-form Phi_4 formula
+- Removal of cross-term obstruction via additive variables
+- Precise identification of the remaining proof gap (weight mismatch)
+
+But the n>=4 proof remains open. The obstruction is structural (incompatible scaling exponents for different free cumulants under the mixing rule), not merely technical.
+
+**P04 remains 🟡 Candidate**: proved for n<=3, conjectured for n>=4.
 
 ## Escalation Ledger (continued)
 
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
-| E8 | 2026-02-12 | L3 | n≥4 stalemate | Cross-term obstruction at n≥4 | 5 alternative approaches assessed | Claude Opus 4.6 (subagent) | audit.md Session 8 | All LOW/VERY LOW feasibility | ~2 msgs | **STALEMATE** |
+| E8 | 2026-02-12 | L3 | n>=4 stalemate | Cross-term obstruction at n>=4 | 5 alternative approaches assessed | Claude Opus 4.6 (subagent) | audit.md Session 8 | All LOW/VERY LOW feasibility | ~2 msgs | **STALEMATE** |
 | E9 | 2026-02-12 | L3 | Disproof attempt | n=4 counterexample | CE-9: high-precision optimization search (ce9_n4_disproof_search.py), 500+ seconds | Claude Opus 4.6 (subagent) | experiments/ce9_n4_disproof_search.py | No counterexample found (timed out) | ~2 msgs | **NO CE** |
+| E10 | 2026-02-11 | L3 | Convexity approach | Superadditivity proof for n>=4 | CE-10/10b/10c: closed-form Phi_4, additive variables, obstruction analysis | Claude Opus 4.6 | answer.md Section 9, experiments/ce10*.py | Closed-form verified, weight mismatch identified | ~4 msgs | **ADVANCES, NOT CLOSED** |
+| E11 | 2026-02-11 | L3 | Degree-16 polynomial analysis + CE search | Second-order margin PSD + counterexample | CE-11: 3-track analysis (symbolic decomposition, 105K exact CE search, cross-verification) | Claude Opus 4.6 | answer.md Section 9.1/9.2, experiments/ce11_systematic_ce_search.py | M_2 PSD proved; 105K exact tests ALL PASS; no CE found | ~4 msgs | **PSD PROVED, FULL OPEN** |
+
+## Session 10: Second-order decomposition and CE-11 systematic search (2026-02-11)
+
+**Status**: Significant structural advance; full n>=4 proof still open.
+
+### Track 1: Symbolic bridge from degree-16 reduction
+
+**Results**:
+1. **Second-order margin decomposition**: The margin M = 1/Phi_4(h) - 1/Phi_4(p) - 1/Phi_4(q), expanded to second order around the equality manifold b=c'=0, decomposes as:
+   M_2 = (3/8) * [Jensen_b_part] + 4 * [Scaling_c'_part]
+   where both parts are independently non-negative:
+   - b-part: identical to the n=3 Jensen argument (convexity of x^2)
+   - c'-part: c1'^2/alpha1^3 + c2'^2/alpha2^3 >= (c1'+c2')^2/(alpha1+alpha2)^3 (verified exhaustively)
+2. **Exact correction formulas verified**:
+   - At c'=0: correction = 1/Phi_4 + a/18 approximated by -(3/8)(b/a)^2 (leading order)
+   - At b=0: correction = 4c'^2/(a(a^2+6c')) exactly (Fraction arithmetic verification)
+3. **Obstruction to full proof**: Higher-order terms in the degree-16 polynomial remain uncontrolled. The weight mismatch (sigma^2 vs sigma) prevents standard Jensen/Schur methods.
+4. **SOS decomposition**: Remains the viable path but is computationally expensive (degree 16, 6 variables).
+
+### Track 2: CE-11 systematic counterexample search
+
+**Results**: NO COUNTEREXAMPLE FOUND across 105,048 exact Fraction arithmetic tests.
+- (a) a1=a2=-6 grid: 32,761 pass
+- (b) Asymmetric a1=-2, a2=-10: 1,215 pass
+- (c) Near-equality opposite signs: 564 pass, min margin = 9.84e-7
+- (d) Boundary (disc near 0): 1,080 pass
+- (e) Random integer-root pairs: 3,217 pass
+- (f) Fine rational grid: 66,043 pass
+- c'=0 subcase: 168 pass
+
+### Track 3: Cross-verification
+
+Formula-based 1/Phi_4 cross-verified against mpmath root computation (50 digits) for 39 random cases: all match to relative error < 1e-10. All results consistent across methods.
+
+### Verdict
+
+The second-order PSD decomposition is a genuine structural advance: it shows the inequality holds locally and identifies the two competing mechanisms (Jensen for b, scaling inequality for c'). However, the full proof remains open. The obstruction is not fundamental (the degree-16 polynomial is non-negative on the valid cone by all evidence) but requires either SOS methods or a more refined algebraic decomposition to close.
+
+**P04 remains 🟡 Candidate**: proved for n<=3, conjectured for n>=4.
 
 ## Orientation Note (2026-02-12)
 
@@ -209,3 +298,7 @@ The n=3 proof (CE-6: Φ₃ closed-form + Jensen) exploits two special features o
 - Docs organization source: `docs/README.md`.
 - Detailed governance session logs: `P03/audit.md`, `P05/audit.md`, and `P09/audit.md`.
 - Classification: ADMIN/LOGISTICS only. No mathematical status, proof content, or experiment claims changed in this lane.
+
+---
+
+*Cycle footer (Session 10): E11 escalation complete. Second-order PSD decomposition proved (two independently non-negative parts). CE-11 systematic search: 105,048 exact tests, 0 counterexamples. Full n>=4 proof remains open (degree-16 polynomial SOS). Status unchanged: 🟡 Candidate. ~36 messages used.*

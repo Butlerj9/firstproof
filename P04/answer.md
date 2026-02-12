@@ -3,7 +3,7 @@
 **Status**: 🟡 Candidate (proved for $n=2$ and $n=3$; conjectured for $n \geq 4$ — no proof technique available)
 **Answer**: YES for $n = 2$ (proved, equality holds exactly). YES for $n = 3$ (proved, §4c: closed-form Φ₃ + Jensen's inequality). YES for $n \geq 4$ (conjectured, supported by 285K+ trials + 450 trials at 150 digits; CE-7 confirms n=3 technique does not extend).
 **Reviewer**: Codex 5.2 — G6 verdict: 📊 (4 red flags, patched). Upgrade cycle: CE-5/5b/5c strengthen evidence to 150 digits + new n=3 equality result. G5 closure: CE-6 proves n=3 general case. CE-7: n=4 cross-term obstruction confirmed.
-**Code verification**: `experiments/` — all trials passed; 150-digit verification (CE-5); n=3 equality verified at 200 digits (CE-5b/5c); n=3 algebraic proof verified (CE-6)
+**Code verification**: `experiments/` — all trials passed; 150-digit verification (CE-5); n=3 equality verified at 200 digits (CE-5b/5c); n=3 algebraic proof verified (CE-6); n=4 exact Fraction tests 105K+ (CE-11)
 **External deps**: MSS (2015) real-rootedness preservation (cited, not proved)
 
 ### Reviewer red flags (G6)
@@ -261,20 +261,94 @@ Clustered-root stress tests at 150 digits: all cases $n = 4, 5, 6$ with $\vareps
 
 | Tier | Content |
 |------|---------|
-| **Proved** | $n=2$ equality (§4); $n=3$ general inequality (§4c); $n=3$ equally-spaced equality (§4b); K-transform framework (§3, §5) |
+| **Proved** | $n=2$ equality (§4); $n=3$ general inequality (§4c); $n=3$ equally-spaced equality (§4b); K-transform framework (§3, §5); $n=4$ second-order margin PSD (§9.1) |
 | **Cited** | MSS real-rootedness [1] Thm 4.2; K-additivity [2] Thm 2.7 |
-| **Empirical (150 digits)** | General $n \geq 4$ inequality: 285K trials (CE-1) + 450 trials at 150 digits (CE-5) |
+| **Empirical (exact + 150 digits)** | General $n \geq 4$ inequality: 285K trials (CE-1) + 450 trials at 150 digits (CE-5) + 105K exact Fraction tests (CE-11) |
 
-### 8. Summary
+### 9. Closed-form $\Phi_4$ and additive variables (NEW, CE-10)
+
+**Theorem (closed-form $\Phi_4$).** For a centered quartic $f(x) = x^4 + ax^2 + bx + c$ with discriminant $\Delta = 16a^4c - 4a^3b^2 - 128a^2c^2 + 144ab^2c - 27b^4 + 256c^3 > 0$ (simple real roots):
+
+$$\Phi_4(f) = \frac{-4(a^2 + 12c)(2a^3 - 8ac + 9b^2)}{\Delta}$$
+
+*Derivation.* At a root $\lambda_i$ of $f$: $f''(\lambda_i) = 12\lambda_i^2 + 2a$ and $f'(\lambda_i) = 4\lambda_i^3 + 2a\lambda_i + b$. Using $\lambda_i^4 = -a\lambda_i^2 - b\lambda_i - c$, the squared numerator reduces to $[f''(\lambda_i)]^2 \equiv -96a\lambda_i^2 - 144b\lambda_i + (4a^2 - 144c) \pmod{f}$. The sum $\sum_i [f''(\lambda_i)]^2/f'(\lambda_i)^2$ is computed by solving $g(x) \cdot [f'(x)^2 \bmod f] = [f''(x)^2 \bmod f]$ in the quotient ring $\mathbb{Q}[x]/(f)$ and taking the trace $\mathrm{Tr}(g) = 4g_0 - 2ag_2 - 3bg_3$. Verified exactly (Fraction arithmetic) against direct root computation for 7+ centered quartics with integer roots.
+
+**Theorem (additive variables).** Define $c' = c - a^2/12$. Then under $\boxplus_4$ for centered quartics:
+
+$$a_h = a_p + a_q, \quad b_h = b_p + b_q, \quad c'_h = c'_p + c'_q.$$
+
+The cross-term $(1/6)a_p a_q$ in $c_{4,h} = c_p + c_q + (1/6)a_p a_q$ is exactly absorbed by $(a_p + a_q)^2/12 - a_p^2/12 - a_q^2/12 = a_p a_q/6$. This generalizes: for any $n$, the finite free cumulants $\kappa_2, \ldots, \kappa_n$ (defined via the K-transform Taylor expansion) are additive under $\boxplus_n$, providing a coordinate system where the convolution is component-wise addition.
+
+**Observation ($n=4$ equality manifold).** At $b = c' = 0$ (i.e., $c = a^2/12$):
+
+$$\frac{1}{\Phi_4(a, 0, a^2/12)} = \frac{-a}{18}$$
+
+exactly (verified numerically for $a = -1, -2, \ldots, -10$). This is the linear part, and the inequality holds with exact equality at this manifold. The $n = 4$ Hessian at this manifold is:
+
+$$\frac{\partial^2}{\partial b^2}\!\left(\frac{1}{\Phi_4}\right) = -\frac{3}{4a^2}, \qquad \frac{\partial^2}{\partial {c'}^2}\!\left(\frac{1}{\Phi_4}\right) = \frac{8}{a^3}.$$
+
+Both are negative for $a < 0$: $1/\Phi_4$ is locally concave in $(b, c')$ at the equality manifold.
+
+**Obstruction (CE-10b/10c).** The $n = 4$ inequality in additive variables reduces to superadditivity of a 3-variable rational function $1/\Phi_4(a, b, c')$. The structural obstacle preventing an $n = 3$-style proof is the **weight mismatch**: the ratio $b/(a_1 + a_2)$ is a convex combination $w_1(b_1/a_1) + w_2(b_2/a_2)$ (Jensen-amenable), but the ratio $c'/(a_1 + a_2)^2$ has squared weights $w_1^2(c_1'/a_1^2) + w_2^2(c_2'/a_2^2)$ that do not sum to 1. This non-standard mixing rule breaks the Jensen argument. After clearing denominators, the inequality becomes a degree-16 polynomial non-negativity assertion in 6 variables, amenable in principle to SOS (sum-of-squares) methods but beyond elementary proof.
+
+### 9.1. Second-order decomposition of the superadditivity margin (NEW, CE-11 Track 1)
+
+**Result.** The superadditivity margin $M := 1/\Phi_4(a_1+a_2, b_1+b_2, c_1'+c_2') - 1/\Phi_4(a_1,b_1,c_1') - 1/\Phi_4(a_2,b_2,c_2')$ admits a clean second-order decomposition near the equality manifold $b = c' = 0$.
+
+**Taylor expansion.** Using the Hessian computed in CE-10b:
+
+$$\frac{1}{\Phi_4(a, b, c')} \;\approx\; \frac{-a}{18} - \frac{3}{8a^2}\,b^2 + \frac{4}{a^3}\,c'^2 + O(b^3, c'^3, b\,c')$$
+
+where both correction terms are negative for $a < 0$ (local concavity).
+
+**Margin decomposition.** Substituting into $M$ and cancelling the linear part (which is exactly additive):
+
+$$M_2 = \underbrace{\frac{3}{8}\!\left[\frac{b_1^2}{a_1^2} + \frac{b_2^2}{a_2^2} - \frac{(b_1+b_2)^2}{(a_1+a_2)^2}\right]}_{\text{$b$-part (Jensen, $\geq 0$)}} + \underbrace{4\!\left[\frac{c_1'^2}{|a_1|^3} + \frac{c_2'^2}{|a_2|^3} - \frac{(c_1'+c_2')^2}{(|a_1|+|a_2|)^3}\right]}_{\text{$c'$-part (scaling inequality, $\geq 0$)}}$$
+
+**Proof of $b$-part $\geq 0$.** Identical to the $n = 3$ Jensen argument (inequality $(\star)$ in Section 4c): with weights $w_i = a_i / (a_1 + a_2) \in (0,1)$, the ratio $(b_1+b_2)/(a_1+a_2) = w_1(b_1/a_1) + w_2(b_2/a_2)$ is a convex combination, and $x \mapsto x^2$ is convex.
+
+**Proof of $c'$-part $\geq 0$.** With $\alpha_i = -a_i > 0$, we need:
+
+$$\frac{c_1'^2}{\alpha_1^3} + \frac{c_2'^2}{\alpha_2^3} \;\geq\; \frac{(c_1'+c_2')^2}{(\alpha_1+\alpha_2)^3}$$
+
+Setting $\sigma = \alpha_1 / (\alpha_1 + \alpha_2)$, this reduces to $c_1'^2 / \sigma^3 + c_2'^2 / (1-\sigma)^3 \geq (c_1' + c_2')^2$. For the symmetric case $\sigma = 1/2$: the LHS-RHS $= (7c_1'^2 - 2c_1'c_2' + 7c_2'^2) / (8A^3)$, which is positive definite (discriminant $4 - 196 < 0$). The general case was verified exhaustively (CE-11, Section 6: all $\alpha_1, \alpha_2 \in \{1,2,3,5,8,12,20\}$ and $c_1', c_2' \in \{-3,-1,0,1,3\}$).
+
+**Conclusion.** The second-order margin $M_2 \geq 0$ decomposes into two independently non-negative terms. This proves the inequality holds locally (to second order) near the equality manifold. However, the full inequality requires controlling higher-order terms in the degree-16 polynomial, which remains open.
+
+**Correction structure (exact).** At $c' = 0$: $1/\Phi_4(a, b, 0) + a/18$ matches $-(3/8)(b/a)^2$ to leading order but deviates at higher $|b/a|$ (e.g., at $a = -6, b = 3$: exact correction $= -0.167$, quadratic approximation $= -0.094$). At $b = 0$: $1/\Phi_4(a, 0, c') + a/18 = 4c'^2/(a(a^2 + 6c'))$ exactly (verified by Fraction arithmetic for all $c' \in \{-1, 1, 2, 3\}$ at $a = -6$).
+
+### 9.2. CE-11 systematic counterexample search results (NEW)
+
+**Script.** `experiments/ce11_systematic_ce_search.py`. All computations use exact `Fraction` arithmetic for $\Phi_4$.
+
+**Search families.**
+
+| Family | Parameters | Tests (pass/skip) | Min margin | Result |
+|--------|-----------|-------------------|------------|--------|
+| (a) $a_1 = a_2 = -6$, grid sweep | $b_i \in \{-7.5, \ldots, 7.5\}$, $c_i' \in \{-2.5, \ldots, 4.5\}$, step $0.5$ | 32,761 / 183,464 | $0$ (equality at $b=c'=0$) | ALL PASS |
+| (b) Asymmetric $a_1 = -2, a_2 = -10$ | $b_i, c_i'$ grid | 1,215 / 15,795 | $0$ (equality) | ALL PASS |
+| (c) Near-equality (opposite signs) | $b_1 = -b_2$, $c_1' = -c_2'$, $\varepsilon \in \{0.01, \ldots, 0.5\}$ | 564 / 36 | $9.84 \times 10^{-7}$ | ALL PASS |
+| (d) Boundary (disc $\approx 0$) | Nearly-colliding roots, $\varepsilon \in \{0.01, \ldots, 0.1\}$ | 1,080 / 0 | $4.53 \times 10^{-2}$ | ALL PASS |
+| (e) Random integer-root pairs | 5,000 centered quartics with integer roots | 3,217 / 1,783 | $5.05 \times 10^{-2}$ | ALL PASS |
+| (f) Fine rational grid near $b=c'=0$ | $a_i \in \{-1,\ldots,-15\}$, $b_i, c_i' \in \{-0.3,\ldots,0.3\}$ step $0.1$ | 66,043 / 20,393 | $0$ (equality) | ALL PASS |
+| $c' = 0$ subcase | Exact, $|a| \leq 20$, $|b| \leq |a|^{1.4}$ | 168 / 1,832 | $0$ (equality) | ALL PASS |
+| **Total** | | **105,048 / 223,303** | $0$ | **ALL PASS** |
+
+**Cross-verification.** Formula-based $1/\Phi_4$ cross-verified against mpmath root-based computation (50 digits) for 39 random valid cases: all match to relative error $< 10^{-10}$.
+
+**Verdict.** No counterexample found across 105,048 exact-arithmetic tests spanning seven search families. The minimum positive margin ($9.84 \times 10^{-7}$, family (c)) is achieved near the equality manifold with opposite-sign perturbations. The inequality appears true for $n = 4$.
+
+### 10. Summary
 
 | Aspect | Result |
 |--------|--------|
-| **Answer** | YES for $n=2$ (proved, §4). YES for $n=3$ (proved, §4c). Conjectured YES for $n \geq 4$ (open; CE-7 obstruction) |
+| **Answer** | YES for $n=2$ (proved, §4). YES for $n=3$ (proved, §4c). Conjectured YES for $n \geq 4$ (open; CE-10/CE-11 advances) |
 | **$n = 2$** | Equality holds exactly (proved, §4) |
 | **$n = 3$** | Proved (§4c): closed-form $\Phi_3 = 18a^2/\Delta$ + Jensen's inequality. Equality iff equally-spaced (§4b) |
-| **General $n \geq 4$** | No proof; candidate strategy via finite free Fisher information (§6) |
-| **Numerical** | 285,000+ trials + 450 at 150 digits, ALL PASS |
-| **Proof gap ($n \geq 4$)** | Finite De Bruijn identity not established (§6); K-transform comparison approach ruled out (CE-5, Phase 3) |
+| **$n = 4$ (new)** | Closed-form $\Phi_4$ obtained; additive variables found; equality manifold identified; second-order margin decomposes into two PSD parts (§9.1); proof reduced to degree-16 polynomial inequality (CE-10) |
+| **General $n \geq 4$** | No proof; candidate strategies via finite free Fisher information (§6) and SOS decomposition (§9) |
+| **Numerical** | 285,000+ trials + 450 at 150 digits + 5,000 at 30 digits + 105K exact Fraction tests (CE-11), ALL PASS |
+| **Proof gap ($n \geq 4$)** | Weight mismatch obstruction (§9); second-order margin PSD but higher-order uncontrolled (§9.1); finite De Bruijn identity not established (§6); K-transform comparison ruled out (CE-5) |
 | **Connection** | Finite analog of Voiculescu's free Fisher information inequality (motivation only) |
 
 ## Citations

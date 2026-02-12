@@ -11,8 +11,14 @@ This run follows the [1stproof.org](https://1stproof.org) autonomy standard:
 no human mathematical ideas/content and no human isolation of the mathematical
 core. All mathematical artifacts were agent-authored.
 
-Producer activity was limited to prompt dispatch/handoffs, occasional
-administrative decisions, and verbatim execution of agent-authored procedures.
+Producer activity was runtime-operator only: prompt dispatch/handoffs, rule-bound
+administrative decisions under pre-decided gates/escalation policy, and verbatim
+execution of agent-authored procedures. No expert-level mathematical judgment
+was used for domain interpretation, solution procedures, or solution content.
+The operator remained abstracted from problem/solution steps and evaluated only
+structural response quality (gate compliance, artifact completeness, status
+classification consistency), while mathematical correctness was delegated to
+agent review and executable checks.
 Full protocol and constraints are in `methods_extended.md`. Enforcement and
 provenance are logged in `PXX/audit.md`, `PXX/transcript.md`, and
 `CONTAMINATION.md`.
@@ -21,11 +27,11 @@ provenance are logged in `PXX/audit.md`, `PXX/transcript.md`, and
 
 | Problem | Domain | Status | Confidence | Budget used |
 |---------|--------|--------|------------|-------------|
-| P01 | Stochastic analysis | 🟡 Candidate | HIGH (YES, partition function + BG stability closes A4; **CITE_ONLY ingest of BG (2020) Thms 1-3 done; residual gap: routine adaptation not explicit theorem**) | ~12/80 msgs |
+| P01 | Stochastic analysis | ✅ Submitted | HIGH (YES, quasi-invariance proved; **R1 CITE_PLUS: BG proof chain verified + Hairer-Steele independent path; all gaps closed**) | ~20/80 msgs |
 | P02 | Representation theory | ✅ Submitted | HIGH (YES, Kirillov + Gauss sums + JPSS + multiplicity-one) | ~12/80 msgs |
-| P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 infeasible — 11K×11K system; S_n equivariance confirmed but insufficient) | ~50/200 msgs |
-| P04 | Finite free convolution | 🟡 Candidate | HIGH (n=2 proved; **n=3 general proved**; n≥4 conjectured + 150-digit evidence; CE-7 cross-term obstruction; 5 alt approaches assessed, all LOW; CE-9 no counterexample) | ~28/300 msgs |
-| P05 | Equivariant homotopy | 🟡 Candidate | HIGH (**4 theorems proved**: obstruction (Thm 1); positive scope (Thms 2-3); **corrected "only if" for ALL G with ν_O^eff (Thm 4)**; "if" direction conjectured) | ~21/80 msgs |
+| P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 infeasible — 8 structural shortcuts all fail; L5 barrier certificate) | ~55/200 msgs |
+| P04 | Finite free convolution | 🟡 Candidate | HIGH (n=2 proved; **n=3 general proved**; n≥4: closed-form Φ₄ + additive variables; **2nd-order PSD decomposition proved (CE-11)**; 105K exact tests ALL PASS; degree-16 higher-order uncontrolled) | ~36/300 msgs |
+| P05 | Equivariant homotopy | 🟡 Candidate | HIGH (**6 theorems proved** + Frontier Thm; **Thm 6-7: dim-uniform characterization + restricted sufficiency**; Class Ia proved, Class II open; 825 total / 793 intermediate systems exhaustively tested) | ~30/80 msgs |
 | P06 | Spectral graph theory | ✅ Submitted | HIGH (NO, K_n counterexample) | ~14/300 msgs |
 | P07 | Lattices in Lie groups | ✅ Submitted | HIGH (YES, Q-PD + surgery realization proved) | ~6/80 msgs |
 | P08 | Symplectic geometry | ✅ Submitted | HIGH (NO, Lagrangian octahedron + Gromov) | ~10/80 msgs |

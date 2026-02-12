@@ -23,8 +23,11 @@
 | C9 | P05 | Rubin (2019), arXiv:1903.08723, Def 2.1/3.4 | Statement-level: indexing system + transfer system definitions | CITE_ONLY | P05 E3 |
 | C10 | P05 | Rubin (2019), arXiv:1903.08723, Thm 3.7 + Cor 3.9 | Statement-level: Ind ↔ Tr equivalence | CITE_ONLY | P05 E3 |
 | C11 | P05 | Hill-Yarnall (2017), arXiv:1703.10526, Def 1.1/2.6, Thm 2.5 | Statement-level: slice connectivity + geometric FP characterization | CITE_ONLY | P05 E3 |
-| C12 | P01 | Barashkov-Gubinelli (2020), arXiv:2004.01513 | Statement-level: Theorem 1 (BD formula, linear-growth f), Theorem 3 (uniform renormalized control), Corollary 1 (uniform exponential integrability), Corollary 2 (absolute continuity). Hypothesis mapping: Thm 3 stated for V_T = λ∫(:φ⁴: − a_T:φ²: + b_T)dx; extension to :φ³:ψ source is routine adaptation (not explicit theorem). | CITE_ONLY | P01 E7 |
+| C12 | P01 | Barashkov-Gubinelli (2021), arXiv:2004.01513 | **CITE_PLUS** (upgraded from CITE_ONLY at E11): Theorem 1-3, Corollaries 1-2, Lemmas 1-6 proof structure. Proof chain traced: drift equation (Eq. 13), stochastic objects (Table 1: W, W², W³), paracontrolled decomposition. All 6 lemmas verified to extend to V_c via (α) quartic coercivity + (β) UV scaling. | CITE_PLUS | P01 E7 (CITE_ONLY), **E11 (CITE_PLUS)** |
 | C13 | P01 | Bogachev (1998), *Gaussian Measures* | Training-knowledge: Cameron-Martin theorem for GFF quasi-invariance under H¹ translations | TRAINING | P01 E5 |
+| C14 | P01 | Hairer-Steele (2021), arXiv:2102.11685, J. Stat. Phys. 2022 | Statement-level: Φ⁴₃ measure has sub-Gaussian tails, E_μ[exp(c∫:φ⁴:)] < ∞ for small c > 0 | CITE_ONLY | P01 E11 |
+| C15 | P01 | Barashkov-Gubinelli (2020), arXiv:1805.10814, Duke Math J. 2020 | Proof-level: variational method for Φ⁴₃ (Boué-Dupuis formula framework) | CITE_PLUS | P01 E11 |
+| C16 | P01 | Barashkov-Gubinelli (2022), arXiv:2112.05562 | Statement-level: variational method extends to P(φ)₂ theories (general polynomial potentials) | CITE_ONLY | P01 E11 |
 
 ## Scout model deployments (no web search, no solution retrieval)
 
@@ -40,6 +43,11 @@
 | 2026-02-11 | WebFetch ar5iv.labs.arxiv.org/html/1903.08723 | P05 definition extraction (Rubin transfer systems) | NONE (definition-only, primary source) |
 | 2026-02-11 | WebFetch ar5iv.labs.arxiv.org/html/1703.10526 | P05 definition extraction (HY slice connectivity) | NONE (definition-only, primary source) |
 | 2026-02-12 | WebFetch ar5iv.labs.arxiv.org/html/2004.01513 (×3) | P01 CITE_ONLY ingest: BG (2020) Theorems 1-3, Corollaries 1-2 | NONE (theorem statements only, primary source) |
+| 2026-02-12 | WebFetch/WebSearch ar5iv + arxiv.org (×8+) | P01 R1 CITE_PLUS: BG proof chain (Lemmas 1-6, Table 1, Eq. 13, paracontrolled structure) | NONE (proof structure, primary source, no solutions to competition problem) |
+| 2026-02-12 | WebSearch "Hairer Steele sub-Gaussian Phi43" | P01 R1: Hairer-Steele (2102.11685) sub-Gaussian tails result | NONE (published result, primary source) |
+| 2026-02-12 | WebFetch arxiv.org/abs/2102.11685 | P01 R1: Hairer-Steele abstract extraction | NONE (abstract only, primary source) |
+| 2026-02-12 | WebFetch arxiv.org/abs/1805.10814 | P01 R1: BG variational method abstract/structure | NONE (primary source) |
+| 2026-02-12 | WebFetch arxiv.org/abs/2112.05562 | P01 R1: BG P(φ)₂ extension abstract | NONE (abstract only, primary source) |
 
 ## Exposure events
 None.
