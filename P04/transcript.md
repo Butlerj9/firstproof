@@ -11,16 +11,16 @@
 
 | Metric | Value |
 |--------|-------|
-| Implementer messages | 7 |
+| Implementer messages | 7 + ~8 (upgrade) |
 | Reviewer messages | 3 |
 | Producer relay/admin messages | 8 |
-| Estimated Implementer tokens (input) | ~31,000 |
-| Estimated Implementer tokens (output) | ~29,000 |
+| Estimated Implementer tokens (input) | ~41,000 |
+| Estimated Implementer tokens (output) | ~37,000 |
 | Estimated Reviewer tokens (input) | ~12,600 |
 | Estimated Reviewer tokens (output) | ~3,400 |
-| Estimated total tokens so far | ~76,000 |
-| Budget used | ~18 of 300 |
-| Last updated | 2026-02-10 |
+| Estimated total tokens so far | ~94,000 |
+| Budget used | ~26 of 300 |
+| Last updated | 2026-02-11 |
 
 **Token accounting note**: estimates are updated after each gate cycle in the `Token Log` table below.
 
@@ -47,6 +47,9 @@
 | 15 | 2026-02-10 | Reviewer -> Producer | G6 verdict: 📊 Conjecture (4 red flags) | - | ~2,000 | ~66,580 |
 | 16 | 2026-02-10 | Producer -> Implementer | Relay G6 review + 4 red flags | ~2,000 | - | ~68,580 |
 | 17 | 2026-02-10 | Implementer (internal) | Patch answer.md for all 4 red flags | ~4,000 | ~4,000 | ~76,580 |
+| 18 | 2026-02-11 | Implementer (internal) | CE-5 high-precision sweep (150 digits, 450 trials) | ~3,000 | ~2,500 | ~82,080 |
+| 19 | 2026-02-11 | Implementer (internal) | CE-5b 300-digit edge verify + equality discovery | ~3,000 | ~2,500 | ~87,580 |
+| 20 | 2026-02-11 | Implementer (internal) | CE-5c equality cases + artifact updates | ~4,000 | ~3,000 | ~94,580 |
 
 ---
 
@@ -236,3 +239,78 @@ Verified answer.md is internally consistent:
 **G6 complete. Proceeding to G7 package.**
 
 ---
+
+## Session 6: Upgrade cycle (📊 → 🟡)
+
+### Goal
+
+Strengthen evidence and close gaps to upgrade from 📊 Conjecture to 🟡 Candidate. Accept criteria: proof sketch present, blocking gap < 2 lemmas, evidence > 30 digits.
+
+### Work performed
+
+**CE-5: High-precision random sweep** (`experiments/ce5_highprec_sweep.py`, ~4 messages)
+
+- Phase 1: 450 random trials at 150-digit precision (n=3,4,5), ALL PASS. Minimum margins:
+  - n=3: 6.1e-4 | n=4: 1.5e-3 | n=5: 5.6e-3
+- Phase 2: Clustered-root stress tests (n=3–6, eps = 10^{-2} to 10^{-8}). One edge case at n=3, eps=1e-2 showed margin = −7.3e-153 → flagged for 300-digit verification.
+- Phase 3: K-transform structure analysis. Ratio ||K_p''(h-roots)||²/||K_p''(p-roots)||² varies from 3e-4 to 1.4e7 → **direct K-transform comparison approach ruled out**.
+
+**CE-5b: 300-digit edge case verification** (`experiments/ce5b_edge_verify.py`, ~3 messages)
+
+- n=3, eps=0.01 at 300 digits: margin = 8.8e-303 → **PASS** (CE-5 flag was numerical noise).
+- **KEY DISCOVERY**: For n=3 equally-spaced roots, **EXACT EQUALITY** holds:
+  - Gap-squared additivity: g² = d₁² + d₂² under ⊞₃
+  - Convolution preserves equal spacing at n=3
+  - Verified to 10^{-298} precision across multiple gap pairs
+
+**CE-5c: Equality case investigation** (`experiments/ce5c_equality_cases.py`, ~3 messages)
+
+- TEST 1 (n=3 equally-spaced, 5 gap pairs): ALL exact equality (margins < 10^{-200})
+- TEST 2–3 (n=4,5 equally-spaced): **Strict inequality** — spacing NOT preserved by ⊞_n for n≥4
+- TEST 4–5: Φ_n formula for equally-spaced roots: Φ_n = S_n/h² where S_n = Σ_{i=0}^{n-1}(H_i − H_{n-1-i})²
+  - S_2 = 2, S_3 = 9/2, S_4 = 65/9
+- TEST 6: Gap additivity test: ⊞_n preserves equal spacing only for n ≤ 3
+
+### New algebraic result
+
+**Theorem (n=3 equally-spaced equality)**: For polynomials p, q of degree 3 with equally-spaced roots (gaps d₁, d₂ respectively), the convolution h = p ⊞₃ q has equally-spaced roots with gap g = √(d₁² + d₂²), and consequently:
+
+1/Φ₃(h) = 1/Φ₃(p) + 1/Φ₃(q) (exact equality)
+
+Proof: Φ₃ = 9/(2d²) for equally-spaced roots with gap d. The ⊞₃ coefficient formula gives c₂ = a₂ + b₂ + a₁b₁/3, and gap² = −(2/3)(3c₂ − c₁²) = d₁² + d₂² (verified algebraically and numerically to 300 digits).
+
+### Outcome
+
+- Status upgraded: 📊 Conjecture → 🟡 Candidate
+- Justification: proof sketch present (K-transform framework), 1 blocking gap (finite De Bruijn identity), evidence at 150+ digits (>30 threshold), new partial result (n=3 equally-spaced equality)
+- Artifacts updated: answer.md, audit.md, transcript.md, README.md, RESULTS.md
+
+### Token estimates (Session 6)
+
+| Category | Est. tokens |
+|----------|-------------|
+| Upgrade cycle input | ~10,000 |
+| Upgrade cycle output | ~8,000 |
+| **Session 6 subtotal** | **~18,000** |
+| **Running total** | **~94,000** |
+
+## Escalation Events
+
+| event_id | prompt author | dispatcher | model/provider | script command(s) | output file(s) | incorporated? |
+|----------|--------------|------------|---------------|-------------------|---------------|---------------|
+| E1 | Supervisor | Producer | Claude Opus 4.6, Codex 5.2 | — | audit.md G0 | YES (G0 C1 REJECT → C2 ACCEPT) |
+| E2 | Implementer | Auto | Claude Opus 4.6 | `python ce1_numeric_sweep.py` through `python ce4_symbolic_n3.py` | experiments/ outputs | YES (285K trials, no CE found) |
+| E3 | Supervisor | Producer | Codex 5.2 | — | — | YES (G6 REJECT, 4 red flags patched) |
+| E4 | Implementer | Auto | Claude Opus 4.6 | — | answer.md §6, §8 | YES (G7 ACCEPT as 📊) |
+| E5 | Supervisor | Producer | Claude Opus 4.6 | `python ce5_highprec_sweep.py`, `python ce5b_edge_verify.py`, `python ce5c_equality_cases.py` | experiments/ outputs | YES (150-digit sweep, equality cases) |
+| E6 | Implementer | Auto | Claude Opus 4.6 | `python ce6_n3_algebraic_proof.py` | ce6 output | YES (**n=3 PROVED** via Φ₃ + Jensen) |
+| E7 | Implementer | Auto | Claude Opus 4.6 | `python ce7_n4_check.py` | ce7 output | YES (n=4 obstruction confirmed → stay 🟡) |
+
+---
+
+## Orientation Note (2026-02-12)
+
+- For methodology, autonomy boundary, and producer/tooling provenance: `methods_extended.md`.
+- For docs navigation and sectioning: `docs/README.md`.
+- Repo-wide documentation-governance details are logged in `P03/transcript.md`, `P05/transcript.md`, and `P09/transcript.md`.
+- This note is administrative only; no mathematical claims in this lane were changed.

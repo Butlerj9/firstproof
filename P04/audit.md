@@ -76,30 +76,76 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 ## G7 Package
 
-**Status**: ✅ Complete.
+**Status**: ✅ Updated (upgrade cycle complete).
 
-**Final status**: 📊 Conjecture (YES for n=2 proved; n≥3 conjectured).
+**Final status**: 🟡 Candidate (YES for n=2 proved; n=3 general proved; n≥4 conjectured — CE-7 confirms n=3 technique does not extend).
 
 **Deliverables**:
-- `answer.md` — Full write-up with proof (n=2), conjecture (n≥3), K-transform framework, 285K+ numerical trials
-- `audit.md` — Gate history G0–G7, metrics, human intervention log
+- `answer.md` — Full write-up with proof (n=2, n=3 equally-spaced), conjecture (general n≥3), K-transform framework, 285K+ trials + 450 at 150 digits
+- `audit.md` — Gate history G0–G7 + upgrade cycle, metrics, human intervention log
 - `transcript.md` — Complete interaction log with token accounting
 - `experiments/ce1_numeric_sweep.py` — Random sweep (285K trials, n=2–7)
 - `experiments/ce2_stress_and_simplicity.py` — Structured stress tests + simplicity preservation check
 - `experiments/ce2_mpmath_verify.py` — 80-digit verification of CE-2 candidate counterexamples
 - `experiments/ce4_symbolic_n3.py` — Symbolic analysis, K-transform connection
-- `README.md` — Updated with P04 status
+- `experiments/ce5_highprec_sweep.py` — 150-digit random sweep (450 trials, n=3–5) + K-transform structure analysis
+- `experiments/ce5b_edge_verify.py` — 300-digit edge case verification (n=3 clustered)
+- `experiments/ce5c_equality_cases.py` — Equality case investigation (n=3 equally-spaced, gap² additivity)
+- `experiments/ce6_n3_algebraic_proof.py` — **NEW**: Algebraic proof verification for n=3 general case (closed-form Φ₃ + Jensen)
+- `experiments/ce7_n4_check.py` — **NEW**: n=4 cross-term obstruction check (confirms n=3 technique does not extend)
 
 **What was achieved**:
 - Complete algebraic proof for n=2 (equality holds exactly)
+- Proof of equality for n=3 equally-spaced roots (gap² additivity, spacing preservation under ⊞_3)
+- **NEW**: Complete algebraic proof for n=3 general case (§4c): closed-form Φ₃ = 18α²/Δ + Jensen's inequality. Equality iff equally-spaced
 - K-transform framework connecting Φ_n to K_p'' and K-additivity
+- 150-digit high-precision verification (450 random trials, all pass)
 - Identification of the finite De Bruijn identity as the key missing step
 - Connection to Voiculescu's free Fisher information inequality (1998)
-- Exhaustive numerical verification (285K+ trials, all pass)
+- **Structural insight**: K-transform comparison ||K_p''||² at h-roots vs p-roots has no consistent inequality (ratio varies 10^{-4} to 10^7), ruling out simple comparison approach
+- **Structural insight**: ⊞_n preserves equal spacing only for n ≤ 3
 
 **What was not achieved**:
-- No proof for n≥3. The finite De Bruijn identity remains unverified.
-- No alternative proof route succeeded (direct algebraic, inductive, or otherwise).
+- No proof for n≥4. The finite De Bruijn identity remains unverified.
+- K-transform comparison approach ruled out by CE-5 Phase 3.
+
+## G5 Closure Attempt (Mode S, Session 2)
+
+**Status**: SUCCESS — n=3 general case PROVED.
+
+### Approach: Direct algebraic computation
+**CE-6** (`experiments/ce6_n3_algebraic_proof.py`): Closed-form derivation + Jensen's inequality.
+
+**Key steps**:
+1. For centered cubic f(x) = x³+αx+β with discriminant Δ = -4α³-27β²:
+   Φ₃(f) = 18α²/Δ (derived via partial fractions + residue calculus)
+2. Under ⊞₃ for centered cubics, coefficients add: h = x³+(a+c)x+(b+d)
+3. The inequality 1/Φ₃(h) ≥ 1/Φ₃(p)+1/Φ₃(q) reduces to:
+   ((b+d)/(a+c))² ≤ (b/a)² + (d/c)²
+4. This follows from Jensen's inequality for x² (convex) with weights w₁=a/(a+c), w₂=c/(a+c) ∈ (0,1)
+5. Equality iff b=d=0 (equally-spaced), recovering §4b
+
+**Verification**: CE-6 confirms:
+- Φ₃ formula exact for 5 rational-root families (Fraction arithmetic)
+- Key inequality: 100K random trials, min margin = 1.2e-6, ALL PASS
+- Full Φ₃ inequality: 20 exact integer-root trials, ALL PASS
+- Equality: exact zero margin when b=d=0 for 3 test pairs
+
+**Status upgrade**: 🟡→✅ (session 2), then ✅→🟡 (reconciliation). P04 proved for n=2 (equality) and n=3 (inequality with equality characterization). n≥4 remains conjectured. CE-7 confirms cross-term obstruction at n=4: cannot extend n=3 technique.
+
+## Escalation Ledger
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6, Codex 5.2 | audit.md G0 | G0 C1 REJECT → C2 ACCEPT | ~4 msgs | proceed |
+| E2 | 2026-02-10 | L2/L3 | G0 complete | No counterexample known | CE-1 to CE-4: counterexample search + symbolic | ce1 (285K), ce2/ce2_mpmath, ce4_symbolic | experiments/ created | G4: ALL PASS (no CE) | ~8 msgs | proceed to proof |
+| E3 | 2026-02-10 | L0 | G5 complete | Finite De Bruijn identity unverified n≥3 | G6 adversarial review | Codex 5.2 | — | G6: REJECT (4 red flags) | ~2 msgs | patch |
+| E4 | 2026-02-10 | L0 | G6 REJECT | RF1-4: overclaim, asymptotic≠finite, precision | Patch 4 flags; G7 package | Claude Opus 4.6 | answer.md §6, header, §8 | G7: ACCEPT (📊) | ~4 msgs | proceed |
+| E5 | 2026-02-11 | L3/L5 | Upgrade cycle | n=3 general proof missing | CE-5/5b/5c: 150-digit sweep + equality | ce5 (450 trials), ce5b, ce5c | answer.md §4b | Numerical: ALL PASS | ~4 msgs | proceed |
+| E6 | 2026-02-11 | L3 | n=3 closure | n=3 algebraic proof | CE-6: Φ₃ closed-form + Jensen | ce6_n3_algebraic_proof.py | answer.md §4c | CE-6: PROVED | ~2 msgs | upgrade 📊→🟡 |
+| E7 | 2026-02-11 | L3 | n≥4 extension | n=4 cross-term obstruction | CE-7: technique extensibility check | ce7_n4_check.py | answer.md §5 | CE-7: FAILS at n=4 | ~2 msgs | **CANDIDATE** |
+
+**Escalation summary**: Level reached: L3. Closure level: L3 (n=3 via CE-6). Validation: G6 + CE-6/CE-7. CONTAM: MSS (2015) statement-level → CONTAMINATION.md row 2.
 
 ## Human interventions
 
@@ -111,10 +157,10 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~18 |
-| Gate | G7 (Package complete) |
-| Status | 📊 Conjecture |
-| Budget | 300 messages (GREEN) |
+| Messages used | ~26 |
+| Gate | G7 (Package complete) + upgrade cycle |
+| Status | 🟡 Candidate |
+| Budget | 300 messages (GREEN — ~26 used) |
 
 ### Token estimates (synced with transcript.md)
 
@@ -124,6 +170,15 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 | Implementer output | ~29,000 |
 | Reviewer input | ~12,600 |
 | Reviewer output | ~3,400 |
-| **Running total** | **~76,000** |
+| Upgrade cycle input | ~10,000 |
+| Upgrade cycle output | ~8,000 |
+| **Running total** | **~94,000** |
 
-*Updated: 2026-02-10 — after G6 review + patch. See transcript.md Token Log for per-message breakdown.*
+*Updated: 2026-02-11 — after upgrade cycle (CE-5/5b/5c). See transcript.md for per-session breakdown.*
+
+## Orientation Note (2026-02-12)
+
+- Method/provenance policy source: `methods_extended.md`.
+- Docs organization source: `docs/README.md`.
+- Detailed governance session logs: `P03/audit.md`, `P05/audit.md`, and `P09/audit.md`.
+- Classification: ADMIN/LOGISTICS only. No mathematical status, proof content, or experiment claims changed in this lane.

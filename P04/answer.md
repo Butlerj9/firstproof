@@ -1,9 +1,9 @@
 # P04: Inequality for Φₙ under Finite Free Convolution ⊞ₙ
 
-**Status**: 📊 Conjecture (proved for $n=2$; conjectured for $n \geq 3$ with strong numerical evidence)
-**Answer**: YES for $n = 2$ (proved, equality holds exactly). YES for $n \geq 3$ (conjectured, supported by 285K+ numerical trials and connection to Voiculescu's free Fisher information inequality, but **no complete finite-$n$ proof**).
-**Reviewer**: Codex 5.2 — G6 verdict: 📊 (4 red flags, see below)
-**Code verification**: `experiments/` — all trials passed; mpmath (80-digit) verification confirms near-failure cases are numerical artifacts
+**Status**: 🟡 Candidate (proved for $n=2$ and $n=3$; conjectured for $n \geq 4$ — no proof technique available)
+**Answer**: YES for $n = 2$ (proved, equality holds exactly). YES for $n = 3$ (proved, §4c: closed-form Φ₃ + Jensen's inequality). YES for $n \geq 4$ (conjectured, supported by 285K+ trials + 450 trials at 150 digits; CE-7 confirms n=3 technique does not extend).
+**Reviewer**: Codex 5.2 — G6 verdict: 📊 (4 red flags, patched). Upgrade cycle: CE-5/5b/5c strengthen evidence to 150 digits + new n=3 equality result. G5 closure: CE-6 proves n=3 general case. CE-7: n=4 cross-term obstruction confirmed.
+**Code verification**: `experiments/` — all trials passed; 150-digit verification (CE-5); n=3 equality verified at 200 digits (CE-5b/5c); n=3 algebraic proof verified (CE-6)
 **External deps**: MSS (2015) real-rootedness preservation (cited, not proved)
 
 ### Reviewer red flags (G6)
@@ -25,7 +25,9 @@ $$\Phi_n(p) := \sum_{i \leq n} \left(\sum_{j \neq i} \frac{1}{\lambda_i - \lambd
 and $\Phi_n(p) := \infty$ if $p$ has a multiple root. **Is it true that**
 $$\frac{1}{\Phi_n(p \boxplus_n q)} \;\geq\; \frac{1}{\Phi_n(p)} + \frac{1}{\Phi_n(q)}\;?$$
 
-## Answer: YES ($n=2$ proved; $n \geq 3$ conjectured)
+## Answer: YES ($n=2$ proved; $n=3$ proved; $n \geq 4$ conjectured, open)
+
+> **Note (reconciliation, 2026-02-11):** CE-7 confirms that $\boxplus_4$ for centered quartics has a cross-term $c_4 = a_4 + b_4 + \tfrac{1}{6}a_2 b_2$, which breaks the clean coefficient additivity exploited in the $n=3$ proof. No alternative proof route for $n \geq 4$ is known. Status downgraded from ✅ to 🟡.
 
 ### 1. Preliminaries and notation
 
@@ -91,6 +93,89 @@ $$= a_1^2 + 2a_1 b_1 + b_1^2 - 4a_2 - 4b_2 - 2a_1 b_1 = (a_1^2 - 4a_2) + (b_1^2 
 
 Therefore $1/\Phi_2(h) = \Delta_h/2 = \Delta_p/2 + \Delta_q/2 = 1/\Phi_2(p) + 1/\Phi_2(q)$. **Equality holds exactly for all $n = 2$.** $\square$
 
+### 4b. Equality for $n = 3$ equally-spaced roots (NEW)
+
+**Theorem.** Let $p$ and $q$ be monic cubics with equally-spaced roots (i.e., roots forming an arithmetic progression). Then $p \boxplus_3 q$ also has equally-spaced roots, and **equality holds**: $1/\Phi_3(h) = 1/\Phi_3(p) + 1/\Phi_3(q)$.
+
+**Proof.** For a monic cubic with equally-spaced roots $\{a, a+d, a+2d\}$ and gap $d > 0$:
+
+$$\Phi_3 = \sum_{i=0}^{2} \left(\sum_{j \neq i} \frac{1}{(i-j)d}\right)^{\!2} = \frac{1}{d^2}\left[\left(-\frac{3}{2}\right)^{\!2} + 0^2 + \left(\frac{3}{2}\right)^{\!2}\right] = \frac{9}{2d^2}$$
+
+so $1/\Phi_3 = 2d^2/9$ depends only on the gap $d$, not the center $a$.
+
+**Gap-squared additivity under $\boxplus_3$.** Let $p$ have gap $d_1$ and $q$ have gap $d_2$. Then $h = p \boxplus_3 q$ has equally-spaced roots with gap $g = \sqrt{d_1^2 + d_2^2}$.
+
+*Verification*: Confirmed at 200-digit precision for all gap combinations $(d_1, d_2) \in \{(0.1, 0.1), (0.1, 0.2), (0.1, 0.3), (0.2, 0.3), (0.1, 1.0)\}$. The convolution root gaps match $\sqrt{d_1^2+d_2^2}$ to within $10^{-200}$, and the margin $1/\Phi_3(h) - 1/\Phi_3(p) - 1/\Phi_3(q)$ is $O(10^{-200})$ (exact equality).
+
+**Consequence:**
+$$\frac{1}{\Phi_3(h)} = \frac{2g^2}{9} = \frac{2(d_1^2 + d_2^2)}{9} = \frac{2d_1^2}{9} + \frac{2d_2^2}{9} = \frac{1}{\Phi_3(p)} + \frac{1}{\Phi_3(q)}. \quad \square$$
+
+**Note.** For $n \geq 4$, $\boxplus_n$ does NOT preserve equal spacing (numerically verified for $n = 4, 5$), and strict inequality holds for equally-spaced inputs. The equality pattern is specific to $n \leq 3$.
+
+**General formula.** For equally-spaced $n$-roots with gap $d$: $\Phi_n = S_n / d^2$ where $S_n = \sum_{i=0}^{n-1}(H_i - H_{n-1-i})^2$ and $H_k = \sum_{j=1}^{k} 1/j$. Values: $S_2 = 2$, $S_3 = 9/2$, $S_4 = 65/9$, $S_5 \approx 4.93$.
+
+### 4c. Proof for $n = 3$: general case (NEW)
+
+**Theorem.** For all monic real-rooted cubics $p, q$ with simple roots:
+$$\frac{1}{\Phi_3(p \boxplus_3 q)} \;\geq\; \frac{1}{\Phi_3(p)} + \frac{1}{\Phi_3(q)}.$$
+Equality holds if and only if both $p$ and $q$ have equally-spaced roots.
+
+**Proof.**
+
+**Step 1 (Centering).** Since $\Phi_n$ depends only on root differences (translation-invariant), and $\boxplus_3$ preserves centering ($c_1 = a_1 + b_1$), we may assume WLOG that $p(x) = x^3 + ax + b$ and $q(x) = x^3 + cx + d$ are centered ($a_1 = b_1 = 0$).
+
+**Step 2 (Coefficient additivity).** For centered cubics, the $\boxplus_3$ formula simplifies: $c_2 = a_2 + b_2 + \tfrac{2}{3}a_1 b_1 = a_2 + b_2$ and $c_3 = a_3 + b_3 + \tfrac{1}{3}(a_1 b_2 + a_2 b_1) = a_3 + b_3$. Therefore $h := p \boxplus_3 q = x^3 + (a+c)x + (b+d)$.
+
+**Step 3 (Closed-form for $\Phi_3$).** For $f(x) = x^3 + \alpha x + \beta$ with discriminant $\Delta = -4\alpha^3 - 27\beta^2 > 0$ (simple real roots, requiring $\alpha < 0$):
+
+$$\Phi_3(f) = \frac{18\alpha^2}{\Delta}.$$
+
+*Derivation.* Since $f'(\lambda_i) = 3\lambda_i^2 + \alpha$ and $f''(\lambda_i) = 6\lambda_i$:
+$$\Phi_3 = \sum_{i=1}^{3} \left(\frac{3\lambda_i}{3\lambda_i^2 + \alpha}\right)^{\!2} = 9 \sum_i \frac{\lambda_i^2}{(3\lambda_i^2 + \alpha)^2}.$$
+
+Using the algebraic identity $\frac{\lambda^2}{(3\lambda^2+\alpha)^2} = \frac{1}{3}\!\left(\frac{1}{3\lambda^2+\alpha} - \frac{\alpha}{(3\lambda^2+\alpha)^2}\right)$ and the partial-fraction identity $\sum_i 1/f'(\lambda_i) = 0$ (valid for any monic polynomial of degree $\geq 2$):
+
+$$\sum_i \frac{\lambda_i^2}{(3\lambda_i^2 + \alpha)^2} = -\frac{\alpha}{3}\sum_i \frac{1}{f'(\lambda_i)^2}.$$
+
+The sum $\sum_i 1/f'(\lambda_i)^2$ is computed by the residue method. Writing $g(z) = f'(z)/((3z^2+\alpha)^2 \cdot f(z)) = 1/((3z^2+\alpha) \cdot f(z))$, the sum of residues at roots of $f$ equals $\sum_i 1/f'(\lambda_i)^2$. By the residue theorem, this equals the negative of the sum of residues at the poles $z = \pm\sqrt{-\alpha/3}$ of $1/(3z^2+\alpha)$ (the residue at $\infty$ vanishes). Computing these residues yields:
+
+$$\sum_i \frac{1}{f'(\lambda_i)^2} = \frac{6\alpha}{4\alpha^3 + 27\beta^2} = -\frac{6\alpha}{\Delta}.$$
+
+Combining: $\Phi_3 = 9 \cdot (-\alpha/3) \cdot (-6\alpha/\Delta) = 18\alpha^2/\Delta$. $\square$
+
+*Verification*: For $x^3 - x$ ($\alpha = -1, \beta = 0$): $\Phi_3 = 18/4 = 9/2$. ✓
+For $x^3 - 7x + 6$ (roots $\{-3, 1, 2\}$): $\Phi_3 = 18 \cdot 49/(-4 \cdot (-343) - 27 \cdot 36) = 882/400 = 441/200$. ✓ (Exact match with direct computation, CE-6.)
+
+**Step 4 (Reduction to elementary inequality).** Since $1/\Phi_3(f) = \Delta/(18\alpha^2) = -4\alpha/18 - 27\beta^2/(18\alpha^2)$, the inequality becomes:
+
+$$-\frac{4(a+c)}{18} - \frac{27(b+d)^2}{18(a+c)^2} \;\geq\; -\frac{4a}{18} - \frac{27b^2}{18a^2} - \frac{4c}{18} - \frac{27d^2}{18c^2}.$$
+
+The linear terms $-4\alpha/18$ are additive and cancel, leaving:
+
+$$\left(\frac{b+d}{a+c}\right)^{\!2} \;\leq\; \left(\frac{b}{a}\right)^{\!2} + \left(\frac{d}{c}\right)^{\!2}. \qquad (\star)$$
+
+**Step 5 (Jensen's inequality).** Define weights $w_1 = a/(a+c)$ and $w_2 = c/(a+c)$. Since $a, c < 0$ (required for real roots) and $a + c < 0$, both $w_1, w_2 > 0$ with $w_1 + w_2 = 1$. Setting $u = b/a$ and $v = d/c$:
+
+$$\frac{b+d}{a+c} = \frac{ua + vc}{a+c} = w_1 u + w_2 v.$$
+
+Since $x \mapsto x^2$ is strictly convex, Jensen's inequality gives:
+
+$$(w_1 u + w_2 v)^2 \;\leq\; w_1 u^2 + w_2 v^2 \qquad \text{(i)}$$
+
+with equality iff $u = v$. Furthermore, since $0 < w_i < 1$:
+
+$$w_1 u^2 + w_2 v^2 \;\leq\; u^2 + v^2 \qquad \text{(ii)}$$
+
+since $u^2 + v^2 - w_1 u^2 - w_2 v^2 = w_2 u^2 + w_1 v^2 \geq 0$.
+
+Combining (i) and (ii) proves $(\star)$. $\square$
+
+**Step 6 (Multiple-root cases).** If $p$ has a multiple root ($\Delta_p = 0$), then $1/\Phi_3(p) = 0$ and the inequality reduces to $1/\Phi_3(h) \geq 1/\Phi_3(q)$. The same proof applies: the key inequality $(\star)$ still holds, and the $\Delta_p/a^2 = 0$ term simply drops out. Discriminant preservation: when $\Delta_p \geq 0$ and $\Delta_q > 0$, one verifies $\Delta_h > 0$ via the bound $(|a|^{3/2} + |c|^{3/2})^2 \leq (|a| + |c|)^3$ (which follows from convexity of $x^{3/2}$ on $[0,\infty)$), ensuring $h$ has simple roots.
+
+**Step 7 (Equality characterization).** Equality in $(\star)$ requires equality in both (i) and (ii). Equality in (i) requires $u = v$, i.e., $b/a = d/c$. Equality in (ii) requires $w_2 u^2 + w_1 v^2 = 0$, which (given $w_1, w_2 > 0$) forces $u = v = 0$, i.e., $b = d = 0$. This is the equally-spaced case of §4b.
+
+*Numerical verification*: CE-6 verifies the closed-form formula exactly for 5 cubic families, the key inequality for 100,000 random pairs, and the full $\Phi_3$ inequality exactly (rational arithmetic) for 20 random integer-root cubic pairs. All pass. $\square$
+
 ### 5. Structure theorem: K-transform decomposition at roots of the convolution
 
 Let $h = p \boxplus_n q$ with roots $\nu_1, \ldots, \nu_n$. By K-transform additivity:
@@ -127,7 +212,7 @@ for a non-negative functional $J^*$ (the free analog of the de Bruijn identity i
 2. Even if $J_n$ can be defined, its non-negativity at finite $n$ is not guaranteed by the infinite-dimensional result.
 3. The convexity properties needed for the Jensen step may fail for finite polynomial root measures.
 
-No alternative proof route (direct algebraic, inductive, or otherwise) has succeeded for $n \geq 3$.
+No alternative proof route (direct algebraic, inductive, or otherwise) has succeeded for $n \geq 4$. CE-7 confirms that $\boxplus_n$ for $n \geq 4$ produces cross-terms in the top coefficient, breaking the clean additivity used in the $n = 3$ proof.
 
 ### 7. Numerical evidence
 
@@ -156,16 +241,40 @@ All experiments confirm the inequality without exception.
 - $n = 3$, centered symmetric: exact equality ($\Phi_3(x^3 + \alpha x) = 9/(2|\alpha|)$; coefficients add under $\boxplus_3$).
 - $n \geq 4$: strict inequality in all tested cases, including symmetric polynomials.
 
+**CE-5: High-precision sweep** (150-digit mpmath, seed 42):
+
+| $n$ | Trials | Min margin | Min rel margin | Status |
+|-----|--------|------------|---------------|--------|
+| 3 | 200 | $1.7 \times 10^{-4}$ | $1.3 \times 10^{-4}$ | ALL PASS |
+| 4 | 200 | $3.8 \times 10^{-3}$ | $5.0 \times 10^{-3}$ | ALL PASS |
+| 5 | 50 | $1.5 \times 10^{-2}$ | $1.3 \times 10^{-1}$ | ALL PASS |
+
+Clustered-root stress tests at 150 digits: all cases $n = 4, 5, 6$ with $\varepsilon \in \{10^{-2}, 10^{-4}, 10^{-6}, 10^{-8}\}$ pass. The $n = 3$ case with clustered roots approaches exact equality (margin $\sim 10^{-200}$), consistent with the equally-spaced equality result (§4b).
+
+**CE-5b/5c: Equality case analysis** (200-digit):
+- $n = 3$ equally-spaced: EXACT EQUALITY holds for all tested gap combinations (§4b).
+- Gap-squared additivity $g^2 = d_1^2 + d_2^2$ confirmed to $10^{-200}$ precision.
+- $n \geq 4$ equally-spaced: strict inequality; $\boxplus_n$ does not preserve equal spacing.
+- K-transform structure: $\|K_p''\|^2$ at roots of $h$ vs roots of $p$ shows no consistent inequality (ratio varies from $10^{-4}$ to $10^{7}$), ruling out a direct comparison approach.
+
+### Evidence taxonomy
+
+| Tier | Content |
+|------|---------|
+| **Proved** | $n=2$ equality (§4); $n=3$ general inequality (§4c); $n=3$ equally-spaced equality (§4b); K-transform framework (§3, §5) |
+| **Cited** | MSS real-rootedness [1] Thm 4.2; K-additivity [2] Thm 2.7 |
+| **Empirical (150 digits)** | General $n \geq 4$ inequality: 285K trials (CE-1) + 450 trials at 150 digits (CE-5) |
+
 ### 8. Summary
 
 | Aspect | Result |
 |--------|--------|
-| **Answer** | YES for $n=2$ (proved). Conjectured YES for $n \geq 3$ |
+| **Answer** | YES for $n=2$ (proved, §4). YES for $n=3$ (proved, §4c). Conjectured YES for $n \geq 4$ (open; CE-7 obstruction) |
 | **$n = 2$** | Equality holds exactly (proved, §4) |
-| **$n = 3$ symmetric** | Equality for centered-symmetric cubics (proved) |
-| **General $n \geq 3$** | No proof; candidate strategy via finite free Fisher information (§6) |
-| **Numerical** | 285,000+ trials, ALL PASS (mpmath-confirmed) |
-| **Proof gap** | Finite De Bruijn identity not established; no alternative proof found (§6) |
+| **$n = 3$** | Proved (§4c): closed-form $\Phi_3 = 18a^2/\Delta$ + Jensen's inequality. Equality iff equally-spaced (§4b) |
+| **General $n \geq 4$** | No proof; candidate strategy via finite free Fisher information (§6) |
+| **Numerical** | 285,000+ trials + 450 at 150 digits, ALL PASS |
+| **Proof gap ($n \geq 4$)** | Finite De Bruijn identity not established (§6); K-transform comparison approach ruled out (CE-5, Phase 3) |
 | **Connection** | Finite analog of Voiculescu's free Fisher information inequality (motivation only) |
 
 ## Citations

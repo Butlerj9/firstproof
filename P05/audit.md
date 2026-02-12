@@ -18,132 +18,157 @@ Fix a finite group G. Let O denote an **incomplete transfer system** associated 
 |--------|------|------------|
 | G | Finite group | Fixed throughout |
 | N∞ operad | G-equivariant operad | Encodes which norms/transfers are available; interpolates between naive and genuine equivariant structure |
-| O | Incomplete transfer system | Indexing category for an N∞ operad: specifies which transfer maps H → G/K exist |
+| O | Incomplete transfer system | Partial order on Sub(G) refining inclusion, closed under conjugation and restriction (Rubin Def 3.4) |
 | G-equivariant stable category | Stable ∞-category | G-spectra; objects have genuine fixed points Φ^H for all H ≤ G |
 | Slice filtration | Filtration on G-spectra | Tower P^n → P^{n-1} → ⋯ with slices P^n_n capturing "dimension n" information |
 | O-slice connectivity | Connectivity notion | Adapted connectivity measuring when a G-spectrum is "n-connected" relative to the transfer system O |
 | Geometric fixed points Φ^H | Functor | For H ≤ G: Φ^H(X) = (X ∧ ẼP[H])^H where ẼP[H] is a universal space |
 | Connective G-spectrum | Object in equivariant stable category | Underlying homotopy groups π_n^H(X) = 0 for n < 0, for all H ≤ G |
 
-### Key mathematical structure
-
-The classical (non-equivariant) slice filtration is well-understood: for an ordinary spectrum X, the slices correspond to Eilenberg–MacLane spectra, and connectivity is determined by homotopy groups.
-
-In the G-equivariant setting, the slice filtration (Hill–Hopkins–Ravenel) uses representations of G to grade the filtration. The "regular slice filtration" uses the regular representation. The problem asks for:
-1. An **O-adapted** variant that only uses transfers/norms from the incomplete transfer system O.
-2. A characterization of the resulting connectivity notion in terms of geometric fixed points Φ^H for appropriate subgroups H.
-
-The expected answer likely has the form: "X is O-slice n-connected iff Φ^H(X) is f(n,H)-connected for all H in some class determined by O."
-
 ### Truth mode
 
 - [x] EXPLORE BOTH (50% YES / 50% — this is a "state and prove" problem, so the answer must exist by design)
 
-**Note**: This problem is unusual in that it asks to **state** a characterization (not just prove one). The characterization itself is part of the answer. The problem has a known answer (the authors have a proof ≤ 5 pages).
-
-### Counterexample shape
-
-Not applicable — the problem asks to produce a characterization, not to determine YES/NO. However, a wrong characterization could be falsified by explicit G-spectra.
+**Note**: This problem asks to **state** a characterization (not just prove one). The characterization itself is part of the answer. The problem has a known answer (the authors have a proof ≤ 5 pages).
 
 ### Experiment plan
 
 | Phase | Task | Pass/Fail |
 |-------|------|-----------|
-| EXP-1 | For G = Z/2 and O = complete transfer system, recover the standard slice filtration characterization | Matches known → PASS |
-| EXP-2 | For G = Z/2 and O = trivial (no nontrivial transfers), determine what the characterization should reduce to | Consistent → PASS |
-| EXP-3 | Attempt to state the characterization for G = Z/p (cyclic, prime order) and verify against known results | Consistent → PASS |
+| EXP-1 | For G = Z/2 and O = complete transfer system, recover the standard slice filtration characterization | ✅ PASS (ν_O(Z/2) = 2 = |Z/2|, matches HY Thm 2.5) |
+| EXP-2 | For G = Z/2 and O = trivial (no nontrivial transfers), determine what the characterization should reduce to | ✅ PASS (ν_O(H) = 1 for all H, gives orbit-wise Postnikov baseline) |
+| EXP-3 | For G = Z/p: interpolation between complete and trivial | ✅ PASS (exactly 2 transfer systems, ν_O interpolates correctly) |
 
 ## G1 Background
 
-**Status**: ⚠️ BLOCKED — critical references not accessible.
+**Status**: ✅ Complete (upgraded from BLOCKED via definition-only escalation).
 
-### Critical external dependencies
+### Critical external dependencies (RESOLVED)
 
-| Reference | Status | Need | Blocking? |
-|-----------|--------|------|-----------|
-| Hill–Hopkins–Ravenel (HHR), "On the nonexistence of elements of Kervaire invariant one" | ⚠️ Statement-level known | Regular slice filtration definition, slice connectivity characterization | Partially |
-| Blumberg–Hill (2015), "Operadic multiplications in equivariant spectra, norms, and transfers" | ❌ Not sourced | N∞ operads, incomplete transfer systems | YES |
-| Blumberg–Hill (2016), "Incomplete Tambara functors" | ❌ Not sourced | Incomplete transfer systems, algebraic structure | YES |
-| Hill (2012), "The equivariant slice filtration: a primer" | ❌ Not sourced | Slice filtration foundations | YES |
-| Ullman (2013), "On the slice spectral sequence" | ❌ Not sourced | Slice filtration details | Partially |
-| Rubin (2021), "Characterizations of equivariant Steiner and linear isometries operads" | ❌ Not sourced | Transfer system classification | Partially |
+| Reference | Status | Need | Blocking? | Resolution |
+|-----------|--------|------|-----------|------------|
+| Blumberg-Hill (2015), arXiv:1309.1750 | ✅ RESOLVED | N∞ operad def, indexing system def, admissible set def, classification | NO | CITE_ONLY ingest: Def 3.7, 3.22, 4.3, Thm 3.24 |
+| Rubin (2019), arXiv:1903.08723 | ✅ RESOLVED | Transfer system def, Ind↔Tr equivalence | NO | CITE_ONLY ingest: Def 2.1, 3.4, Thm 3.7, Cor 3.9 |
+| Hill-Yarnall (2017), arXiv:1703.10526 | ✅ RESOLVED | Standard slice connectivity, geometric FP characterization | NO | CITE_ONLY ingest: Def 1.1, 2.6, Thm 2.5 |
 
-### Known facts (without references)
+### Known facts (resolved from primary sources)
 
-1. **HHR slice filtration**: For a G-spectrum X, the slice filtration is a tower of localizations. The n-th slice P^n_n X is the "fiber" of P^n X → P^{n-1} X. For the regular slice filtration, X is slice n-connected iff all slices below n vanish.
-
-2. **Geometric fixed points characterization (HHR)**: In the complete transfer system case (all norms available), X is slice n-connected iff Φ^H(X) is (n·|G/H| − 1)-connected for all H ≤ G.
-
-3. **N∞ operads**: These parametrize "incomplete" equivariant commutative ring structures. An N∞ operad O specifies which norm maps N_H^K exist.
-
-4. **Transfer systems**: A transfer system is a sub-poset of the subgroup lattice of G equipped with certain transfer maps. Blumberg–Hill showed these classify N∞ operads.
-
-5. **Geometric fixed points**: Φ^H(X) is a non-equivariant spectrum that captures the "purely H-equivariant" information in X. For X = Σ^V S^0 (representation sphere), Φ^H(Σ^V S^0) = Σ^{V^H} S^0.
-
-### Assessment
-
-This problem requires deep equivariant homotopy theory. The key ingredients are:
-1. Understanding how incomplete transfer systems modify the slice filtration.
-2. The relationship between the modified slice connectivity and geometric fixed points.
-
-The expected characterization likely replaces the factor |G/H| in the classical formula with something determined by O. For instance, if O only allows transfers along certain subgroup inclusions, the connectivity bound for Φ^H may involve the "O-dimension" of G/H.
-
-**However**: Without access to Blumberg–Hill's papers on N∞ operads and incomplete transfer systems, I cannot formalize the O-adapted slice filtration precisely. The definition itself is part of the problem, and getting it right requires understanding the existing framework.
-
-**Blocked items**: 3+ critical references not sourced (Blumberg–Hill N∞ operads, Blumberg–Hill incomplete Tambara functors, Hill slice filtration primer).
+1. **N∞ operad** (BH Def 3.7): G-operad with G-contractible O_0, free Σ_n actions, and universal spaces for families F_n(O).
+2. **Indexing system** (BH Def 3.22, Rubin Def 2.1): Collection of finite G-sets closed under 7 operations.
+3. **Transfer system** (Rubin Def 3.4): Partial order on Sub(G) refining inclusion, closed under conjugation and restriction.
+4. **Equivalence** (Rubin Thm 3.7): Indexing systems ↔ transfer systems, inverse order isomorphisms.
+5. **Slice connectivity** (HY Def 1.1): τ_{≥n} generated by G_+ ∧_H S^{kρ_H} with k|H| ≥ n.
+6. **Geometric FP characterization** (HY Thm 2.5): E ∈ τ_{≥n} iff Φ^H(E) is ⌈n/|H|⌉-connective for all H ≤ G.
+7. **Dimension function** (HY Def 2.6): ν̄_n(G/H) = ⌈n/|H|⌉.
 
 ## G2 Route Map
 
-**Status**: ✅ Routes identified; execution blocked.
+**Status**: ✅ Two candidates formulated and calibrated.
 
-### Route A: Representation-graded filtration (most likely approach)
+### Route A (PREFERRED): O-cells with all admissible inductions
 
-1. Define the O-slice filtration by restricting which representation spheres S^V appear as "dimension V" cells, using only those V whose associated norms are in O.
-2. The O-dimension of a representation V at a subgroup H should count dim(V^H) weighted by the O-structure.
-3. Characterization: X is O-slice n-connected iff Φ^H(X) is (n·d_O(H) − 1)-connected for all H in the "O-essential" subgroups, where d_O(H) is an O-dependent dimension function.
+**Definition**: τ_{≥n}^O generated by {G_+ ∧_H S^{k·ind_K^H(1)} : K ≤_O H, k·|H:K| ≥ n}.
 
-**Bottleneck**: Defining d_O(H) correctly.
+**Characterization**: E ∈ τ_{≥n}^O iff Φ^H(E) is ⌈n/ν_O(H)⌉-connective for all H ≤ G, where ν_O(H) = max{|H:K| : K ≤_O H}.
 
-### Route B: Categorical localization approach
+- Choice-free: YES
+- Calibration (complete): PASS
+- Calibration (trivial): PASS
+- Calibration (Z/p): PASS
 
-1. Define the O-slice filtration as a Bousfield-type localization using O-cells.
-2. The O-cells are equivariant cells G/H_+ ∧ S^n where H → G is an O-admissible transfer.
-3. Connectivity follows from the cellular structure.
+**Bottleneck theorem**: Need orbit-counting argument for "only if" and equivariant Whitehead argument for "if".
 
-**Bottleneck**: Making the cell structure precise without reference access.
+**Fail condition**: If the localizing subcategory τ_{≥n}^O doesn't yield a well-behaved filtration (i.e., slices don't exist or the tower doesn't converge).
 
-### Route C: Direct construction for cyclic groups
+### Route B: O-regular representation (single canonical rep per orbit)
 
-1. Work out the complete answer for G = Z/p (only nontrivial subgroup is G itself).
-2. There are exactly 2 transfer systems: complete (both transfers) and trivial (no nontrivial transfers).
-3. Compare the characterizations in both cases to extract the pattern.
+**Definition**: τ_{≥n}^O generated by {G_+ ∧_H S^{k·ρ_H^O} : H ≤ G, k·ν_O(H) ≥ n}, where ρ_H^O = ind_{K_min}^H(1) for a minimal O-transferable subgroup K_min.
 
-**Bottleneck**: Even this requires knowing the precise slice filtration definitions.
+**Same characterization** as Route A.
 
-## Decision: ❌ PARK
+**Fail condition**: Multiple incomparable O-minimal subgroups → non-canonical choice → Route B is not well-defined.
+
+### Route C: Direct Z/p computation (most tractable for partial proof)
+
+Compute explicitly for G = Z/p with complete and trivial systems, verify the characterization matches, then generalize by induction on the subgroup lattice.
+
+## Decision: 🟡 CANDIDATE (upgraded from ❌ PARKED)
 
 **Rationale**:
-- 3+ critical external dependencies blocked (Blumberg–Hill × 2, Hill primer).
-- The problem asks to **state** a characterization (not just prove one), meaning the formulation itself requires deep familiarity with the O-adapted slice filtration which is only defined in unpublished/inaccessible work.
-- Note: One of the paper's authors (Andrew Blumberg) is also an author of the key references needed. This problem likely arose from his own research program.
-- Experimental verification would require implementing equivariant homotopy computations, which is beyond reasonable scope.
-- The problem is the most "open-ended" of the ten: it asks for a statement + proof, not YES/NO.
+- All 8+ external definition dependencies resolved via CITE_ONLY ingest.
+- Two concrete candidate definitions formulated.
+- Both pass calibration tests at complete, trivial, and Z/p transfer systems.
+- Characterization statement is explicit and testable.
+- Proof gaps identified but bounded: orbit-counting + equivariant Whitehead.
+- The ν_O dimension function construction is novel and well-motivated.
 
-**Documented routes for potential future attempt**:
-- Route C (cyclic group case) is most tractable if references become available.
-- The characterization likely has the form: "O-slice n-connected iff Φ^H(X) is (n·d_O(H)−1)-connected" where d_O(H) depends on O's structure at H.
+**Remaining blockers for ✅**:
+1. Complete proof of characterization (both directions).
+2. Verify A and B generate the same localizing subcategory.
+3. Establish filtration properties (existence of slices, convergence).
+
+## Dependency table (updated)
+
+| ID | Item | Source | Status | Tag |
+|----|------|--------|--------|-----|
+| D1 | N∞ operad definition | BH (2015) Def 3.7 | CITE | CITE_ONLY |
+| D2 | Indexing system | BH (2015) Def 3.22; Rubin (2019) Def 2.1 | CITE | CITE_ONLY |
+| D3 | Transfer system | Rubin (2019) Def 3.4 | CITE | CITE_ONLY |
+| D4 | Ind ↔ Tr equivalence | Rubin (2019) Thm 3.7 + Cor 3.9 | CITE | CITE_ONLY |
+| D5 | Admissible H-set | BH (2015) Def 4.3 | CITE | CITE_ONLY |
+| D6 | Classification N∞ → Ind | BH (2015) Thm 3.24 | CITE | CITE_ONLY |
+| D7 | Standard slice connectivity | HY (2017) Def 1.1 | CITE | CITE_ONLY |
+| D8 | Geometric FP characterization | HY (2017) Thm 2.5 | CITE | CITE_ONLY |
+| D9 | Dimension function | HY (2017) Def 2.6 | CITE | CITE_ONLY |
+| D10 | O-adapted slice filtration | This answer §3 | PROVE_INLINE | — |
+| D11 | O-dimension function ν_O | This answer §3.1 | PROVE_INLINE | — |
+| D12 | "Only if" orbit-counting | This answer §3.5 | NEEDS_SOURCE | GAP |
+| D13 | "If" Whitehead argument | This answer §3.5 | NEEDS_SOURCE | GAP |
+
+## Escalation Ledger
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6 | answer.md stub, audit.md G0 | G0 ACCEPT | ~1 msg | proceed |
+| E2 | 2026-02-10 | L0 | G0 complete | Inaccessible refs: BH (2015, 2016), Hill (2012) | G1-G2 route map + dependency check | Claude Opus 4.6 | audit.md G1-G2 | G2 ACCEPT (3+ refs blocked) | ~1 msg | **PARK** |
+| E3 | 2026-02-11 | L2 | Supervisor dispatch: definition-only escalation | D1-D9 unresolved | CITE_ONLY ingest from 3 primary sources | Claude Opus 4.6, WebFetch (ar5iv) | answer.md §2-§5, audit.md G1-G2 refresh, transcript.md, CONTAMINATION.md | G1 ACCEPT, G2 ACCEPT (2 routes calibrated) | ~8 msgs | **PROCEED (🟡)** |
+| E4 | 2026-02-12 | L0 | Methods/reporting review request | Reviewer traceability for method constraints and provenance | Logged key prompts/responses; aligned method/autonomy docs and docs index | Codex 5.2, `apply_patch`, `rg`, `Get-Content` | methods_extended.md, README.md, RESULTS.md, docs/*.md, P03/P05/P09 audit/transcript | Documentation checks PASS; no mathematical artifact change | ~2 msgs | proceed |
+
+**Escalation summary**: Level reached: L2 (definition-only primary-source ingest). Status upgraded: ❌→🟡. CONTAM: 3 CITE_ONLY sources logged.
+
+## Session 6: Methods/Documentation Governance (repo-wide, non-math)
+
+**Status**: Logged for reviewability. No change to P05 mathematical position.
+
+### Prompt-to-action highlights
+
+- Prompt: strengthen publication polish and enforce explicit producer/tooling provenance.
+  Action: updated `methods_extended.md` abstract + provenance subsection.
+- Prompt: streamline top-level docs for readability.
+  Action: tightened autonomy wording in `README.md`; added methods pointer in `RESULTS.md`.
+- Prompt: provide standard docs layout separating methods/results/reference.
+  Action: added `docs/README.md` with `docs/methods/`, `docs/results/`, `docs/reference/`.
+- Prompt: ensure transcript/audit contain key prompts/responses for reviewers.
+  Action: appended this governance session to active-lane audit/transcript files.
+
+### Validation
+
+- Verified links and references with `rg` and `Get-Content`.
+- Confirmed no updates to `P05/answer.md` technical claims.
 
 ## Human interventions
 
 | Timestamp | Type | Action | Justification |
 |-----------|------|--------|---------------|
 | 2026-02-10 | ADMIN | RED-feasibility blitz | Scheduling/priority |
+| 2026-02-11 | DISPATCH | Definition-only escalation with primary source packet | Unblock G1 dependency |
+| 2026-02-12 | ADMIN | Producer requested methods/reporting traceability updates across docs and lane logs | Publication-readiness and review clarity |
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~2 |
-| Gate | G2 (route map) |
-| Status | ❌ Parked (blocked on references + open-ended formulation) |
-| Budget | 80 messages (RED — ~2 used) |
+| Messages used | ~10 (2 prior + 8 this cycle) |
+| Gate | G2 (route map, calibrated) |
+| Status | 🟡 Candidate (definition unlock + 2 routes formulated) |
+| Budget | 80 messages (used ~10) |
