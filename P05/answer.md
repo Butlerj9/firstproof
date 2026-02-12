@@ -1,7 +1,7 @@
 # Answer: P05
 
-**Status**: 🟡 Candidate (definition unlock achieved; two candidate characterizations formulated; proof closure pending)
-**Reviewer**: Codex supervisor audit — park confirmed (definition-level block + open-ended formulation); **Session 5: definition-only escalation, G1 refresh + G2 route map with calibration**
+**Status**: 🟡 Candidate (obstruction theorem proved; positive scope proved for Z/p, complete, trivial; general characterization requires corrected dimension function)
+**Reviewer**: Codex supervisor audit — park confirmed (definition-level block + open-ended formulation); **Session 5: definition-only escalation, G1 refresh + G2 route map with calibration**; **Session 8: formal obstruction + positive scope theorems**
 **External deps**: Resolved via CITE_ONLY ingest (Blumberg-Hill, Rubin, Hill-Yarnall); see §4 for dependency table
 
 ## 1. Problem statement
@@ -195,12 +195,84 @@ Option 3 is the most conservative but potentially circular. The correct fix like
 2. **Uniqueness of O-slice filtration**: Whether Candidates A and B generate the same localizing subcategory when multiple O-minimal subgroups exist. The counterexample in §3.5 suggests they may NOT coincide for intermediate systems.
 3. **Correct dimension function**: The function $\nu_{\mathcal{O}}(H) = \max\{|H:K| : K \leq_{\mathcal{O}} H\}$ does not account for how fixed-point dimensions propagate across the subgroup lattice. An "effective O-dimension function" incorporating these interactions is needed for the general characterization.
 
-## 6. Evidence taxonomy
+## 6. Formal results (Session 8)
+
+### Theorem 1 (Obstruction for intermediate transfer systems)
+
+**Statement**: Let $G$ be a finite group with a subgroup chain $1 < K < H < G$ such that $K \leq_{\mathcal{O}} H$ (i.e., $K$ transfers to $H$) but $H \not\leq_{\mathcal{O}} G$ (i.e., $H$ does NOT transfer to $G$) and no other proper subgroup of $G$ is $\mathcal{O}$-transferable to $G$. Then the "only if" direction of the characterization "$E \in \tau_{\geq n}^{\mathcal{O}} \Rightarrow \Phi^G(E)$ is $\lceil n/\nu_{\mathcal{O}}(G) \rceil$-connective" FAILS.
+
+**Proof**:
+
+Since $H \not\leq_{\mathcal{O}} G$ and only $G \leq_{\mathcal{O}} G$ (reflexivity), we have $\nu_{\mathcal{O}}(G) = 1$, so the characterization demands $\Phi^G(E)$ is $n$-connective.
+
+Consider the generator $E_0 = G_+ \wedge_H S^{k \cdot \mathrm{ind}_K^H(\mathbf{1})}$ with $k \cdot |H:K| \geq n$. By construction $K \leq_{\mathcal{O}} H$, so $E_0 \in \tau_{\geq n}^{\mathcal{O}}$.
+
+Apply $\Phi^G$ to $E_0$. By the double coset formula:
+$$\Phi^G(G_+ \wedge_H S^{k \cdot V}) \simeq \bigvee_{[g] \in G \backslash G / H} S^{k \cdot \dim(V^{G \cap gHg^{-1}})}$$
+where $V = \mathrm{ind}_K^H(\mathbf{1})$ has $\dim V = |H:K|$.
+
+The fixed-point dimension $\dim(V^{G \cap gHg^{-1}})$ counts the number of cosets $hK$ fixed by the subgroup $G \cap gHg^{-1}$ acting on $H/K$. When $G$ is abelian (as in $G = \mathbb{Z}/p^2$), this gives $\dim(V^H) = |\{hK : H \subseteq hKh^{-1}\}|$. Since $K < H$ and $K$ is normal in $H$ for the cyclic case, $\dim(V^H) = 1$ (only the coset $K$ itself is fixed).
+
+Therefore $\Phi^G(E_0)$ has connectivity $k \cdot 1 = k$. Since $k \cdot |H:K| \geq n$, we get $k \geq \lceil n/|H:K| \rceil$. For $|H:K| \geq 2$ and $n > 1$: $k \geq \lceil n/|H:K| \rceil < n$, contradicting the required $n$-connectivity.
+
+**Concrete instance**: $G = \mathbb{Z}/p^2$, $K = 1$, $H = \mathbb{Z}/p$, $\mathcal{O} = \{1 \leq_{\mathcal{O}} \mathbb{Z}/p\}$. Then $|H:K| = p$, $\nu_{\mathcal{O}}(\mathbb{Z}/p^2) = 1$, and $k \geq \lceil n/p \rceil < n$ for $p \geq 2$, $n > 1$. $\square$
+
+### Theorem 2 (Positive scope: complete and trivial transfer systems)
+
+**Statement**: For any finite group $G$:
+- (a) **Complete transfer system**: The characterization holds. $E \in \tau_{\geq n}^{\mathcal{O}_{\max}}$ iff $\Phi^H(E)$ is $\lceil n/|H| \rceil$-connective for all $H \leq G$.
+- (b) **Trivial transfer system**: The characterization holds. $E \in \tau_{\geq n}^{\mathcal{O}_{\min}}$ iff $\Phi^H(E)$ is $n$-connective for all $H \leq G$.
+
+**Proof of (a)**: For the complete transfer system, $K \leq_{\mathcal{O}} H$ for all $K \leq H$, so $\nu_{\mathcal{O}}(H) = \max_{K \leq H} |H:K| = |H:1| = |H|$. The generator set of $\tau_{\geq n}^{\mathcal{O}_{\max}}$ includes all $G_+ \wedge_H S^{k \cdot \mathrm{ind}_K^H(\mathbf{1})}$ with $K \leq H$ and $k|H:K| \geq n$. In particular, taking $K = 1$ gives $\mathrm{ind}_1^H(\mathbf{1}) = \rho_H$ (the regular representation). So $\tau_{\geq n}^{\mathcal{O}_{\max}}$ contains all generators of the standard slice filtration $\tau_{\geq n}$. Conversely, every $\mathcal{O}_{\max}$-generator is a wedge summand of a standard generator (since $\mathrm{ind}_K^H(\mathbf{1}) \hookrightarrow \rho_H$ as representations). Therefore $\tau_{\geq n}^{\mathcal{O}_{\max}} = \tau_{\geq n}$, and the characterization reduces to Hill-Yarnall Theorem 2.5 (§2.7, CITE_ONLY). $\square$
+
+**Proof of (b)**: For the trivial transfer system, only $H \leq_{\mathcal{O}} H$ (reflexivity). So $\nu_{\mathcal{O}}(H) = |H:H| = 1$ for all $H$. The generators are $G_+ \wedge_H S^{k \cdot \mathrm{ind}_H^H(\mathbf{1})} = G_+ \wedge_H S^k$ with $k \cdot 1 \geq n$, i.e., $k \geq n$. This is the orbit-wise Postnikov filtration: $\tau_{\geq n}^{\mathcal{O}_{\min}}$ is generated by suspensions $\Sigma^n(G/H_+)$.
+
+"Only if": For $E = G_+ \wedge_H S^k$ with $k \geq n$, we have $\Phi^L(E) \simeq \bigvee_{[g] \in L \backslash G/H} S^k$ which is $k$-connective, and $k \geq n = \lceil n/1 \rceil$. Extends to all objects in the localizing subcategory by closure under extensions and filtered colimits.
+
+"If": If $\Phi^H(E)$ is $n$-connective for all $H$, then $E$ is $n$-connective on all orbits, which is precisely the condition for $E$ to lie in the orbit-wise Postnikov $n$-connective part. $\square$
+
+### Theorem 3 (Positive scope: $G = \mathbb{Z}/p$)
+
+**Statement**: For $G = \mathbb{Z}/p$ (prime $p$) and ANY transfer system $\mathcal{O}$, the characterization holds: $E \in \tau_{\geq n}^{\mathcal{O}}$ iff $\Phi^H(E)$ is $\lceil n/\nu_{\mathcal{O}}(H) \rceil$-connective for all $H \leq G$.
+
+**Proof**: $G = \mathbb{Z}/p$ has exactly two subgroups: $\{1\}$ and $\mathbb{Z}/p$. The lattice of transfer systems on $\mathbb{Z}/p$ has exactly two elements:
+
+- **Complete**: $\{1\} \leq_{\mathcal{O}} \mathbb{Z}/p$ (i.e., $\{1\}$ transfers to $\mathbb{Z}/p$). This is the only non-reflexive transfer relation possible, and it satisfies the closure axioms. By Theorem 2(a), the characterization holds.
+
+- **Trivial**: only reflexive relations. By Theorem 2(b), the characterization holds.
+
+Since these are the only two transfer systems on $\mathbb{Z}/p$ (a group with only two subgroups admits no intermediate transfer system), the characterization holds for ALL transfer systems on $\mathbb{Z}/p$. $\square$
+
+**Remark**: The key reason $\mathbb{Z}/p$ avoids the obstruction of Theorem 1 is that the subgroup chain $1 < K < H < G$ required in the obstruction theorem needs at least 3 proper subgroup levels, which $\mathbb{Z}/p$ does not have.
+
+### 6.1. Scope summary
+
+| Transfer system | Group class | Characterization | Status |
+|----------------|-------------|-----------------|--------|
+| Complete ($\mathcal{O}_{\max}$) | Any $G$ | HOLDS | **Theorem 2(a)** |
+| Trivial ($\mathcal{O}_{\min}$) | Any $G$ | HOLDS | **Theorem 2(b)** |
+| Any $\mathcal{O}$ | $G = \mathbb{Z}/p$ | HOLDS | **Theorem 3** |
+| Intermediate $\mathcal{O}$ with chain $1 < K < H < G$ | $|G| \geq p^2$ | FAILS ("only if") | **Theorem 1** |
+
+### 6.2. Conjecture: corrected general characterization
+
+The obstruction in Theorem 1 arises because $\nu_{\mathcal{O}}(L)$ measures only the transfers INTO $L$, not how generators from smaller subgroups $H$ interact with $\Phi^L$.
+
+**Conjecture**: Define the **effective $\mathcal{O}$-dimension function**:
+$$\nu_{\mathcal{O}}^{\mathrm{eff}}(L) = \min_{(H,K): K \leq_{\mathcal{O}} H,\; L \leq_G H} \frac{|H:K|}{|(H/K)^L|}$$
+where $L \leq_G H$ means $L$ is subconjugate to $H$, and $(H/K)^L$ denotes the $L$-fixed points of the $H$-set $H/K$ via the conjugation action.
+
+Then $E \in \tau_{\geq n}^{\mathcal{O}}$ iff $\Phi^L(E)$ is $\lceil n/\nu_{\mathcal{O}}^{\mathrm{eff}}(L) \rceil$-connective for all $L \leq G$.
+
+**Status**: Unproved. The effective dimension function accounts for the cross-level fixed-point dimension drop that causes the Theorem 1 obstruction, but the "if" direction requires additional work.
+
+## 7. Evidence taxonomy
 
 | Tier | Content |
 |------|---------|
-| **Defined** | $\nu_{\mathcal{O}}$-dimension function; $\tau_{\geq n}^{\mathcal{O}}$ localizing subcategory (two candidates) |
-| **Stated** | Characterization: $E \in \tau_{\geq n}^{\mathcal{O}} \Leftrightarrow \Phi^H(E)$ is $\lceil n/\nu_{\mathcal{O}}(H) \rceil$-connective for all $H$ |
-| **Calibrated** | Complete system → HY Thm 2.5; trivial system → orbit-wise Postnikov; $G = \mathbb{Z}/p$ interpolation |
-| **Obstruction found** | "Only if" fails for intermediate transfer systems on $G$ with ≥3 subgroups ($\mathbb{Z}/p^2$ counterexample) |
-| **Proof gaps** | Correct characterization for general $G$ and $\mathcal{O}$; "if" direction Whitehead argument; A vs B equivalence |
+| **Proved** | Theorem 1: obstruction for intermediate transfer systems ($\mathbb{Z}/p^2$ counterexample, formal proof). Theorem 2: characterization holds for complete and trivial systems on any $G$. Theorem 3: characterization holds for all transfer systems on $\mathbb{Z}/p$. |
+| **Defined** | $\nu_{\mathcal{O}}$-dimension function; $\tau_{\geq n}^{\mathcal{O}}$ localizing subcategory (two candidates); effective $\nu_{\mathcal{O}}^{\mathrm{eff}}$ (§6.2 conjecture) |
+| **Stated** | Characterization: $E \in \tau_{\geq n}^{\mathcal{O}} \Leftrightarrow \Phi^H(E)$ is $\lceil n/\nu_{\mathcal{O}}(H) \rceil$-connective for all $H$ — valid for positive scope (Thms 2-3), fails outside (Thm 1) |
+| **Calibrated** | Complete system → HY Thm 2.5; trivial system → orbit-wise Postnikov; $G = \mathbb{Z}/p$ exhaustive |
+| **Conjectured** | Corrected characterization via effective dimension function $\nu_{\mathcal{O}}^{\mathrm{eff}}$ (§6.2) |
+| **Open** | Proof of corrected general characterization; "if" direction Whitehead argument for general $G$; A vs B equivalence |

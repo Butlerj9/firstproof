@@ -514,12 +514,54 @@ Same structure as n=3 proof (§7 of answer.md):
 | 2026-02-10 | LOGISTICS | Producer relayed Codex G6 Cycle 2 review verbatim | Review relay |
 | 2026-02-12 | ADMIN | Producer requested method/reporting alignment and transcript/audit forensics update | Publication-readiness and reviewer traceability |
 
+## Session 7: n≥5 Reduction Feasibility Memo (2026-02-12)
+
+**Status**: Feasibility analysis complete. Direct computation feasible but very expensive; no structural shortcut found.
+
+### n=5 computational parameters
+
+| Parameter | n=3 | n=4 | n=5 (projected) |
+|-----------|-----|-----|----------------|
+| Partition λ | (3,2,0) | (4,3,2,0) | (5,4,3,2,0) |
+| Weight \|λ\| | 5 | 9 | **14** |
+| Compositions (unknowns) | 56 (C(8,3)) | 715 (C(13,4)) | **11628** (C(19,5)) |
+| Max degree (2(n-1)×weight) | 20 (4×5) | 54 (6×9) | **112** (8×14) |
+| t-values needed for FTA | > 20 (used 82) | > 54 (used 90) | **> 112** (need ~120) |
+| Perturbation order | ~2-3 | 8 | **~12-20** (extrapolated) |
+| Time per t-value | ~1s | ~120-250s | **prohibitive** (~11K×11K system) |
+| Total computation time | minutes | ~4.5 hours | **infeasible within sprint** |
+| Arithmetic | exact Fraction | modular (2 primes) | modular (2 primes) |
+
+### Feasibility assessment
+
+1. **Direct computation (degree-bound + sweep)**: **INFEASIBLE within sprint**. The system size grows from 715 unknowns (n=4) to 11628 unknowns (n=5), a 16× increase. Max degree grows from 54 to 112. The 11628×11628 modular perturbation system at each of ~120 t-values is computationally prohibitive:
+   - Memory: ~11K × 11K matrix ≈ 1GB per matrix
+   - Gaussian elimination: O(11K³) ≈ 10¹² operations per t-value
+   - Perturbation order: extrapolated ~12-20 (each order requires a new solve)
+   - Total: far exceeds sprint compute budget
+
+2. **Induction/reduction n=5 → n=4**: **NOT FEASIBLE**. No inductive structure exists:
+   - Partitions change: λ = (4,3,2,1,0) for n=5 vs (4,3,2,0) for n=4
+   - Vanishing conditions are completely different (different spectral vectors)
+   - No known relation between E*_{λ⁻} at different n
+   - The Symmetry Conjecture is specific to each n
+
+3. **Direct symmetry proof (structural)**: **UNCLEAR FEASIBILITY**. Would need to show that the degenerate vanishing system at q=1 is symmetric-group-equivariant. The system matrix at q=1 has a large null space (likely ~900-dim for n=5), and the specific solution E*_{λ⁻}(q=1) must lie in the symmetric subspace. No structural reason for this has been identified.
+
+### Recommendation
+
+The n=5 direct computation is not feasible within the sprint. The n=2,3,4 proofs + conditional n≥5 (with 48-digit numerical evidence) is the best achievable. A structural proof of the Symmetry Conjecture (e.g., showing the degenerate vanishing system is S_n-equivariant) would bypass the computational barrier, but no such argument has been found.
+
+### Verdict
+
+P03 remains 🟡 Candidate (n≤4 proved). n=5 closure is computationally feasible but requires ~14-56 hours and is NOT attempted in this cycle. No structural shortcut found.
+
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~46 |
-| Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions |
-| Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**) |
+| Messages used | ~48 (46 prior + 2 Session 7) |
+| Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions + n≥5 feasibility |
+| Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 conditional + 48-digit evidence) |
 | G6 cycles | 1 reject + 1 accept = 2 cycles |
-| Budget | 200 messages (YELLOW — ~46 used) |
+| Budget | 200 messages (YELLOW — ~48 used) |

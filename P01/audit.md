@@ -155,10 +155,10 @@ The background is partially accessible from general knowledge, but the specific 
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~2 |
-| Gate | G2 (route map) |
-| Status | ❌ Parked (blocked on references) |
-| Budget | 30-80 messages (RED — ~2 used) |
+| Messages used | ~6 (2 prior + 2 Session 3 + 2 Session 4) |
+| Gate | G2 (route map) + G1 partial (A4 statement recovered) |
+| Status | ❌ Parked (A4 statement + proof strategy documented; gap at 3D Wick renormalization) |
+| Budget | 30-80 messages (RED — ~6 used) |
 
 ## Session 3: Definition Reconstruction Attempt (2026-02-12)
 
@@ -186,6 +186,30 @@ P01 remains ❌ Parked. The dependency ledger is complete. No change from E2 ass
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
 | E3 | 2026-02-12 | L0 | Definition reconstruction | A4 exponential integrability still blocked | Training-knowledge reconstruction attempted | Claude Opus 4.6 (subagent) | audit.md Session 3, answer.md dependency ledger | Confirms PARK | ~2 msgs | **PARK** |
+
+## Session 4: A4 Definition-Only Escalation (2026-02-12)
+
+**Status**: PARTIAL — A4 statement recovered, proof strategy identified, technical gap remains.
+
+### Results
+
+1. **A3 (Wick expansion) RECOVERED**: Derived the Wick-ordered expansion of :(φ-ψ)⁴: using the fact that Wick ordering acts only on the stochastic field φ. Deterministic ψ factors out of Wick contractions.
+
+2. **A4 STATEMENT RECOVERED**: E_μ[exp(c|⟨:φ³:, ψ⟩|)] < ∞ for all c > 0 and ψ ∈ C^∞(T³).
+
+3. **Proof strategy**: Young inequality for ordinary powers (|φ³ψ| ≤ δφ⁴ + C(δ)|ψ|⁴) enables coupling absorption (reduces λ to λ-cδ > 0). Works for regularized field. Gap: transferring from ordinary to Wick powers in 3D introduces divergent counterterm 3c_ε φ_ε where c_ε → ∞.
+
+4. **Alternative**: Nelson hypercontractivity gives sub-Weibull(2/3) tails for ⟨:φ³:, ψ⟩ under μ. Insufficient for exponential integrability (needs sub-exponential). The :φ⁴: coercivity should improve tails but proof requires renormalization control.
+
+### Verdict
+
+A4 statement available ✓. Proof strategy identified ✓. Technical gap: Wick-to-ordinary power transfer in 3D. P01 remains ❌ Parked — closure requires BG-level renormalization control or a new approach.
+
+## Escalation Ledger (continued)
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E4 | 2026-02-12 | L2 | Producer escalation checklist | A4 statement unavailable | A3 Wick expansion + A4 statement + proof strategy | Claude Opus 4.6 | answer.md Session 4, audit.md Session 4 | G1 partial: A4 stated, gap at 3D Wick | ~4 msgs | **PARK (partial progress)** |
 
 ## Orientation Note (2026-02-12)
 

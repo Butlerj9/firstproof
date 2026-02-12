@@ -1,6 +1,6 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-12 (P03 n=4 PROVED; P09 upgraded 📊→🟡: all 4 gaps closed n≥6; P05 upgraded ❌→🟡; P05 Z/p² counterexample found; P04 n≥4 stalemate confirmed)
+Snapshot date: 2026-02-12 (P09 upgraded 🟡→✅: n=5 kernel proved exactly via modular rank; P05 strengthened: 3 formal theorems; P01 A4 statement recovered; P03 n≥5 infeasible; P04 CE-8 no counterexample)
 Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation complete)
 Methodology and autonomy constraints: see `methods_extended.md`.
 
@@ -8,15 +8,15 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 
 | Problem | Status | Outcome summary |
 |---------|--------|-----------------|
-| P01 | ❌ Parked | Φ⁴₃ quasi-invariance. Blocked on 3+ refs (Hairer, Barashkov-Gubinelli). G0-G2 done. |
+| P01 | ❌ Parked | Φ⁴₃ quasi-invariance. A4 statement + proof strategy recovered (Session 4); gap at 3D Wick renormalization. G0-G2 + partial G1 done. |
 | P02 | ✅ Submitted | YES — modified RS integral. Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one). G0-G6 + upgrade cycle done. |
 | P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2 proved exactly; **n=3 PROVED** (degree-bound 20 + 82-zero, EXP-14b/13c); **n=4 PROVED** (modular degree-bound 54 + 90-sweep, EXP-16/16b/16d). n≥5 conditional. G0-G7 + 3 closure sessions done. |
 | P04 | 🟡 Candidate | n=2 proved (equality); **n=3 general proved (§4c: Φ₃ closed-form + Jensen)**; n≥4 conjectured (CE-7: cross-term obstruction, no proof route). G0-G7 + 2 upgrade cycles + reconciliation done. |
-| P05 | 🟡 Candidate | O-slice connectivity. **Definition unlock** via CITE_ONLY ingest (BH, Rubin, HY). ν_O dimension function + 2 candidate characterizations formulated and calibrated. **Z/p² counterexample**: characterization fails for intermediate transfer systems on groups with ≥3 subgroups (valid for Z/p, complete, trivial only). G0-G2 + L2 escalation + Session 7 done. |
+| P05 | 🟡 Candidate | O-slice connectivity. **3 theorems proved** (Session 8): Thm 1 (obstruction for intermediate systems, Z/p² counterexample); Thm 2 (positive scope: complete/trivial on any G); Thm 3 (all transfer systems on Z/p). Corrected general characterization conjectured (effective ν_O). G0-G5 done. |
 | P06 | ✅ Submitted | Answer is NO via complete-graph counterexample. **Synthesis pass**: proof verified complete, all tests pass, upgraded to ✅. |
 | P07 | ✅ Submitted | Answer is YES. Q-PD proved (Shapiro). Surgery realization proved self-contained: surgery below middle dim + UCSS duality forces Q-acyclicity. G0-G6 done. |
 | P08 | ✅ Submitted | Answer is NO via Lagrangian octahedron counterexample. G6 patch: topology-preserving definition eliminates regularity gap; proof is 3-step (S² topology → exactness → Gromov). G0-G6 done. |
-| P09 | 🟡 Candidate | YES, D≤6. **All 4 gaps closed for n≥6**: kernel formula exact (9·C(n−2,4), lower bound proved + upper bound via base-case coverage §2.5c); D_n masking proved (§2.5a); **separation genericity proved algebraically** (§2.5b). n=5 degree-6 kernel numerical only. |
+| P09 | ✅ Submitted | YES, D≤6. **All gaps closed for ALL n≥5**: n≥6 via subset isomorphism + exact base case; **n=5 kernel=15 proved exactly** (EXP-11b: modular rank = 1756 at 2 primes + float SVD 10.7 order gap). D_n masking proved (§2.5a); separation genericity proved algebraically (§2.5b). |
 | P10 | ✅ Submitted | Matrix-free PCG solver package completed and adversarially patched. |
 
 ## 2. Method escalations used
@@ -69,8 +69,8 @@ Stalled:
 
 ## 5. Final result after synthesis pass
 
-- **Fully submitted: 5 problems** (P10, P06, P08, P07, P02).
-- Candidate: 4 problems (P03, P04, P05, P09).
+- **Fully submitted: 6 problems** (P10, P06, P08, P07, P02, **P09**).
+- Candidate: 3 problems (P03, P04, P05).
 - Parked: 1 problem (P01).
 - Not started: 0 problems.
 
@@ -83,7 +83,7 @@ All 10 problems assessed to at least G2 (route map) level.
 | P06 | 🟡 Candidate | ✅ Submitted | Proof verified complete; all numerical tests pass; upgraded |
 | P03 | 📊 Conjecture | 🟡 Candidate | EXP-5: Richardson extrapolation (48+ digits); upgraded to 🟡. **Session 4: n=3 PROVED (degree-bound 20 + 82-zero).** **Session 6: n=4 PROVED (modular degree-bound 54 + 90-sweep × 2 primes).** |
 | P04 | 📊 Conjecture | 🟡 Candidate | CE-5: 150-digit sweep (450 trials); n=3 equally-spaced equality proved; **CE-6: n=3 general proved (Φ₃ closed-form + Jensen)**; CE-7: n=4 cross-term obstruction confirmed. **Session 8: 5 alternative approaches assessed, all LOW/VERY LOW feasibility.** n≥4 stalemate. |
-| P09 | 📊 Conjecture | **🟡 Candidate** | EXP-6/6e: D≤6 established. EXP-8 series: kernel formula 9·C(n−2,4). **EXP-9: D_n masking PROVED n≥6.** **EXP-10/10b: Kernel formula exact.** **Session 7: Gaps #1/#3 upper bound proved (base-case coverage §2.5c). Gap #4 separation genericity PROVED algebraically (§2.5b).** All 4 gaps closed. |
+| P09 | 📊 Conjecture | **✅ Submitted** | EXP-6/6e: D≤6 established. EXP-8 series: kernel formula 9·C(n−2,4). **EXP-9: D_n masking PROVED n≥6.** **EXP-10/10b: Kernel formula exact.** **Session 7: All 4 gaps closed n≥6.** **Session 8: n=5 kernel=15 proved exactly (EXP-11b: modular rank 1756 at 2 primes).** Upgraded to ✅. |
 | P07 | ❌ Parked | ✅ Submitted | Escalation success: Q-PD proved (Shapiro); surgery gap closed (below-middle-dim surgery + UCSS duality); upgraded to ✅ |
 | P08 | ❌ Parked | ✅ Submitted | Escalation produced counterexample; G6 patch adopted topology-preserving definition, eliminating regularity gap; upgraded to ✅ |
 | P02 | ❌ Parked | ✅ Submitted | Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one via AGRS) |
@@ -100,7 +100,7 @@ All 10 problems assessed to at least G2 (route map) level.
 | P06 | L3 | L2 | G6 + CE-1/CE-2 + synthesis | K_n eigenspace boundary | ce1 (n=3-24), ce2 (non-complete) | Synthesis pass | ✅ Submitted | Proved |
 | P07 | L0 (Mode R) | L0 | G6 patch | Surgery realization gap | Shapiro + surgery below mid-dim | EXP-1 Q-PD verification | ✅ Submitted | Proved + Cited |
 | P08 | L1 | L0 | External G6 + EXP-1/2 | Hausdorff vs topology-preserving def | exp1 octahedron + exp2 action | Codex external review | ✅ Submitted | Proved + Cited |
-| P09 | L5 | **L5** (all gaps closed) | G6 C2 + EXP-10b + §2.5b/c | D_n masking + kernel exact + separation genericity | Monomial decomposition + exact base case + Jacobian + Zariski argument | EXP-8 series + EXP-9b + EXP-10/10b + §2.5b/c proofs | **🟡 Candidate** | All 4 gaps closed n≥6 |
+| P09 | L5 | **L5** (all gaps closed ALL n≥5) | G6 C2 + EXP-10b + EXP-11b + §2.5b/c | D_n masking + kernel exact + n=5 modular rank + separation genericity | Monomial decomposition + exact base case + modular rank verification + Zariski argument | EXP-8 series + EXP-9b + EXP-10/10b + EXP-11/11b + §2.5b/c proofs | **✅ Submitted** | All gaps closed ALL n≥5 |
 | P10 | L4 | L0 | G6 C2 | SPD/PSD distinction | verify_matvec.py (6 tests) | GPT-5.2-pro scout | ✅ Submitted | Proved |
 
 ## 6. Escalation path for parked problems

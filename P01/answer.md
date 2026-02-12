@@ -46,15 +46,72 @@ No evidence for singularity was found. Route B is deprioritized.
 1. Barashkov-Gubinelli (2020) Theorem on exponential moments of $:\!\varphi^k\!:$ under $\Phi^4_3$
 2. Precise renormalization prescription for Wick powers in the BG construction
 
+## Session 4: A4 Statement Recovery + Proof Strategy (2026-02-12)
+
+### A4 Statement (recovered from training knowledge)
+
+**A4 (Exponential integrability)**: For any $\psi \in C^\infty(\mathbb{T}^3)$ and $c > 0$:
+$$\mathbb{E}_\mu[\exp(c|\langle :\!\phi^3\!:, \psi\rangle|)] < \infty$$
+where $\langle :\!\phi^3\!:, \psi\rangle = \int_{\mathbb{T}^3} :\!\phi^3\!:(x)\, \psi(x)\, dx$ is the distributional pairing.
+
+### A3 Wick expansion under translation (recovered)
+
+For $\psi \in C^\infty(\mathbb{T}^3)$ deterministic:
+$$:\!(\phi - \psi)^4\!: = :\!\phi^4\!: - 4:\!\phi^3\!:\psi + 6:\!\phi^2\!:\psi^2 - 4:\!\phi\!:\psi^3 + \psi^4$$
+(Wick ordering acts only on the stochastic field $\phi$; deterministic $\psi$ factors out of contractions.)
+
+Therefore:
+$$V(\phi) - V(\phi - \psi) = \lambda \int (4:\!\phi^3\!:\psi - 6:\!\phi^2\!:\psi^2 + 4\phi\psi^3 - \psi^4)\, dx + m^2\int(2\phi\psi - \psi^2)\, dx$$
+
+### Proof strategy (identified but incomplete)
+
+**Route A proof sketch** (assuming A4):
+1. $d\mu_\psi / d\mu = \exp(V(\phi) - V(\phi-\psi)) \times R_\psi^{\mathrm{GFF}}(\phi)$
+2. $R_\psi^{\mathrm{GFF}} \in L^p(\nu)$ for all $p$ (Cameron-Martin, since $\psi \in C^\infty \subset H^1$)
+3. Dominant term in $V(\phi)-V(\phi-\psi)$: $4\lambda\langle :\!\phi^3\!:, \psi\rangle$
+4. If A4 holds: $\exp(|V(\phi)-V(\phi-\psi)|) \in L^q(\mu)$ for some $q > 1$
+5. By Hölder: $d\mu_\psi/d\mu \in L^1(\mu)$, establishing quasi-invariance
+
+**Proof strategy for A4**: Young's inequality + coupling absorption.
+
+For the **regularized** field $\phi_\varepsilon$: the pointwise inequality $|\phi_\varepsilon^3 \psi| \leq \delta \phi_\varepsilon^4 + C(\delta)|\psi|^4$ (by AM-GM with exponents 4/3, 4) gives:
+$$\exp(c|\textstyle\int \phi_\varepsilon^3 \psi\, dx|) \leq \exp(c\delta \textstyle\int \phi_\varepsilon^4\, dx + cC(\delta)\|\psi\|_4^4)$$
+
+Under $\mu_\varepsilon \propto \exp(-\lambda\int :\!\phi_\varepsilon^4\!:\, dx)\, d\nu$, the coupling absorption gives:
+$$\mathbb{E}_{\mu_\varepsilon}[\exp(c\delta\textstyle\int \phi_\varepsilon^4\, dx)] \sim Z_\varepsilon(\lambda - c\delta) / Z_\varepsilon(\lambda)$$
+which is finite for $c\delta < \lambda$ (the modified coupling remains positive).
+
+**Gap**: Passing from $\phi_\varepsilon^3$ (ordinary power) to $:\!\phi_\varepsilon^3\!:$ (Wick power). In 3D, $:\!\phi_\varepsilon^3\!: = \phi_\varepsilon^3 - 3c_\varepsilon \phi_\varepsilon$ where $c_\varepsilon = \mathbb{E}[\phi_\varepsilon(x)^2] \sim \varepsilon^{-1} \to \infty$. The Young inequality for ordinary powers does NOT transfer to Wick powers because the Wick subtraction $3c_\varepsilon \phi_\varepsilon$ introduces terms that grow with $c_\varepsilon$ and cannot be absorbed by the $:\!\phi^4\!:$ interaction alone.
+
+**Alternative approach**: Nelson's hypercontractivity. Under the GFF $\nu$, the random variable $X = \langle :\!\phi^3\!:, \psi\rangle$ (a degree-3 Wiener chaos element) satisfies $\|X\|_{L^p(\nu)} \leq (p-1)^{3/2} \|X\|_{L^2(\nu)}$. Combined with Cauchy-Schwarz transfer to $\mu$, this gives $\|X\|_{L^p(\mu)} \leq C p^{3/2}$, which implies sub-Weibull(2/3) tails: $\mathbb{P}_\mu(|X| > t) \leq \exp(-ct^{2/3})$. This gives **all polynomial moments** but is **insufficient** for exponential integrability (which requires sub-exponential tails).
+
+**Conclusion**: The gap between sub-Weibull(2/3) (from hypercontractivity) and sub-exponential (needed for A4) must be bridged by the $:\!\phi^4\!:$ coercivity. This requires showing that the $:\!\phi^4\!:$ interaction improves the tails of $\langle:\!\phi^3\!:, \psi\rangle$ from sub-Weibull(2/3) to sub-exponential. This improvement is expected (the quartic interaction suppresses large fields) but proving it requires renormalization-level technical control not available from training knowledge.
+
+### Assessment (Session 4)
+
+| Step | Status | Change from Session 3 |
+|------|--------|-----------------------|
+| A1 (Cameron-Martin) | ✅ AVAILABLE | No change |
+| A2 (Φ⁴₃ construction) | ✅ Statement-level | No change |
+| A3 (Shifted interaction) | ✅ **RECOVERED** | Wick expansion under deterministic shift derived |
+| A4 (Exponential integrability) | ⚠️ **STATEMENT RECOVERED, PROOF INCOMPLETE** | Statement formulated; proof strategy identified (Young + coupling absorption); gap: 3D Wick renormalization |
+| A5 (Assembly) | ✅ AVAILABLE | No change |
+
+**Upgrade assessment**: A4 statement is available. The proof sketch is nearly complete but has a gap at the Wick-to-ordinary power transfer in 3D. This gap is specific to 3D (in 2D, the analogous argument works). Without BG-level renormalization control, the gap cannot be closed.
+
+**Recommendation**: P01 remains **❌ Parked**. The A4 statement and proof strategy are documented. The specific technical gap (Wick Young inequality in 3D) is identified. Closure requires either:
+1. Sourcing BG's exponential moment bounds (statement-level), OR
+2. A new approach to the Wick-to-ordinary transfer that avoids the $c_\varepsilon \to \infty$ divergence.
+
 ## What is established
 
 - G0 formalization completed.
-- G1 dependency map completed.
+- G1 dependency map completed (A3 + A4 statement recovered in Session 4).
 - G2 route map completed.
-- E3 dependency ledger completed (this update).
+- E3 dependency ledger completed.
+- E4 A4 statement + proof strategy documented (Session 4).
 
 ## What is unresolved
 
-- Statement-level closure of exponential moment bounds (step A4).
-- Wick calculus under translation in 3D renormalized regime (step A3).
-- Any proof-level closure of quasi-invariance or singularity.
+- Proof-level closure of A4 (exponential integrability): gap at Wick-to-ordinary power transfer in 3D.
+- Full proof of quasi-invariance (conditional on A4 closure).

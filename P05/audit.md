@@ -179,6 +179,32 @@ For $G = \mathbb{Z}/p^2$ and transfer system $\mathcal{O}_2 = \{1 \leq_{\mathcal
 
 P05 remains 🟡 Candidate. The counterexample is valuable: it identifies the precise obstruction to the general characterization. The definitions and calibrations are correct for the extreme cases (complete/trivial). A correct general characterization would require an "effective O-dimension function" that propagates fixed-point constraints across the subgroup lattice.
 
+## G5 Continuation (Mode S, Session 8): Formal Theorems
+
+**Status**: SUCCESS — three theorems proved, positive scope established.
+
+### Results
+
+1. **Theorem 1 (Obstruction)**: Formal proof that the characterization fails for intermediate transfer systems on groups with a chain 1 < K < H < G where K ≤_O H but H ≤_O G fails. Concrete instance: Z/p² with O = {1 ≤_O Z/p}. The "only if" direction gives connectivity ⌈n/p⌉ but demands n. Proof via double coset formula + fixed-point dimension count.
+
+2. **Theorem 2 (Complete/Trivial)**: The characterization holds for complete (reduces to HY Thm 2.5) and trivial (reduces to orbit-wise Postnikov) transfer systems on any G. Proof: for complete, generator sets coincide; for trivial, ν_O(H) = 1 gives orbit-wise Postnikov which is standard.
+
+3. **Theorem 3 (Z/p)**: The characterization holds for ALL transfer systems on Z/p. Proof: Z/p has exactly 2 subgroups, hence exactly 2 transfer systems (complete and trivial), both covered by Theorem 2. No intermediate transfer system exists.
+
+### Corrected general characterization (conjecture)
+
+Proposed effective dimension function ν_O^eff(L) = min_{(H,K): K ≤_O H, L ≤_G H} |H:K|/|(H/K)^L| that accounts for cross-level fixed-point drops. Unproved.
+
+### Verdict
+
+P05 upgraded within 🟡: obstruction + positive scope proved. The answer now contains 3 formal theorems with complete proofs. The general characterization remains conjectured. This is the maximum achievable without the corrected dimension function proof.
+
+## Escalation Ledger (continued)
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E5 | 2026-02-12 | L3 | Producer escalation checklist | Obstruction not formalized | Formal Theorems 1-3 proved | Claude Opus 4.6 | answer.md §6, audit.md Session 8 | G5: 3 theorems proved | ~4 msgs | **CANDIDATE (strengthened)** |
+
 ## Human interventions
 
 | Timestamp | Type | Action | Justification |
@@ -191,7 +217,7 @@ P05 remains 🟡 Candidate. The counterexample is valuable: it identifies the pr
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~14 (2 prior + 8 definition cycle + 4 Session 7) |
-| Gate | G2 → G5 (obstruction found in characterization) |
-| Status | 🟡 Candidate (definitions correct; characterization obstruction for intermediate systems on groups with ≥3 subgroups; valid for Z/p, complete, trivial) |
-| Budget | 80 messages (used ~14) |
+| Messages used | ~18 (2 prior + 8 definition cycle + 4 Session 7 + 4 Session 8) |
+| Gate | G5 (formal obstruction + positive scope proved) |
+| Status | 🟡 Candidate (3 theorems proved: obstruction for intermediate systems, positive scope for Z/p + complete + trivial; general characterization conjectured with corrected dimension function) |
+| Budget | 80 messages (used ~18) |

@@ -21,15 +21,15 @@ provenance are logged in `PXX/audit.md`, `PXX/transcript.md`, and
 
 | Problem | Domain | Status | Confidence | Budget used |
 |---------|--------|--------|------------|-------------|
-| P01 | Stochastic analysis | ❌ Parked | LOW (blocked on refs) | ~2/80 msgs |
+| P01 | Stochastic analysis | ❌ Parked | LOW (A4 statement recovered, proof gap at 3D Wick renormalization) | ~6/80 msgs |
 | P02 | Representation theory | ✅ Submitted | HIGH (YES, Kirillov + Gauss sums + JPSS + multiplicity-one) | ~10/80 msgs |
-| P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 conditional + 48-digit evidence) | ~46/200 msgs |
+| P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 infeasible — 11K×11K system) | ~48/200 msgs |
 | P04 | Finite free convolution | 🟡 Candidate | HIGH (n=2 proved; **n=3 general proved**; n≥4 conjectured + 150-digit evidence; CE-7 cross-term obstruction; 5 alt approaches assessed, all LOW) | ~28/300 msgs |
-| P05 | Equivariant homotopy | 🟡 Candidate | MEDIUM (definition unlock + 2 calibrated routes; **Z/p² counterexample**: characterization fails for intermediate transfer systems) | ~14/80 msgs |
+| P05 | Equivariant homotopy | 🟡 Candidate | HIGH (**3 theorems proved**: obstruction for intermediate systems; positive scope for Z/p, complete, trivial; corrected dimension function conjectured) | ~18/80 msgs |
 | P06 | Spectral graph theory | ✅ Submitted | HIGH (NO, K_n counterexample) | ~14/300 msgs |
 | P07 | Lattices in Lie groups | ✅ Submitted | HIGH (YES, Q-PD + surgery realization proved) | ~6/80 msgs |
 | P08 | Symplectic geometry | ✅ Submitted | HIGH (NO, Lagrangian octahedron + Gromov) | ~10/80 msgs |
-| P09 | Tensor polynomial map | 🟡 Candidate | HIGH (YES, D≤6; **all 4 gaps closed n≥6**: kernel formula exact, masking proved, separation genericity proved algebraically) | ~54/200 msgs |
+| P09 | Tensor polynomial map | ✅ Submitted | HIGH (YES, D≤6; **all gaps closed ALL n≥5**: n≥6 via subset isomorphism; **n=5 kernel=15 proved exactly** via modular rank at 2 primes) | ~58/200 msgs |
 | P10 | RKHS CP-ALS | ✅ Submitted | HIGH | ~12/120 msgs |
 
 Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | ❌ Parked
