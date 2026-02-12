@@ -1,0 +1,85 @@
+FAILURE-CONDITIONED SCOUT PROMPT — P04 (Finite Free Convolution)
+================================================================
+
+## Exact Target Claim
+
+For all degree-n monic real-rooted polynomials p, q with roots in a common interval:
+  1/Φ_n(p ⊞_n q) ≥ 1/Φ_n(p) + 1/Φ_n(q)
+
+where ⊞_n is the finite free additive convolution (Marcus-Spielman-Srivastava) and Φ_n(p) = n·Var(roots of p) is the finite free Fisher information.
+
+## Proved Scope
+
+- n=2: Equality holds exactly (direct computation)
+- n=3: PROVED. Closed-form: Φ₃(x³+ax+b) = 18a²/Δ where Δ = -4a³ - 27b². The inequality 1/Φ₃(p⊞₃q) ≥ 1/Φ₃(p) + 1/Φ₃(q) reduces to Jensen's inequality for the convex function f(a) = -Δ/(18a²) = (4a³+27b²)/(18a²).
+- n=4 partial: Closed-form Φ₄ derived. Additive variables discovered (c' = c - a²/12 removes cross-terms). 2nd-order PSD decomposition proved near equality manifold. 105,048 exact Fraction tests across 7 families ALL PASS with minimum margin 9.84×10⁻⁷.
+
+## Unresolved Blocker (single sentence)
+
+The superadditivity margin for n ≥ 4 reduces to showing a degree-6 polynomial -H(w,t₁,t₂) ≥ 0 on the bounded box w ∈ (0,1), tᵢ ∈ (-1/12, 1/6), which has 12 negative coefficients in all tested variable substitutions, preventing any term-by-term or simple SOS proof.
+
+## Failed Approaches (7 total, with reason each failed)
+
+1. **Jensen's inequality (direct)**: Weight mismatch between b-component (linear weights wᵢ) and c'-component (quadratic weights wᵢ²). Jensen requires a SINGLE consistent weight, but the two components of the convolution use different weight functions. Fundamental structural barrier.
+2. **K-transform comparison**: The ratio K_p(z)/K_q(z) varies from 10⁻⁴ to 10⁷ across the domain. No consistent upper or lower bound exists.
+3. **Finite De Bruijn identity**: The form of the finite dissipation functional (analog of free score function) is unknown. No known expression relates Φ_n to a finite entropy derivative.
+4. **Induction on n**: No known monotonicity of 1/Φ_n under the n → n+1 embedding. The root structure changes qualitatively.
+5. **Cross-term absorption via additive variables**: c' = c - a²/12 successfully removes the cross-term obstruction (CE-7), making the convolution component-wise additive. But the resulting scaling inequality has different degree in different variables, creating a weight mismatch that cannot be unified.
+6. **Quadratic discriminant decomposition (CE-12d/e)**: Writing -H as A·w² + B·w + C and checking 4AC - B² ≥ 0 fails because the discriminant Q = B² - 4AC is NOT globally non-negative on the domain.
+7. **SOS coefficient analysis (CE-13/13c)**: Exact polynomial extracted. In shifted positive variables (p₁ = 12t₁+1, p₂ = 12t₂+1), -H has 12 negative coefficients out of 31 terms. AM-GM absorption also fails (insufficient positive mass). Manual SOS decomposition infeasible.
+
+## Known polynomial structure
+
+-H(w,t₁,t₂) = (-A)w² + (-B)w + (-C) where:
+- -A = 144(t₁+t₂)²(6t₁+1)(6t₂+1) ≥ 0 (manifestly non-negative: perfect square times two positive-on-domain terms)
+- -C = 144(36t₁²t₂² + 12t₁²t₂ + t₁² + 36t₁t₂³ + 18t₁t₂² + 6t₂³ + 3t₂²) ≥ 0 (sum of non-negative monomials for t₁,t₂ > -1/12)
+- -B = -144(t₁+t₂)(72t₁t₂² + 12t₁t₂ - t₁ + 12t₂² + 3t₂): MIXED SIGN
+
+So -H is a quadratic in w with positive leading coefficient and positive constant term, but mixed-sign linear term.
+
+Note: An SDP-based SOS certificate attempt is CURRENTLY RUNNING (CE-14, Putinar Positivstellensatz with cvxpy/Clarabel). This scout should propose approaches ASSUMING the SDP also fails.
+
+## Hard Constraints
+
+- No web searching for solutions to competition problems
+- Statement-level citations only for published results
+- No human mathematical input
+- Any proposed approach must be FALSIFIABLE
+
+## What Counts as Success
+
+ONE of:
+(a) A proof that -H(w,t₁,t₂) ≥ 0 on the bounded box via a novel algebraic technique
+(b) A completely different proof route for the Fisher information inequality that avoids the degree-6 polynomial
+(c) A counterexample: specific degree-n polynomials p, q where the inequality FAILS
+(d) A citation to a published inequality that directly implies the result
+(e) A reduction to a known-true inequality (e.g., Schur convexity, majorization, log-concavity)
+
+## Request
+
+Propose exactly 3 new approaches that are NOT variants of the 7 failed routes above. For each approach, provide:
+1. First bridge lemma (precise mathematical statement)
+2. Falsifiable test (what to compute for n=4 to check). Must be runnable in ≤ 30 minutes on a single CPU.
+3. Likely failure mode
+4. Required external theorem statement (if any). If no known theorem is needed, write "no_known_theorem". Do NOT invent or hallucinate citations.
+5. Confidence (0-100) and novelty score (0-10 vs the 7 failed routes)
+6. Anti-duplication check: one sentence explaining why this is NOT a variant of any of the 7 failed routes listed above (reference by number).
+
+## Response Format
+
+Reply with ONLY a JSON object matching this schema (no markdown fencing, no preamble):
+
+{
+  "approaches": [
+    {
+      "name": "string",
+      "bridge_lemma": "string (precise mathematical statement)",
+      "falsifiable_test": "string (specific computation, ≤ 30 min single CPU)",
+      "failure_mode": "string",
+      "external_theorem": "string or 'no_known_theorem'",
+      "confidence": 0-100,
+      "novelty": 0-10,
+      "anti_dup": "string (why not a variant of failed routes #1-#7)"
+    }
+  ]
+}

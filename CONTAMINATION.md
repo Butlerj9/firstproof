@@ -36,6 +36,11 @@
 |--------|---------|---------------|---------|--------------|-----------------|
 | S1 | P10 | GPT-5.2-pro | Initial candidate solution (solvability evaluation) | NONE (LLM reasoning only) | P10 E1 |
 | S2 | P03 | groq/gptoss120b, fw/kimi-instruct, fw/deepseek-v3p2 | Symmetry Conjecture closure routes | NONE (3 scouts, no consensus) | P03 E6 |
+| S3 | P03, P04, P05 | Fireworks/qwen3-coder-480b-a35b-instruct | Failure-conditioned scout packets for P03, P04, P05. Received proposed approaches only. No solution content, no problem statements from competition, no citations used. Pure brainstorming output. | NONE (LLM reasoning only) | P03 E14, P04 E-scout, P05 E-scout |
+| S4 | P03, P04, P05 | Fireworks/deepseek-r1-0528 | Failure-conditioned scout packets for P03, P04, P05. Same as S3: proposed approaches only, no solution content, no competition problem statements, no citations used. Pure brainstorming output. | NONE (LLM reasoning only) | P03 E14, P04 E-scout, P05 E-scout |
+| S5 | P03, P04, P05 | Fireworks/kimi-k2p5 | Failure-conditioned scout packets sent but responses truncated (thinking model, 4096 token limit). No usable content received. | NONE (truncated, no content) | P03 E14, P04 E-scout, P05 E-scout |
+| S6 | P03, P04, P05 | Groq/qwen3-32b | Round 1 scouts, partially truncated. Some reasoning but no solution content. | NONE (partially truncated, no solution content) | P03 E14, P04 E-scout, P05 E-scout |
+| S7 | P03, P04, P05 | Fireworks/qwen3-235b-a22b-instruct-2507 | Round 1 scouts, some proposals received. No solution content, no competition problem statements. | NONE (LLM reasoning only) | P03 E14, P04 E-scout, P05 E-scout |
 
 ## Search log
 | Timestamp | Query | Purpose | Exposure risk |

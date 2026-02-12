@@ -362,6 +362,7 @@ The second-order PSD decomposition is a genuine structural advance: it shows the
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
 | E13 | 2026-02-12 | L4 | polynomial extraction + SOS attempt | H ≤ 0 (degree-6, 3 vars) | CE-13/13b/13c: numerator extraction, factoring, coefficient analysis | SymPy, exact arithmetic | audit.md Session 12, 3 experiment scripts | Polynomial extracted; 12 neg coefficients block term-by-term proof; SDP needed | ~5 msgs | **🟡 CANDIDATE (unchanged)** |
+| E-scout | 2026-02-12 | L3 | Scout round | -H≥0 on bounded box | Failure-conditioned scouts (Qwen3-480B, DeepSeek-R1): 6 approaches. Top: Lagrangian Multiplier Boundary Analysis (conf 65, Qwen3), Domain Contraction via Critical Point Isolation (conf 50, DeepSeek — testing now). Also: SDP/SOS attempt with cvxpy FAILED (Putinar deg 6 insufficient: SCS optimal_inaccurate, Clarabel InsufficientProgress). | scout_api.py, ce14_sdp_sos.py | audit.md updated | Novelty gate: 5/6 PASS, 1 MARGINAL. Domain Contraction being tested. | ~3 msgs | **🟡 CANDIDATE (unchanged)** |
 
 *Cycle footer (Session 12): CE-13 complete. Exact degree-6 polynomial extracted for b=0 subcase. 7 failed routes total. Blocker type: solver/tooling-limited (SDP/SOS). Status unchanged: 🟡 Candidate. ~40+5 = ~45 messages used.*
 

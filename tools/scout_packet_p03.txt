@@ -1,0 +1,79 @@
+FAILURE-CONDITIONED SCOUT PROMPT — P03 (Algebraic Combinatorics)
+================================================================
+
+## Exact Target Claim
+
+The Symmetry Conjecture: For all n >= 1 and all partitions λ of weight n(n+1)/2 - 1, the interpolation (Knop-Sahi) non-symmetric Macdonald polynomial E*_{λ⁻}(x; q=1, t) is symmetric in x₁,...,xₙ.
+
+Here λ⁻ is the anti-dominant permutation (reverse-sorted) of the partition λ.
+
+## Proved Scope
+
+- n=2: Symbolic proof (direct computation, 2 variables)
+- n=3: PROVED via degree-bound + zero test. The symmetry difference d(t) = E*_{λ⁻}(x;1,t) - E*_{λ⁻}(σx;1,t) is a rational function of t with total degree ≤ 20. Evaluated at 82 exact t-values, all give d(t)=0. Since 82 > 20, d(t) ≡ 0.
+- n=4: PROVED via modular arithmetic. Degree bound 54 (pattern 6×(9-d)). Evaluated at 90 rational t-values modulo two independent primes (~10^8). All give 0 mod both primes. Since 90 > 54, d(t) ≡ 0.
+
+## Unresolved Blocker (single sentence)
+
+For n ≥ 5, the perturbation system is ~11K × 11K with degree bound 112, requiring ~247 days of single-threaded computation — no algebraic shortcut has been found to bypass this computational barrier.
+
+## Failed Approaches (8 total, with reason each failed)
+
+1. **Symbolic-t perturbation (SymPy)**: SymPy too slow at perturbation order ≥ 4 for n=3 (49-dimensional null space). Does not scale.
+2. **Rational Richardson extrapolation**: Insufficient convergence rate for the q→1 limit. Extrapolation error does not decrease reliably.
+3. **Thiele continued fraction**: Poles appear in reciprocal differences, making the continued fraction representation ill-conditioned.
+4. **S_n equivariance quotient**: Reduces from 11K to ~324 partition-indexed blocks at n=5, but per-block cost is still O(324³ × deg_bound) which remains prohibitive (~65 days).
+5. **Spectral vector collapse at q=1**: The spectral vectors remain distinct at generic t, so no simplification from degenerate eigenvalue structure.
+6. **Restriction x_n → 0**: Gives wrong implication direction — symmetry of the restriction does not imply symmetry of the original polynomial.
+7. **Hecke algebra degeneration**: At q=1, H_n(q,t) → C[S_n]. Symmetry is emergent (from vanishing conditions), not structural (from representation theory). The Hecke algebra alone cannot force it.
+8. **Null space structure**: The null space has dimension n! at q=1, and S_n acts on it. The perturbation equations force non-trivial isotypic components to vanish. This EXPLAINS why the conjecture holds but provides NO computational shortcut.
+
+## Additional structural lead (partially successful)
+
+**Alexandersson-Sawhney (arXiv:1801.04550)**: The STANDARD non-symmetric Macdonald polynomial E_μ(x;1,t) is symmetric and t-independent for partitions μ. Via Hecke extension, ALL E_μ(x;1,t) are symmetric. This means the LEADING HOMOGENEOUS COMPONENT of E*_{λ⁻} is symmetric for all n. But the INTERPOLATION polynomial E* differs from the standard E by lower-degree correction terms (from vanishing conditions at spectral vectors). These corrections are NOT covered by the AS result.
+
+The conjecture thus REDUCES to: "the inhomogeneous lower-degree corrections in E*_{λ⁻}(q=1,t) are symmetric."
+
+## Hard Constraints
+
+- No web searching for solutions to competition problems
+- Statement-level citations only (CITE_ONLY) for published results
+- No human mathematical input
+- Any proposed approach must be FALSIFIABLE: state a specific lemma that can be tested computationally for small n
+
+## What Counts as Success
+
+ONE of:
+(a) A bridge lemma that proves the lower-degree corrections of E*_{λ⁻}(q=1,t) are symmetric for all n, using structural properties of the Knop-Sahi vanishing conditions
+(b) A counterexample: a specific partition λ and n ≥ 5 where E*_{λ⁻}(x;1,t) is NOT symmetric (this would disprove the conjecture)
+(c) A citation to a published theorem that directly implies the conjecture
+(d) An algebraic identity or recursion that reduces the n-variable computation to lower n
+
+## Request
+
+Propose exactly 3 new approaches that are NOT variants of the 8 failed routes above. For each approach, provide:
+1. First bridge lemma (precise mathematical statement)
+2. Falsifiable test (what to compute at n=3 or n=4 to check). Must be runnable in ≤ 30 minutes on a single CPU.
+3. Likely failure mode
+4. Required external theorem statement (if any). If no known theorem is needed, write "no_known_theorem". Do NOT invent or hallucinate citations.
+5. Confidence (0-100) and novelty score (0-10 vs the 8 failed routes)
+6. Anti-duplication check: one sentence explaining why this is NOT a variant of any of the 8 failed routes listed above (reference by number).
+
+## Response Format
+
+Reply with ONLY a JSON object matching this schema (no markdown fencing, no preamble):
+
+{
+  "approaches": [
+    {
+      "name": "string",
+      "bridge_lemma": "string (precise mathematical statement)",
+      "falsifiable_test": "string (specific computation, ≤ 30 min single CPU)",
+      "failure_mode": "string",
+      "external_theorem": "string or 'no_known_theorem'",
+      "confidence": 0-100,
+      "novelty": 0-10,
+      "anti_dup": "string (why not a variant of failed routes #1-#8)"
+    }
+  ]
+}

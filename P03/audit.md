@@ -607,6 +607,7 @@ Added to answer.md:
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
 | E11 | 2026-02-12 | L5 | Closeout cycle 2: exactness-preserving reduction | n>=5 structural barrier | 5 reduction approaches tested (EXP-17): spectral collapse, restriction, Hecke degeneration, null space, S_n quotient. All fail. | Claude Opus 4.6 | answer.md (Session 8 reduction section, EXP-17 in script table), exp17_inductive_reduction.py | L5 barrier confirmed: 8 total shortcuts, all fail | ~3 msgs | **🟡 CANDIDATE (L5 barrier, final)** |
+| E14 | 2026-02-12 | L3 | Scout round | Symmetry Conjecture n≥5 | Failure-conditioned scouts (Qwen3-480B, DeepSeek-R1): 6 approaches proposed. Top: Branching Rule Induction (conf 65, DeepSeek), Spectral Orbit Harmonicity (conf 60, Qwen3). All pass novelty gate vs 8 failed routes. No approach actionable within time budget — all require either Knop-Sahi branching rule implementation or new symbolic computation beyond current capability. | scout_api.py, Fireworks API | audit.md updated with scout results | Novelty gate: 6/6 PASS. No status change. | ~2 msgs | **🟡 CANDIDATE (unchanged)** |
 
 ### Cycle footer (P03)
 1. **Proved**: n=2 (exact), n=3 (degree-bound 20 + 82-zero), n=4 (modular degree-bound 54 + 90-sweep)
