@@ -1,6 +1,6 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-12 (Session 14: CE-16 proves P04 b=0 subcase; Kimi truncation recovery in progress; scout acceptance gate pending)
+Snapshot date: 2026-02-12 (Session 14: CE-16 proves P04 b=0 subcase; Kimi K2.5 recovery complete (P03/P05 success, P04 truncated); scout acceptance gate complete)
 Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation complete)
 Methodology and autonomy constraints: see `methods_extended.md`.
 
