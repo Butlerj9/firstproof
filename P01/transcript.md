@@ -11,6 +11,7 @@ G0-G5: feasibility pass → dependency reconstruction → A4 closure → full pr
 - Session 4 (E4): A3 Wick expansion recovered. A4 statement recovered. Proof strategy identified (Young + coupling absorption). Gap: Wick-to-ordinary power transfer in 3D (c_ε → ∞). PARK (partial progress).
 - Session 5 (E5): **A4 gap closed** via partition function representation + BG stability. Full quasi-invariance proof assembled. Answer: YES.
 - Session 6 (E6): Cycle 4 REJECT patch: BG citation lacks CITE_ONLY ingest. Downgraded ✅→🟡 Candidate (conditional on BG stability extension).
+- Session 7 (E7): CITE_ONLY ingest of BG (2020) via WebFetch (×3). Theorems 1-3, Corollaries 1-2 extracted. Hypothesis mapping table added. C12 upgraded TRAINING→CITE_ONLY. Residual gap: BG Thm 3 stated for standard V_T; routine adaptation to V_c not explicit theorem. Status remains 🟡 Candidate.
 
 ## Escalation Events
 
@@ -22,6 +23,7 @@ G0-G5: feasibility pass → dependency reconstruction → A4 closure → full pr
 | E4 | Producer | Producer | Claude Opus 4.6 | — | answer.md Session 4, audit.md Session 4 | YES (A3 recovered, A4 statement + strategy, gap at 3D Wick) |
 | E5 | Producer | Producer | Claude Opus 4.6 | — | answer.md Session 5, audit.md Session 5 | YES (partition function + BG stability → A4 proved → full quasi-invariance) |
 | E6 | Producer | Producer | Claude Opus 4.6 | — | answer.md, audit.md, CONTAMINATION.md, README.md, RESULTS.md | YES (Cycle 4 REJECT patch: downgrade ✅→🟡, add TRAINING citations, remove stale text) |
+| E7 | Producer | Producer | Claude Opus 4.6 (WebFetch ×3) | — | answer.md, audit.md, CONTAMINATION.md, README.md, RESULTS.md | YES (CITE_ONLY ingest BG 2020: Thms 1-3, Cors 1-2; C12 upgraded; hypothesis mapping added) |
 
 ## Reconstruction note
 

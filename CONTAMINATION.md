@@ -23,7 +23,7 @@
 | C9 | P05 | Rubin (2019), arXiv:1903.08723, Def 2.1/3.4 | Statement-level: indexing system + transfer system definitions | CITE_ONLY | P05 E3 |
 | C10 | P05 | Rubin (2019), arXiv:1903.08723, Thm 3.7 + Cor 3.9 | Statement-level: Ind ↔ Tr equivalence | CITE_ONLY | P05 E3 |
 | C11 | P05 | Hill-Yarnall (2017), arXiv:1703.10526, Def 1.1/2.6, Thm 2.5 | Statement-level: slice connectivity + geometric FP characterization | CITE_ONLY | P05 E3 |
-| C12 | P01 | Barashkov-Gubinelli (2020), arXiv:2004.01513 | Training-knowledge: Boué-Dupuis construction of Φ⁴₃; stability under sub-scaling perturbations (UV dim < 2). Target: `thm:equicoerc` or coercivity theorem — **not statement-level sourced** | TRAINING | P01 E5 |
+| C12 | P01 | Barashkov-Gubinelli (2020), arXiv:2004.01513 | Statement-level: Theorem 1 (BD formula, linear-growth f), Theorem 3 (uniform renormalized control), Corollary 1 (uniform exponential integrability), Corollary 2 (absolute continuity). Hypothesis mapping: Thm 3 stated for V_T = λ∫(:φ⁴: − a_T:φ²: + b_T)dx; extension to :φ³:ψ source is routine adaptation (not explicit theorem). | CITE_ONLY | P01 E7 |
 | C13 | P01 | Bogachev (1998), *Gaussian Measures* | Training-knowledge: Cameron-Martin theorem for GFF quasi-invariance under H¹ translations | TRAINING | P01 E5 |
 
 ## Scout model deployments (no web search, no solution retrieval)
@@ -39,6 +39,7 @@
 | 2026-02-11 | WebFetch ar5iv.labs.arxiv.org/html/1309.1750 | P05 definition extraction (BH N∞ operad) | NONE (definition-only, primary source) |
 | 2026-02-11 | WebFetch ar5iv.labs.arxiv.org/html/1903.08723 | P05 definition extraction (Rubin transfer systems) | NONE (definition-only, primary source) |
 | 2026-02-11 | WebFetch ar5iv.labs.arxiv.org/html/1703.10526 | P05 definition extraction (HY slice connectivity) | NONE (definition-only, primary source) |
+| 2026-02-12 | WebFetch ar5iv.labs.arxiv.org/html/2004.01513 (×3) | P01 CITE_ONLY ingest: BG (2020) Theorems 1-3, Corollaries 1-2 | NONE (theorem statements only, primary source) |
 
 ## Exposure events
 None.

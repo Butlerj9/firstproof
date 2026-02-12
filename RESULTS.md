@@ -1,6 +1,6 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-12 (**P01 downgraded ✅→🟡**: BG citation lacks CITE_ONLY ingest; proof conditional on BG stability extension from training knowledge. P09 upgraded 🟡→✅: n=5 kernel proved exactly via modular rank; P05 strengthened: 3 formal theorems; P03 n≥5 infeasible; P04 CE-8 no counterexample)
+Snapshot date: 2026-02-12 (P01 🟡: CITE_ONLY ingest done, residual routine-adaptation gap; P09 ✅: n=5 kernel proved; P05: 4 theorems (Thm 4 ν_O^eff); P03 n≤4 proved, n≥5 infeasible + S_n equivariance; P04 CE-9 no counterexample, n≥4 stalemate)
 Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation complete)
 Methodology and autonomy constraints: see `methods_extended.md`.
 
@@ -8,11 +8,11 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 
 | Problem | Status | Outcome summary |
 |---------|--------|-----------------|
-| P01 | 🟡 Candidate | **YES** — Φ⁴₃ quasi-invariance proof assembled (Session 5), **conditional on BG stability extension** (TRAINING, not CITE_ONLY). A4 gap closed via partition function representation + BG stability: :φ³:ψ perturbation has UV scaling 3/2 < 2, subordinate to :φ⁴:, quartic coercivity preserved. Upgrade path: CITE_ONLY ingest of BG (2020) `thm:equicoerc`. |
+| P01 | 🟡 Candidate | **YES** — Φ⁴₃ quasi-invariance proof assembled (Session 5). **CITE_ONLY ingest of BG (2020) completed (E7)**: Thms 1-3, Cors 1-2 extracted. Hypothesis mapping explicit. Residual gap: BG Thm 3 stated for standard V_T; routine adaptation to V_c with :φ³:ψ source not an explicit theorem. |
 | P02 | ✅ Submitted | YES — modified RS integral. Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one). G0-G6 + upgrade cycle done. |
 | P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2 proved exactly; **n=3 PROVED** (degree-bound 20 + 82-zero, EXP-14b/13c); **n=4 PROVED** (modular degree-bound 54 + 90-sweep, EXP-16/16b/16d). n≥5 conditional. G0-G7 + 3 closure sessions done. |
-| P04 | 🟡 Candidate | n=2 proved (equality); **n=3 general proved (§4c: Φ₃ closed-form + Jensen)**; n≥4 conjectured (CE-7: cross-term obstruction, no proof route). G0-G7 + 2 upgrade cycles + reconciliation done. |
-| P05 | 🟡 Candidate | O-slice connectivity. **3 theorems proved** (Session 8): Thm 1 (obstruction for intermediate systems, Z/p² counterexample); Thm 2 (positive scope: complete/trivial on any G); Thm 3 (all transfer systems on Z/p). Corrected general characterization conjectured (effective ν_O). G0-G5 done. |
+| P04 | 🟡 Candidate | n=2 proved (equality); **n=3 general proved (§4c: Φ₃ closed-form + Jensen)**; n≥4 conjectured (CE-7: cross-term obstruction, 5 alt approaches all LOW, CE-9 no counterexample). G0-G7 + 2 upgrade cycles + Session 8 + CE-9 done. |
+| P05 | 🟡 Candidate | O-slice connectivity. **4 theorems proved**: Thm 1 (obstruction for intermediate, Z/p² CE); Thm 2 (positive scope: complete/trivial on any G); Thm 3 (all systems on Z/p); **Thm 4 (corrected "only if" for ALL G, ALL O with ν_O^eff)**. "If" direction conjectured. G0-G5 + Sessions 7-9 done. |
 | P06 | ✅ Submitted | Answer is NO via complete-graph counterexample. **Synthesis pass**: proof verified complete, all tests pass, upgraded to ✅. |
 | P07 | ✅ Submitted | Answer is YES. Q-PD proved (Shapiro). Surgery realization proved self-contained: surgery below middle dim + UCSS duality forces Q-acyclicity. G0-G6 done. |
 | P08 | ✅ Submitted | Answer is NO via Lagrangian octahedron counterexample. G6 patch: topology-preserving definition eliminates regularity gap; proof is 3-step (S² topology → exactness → Gromov). G0-G6 done. |
@@ -39,17 +39,17 @@ Note: transcript fidelity is mixed. Active closure lanes (e.g., P04/P06/P08/P09/
 
 | Problem | Est. tokens | Prompt/message count | Notes |
 |---------|-------------|----------------------|-------|
-| P01 | ~24,000 | ~8 | G0-G2 + Sessions 3-6: A4 closed (partition function + BG stability), full proof (conditional on BG) |
+| P01 | ~30,000 | ~12 | G0-G2 + Sessions 3-7: A4 closed (partition function + BG stability), CITE_ONLY ingest (E7: BG Thms 1-3), scout cross-check (E8) |
 | P02 | ~33,000 | ~12 | G0-G6 + upgrade cycle: key identity + n=1 proof + JPSS + multiplicity-one |
-| P03 | ~150,000 | ~48 | Full G0-G7 + synthesis pass (EXP-4) + upgrade cycle (EXP-5/5b) + 3 closure sessions (EXP-13/14b for n=3, EXP-16/16b/16d for n=4) + feasibility memo |
-| P04 | ~94,000 | ~26 | from transcript metrics/log + upgrade cycle (CE-5/5b/5c) |
-| P05 | ~43,000 | ~18 | G0-G5: feasibility + L2 definition-only escalation + Session 7 obstruction + Session 8 formal theorems |
+| P03 | ~150,000 | ~50 | Full G0-G7 + synthesis pass (EXP-4) + upgrade cycle (EXP-5/5b) + 3 closure sessions (EXP-13/14b for n=3, EXP-16/16b/16d for n=4) + feasibility memo + S_n equivariance analysis |
+| P04 | ~96,000 | ~28 | from transcript metrics/log + upgrade cycle (CE-5/5b/5c) + Session 8 (5 alt approaches) + CE-9 (disproof search, no CE) |
+| P05 | ~49,000 | ~21 | G0-G5: feasibility + L2 definition-only escalation + Session 7 obstruction + Session 8 formal theorems + Session 9 Theorem 4 (ν_O^eff) |
 | P06 | ~53,600 | ~14 | from transcript metrics/log |
 | P07 | ~20,000 | ~6 | G0-G6 + patch: Q-PD via Shapiro + surgery realization (self-contained) |
 | P08 | ~30,000 | ~10 | G0-G6 + patch: octahedron counterexample + Gromov obstruction |
 | P09 | ~114,000 | ~58 | from transcript metrics/log + upgrade cycle (EXP-6/6e) + formalization (EXP-10/10b) + Session 7-8: n=5 closure |
 | P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (all problems)** | **~678,000** | **~212** | all values are estimates (token_source: estimate), not API-billed absolutes |
+| **Total (all problems)** | **~692,000** | **~223** | all values are estimates (token_source: estimate), not API-billed absolutes |
 
 ## 4. What worked vs. what stalled
 
@@ -86,14 +86,14 @@ All 10 problems assessed to at least G2 (route map) level.
 | P09 | 📊 Conjecture | **✅ Submitted** | EXP-6/6e: D≤6 established. EXP-8 series: kernel formula 9·C(n−2,4). **EXP-9: D_n masking PROVED n≥6.** **EXP-10/10b: Kernel formula exact.** **Session 7: All 4 gaps closed n≥6.** **Session 8: n=5 kernel=15 proved exactly (EXP-11b: modular rank 1756 at 2 primes).** Upgraded to ✅. |
 | P07 | ❌ Parked | ✅ Submitted | Escalation success: Q-PD proved (Shapiro); surgery gap closed (below-middle-dim surgery + UCSS duality); upgraded to ✅ |
 | P08 | ❌ Parked | ✅ Submitted | Escalation produced counterexample; G6 patch adopted topology-preserving definition, eliminating regularity gap; upgraded to ✅ |
-| P01 | ❌ Parked | **🟡 Candidate** | A4 closed (partition function + BG stability); full quasi-invariance proof assembled (Cameron-Martin + Wick expansion + A4 + Hölder + symmetry). Answer: YES. **Conditional on BG stability extension (TRAINING, not CITE_ONLY).** |
+| P01 | ❌ Parked | **🟡 Candidate** | A4 closed (partition function + BG stability); full quasi-invariance proof assembled (Cameron-Martin + Wick expansion + A4 + Hölder + symmetry). Answer: YES. **CITE_ONLY ingest of BG (2020) done (E7). Residual gap: routine adaptation.** Scout cross-check: VALID 92% (E8). |
 | P02 | ❌ Parked | ✅ Submitted | Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one via AGRS) |
 
 ## 5b. Per-problem escalation matrix
 
 | Problem | Level Reached | Closure Level | Validation Level | Blocking Claim | Primary Toolchain | Independent Check | Outcome | Confidence Tier |
 |---------|--------------|---------------|-----------------|---------------|-------------------|-------------------|---------|----------------|
-| P01 | L3 | L3 | **G5 (conditional)** | A4 Wick-to-ordinary gap | Claude Opus 4.6 | BG stability extension (TRAINING — not CITE_ONLY) | **🟡 Candidate** | Proved + Training-knowledge (conditional) |
+| P01 | L3 | L3 | **G5 (conditional)** | Routine BG adaptation gap | Claude Opus 4.6 + scout cross-check | BG stability extension (**CITE_ONLY** ingest done; residual: routine adaptation not explicit theorem) | **🟡 Candidate** | Proved + CITE_ONLY (conditional on routine adaptation) |
 | P02 | L0 (Mode R) | L0 | G6 C3 | Partial ideal gen (JPSS) | Claude Opus 4.6 + scout briefs | AGRS multiplicity-one (CITE) | ✅ Submitted | Proved + Cited |
 | P03 | L5 | L3 | G6 C2 + EXP-14b + EXP-16 | Symmetry Conjecture n≥5 | Perturbation + degree-bound (Fraction n=3; modular n=4) | EXP-13c 82-zero; EXP-16 90-sweep × 2 primes | 🟡 Candidate | Proved (n≤4) + Empirical (n≥5) |
 | P04 | L3 | L3 (n=3) | G6 + CE-6 | Finite De Bruijn n≥4 | Φ₃ closed-form + Jensen | CE-1/5 numeric (285K+450) | 🟡 Candidate | Proved (n≤3) + Empirical (n≥4) |
@@ -111,9 +111,9 @@ A definition-only reference escalation protocol has been established at `common/
 Priority order (by tractability):
 1. **P08** (Symplectic) — ✅ RESOLVED: Lagrangian octahedron counterexample + topology-preserving definition + Gromov. Upgraded to Submitted.
 2. **P07** (Lattices) — ✅ RESOLVED: Q-PD proved (Shapiro), surgery realization proved (self-contained). Upgraded to Submitted.
-3. **P01** (Stochastic) — 🟡 CONDITIONAL: quasi-invariance proof assembled (partition function + BG stability), but BG citation is TRAINING level (no CITE_ONLY ingest). Upgrade path: CITE_ONLY ingest of BG (2020) arXiv:2004.01513 `thm:equicoerc`.
+3. **P01** (Stochastic) — 🟡 CONDITIONAL: quasi-invariance proof assembled (partition function + BG stability). **CITE_ONLY ingest of BG (2020) DONE** (E7). Residual gap: routine adaptation of Thm 3 to :φ³:ψ source. Scout cross-check: VALID 92% confidence (E8).
 4. **P02** (Rep theory) — ✅ RESOLVED: general n proved via JPSS + multiplicity-one (AGRS). Upgraded to Submitted.
-5. **P05** (Eq. homotopy) — 🟡 UPGRADED: definitions ingested, 2 candidate characterizations formulated. **Z/p² counterexample** shows characterization fails for intermediate transfer systems on groups with ≥3 subgroups; valid for Z/p, complete, trivial only
+5. **P05** (Eq. homotopy) — 🟡 UPGRADED: definitions ingested, **4 theorems proved** (Thms 1-4). Thm 1: Z/p² obstruction. Thms 2-3: positive scope (complete/trivial on any G; all systems on Z/p). **Thm 4: corrected "only if" with ν_O^eff for ALL G, ALL O.** "If" direction conjectured.
 
 ## 7. GPT-5.2-pro final synthesis (planned)
 
@@ -186,7 +186,7 @@ Each claim in the portfolio falls into one of three evidence tiers:
 |------|-----------|----------|
 | **Proved inline** | Complete proof from first principles, no external citation needed | P06 counterexample; P10 SPD proofs; P07 Q-PD via Shapiro + surgery realization (self-contained); **P03 n=2 symbolic proof + n=3 Symmetry Conjecture (degree-bound + 82-zero test) + n=4 Symmetry Conjecture (modular degree-bound + 90-sweep)**; P02 n=1 (Kirillov + Gauss sums) |
 | **Cited (statement-level)** | Argument depends on a published theorem cited with statement number | P08 Gromov §2.3.B₂'; P07 Selberg/Borel (classical, statement-level); P04 Voiculescu inequality (motivation only); P02 general n (JPSS [1] + AGRS multiplicity-one [5]) |
-| **Training-knowledge (conditional)** | Argument depends on a published result invoked from training knowledge without CITE_ONLY ingest | **P01 quasi-invariance (BG 2020 stability extension — TRAINING level, not statement-level sourced)** |
+| **CITE_ONLY (conditional)** | Argument depends on a published result sourced via CITE_ONLY ingest; residual gap is routine adaptation | **P01 quasi-invariance (BG 2020 stability — CITE_ONLY ingest done; residual: routine adaptation of Thm 3 to :φ³:ψ source not explicit)** |
 | **Proved inline (algebraic)** | Construction + all gaps closed via algebraic proofs | **P09 n≥6**: kernel formula exact (9·C(n-2,4), lower bound + base-case coverage §2.5c); D_n masking proved (§2.5a); separation genericity proved (§2.5b) |
 | **Empirical only** | Numerical/computational evidence without theorem-level proof | P03 n>=5 Symmetry Conjecture (48+ digits, 7 t-values for n=3); P04 n>=4 (285K trials + 150-digit high-precision; CE-7 cross-term obstruction for extending n=3 proof); P09 n=5 degree-6 kernel (EXP-6e, numerical only); P08 construction checks |
 
@@ -198,7 +198,7 @@ Each claim in the portfolio falls into one of three evidence tiers:
 
 3. **Finite-n theorem gap** (P03, P04, P09): Strong numerical evidence (relative errors 10^{-4} to 10^{-6}) was obtained for finite cases, but the symbolic/algebraic bridge from numerics to theorem was not crossed. P04's n=3 gap was resolved by deriving a closed-form for Φ₃ and reducing to Jensen's inequality (CE-6), but the n≥4 gap remains open — CE-7 confirms that the n=3 technique (clean coefficient additivity under ⊞₃) does not extend. **P03's n=3 gap was resolved** by a degree-bound argument (EXP-14b/13c: max degree 20, 82 zeros > 20). **P03's n=4 gap was resolved** by the same logical structure scaled to modular arithmetic (EXP-16/16b/16d: max degree 54, 90 zeros > 54, two independent primes). **P09's gaps #1–#4 were ALL closed** in Session 7: separation genericity proved algebraically (§2.5b), kernel upper bound proved via base-case coverage (§2.5c). P09 upgraded to 🟡 Candidate. P03 n≥5 and P04 n≥4 remain open.
 
-4. **Reference-blocked domains** (P01 conditionally unblocked; P02 fully unblocked; P05 partially unblocked): **P01 was conditionally unblocked** by a partition function argument: interpreting E_μ[exp(c∫:φ³:ψ)] as a ratio Z_c/Z, then applying BG stability — the :φ³:ψ perturbation has UV scaling 3/2 < 2, subordinate to :φ⁴:. This avoids the Wick-to-ordinary transfer gap entirely. **However**, the BG stability extension is invoked from training knowledge (TRAINING level) — no CITE_ONLY ingest of BG (2020) was performed, so P01 remains 🟡 Candidate conditional on this claim. P02 was fully unblocked by deriving the key identity from first principles and closing the general-n gap via the AGRS multiplicity-one theorem. P05 was partially unblocked via CITE_ONLY definition ingest (BH, Rubin, HY), enabling formulation of candidate characterizations — but a Z/p² counterexample shows the stated characterization fails for intermediate transfer systems, requiring a modified definition or characterization for the general case.
+4. **Reference-blocked domains** (P01 conditionally unblocked; P02 fully unblocked; P05 partially unblocked): **P01 was conditionally unblocked** by a partition function argument: interpreting E_μ[exp(c∫:φ³:ψ)] as a ratio Z_c/Z, then applying BG stability — the :φ³:ψ perturbation has UV scaling 3/2 < 2, subordinate to :φ⁴:. This avoids the Wick-to-ordinary transfer gap entirely. **CITE_ONLY ingest of BG (2020) was performed** (E7: WebFetch ×3, Thms 1-3, Cors 1-2 extracted); scout cross-check confirmed validity (E8: 92% confidence, "routine_adaptation"). Residual gap: BG Thm 3 is stated for standard V_T; routine adaptation to V_c with :φ³:ψ source is not an explicit theorem but follows by UV scaling analysis. P02 was fully unblocked by deriving the key identity from first principles and closing the general-n gap via the AGRS multiplicity-one theorem. P05 was partially unblocked via CITE_ONLY definition ingest (BH, Rubin, HY), enabling formulation of candidate characterizations — but a Z/p² counterexample shows the stated characterization fails for intermediate transfer systems. **4 theorems proved** for P05: obstruction (Thm 1), positive scope (Thms 2-3), corrected "only if" with ν_O^eff (Thm 4).
 
 5. **Definition sensitivity** (P08): The external review revealed that the self-review had conflated two different definitions of "smoothing" (topological isotopy vs Hausdorff convergence). The agent's self-review accepted the proof under the stronger definition while the answer was written under the weaker one. This definitional drift is a subtle failure mode that only surfaced under adversarial external review.
 

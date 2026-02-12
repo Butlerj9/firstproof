@@ -5,6 +5,7 @@
 Session 1 (2026-02-10): RED-feasibility pass only (G0-G2).
 Session 5 (2026-02-11): Definition-only escalation (G1 refresh + G2 route map).
 Session 6 (2026-02-12): Methods/reporting governance log (non-math).
+Session 9 (2026-02-12): Theorem 4 — corrected "only if" with ν_O^eff for ALL G, ALL O.
 
 ## Recorded lane outcome
 
@@ -22,6 +23,8 @@ Session 6 (2026-02-12): Methods/reporting governance log (non-math).
 | E2 | Supervisor | Producer | Claude Opus 4.6 | — | audit.md G1-G2 | YES (route map → PARK decision) |
 | E3 | Supervisor | Producer | Claude Opus 4.6 | WebFetch (ar5iv x3) | answer.md §2-§5, audit.md, transcript.md, CONTAMINATION.md | YES (definition unlock → 🟡) |
 | E4 | Supervisor | Producer | Codex 5.2 | `apply_patch` + doc/link checks (`rg`, `Get-Content`) | methods_extended.md, README.md, RESULTS.md, docs/*.md | YES (methods/reporting traceability update; non-math) |
+| E5 | Producer | Producer | Claude Opus 4.6 | — | answer.md §6 (Thms 1-3), audit.md Session 8 | YES (formal obstruction + positive scope: 3 theorems) |
+| E6 | Producer | Producer | Claude Opus 4.6 | — | answer.md §6 (Thm 4 + §6.2 fix), audit.md E6, transcript.md | YES (corrected "only if" with ν_O^eff: 4 theorems) |
 
 ## E3 Ingest Log (CITE_ONLY)
 

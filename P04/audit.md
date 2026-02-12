@@ -157,7 +157,7 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~26 |
+| Messages used | ~28 |
 | Gate | G7 (Package complete) + upgrade cycle |
 | Status | 🟡 Candidate |
 | Budget | 300 messages (GREEN — ~26 used) |
@@ -201,6 +201,7 @@ The n=3 proof (CE-6: Φ₃ closed-form + Jensen) exploits two special features o
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
 | E8 | 2026-02-12 | L3 | n≥4 stalemate | Cross-term obstruction at n≥4 | 5 alternative approaches assessed | Claude Opus 4.6 (subagent) | audit.md Session 8 | All LOW/VERY LOW feasibility | ~2 msgs | **STALEMATE** |
+| E9 | 2026-02-12 | L3 | Disproof attempt | n=4 counterexample | CE-9: high-precision optimization search (ce9_n4_disproof_search.py), 500+ seconds | Claude Opus 4.6 (subagent) | experiments/ce9_n4_disproof_search.py | No counterexample found (timed out) | ~2 msgs | **NO CE** |
 
 ## Orientation Note (2026-02-12)
 

@@ -134,7 +134,7 @@ Compute explicitly for G = Z/p with complete and trivial systems, verify the cha
 | E3 | 2026-02-11 | L2 | Supervisor dispatch: definition-only escalation | D1-D9 unresolved | CITE_ONLY ingest from 3 primary sources | Claude Opus 4.6, WebFetch (ar5iv) | answer.md §2-§5, audit.md G1-G2 refresh, transcript.md, CONTAMINATION.md | G1 ACCEPT, G2 ACCEPT (2 routes calibrated) | ~8 msgs | **PROCEED (🟡)** |
 | E4 | 2026-02-12 | L0 | Methods/reporting review request | Reviewer traceability for method constraints and provenance | Logged key prompts/responses; aligned method/autonomy docs and docs index | Codex 5.2, `apply_patch`, `rg`, `Get-Content` | methods_extended.md, README.md, RESULTS.md, docs/*.md, P03/P05/P09 audit/transcript | Documentation checks PASS; no mathematical artifact change | ~2 msgs | proceed |
 
-**Escalation summary**: Level reached: L2 (definition-only primary-source ingest). Status upgraded: ❌→🟡. CONTAM: 3 CITE_ONLY sources logged.
+**Escalation summary**: Level reached: L3 (formal theorem proving). Status upgraded: ❌→🟡 (E3); strengthened within 🟡 (E5: 3 theorems, E6: 4 theorems). CONTAM: 3 CITE_ONLY sources logged.
 
 ## Session 6: Methods/Documentation Governance (repo-wide, non-math)
 
@@ -204,6 +204,7 @@ P05 upgraded within 🟡: obstruction + positive scope proved. The answer now co
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
 | E5 | 2026-02-12 | L3 | Producer escalation checklist | Obstruction not formalized | Formal Theorems 1-3 proved | Claude Opus 4.6 | answer.md §6, audit.md Session 8 | G5: 3 theorems proved | ~4 msgs | **CANDIDATE (strengthened)** |
+| E6 | 2026-02-12 | L0 | 36h closeout: P05 theorem advance | ν_O dimension function incorrect for intermediate systems | Proved Theorem 4: corrected "only if" with ν_O^eff for ALL G and ALL O; fixed §6.2 conjecture formula | Claude Opus 4.6 | answer.md §6 (Thm 4 + fixed §6.2), audit.md E6 | G5: 4 theorems proved; "only if" fully resolved | ~3 msgs | **CANDIDATE (4 theorems)** |
 
 ## Human interventions
 
@@ -217,7 +218,7 @@ P05 upgraded within 🟡: obstruction + positive scope proved. The answer now co
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~18 (2 prior + 8 definition cycle + 4 Session 7 + 4 Session 8) |
-| Gate | G5 (formal obstruction + positive scope proved) |
-| Status | 🟡 Candidate (3 theorems proved: obstruction for intermediate systems, positive scope for Z/p + complete + trivial; general characterization conjectured with corrected dimension function) |
-| Budget | 80 messages (used ~18) |
+| Messages used | ~21 (2 prior + 8 definition cycle + 4 Session 7 + 4 Session 8 + 3 Session 9) |
+| Gate | G5 (formal obstruction + positive scope + corrected "only if" proved) |
+| Status | 🟡 Candidate (**4 theorems proved**: obstruction (Thm 1), positive scope (Thms 2-3), corrected "only if" for ALL G with ν_O^eff (Thm 4); "if" direction conjectured) |
+| Budget | 80 messages (used ~21) |

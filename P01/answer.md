@@ -2,8 +2,8 @@
 
 **Status**: 🟡 Candidate
 **Confidence**: HIGH (YES — quasi-invariance proved via partition function argument, **conditional on BG stability extension**)
-**External deps**: Barashkov-Gubinelli (2020) [TRAINING: construction + stability of Φ⁴₃ — not statement-level sourced]; Bogachev (1998) [TRAINING: Cameron-Martin]
-**Conditional on**: BG (2020) Boué-Dupuis construction extending to Φ⁴₃ with :φ³:ψ source (UV scaling 3/2 < 2). Invoked from training knowledge; no CITE_ONLY ingest performed.
+**External deps**: Barashkov-Gubinelli (2020) [CITE_ONLY: Theorems 1-3, Corollaries 1-2 extracted from arXiv:2004.01513]; Bogachev (1998) [TRAINING: Cameron-Martin]
+**Conditional on**: BG (2020) Theorem 3 (uniform renormalized control) extending from standard V_T = λ∫(:φ⁴: − a_T:φ²: + b_T)dx to the modified theory V_c with :φ³:ψ source. This is a routine adaptation (quartic coercivity preserved, UV scaling 3/2 < 2) but is not stated as a standalone theorem in BG. CITE_ONLY ingest performed (E7).
 
 ## Problem statement
 
@@ -140,13 +140,21 @@ $$-\lambda\phi_\varepsilon^4 + c\phi_\varepsilon^3\psi + \underbrace{(6\lambda c
 
 By Step 2, the quartic+cubic part is bounded below by $-(\lambda/2)\phi_\varepsilon^4 - C$. The remaining counterterms have **UV scaling dimensions** 1 and 1/2, both strictly below the $:\!\phi^4\!:$ threshold of 2.
 
-**Step 4 (BG stability).** The Barashkov-Gubinelli (2020) construction proves convergence of the $\Phi^4_3$ partition function $Z_\varepsilon$ via the Boué-Dupuis variational formula, with stochastic estimates that control all Wick interactions up to UV scaling dimension 2. The modified theory $Z_c^\varepsilon$ has:
+**Step 4 (BG stability).** The Barashkov-Gubinelli (2020) construction (arXiv:2004.01513) proves convergence of the $\Phi^4_3$ partition function $Z_\varepsilon$ via the Boué-Dupuis variational formula:
+
+- **BG Theorem 1** (Boué-Dupuis for linear-growth perturbations): Gives the variational representation $-\log Z_T^f = \inf_u \mathbb{E}[\frac{1}{2}\int_0^T |u_s|^2 ds + f(X_T + I_T(u)) + V_T(X_T + I_T(u))]$ for $f$ with linear growth.
+- **BG Theorem 3** (Uniform renormalized control): For $V_T = \lambda\int(:\!\phi^4\!: - a_T:\!\phi^2\!: + b_T)dx$ with renormalization sequences $(a_T, b_T)$, the stochastic estimates yield uniform bounds independent of the UV cutoff $T$.
+- **BG Corollary 1** (Uniform exponential integrability): For $f$ with linear growth, $\sup_T \mathbb{E}[\exp(-f(X_T + I_T(u^*)))] < \infty$.
+
+The modified theory $Z_c^\varepsilon$ has:
 
 - Quartic coupling $\lambda/2 > 0$ (coercive, from Step 2)
 - Mass renormalization $(6\lambda + O(c))c_\varepsilon \phi_\varepsilon^2$: same UV structure as standard $\Phi^4_3$
 - Linear counterterm $3cc_\varepsilon \phi_\varepsilon \psi$: acts as a Cameron-Martin shift of the GFF drift within the Boué-Dupuis representation, controlled at each UV scale since $\psi \in C^\infty$
 
-All terms are of lower UV scaling than $:\!\phi^4\!:$, so the BG stochastic estimates apply unchanged. Therefore $Z_c^\varepsilon / Z^\varepsilon$ converges to a finite positive value as $\varepsilon \to 0$, giving $Z_c / Z < \infty$. $\square$
+All terms are of lower UV scaling than $:\!\phi^4\!:$, so the BG stochastic estimates (Theorem 3) apply to the modified theory. **Residual gap**: BG Theorem 3 is stated for $V_T = \lambda\int(:\!\phi^4\!: - a_T:\!\phi^2\!: + b_T)dx$. The extension to $V_c$ with the $:\!\phi^3\!:\psi$ source requires verifying that (i) coercivity is preserved ($\lambda_{\mathrm{eff}} = \lambda/2 > 0$, Step 2), (ii) the additional counterterm $3cc_\varepsilon\phi_\varepsilon\psi$ has UV scaling $1/2 < 2$, and (iii) the stochastic estimates transfer. All three are routine consequences of the BG framework, but this adaptation is not stated as a standalone theorem in BG (2020).
+
+Therefore $Z_c^\varepsilon / Z^\varepsilon$ converges to a finite positive value as $\varepsilon \to 0$, giving $Z_c / Z < \infty$. $\square$
 
 ### Theorem (Quasi-invariance of the $\Phi^4_3$ measure)
 
@@ -210,6 +218,15 @@ Combining: $\mu_\psi \ll \mu$ and $\mu \ll \mu_\psi$, so $\mu$ and $\mu_\psi$ ar
 
 ## What is unresolved
 
-The proof is complete modulo the BG (2020) Boué-Dupuis construction extending to the modified theory with :φ³:ψ source. This extension is invoked from training knowledge (TRAINING level) — no CITE_ONLY ingest of BG (2020) was performed. Specifically, the claim that the BG stochastic estimates control all Wick interactions up to UV scaling dimension 2 (Step 4 of Theorem A4) was not verified against the primary source.
+**CITE_ONLY ingest completed (E7)**: BG (2020) arXiv:2004.01513 was WebFetched and Theorems 1-3, Corollaries 1-2 were extracted at statement level. The hypothesis mapping is:
 
-**To upgrade to ✅**: Perform CITE_ONLY ingest of BG (2020) arXiv:2004.01513, targeting `thm:equicoerc` or the coercivity/integrability theorem statement, and verify that the extension to :φ³:ψ source is a standard consequence.
+| BG (2020) Statement | P01 Usage | Hypothesis Check |
+|---------------------|-----------|------------------|
+| Theorem 1 (BD formula for linear-growth f) | Variational representation of Z_c | ✅ The :φ³:ψ source has linear growth in φ |
+| Theorem 3 (Uniform renormalized control for V_T) | Convergence of Z_c^ε | ⚠️ Stated for V_T = λ∫(:φ⁴: − a_T:φ²: + b_T)dx; extension to V_c with :φ³:ψ is routine but not explicit |
+| Corollary 1 (Uniform exponential integrability) | Finiteness of Z_c/Z | ⚠️ Follows from Theorem 3 adaptation |
+| Corollary 2 (Absolute continuity) | Measure construction | ✅ Directly applicable |
+
+**Residual gap**: BG Theorem 3 is stated for the standard Φ⁴₃ potential. Extending to the :φ³:ψ-modified theory requires three routine verifications: (i) coercivity preserved (λ_eff = λ/2 > 0 by AM-GM), (ii) counterterm 3cc_ε φ_ε ψ has UV scaling 1/2 < 2, (iii) stochastic estimates transfer. All three are standard consequences of the BG framework structure, not new mathematical content. However, this adaptation is not stated as a standalone theorem in BG (2020), so P01 remains 🟡 Candidate.
+
+**To upgrade to ✅**: Either (a) find a reference that explicitly states BG stability for Φ⁴₃ with sub-critical source terms, or (b) accept the routine adaptation as sufficient for the competition context.

@@ -6,6 +6,7 @@ Operational references:
 - `firstproof_sprint_plan.md` (timeline, gates, publishing ops)
 - `firstproof_implementation_guide.md` (implementation guidance)
 - `firstproof_research_landscape.md` (research context)
+- `agent_producer_cheatsheet.md` (producer-side workflow checklist)
 
 Source material:
 

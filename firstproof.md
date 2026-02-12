@@ -13,8 +13,8 @@ These files initialize the project; this file (`firstproof.md`) is the ongoing r
 
 1. `firstproof.md` (THIS FILE) — canonical directives + living log. **If any doc conflicts, this file wins.**
 2. `firstproof_sprint_plan.md` — time plan + publishing ops + setup scripts
-3. `firstproof_implementation_guide.md` — gates + per-problem work orders (deep)
-4. `firstproof_research_landscape.md` — background + citations (optional reading)
+3. `docs/reference/firstproof_implementation_guide.md` — gates + per-problem work orders (deep)
+4. `docs/reference/firstproof_research_landscape.md` — background + citations (optional reading)
 
 ---
 

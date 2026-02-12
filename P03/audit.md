@@ -552,15 +552,26 @@ Same structure as n=3 proof (§7 of answer.md):
 
 The n=5 direct computation is not feasible within the sprint. The n=2,3,4 proofs + conditional n≥5 (with 48-digit numerical evidence) is the best achievable. A structural proof of the Symmetry Conjecture (e.g., showing the degenerate vanishing system is S_n-equivariant) would bypass the computational barrier, but no such argument has been found.
 
+### S_n equivariance analysis (subagent, 2026-02-12)
+
+A structural reduction attempt found:
+- **All perturbation matrices A_k are S_n-equivariant**: A_k[σ(ν), σ(m)] = A_k[ν, m] for all σ ∈ S_n.
+- The RHS vector b_k is **not** equivariant (normalization breaks symmetry).
+- S_5 symmetry reduces compositions from 11628 to 324 partitions (~321 free symmetric parameters).
+- The perturbation system decomposes by S_n irreducible representation (Schur's lemma), but proving symmetry of the solution requires showing non-symmetric components vanish at q=1 — which is equivalent to the original conjecture.
+- Irrep decomposition could give computational speedup (block-diagonalize), but setup and the non-trivial blocks remain large.
+
+**Verdict**: S_n equivariance is a genuine structural property but does **not** by itself prove the Symmetry Conjecture. It confirms the mathematical consistency of the conjecture but provides no shortcut.
+
 ### Verdict
 
-P03 remains 🟡 Candidate (n≤4 proved). n=5 closure is computationally feasible but requires ~14-56 hours and is NOT attempted in this cycle. No structural shortcut found.
+P03 remains 🟡 Candidate (n≤4 proved). n=5 closure is computationally feasible but requires ~14-56 hours and is NOT attempted in this cycle. No structural shortcut found (S_n equivariance confirmed but insufficient).
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~48 (46 prior + 2 Session 7) |
+| Messages used | ~50 (48 prior + 2 Session 7 equivariance) |
 | Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions + n≥5 feasibility |
 | Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 conditional + 48-digit evidence) |
 | G6 cycles | 1 reject + 1 accept = 2 cycles |

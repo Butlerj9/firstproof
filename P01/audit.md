@@ -244,12 +244,14 @@ This avoids the Session 4 obstruction entirely: the divergent Wick counterterms 
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
 | E5 | 2026-02-12 | L3 | Cycle 4 checklist: P01 lemma-chain closure | A4 Wick-to-ordinary gap | Partition function + BG stability proof | Claude Opus 4.6 | answer.md Session 5, audit.md Session 5 | **G5 ACCEPT: full proof (conditional on BG)** | ~2 msgs | **🟡 CANDIDATE** |
 | E6 | 2026-02-12 | L0 | Cycle 4 REJECT: BG citation lacks statement-level ID | No CITE_ONLY ingest of BG (2020) | Downgrade ✅→🟡; CONTAMINATION entries added at TRAINING level | Claude Opus 4.6 | answer.md, audit.md, CONTAMINATION.md, README.md, RESULTS.md | Patch cycle: stale text removed, metrics deduped, transcript updated | ~2 msgs | **🟡 CANDIDATE (conditional)** |
+| E7 | 2026-02-12 | L3 | 36h closeout: CITE_ONLY ingest of BG (2020) | BG Theorem 3 stated for standard V_T, not V_c with :φ³:ψ source | WebFetch ar5iv BG 2020; extracted Thms 1-3, Cors 1-2; hypothesis mapping table added to answer.md; C12 upgraded TRAINING→CITE_ONLY | Claude Opus 4.6 (WebFetch ×3) | answer.md (Step 4 + §Unresolved), audit.md E7, CONTAMINATION.md C12 upgrade + search log | CITE_ONLY ingest ✓; residual gap: routine adaptation not explicitly stated as theorem | ~3 msgs | **🟡 CANDIDATE (CITE_ONLY, residual routine-adaptation gap)** |
+| E8 | 2026-02-12 | L2 | Scout cross-check of BG extension claim | Independent verification needed | Scout (Claude Opus 4.6 subagent) independently verified: VALID (92% confidence), routine_adaptation. Facts 1-5 correct. Fact 6 ("BG generality quote") flagged as likely fabricated by WebFetch AI summarizer — conclusion still valid via UV scaling + coercivity. No hidden hypothesis violations. | Claude Opus 4.6 (scout subagent) | audit.md E8 | Scout confirms: mathematical reasoning sound, BG extension is routine | ~1 msg (scout output) | **🟡 CANDIDATE (scout-verified)** |
 
 ## Metrics (updated)
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~8 (2 prior + 2 Session 3 + 2 Session 4 + 2 Session 5) |
+| Messages used | ~12 (2 prior + 2 Session 3 + 2 Session 4 + 2 Session 5 + 3 E7 CITE_ONLY ingest + 1 E8 scout) |
 | Gate | **G5** (full proof assembled) |
 | Status | **🟡 Candidate** (YES — quasi-invariance proved, conditional on BG stability extension from training knowledge) |
 | Budget | 30-80 messages (~8 used) |
