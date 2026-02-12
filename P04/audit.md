@@ -176,6 +176,32 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 *Updated: 2026-02-11 — after upgrade cycle (CE-5/5b/5c). See transcript.md for per-session breakdown.*
 
+## Session 8: n≥4 Alternative Approaches Assessment (2026-02-12)
+
+**Status**: All 5 alternative approaches assessed — none viable within sprint constraints.
+
+### Approaches evaluated
+
+| Approach | Feasibility | Obstruction |
+|----------|-------------|-------------|
+| Direct Φ₄ closed-form | LOW | Cross-term c₄ = a₄+b₄+(1/6)a₂b₂ breaks coefficient additivity; partial fractions for degree-4 denominator yield 4-root sums with no clean closed form |
+| K-transform comparison | LOW | K_p'' evaluated at roots of h ≠ roots of p; ratio varies 10⁻⁴ to 10⁷ (CE-5), no consistent inequality possible |
+| Information-theoretic (finite De Bruijn) | VERY LOW | Finite De Bruijn identity unproven; even form of finite dissipation functional J_n unknown |
+| Specialized subcases (e.g., equally-spaced) | MEDIUM | ⊞_n breaks equal spacing for n≥4; only yields restricted-case result, not general |
+| Monotonicity / induction on n | MEDIUM | No known monotonicity of Φ_n in n; no inductive structure connecting n and n+1 cases |
+
+### Verdict
+
+The n=3 proof (CE-6: Φ₃ closed-form + Jensen) exploits two special features of cubics: (1) clean coefficient additivity under ⊞₃ for centered cubics, and (2) a 1-parameter family (b/a ratio) amenable to Jensen. Both fail for n≥4. The cross-term obstruction (CE-7) is fundamental, not merely a technical difficulty.
+
+**P04 remains 🟡 Candidate**: proved for n≤3, conjectured for n≥4.
+
+## Escalation Ledger (continued)
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E8 | 2026-02-12 | L3 | n≥4 stalemate | Cross-term obstruction at n≥4 | 5 alternative approaches assessed | Claude Opus 4.6 (subagent) | audit.md Session 8 | All LOW/VERY LOW feasibility | ~2 msgs | **STALEMATE** |
+
 ## Orientation Note (2026-02-12)
 
 - Method/provenance policy source: `methods_extended.md`.

@@ -135,13 +135,37 @@ $$\Phi^H(E) \text{ is } \lceil n / \nu_{\mathcal{O}}(H) \rceil\text{-connective 
 **Claim**: $E \in \tau_{\geq n}^{\mathcal{O}}$ if and only if $\Phi^H(E)$ is $\lceil n/\nu_{\mathcal{O}}(H) \rceil$-connective for all $H \leq G$.
 
 **"Only if" direction**: It suffices to check the characterization on generators. For a generator $G_+ \wedge_H S^{k \cdot \mathrm{ind}_K^H(\mathbf{1})}$ with $k|H:K| \geq n$:
-- $\Phi^L(G_+ \wedge_H S^{k \cdot \mathrm{ind}_K^H(\mathbf{1})}) \simeq \bigvee_{[g] \in L \backslash G / H} \Phi^{L \cap gHg^{-1}}(S^{k \cdot \mathrm{ind}_K^H(\mathbf{1})})$
-- The fixed-point dimension $(\mathrm{ind}_K^H(\mathbf{1}))^L = |(H/K)^L|$ gives connectivity $\geq k \cdot |(H/K)^L| - 1$.
-- Since $k|H:K| \geq n$ and $|(H/K)^L| \leq |H:K|$, this requires showing $k \cdot |(H/K)^L| \geq \lceil n / \nu_{\mathcal{O}}(L) \rceil$.
-- **Gap**: This step needs a detailed orbit-counting argument that relates the fixed-point dimensions across the double coset decomposition to $\nu_{\mathcal{O}}$.
+- $\Phi^L(G_+ \wedge_H S^{k \cdot \mathrm{ind}_K^H(\mathbf{1})}) \simeq \bigvee_{[g] \in L \backslash G / H} S^{k \cdot |(gH/gK)^{L \cap gHg^{-1}}|}$
+- The fixed-point dimension $|(H/K)^{L'}|$ (with $L' = L \cap gHg^{-1}$) gives connectivity $k \cdot |(H/K)^{L'}|$.
+- We need $k \cdot |(H/K)^{L'}| \geq \lceil n / \nu_{\mathcal{O}}(L) \rceil$ for all $L$ and all double coset representatives $g$.
+
+**"Only if" — obstruction for intermediate transfer systems (Session 7)**: The inequality $k \cdot |(H/K)^{L'}| \geq \lceil n/\nu_{\mathcal{O}}(L) \rceil$ FAILS for certain intermediate transfer systems on groups with $\geq 3$ subgroups. Counterexample:
+
+- $G = \mathbb{Z}/p^2$, transfer system $\mathcal{O}_2 = \{1 \leq_{\mathcal{O}} \mathbb{Z}/p\}$ (transfers at the bottom level only).
+- $\nu_{\mathcal{O}_2}(\mathbb{Z}/p^2) = 1$ (no proper transfer into $\mathbb{Z}/p^2$).
+- Generator: $G_+ \wedge_{\mathbb{Z}/p} S^{k\rho}$ with $\rho = \mathrm{ind}_1^{\mathbb{Z}/p}(\mathbf{1})$ (regular rep of $\mathbb{Z}/p$), $k \cdot p \geq n$.
+- $\Phi^{\mathbb{Z}/p^2}$: single double coset ($G$ abelian), $L' = \mathbb{Z}/p$, $\dim(\rho^{\mathbb{Z}/p}) = 1$.
+- Connectivity at $\mathbb{Z}/p^2$: $k \cdot 1 = k \geq \lceil n/p \rceil$.
+- Required: $k \geq \lceil n/1 \rceil = n$ (since $\nu_{\mathcal{O}_2}(\mathbb{Z}/p^2) = 1$).
+- But $k \geq \lceil n/p \rceil < n$ for $p \geq 2$, $n > 1$. **FAILS.**
+
+**Consequence**: The characterization $\Phi^H(E)$ is $\lceil n/\nu_{\mathcal{O}}(H) \rceil$-connective is NOT valid as the "only if" direction for Candidate A's generators with arbitrary $(H, K)$ pairs. The generator set is too permissive: $\mathcal{O}$-cells from intermediate subgroups $H$ can have coarser connectivity at larger subgroups $L > H$ than the characterization demands.
+
+**Valid special cases**: The characterization IS correct for:
+- $G = \mathbb{Z}/p$ (only 2 subgroups; no intermediate transfer systems exist). Both the complete and trivial systems reduce to known results (HY Thm 2.5 and Postnikov respectively).
+- The **complete** transfer system on any $G$: reduces to HY Thm 2.5 (verified by construction).
+- The **trivial** transfer system on any $G$: reduces to orbit-wise Postnikov (verified by construction).
+
+**Possible fixes**:
+1. **Restrict the generator set**: Only allow generators from $(H, K)$ where $K$ achieves the maximum index $|H:K| = \nu_{\mathcal{O}}(H)$ at ALL subgroups simultaneously (essentially Candidate B). This shrinks $\tau_{\geq n}^{\mathcal{O}}$.
+2. **Modify the characterization**: Replace $\nu_{\mathcal{O}}(L)$ with a more refined dimension function that accounts for the interaction between $\mathcal{O}$-transfers at different levels.
+3. **Use a different definition of O-slice filtration**: Define $\tau_{\geq n}^{\mathcal{O}}$ using generators $G_+ \wedge_H S^{k \cdot \rho_H^{\mathcal{O}}}$ with $k \cdot \nu_{\mathcal{O}}(H) \geq n$ AND the additional constraint $k \geq \lceil n/\nu_{\mathcal{O}}(L) \rceil$ for all $L \leq G$ such that $H$ is subconjugate to $L$.
+
+Option 3 is the most conservative but potentially circular. The correct fix likely involves defining an "effective O-dimension function" that tracks the minimum fixed-point dimension across all subgroups.
 
 **"If" direction**: Standard argument via the equivariant Whitehead theorem adapted to the $\mathcal{O}$-slice cells. If $\Phi^H(E)$ is sufficiently connective for all $H$, then $E$ can be built from $\mathcal{O}$-slice cells by a Postnikov-type construction.
 - **Gap**: Requires showing the $\mathcal{O}$-slice cells detect all equivalences, i.e., that $\tau_{\geq n}^{\mathcal{O}}$ is the right localizing subcategory.
+- **Note**: The "if" direction is independent of the "only if" obstruction above — it concerns the converse implication.
 
 ## 4. Dependency table (updated)
 
@@ -167,9 +191,9 @@ $$\Phi^H(E) \text{ is } \lceil n / \nu_{\mathcal{O}}(H) \rceil\text{-connective 
 - Characterization statement: $\Phi^H(E)$ is $\lceil n/\nu_{\mathcal{O}}(H) \rceil$-connective for all $H$
 
 **Unresolved**:
-1. **Proof of characterization**: "Only if" requires orbit-counting argument; "if" requires Whitehead-type argument adapted to O-cells.
-2. **Uniqueness of O-slice filtration**: Whether Candidates A and B generate the same localizing subcategory when multiple O-minimal subgroups exist.
-3. **Interaction with genuine vs naive**: Whether the characterization requires genuine G-spectra or works in a naive O-module category.
+1. **Characterization obstruction identified**: The "only if" direction FAILS for intermediate transfer systems on groups with ≥3 subgroups (§3.5 counterexample: $\mathcal{O}_2$ on $\mathbb{Z}/p^2$). Either the generator set or the connectivity bound needs modification. The characterization IS valid for $G = \mathbb{Z}/p$ and for the complete/trivial transfer systems on any $G$.
+2. **Uniqueness of O-slice filtration**: Whether Candidates A and B generate the same localizing subcategory when multiple O-minimal subgroups exist. The counterexample in §3.5 suggests they may NOT coincide for intermediate systems.
+3. **Correct dimension function**: The function $\nu_{\mathcal{O}}(H) = \max\{|H:K| : K \leq_{\mathcal{O}} H\}$ does not account for how fixed-point dimensions propagate across the subgroup lattice. An "effective O-dimension function" incorporating these interactions is needed for the general characterization.
 
 ## 6. Evidence taxonomy
 
@@ -178,4 +202,5 @@ $$\Phi^H(E) \text{ is } \lceil n / \nu_{\mathcal{O}}(H) \rceil\text{-connective 
 | **Defined** | $\nu_{\mathcal{O}}$-dimension function; $\tau_{\geq n}^{\mathcal{O}}$ localizing subcategory (two candidates) |
 | **Stated** | Characterization: $E \in \tau_{\geq n}^{\mathcal{O}} \Leftrightarrow \Phi^H(E)$ is $\lceil n/\nu_{\mathcal{O}}(H) \rceil$-connective for all $H$ |
 | **Calibrated** | Complete system → HY Thm 2.5; trivial system → orbit-wise Postnikov; $G = \mathbb{Z}/p$ interpolation |
-| **Proof gaps** | "Only if" orbit-counting; "if" Whitehead argument; A vs B equivalence |
+| **Obstruction found** | "Only if" fails for intermediate transfer systems on $G$ with ≥3 subgroups ($\mathbb{Z}/p^2$ counterexample) |
+| **Proof gaps** | Correct characterization for general $G$ and $\mathcal{O}$; "if" direction Whitehead argument; A vs B equivalence |

@@ -156,6 +156,29 @@ Compute explicitly for G = Z/p with complete and trivial systems, verify the cha
 - Verified links and references with `rg` and `Get-Content`.
 - Confirmed no updates to `P05/answer.md` technical claims.
 
+## G5 Closure Attempt (Mode S, Session 7)
+
+**Status**: OBSTRUCTION FOUND — characterization as stated is incorrect for intermediate transfer systems.
+
+### Z/p^2 counterexample
+
+For $G = \mathbb{Z}/p^2$ and transfer system $\mathcal{O}_2 = \{1 \leq_{\mathcal{O}} \mathbb{Z}/p\}$:
+- $\nu_{\mathcal{O}_2}(\mathbb{Z}/p^2) = 1$ (no proper transfer into $\mathbb{Z}/p^2$)
+- Generator $G_+ \wedge_{\mathbb{Z}/p} S^{k\rho}$ with $k \cdot p \geq n$ has $\Phi^{\mathbb{Z}/p^2}$ connectivity $k \geq \lceil n/p \rceil$
+- Characterization demands connectivity $n$ (since $\nu_{\mathcal{O}_2}(\mathbb{Z}/p^2) = 1$)
+- For $p \geq 2$, $n > 1$: $\lceil n/p \rceil < n$. **FAILS.**
+
+### Implications
+
+1. Candidate A's generator set is too permissive for intermediate transfer systems
+2. The $\nu_{\mathcal{O}}$ dimension function doesn't account for cross-level fixed-point dimension drops
+3. The characterization IS correct for: $G = \mathbb{Z}/p$ (2 subgroups only), complete system (any $G$), trivial system (any $G$)
+4. A modified definition or characterization is needed for the general case
+
+### Verdict (Session 7)
+
+P05 remains 🟡 Candidate. The counterexample is valuable: it identifies the precise obstruction to the general characterization. The definitions and calibrations are correct for the extreme cases (complete/trivial). A correct general characterization would require an "effective O-dimension function" that propagates fixed-point constraints across the subgroup lattice.
+
 ## Human interventions
 
 | Timestamp | Type | Action | Justification |
@@ -168,7 +191,7 @@ Compute explicitly for G = Z/p with complete and trivial systems, verify the cha
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~10 (2 prior + 8 this cycle) |
-| Gate | G2 (route map, calibrated) |
-| Status | 🟡 Candidate (definition unlock + 2 routes formulated) |
-| Budget | 80 messages (used ~10) |
+| Messages used | ~14 (2 prior + 8 definition cycle + 4 Session 7) |
+| Gate | G2 → G5 (obstruction found in characterization) |
+| Status | 🟡 Candidate (definitions correct; characterization obstruction for intermediate systems on groups with ≥3 subgroups; valid for Z/p, complete, trivial) |
+| Budget | 80 messages (used ~14) |

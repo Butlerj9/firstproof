@@ -160,6 +160,33 @@ The background is partially accessible from general knowledge, but the specific 
 | Status | ❌ Parked (blocked on references) |
 | Budget | 30-80 messages (RED — ~2 used) |
 
+## Session 3: Definition Reconstruction Attempt (2026-02-12)
+
+**Status**: Definition reconstruction confirms PARK — critical blocker unchanged.
+
+### Reconstruction from training knowledge
+
+| Step | Status | Finding |
+|------|--------|---------|
+| A1. GFF quasi-invariance | AVAILABLE | Cameron-Martin theorem, standard |
+| A2. Φ⁴₃ construction | PARTIAL | BG (2020) uses Girsanov/variational characterization; construction statement accessible from training, but precise formulation of regularity class uncertain |
+| A3. Shifted interaction | BLOCKED | Wick calculus under translation in 3D requires precise renormalization prescription; cannot reliably reconstruct |
+| A4. Exponential integrability | BLOCKED | Core blocker — whether exp(c∫:φ³:ψ dx) ∈ L¹(μ) requires specialized bounds from BG that are not reliably available from training |
+
+### Key finding
+
+Quasi-invariance is NOT directly stated as a theorem in BG (2020) or other known references from training knowledge. It would need to be derived from the construction, which requires the exponential moment bounds (A4). The problem is well-posed: the answer is almost certainly YES (quasi-invariance holds), but the proof requires technical machinery that cannot be reliably reconstructed.
+
+### Verdict
+
+P01 remains ❌ Parked. The dependency ledger is complete. No change from E2 assessment.
+
+## Escalation Ledger (continued)
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E3 | 2026-02-12 | L0 | Definition reconstruction | A4 exponential integrability still blocked | Training-knowledge reconstruction attempted | Claude Opus 4.6 (subagent) | audit.md Session 3, answer.md dependency ledger | Confirms PARK | ~2 msgs | **PARK** |
+
 ## Orientation Note (2026-02-12)
 
 - Method/provenance policy source: `methods_extended.md`.
