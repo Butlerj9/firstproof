@@ -157,10 +157,10 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~48 (36 prior + 4 Session 11 + 5 Session 12 + 3 Session 13) |
-| Gate | G7 (Package complete) + upgrade cycle + Sessions 11-12 |
-| Status | 🟡 Candidate |
-| Budget | 300 messages (GREEN — ~45 used) |
+| Messages used | ~102 (36 prior + 4 S11 + 5 S12 + 3 S13 + 6 S14 + 12 S15 + 12 S17 + 13 S18 + 11 S19) |
+| Gate | G7 (Package complete) + upgrade cycle + Sessions 11-19 |
+| Status | 🟡 Candidate → BLOCKED_WITH_FRONTIER (n≤3 + n=4 b=0 + n=4 c'=0 proved; general n=4: φ-subadditivity structure understood (§9.8), polynomial 1612 terms too complex; 13 routes explored) |
+| Budget | 300 messages (GREEN — ~102 used) |
 
 ### Token estimates (synced with transcript.md)
 
@@ -586,3 +586,381 @@ All three decompositions verified symbolically (`expand(LHS - RHS) == 0`).
 9. **Perturbative b-expansion (CE-20)** — b-correction not always non-negative (7.6% failure rate); higher-order cancellation needed
 
 *Cycle footer (Session 15): CE-17 kills concavity approach. CE-17b through CE-19 discover and fix quartic validity filter bug (Delta>0 insufficient, need A·B<0). Corrected sweep: 495,616 valid exact-arithmetic tests, ALL PASS. CE-20 kills perturbative approach. 9 routes failed. Status unchanged: 🟡 Candidate. ~54+12 = ~66 messages used.*
+
+---
+
+## Session 17 — P04 Final Round (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | P04 Final Round |
+| Date | 2026-02-12 |
+| Objective | Close general n=4 (b≠0) or prove it blocked |
+| Message cap | 32 |
+| Token estimate | ~15K |
+| Escalation level | L5 (c'=0 subcase proved; general case blocked) |
+
+### CE-21: b-correction recheck (2nd-order dead)
+
+**Script.** `experiments/ce21_b_correction_recheck.py` (from Session 16 context)
+
+**Result.** Confirmed CE-20 finding: b-correction to the c'=0 margin is NOT always non-negative on the valid region (7.6% failure rate in random tests). The 2nd-order perturbative approach is definitively dead.
+
+### CE-24: c'=0 margin polynomial analysis
+
+**Script.** `experiments/ce24_cp0_margin.py`
+
+**Target.** Extract and analyze the margin numerator N at c'=0.
+
+**Results:**
+1. N has 74 terms, total degree 15 (pre-gauge-fixing)
+2. After gauge-fixing s1+s2=1: degree 14, 115 terms
+3. At fixed w: degree 8 in (b1,b2) with 20 terms
+4. N=0 at b1=b2=0; N even under (b1,b2)→(-b1,-b2)
+5. All numerical evaluations show N ≤ 0
+
+### CE-25/25b/25c: Factorization analysis
+
+**Scripts.** `experiments/ce25_cp0_factor.py`, `experiments/ce25b_boundary_factor.py`, `experiments/ce25c_boundary_test.py`
+
+**Target.** Factor the c'=0 margin polynomial; test if validity boundaries divide N.
+
+**Key results:**
+1. Ratio parametrization b2=tb1 at w=1/2: beautifully factored coefficients (b1²: -(3t²-2t+3), b1⁴: -(t+1)²(35t²-66t+35), etc.)
+2. Hessian of N at b1=b2=0 is **negative definite** for all w∈(0,1)
+3. **Boundary factorization hypothesis FALSE**: NONE of (27b1²-4w³), (27b2²-4(1-w)³), (27(b1+b2)²-4) divide N
+4. N is irreducible as polynomial in (w, b1, b2) — SymPy factor() extracts only integer content 139968
+
+### CE-26: c'=0 concavity proof ★
+
+**Script.** `experiments/ce26_concavity_proof.py`
+
+**Target.** Prove the c'=0 superadditivity via concavity of scale-invariant profile.
+
+**KEY BREAKTHROUGH — Complete proof of c'=0 subcase:**
+1. **g(β) strictly concave**: g''(β) = -648/(4-27β)³ < 0 on [0, 4/27). Immediate.
+2. **ψ(u) = g(u²) strictly concave**: ψ''(u) = (positive numerator)/(negative denominator) < 0. Numerator 59049β³-26244β²+11664β+192 is positive (increasing, starts at 192). Denominator -4(4-27β)³ < 0.
+3. **Weighted Jensen**: u_h = c₁u₁+c₂u₂ with c_i = σ_i^{3/2}/σ_h^{3/2}, c₁+c₂ ≤ 1.
+4. **Gap lemma**: (σ_i^{3/2}/σ_h^{1/2} - σ_i)(ψ(u_i) - ψ(0)) ≥ 0 — both factors non-positive.
+5. Combined: σ_h·ψ(u_h) ≥ σ₁·ψ(u₁) + σ₂·ψ(u₂). QED.
+
+**Numerical verification:** 10K margin tests (0 violations, min 2.34e-7), 10K gap lemma tests (0 violations), 50K full margin tests (0 violations).
+
+### CE-27: Full Hessian test (extension blocked)
+
+**Script.** `experiments/ce27_full_hessian_test.py`
+
+**Target.** Test whether c'=0 concavity extends to general c' via joint concavity of ψ(u,v).
+
+**Results:**
+1. **ψ(u,v) is NOT jointly concave**: 5028 NSD violations out of 11,184 tested points
+2. Maximum positive eigenvalue: 3.62
+3. Violations exist even on b=0 slice (v-direction)
+4. **BUT: 100,000 full margin tests with general c': 0 violations, min margin 1.09e-3**
+
+**Verdict:** The c'=0 proof does NOT extend to the full case via joint concavity. Alternative approach needed for b-c' interaction.
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | validation gate/result | msg delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|----------------------|-----------|----------|
+| E17 | 2026-02-12 | L4 | c'=0 polynomial analysis | N structure | CE-24/25/25b/25c: factorization, boundary tests | SymPy | N irreducible; no boundary factors | ~4 msgs | analyze further |
+| E18 | 2026-02-12 | **L5** | concavity discovery | c'=0 subcase | **CE-26: g(β) concave → ψ(u) concave → weighted Jensen → QED** | SymPy + numpy | c'=0 PROVED (0 violations in 70K tests) | ~4 msgs | **c'=0 CLOSED** |
+| E19 | 2026-02-12 | L5 | extension attempt | general c' | CE-27: 2×2 Hessian test | numpy | ψ(u,v) NOT jointly concave (5028 violations); 100K full margin: 0 violations | ~2 msgs | **BLOCKED** |
+
+### Failed route summary (updated, 10 total)
+
+1. Direct De Bruijn identity (general n) — no finite analog
+2. K-transform Taylor expansion — n=3 only
+3. Coefficient-level algebraic identity — breaks for n≥4 (cross-terms)
+4. Cauchy-Schwarz / Jensen (n≥4) — weight mismatch obstruction
+5. Numerical SOS — 12 negative coefficients
+6. Discriminant decomposition — superseded by convexity (§9.4) for b=0
+7. SDP solver (CE-14) — not available; Putinar deg 6 insufficient
+8. Cumulant concavity (CE-17) — 1/Φ₄ NOT concave, NOT deg-1 homogeneous
+9. Perturbative b-expansion (CE-20) — b-correction not always non-negative (7.6%)
+10. **Joint concavity extension (CE-27)** — ψ(u,v) NOT jointly concave (5028 violations)
+
+### Metrics
+
+| Metric | Value |
+|--------|-------|
+| Messages used (this session) | ~12 |
+| Cumulative messages | ~78 |
+| New experiments | CE-21, CE-24, CE-25/25b/25c, CE-26, CE-27 |
+| Status | 🟡 Candidate (c'=0 subcase PROVED; general case blocked — 10 routes failed) |
+| Budget | 300 messages (GREEN — ~78 used) |
+
+*Cycle footer (Session 17): CE-26 proves c'=0 subcase via concavity (g strictly concave → ψ strictly concave → weighted Jensen + gap lemma). CE-27 blocks extension (ψ(u,v) not jointly concave). 10 routes failed for general n=4. Status unchanged: 🟡 Candidate. ~66+12 = ~78 messages used.*
+
+---
+
+## Session 18 — P04 R3: Claude Research + Parametric Convexity (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | P04 R3 |
+| Date | 2026-02-12 |
+| Objective | Execute Claude Research report recommendations; discover new structural properties |
+| Message cap | 20 |
+| Escalation level | L5 (new proof chain identified but not closed) |
+
+### Input: Claude Research Report
+
+Ingested `claude-research-final/P04/` containing:
+- `P04_claude_research_breakdown_2026-02-12.md` — 3 ranked routes: TSSOS sparse SOS, Shlyakhtenko-Tao projection, Schur complement lifting
+- `100_claude_code_checklist_from_claude_research_round1.md` — Bounded cycle checklist
+- `99_claude_code_checklist_from_gpt_pro_round2.md` — GPT-pro Round 2 checklist
+
+### Environment Gate
+
+| Tool | Available | Notes |
+|------|-----------|-------|
+| Julia/TSSOS | NO | Not installed |
+| sageopt/SAGE | NO | Not installed |
+| cvxpy | YES | CLARABEL, SCS solvers |
+
+### CE-28: Structural property sweep
+
+**Script.** `experiments/ce28_schur_radial_test.py`
+
+**5 properties tested:**
+1. Additive decomposition: FAIL (982/1719 violations)
+2. Radial convexity: FAIL (461 violations)
+3. **Parametric c' convexity: PASS (0/6155 violations)** ← KEY
+4. Parametric b convexity: FAIL (501 violations)
+5. Schur complement: FAIL (155/1719 violations)
+
+### CE-28b: Deep parametric c' convexity test
+
+**Script.** `experiments/ce28b_cp_convexity_deep.py`
+
+**Results (61,535 tests):**
+- Convexity d²M/dt² ≥ 0: **0 violations**, min d² = 5.65e-06 (strictly positive)
+- Boundary M ≥ 0: **0 violations** in 16,475 tests, min = 7.31e-04
+- All ray profiles: M(t) ≥ 0 everywhere
+
+### CE-28c: Proof structure analysis
+
+**Script.** `experiments/ce28c_convexity_proof_structure.py`
+
+**Key findings:**
+1. dM/dt at t=0: 50.2% negative (max |dM/dt| = 0.34) — not monotone
+2. Convex minima: ALL 1,686 interior minima are ≥ 0 (min = 1.64e-05)
+3. **p⊞q NEVER degenerates first**: 27,704 near-boundary cases, 100% degeneration in p or q
+4. M drops at most to 18.2% of M(0) — substantial but stays positive
+5. Tangent line bound alone insufficient (61% of cases)
+
+### CE-29: Exact polynomial extraction
+
+**Script.** `experiments/ce29_exact_polynomial.py`, `ce29b_fast_polynomial.py`
+
+**Results:**
+- Polynomial P has **837 terms, total degree 14, 5 variables** (w, b₁, b₂, c₁', c₂')
+- P < 0 outside validity domain (43.8%) → **constrained SOS required**
+- P ≥ 0 on validity domain: **0 violations** in 13,329 valid-domain points (min P = 1.67e-08)
+- Symmetries: P(w,b₁,b₂,c₁',c₂') = P(1-w,b₂,b₁,c₂',c₁') ✓; P even in (b₁,b₂) ✓
+
+### CE-29c: Discriminant bound ★
+
+**Script.** `experiments/ce29c_discriminant_bound.py`
+
+**KEY FINDING — Discriminant condition holds:**
+- Condition: 2·min_t(M'')·M(0) ≥ M'(0)²
+- **0 failures in 60,708 tests** (min slack = 6.88e-09)
+- This means the parabolic lower bound M(0) + M'(0)t + ½κt² ≥ 0 for all t
+
+**Boundary monotonicity FAILS**: 1/Φ₄(h) ≥ 1/Φ₄(q) when p degenerate: 4,908/118,729 failures. Does not affect discriminant approach.
+
+### CE-29d: Individual convexity analysis
+
+**Script.** `experiments/ce29d_individual_convexity.py`
+
+**Structural findings:**
+1. **1/Φ₄ is CONCAVE in c'**: 94,906 tests, ALL d²f/dc'² < 0, max = -0.66
+2. 1/Φ₄ NOT convex in b (109K violations), NOT convex in c' (all negative)
+3. Hessian in (b,c'): 75.2% NSD, 24.8% indefinite, 0% PSD
+4. Cross-derivative d²f/dbdc': mixed sign (50/50)
+
+**Structural explanation**: M''(t) = (cp₁+cp₂)²f_h'' - cp₁²f₁'' - cp₂²f₂''. Each f'' < 0 (concavity of 1/Φ₄ in c'), so the subtracted terms contribute positively. M''(t) ≥ 0 because "the parts are more concave than the whole" — a superadditivity of concavity.
+
+### Complete proof chain (numerically verified)
+
+1. M(0) ≥ 0 — **PROVED** (§9.6, c'=0 subcase)
+2. M''(t) ≥ κ > 0 for all valid t — **122K tests, 0 violations**
+3. 2κ·M(0) ≥ M'(0)² — **60K tests, 0 violations**
+4. Therefore M(t) ≥ M(0) + M'(0)t + ½κt² ≥ 0
+
+Steps 2-3 are the strongest structural findings yet, providing a complete proof pathway contingent on symbolic verification.
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | validation gate/result | msg delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|----------------------|-----------|----------|
+| E20 | 2026-02-12 | L5 | Claude Research report | 3 new routes | Environment gate + CE-28 structural sweep | ce28*.py | Parametric c' convexity DISCOVERED (0/6155) | ~3 msgs | proceed |
+| E21 | 2026-02-12 | L5 | parametric convexity | deep validation | CE-28b/28c: 122K convexity + proof structure analysis | ce28b/28c*.py | 0 violations; p⊞q never degenerates first | ~4 msgs | new route |
+| E22 | 2026-02-12 | L5 | polynomial structure | SOS feasibility | CE-29/29b: exact polynomial (837 terms, deg 14); constrained SOS | ce29*.py | P < 0 outside domain; unconstrained SOS infeasible | ~3 msgs | constrained needed |
+| E23 | 2026-02-12 | **L5** | discriminant bound | proof chain | **CE-29c: 2κM(0) ≥ M'(0)² holds (60K tests, 0 violations)** + CE-29d: individual concavity | ce29c/29d*.py | **Complete proof chain identified** | ~3 msgs | **STRONGEST ROUTE** |
+
+### Failed route summary (updated, 12 total)
+
+Routes 1-10: unchanged from Session 17.
+11. **Boundary monotonicity (CE-29c)** — 1/Φ₄(h) ≥ 1/Φ₄(q) at degenerate p fails in 4.1% of tests
+12. **Constrained SOS (CE-29b)** — P (837 terms, deg 14) negative outside validity domain; no solver
+
+### Metrics
+
+| Metric | Value |
+|--------|-------|
+| Messages used (this session) | ~13 |
+| Cumulative messages | ~91 |
+| New experiments | CE-28, CE-28b, CE-28c, CE-29, CE-29b, CE-29c, CE-29d |
+| Status | 🟡 Candidate (c'=0 + b=0 proved; parametric c'-convexity + discriminant bound identified; 12 routes explored) |
+| Budget | 300 messages (GREEN — ~91 used) |
+
+*Cycle footer (Session 18): R3 from Claude Research report. CE-28 discovers parametric c' convexity (0/6K violations). CE-29c discovers discriminant bound (0/60K violations). Complete proof chain identified: (1) M(0)≥0 [PROVED], (2) M''≥κ>0 [122K tests], (3) 2κM(0)≥M'(0)² [60K tests], (4) M(t)≥0. Steps 2-3 not yet proved symbolically. 12 routes explored total. Status unchanged: 🟡 Candidate. ~78+13 = ~91 messages used.*
+
+---
+
+## Session 19 — P04 Symbolic Verification Attempt (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | P04 S19 Symbolic Verification |
+| Date | 2026-02-12 |
+| Objective | Attempt symbolic proof of M''(t) ≥ 0 (Step 2 of proof chain) |
+| Message cap | 15 (bounded cycle with stop-loss) |
+| Escalation level | L5 (BLOCKED_WITH_FRONTIER) |
+
+### CE-30: Symbolic d²(1/Φ₄)/dc'² computation
+
+**Script.** `experiments/ce30_symbolic_mpp.py`
+
+**KEY RESULT — Clean factored form:**
+- f''(σ,b,0) = (27b²-8σ³)·P₃(β) / [σ⁶(27b²-4σ³)³] where P₃ = (27β-4)³ - 864β
+- Scale-invariant: h(β) = (531441β⁴-393660β³+81648β²-5184β+512) / (-(4-27β)³)
+- h(0) = -8, confirming f'' < 0 (concavity) on validity domain
+
+**M''(0) ≥ 0 analysis:**
+- 102,294 numerical tests: 0 violations, min M''(0) = 3.62e-05
+- g(β) = -h(β) is increasing and CONVEX: values g(0)=8, g(0.01)=9.02, g(0.05)=22.1
+- Titu's lemma reduces M''(0) ≥ 0 to φ-subadditivity
+
+### CE-30b: φ-subadditivity and M''(t) structure
+
+**Script.** `experiments/ce30b_phi_subadditivity.py`
+
+**Clean formula:** φ(σ,b) = σ³·F(u) where F(u) = (1-u)³/[4(2-u)((1-u)³+2u)], u = 27b²/(4σ³). F is strictly decreasing and convex, F(0) = 1/8.
+
+**φ-subadditivity:** φ(w,b₁)+φ(1-w,b₂) ≤ φ(1,b₁+b₂). **0 violations in 153,297 tests** (max ratio 0.857). Confirmed with 150 exact Fraction tests.
+
+**b=0 case proved:** reduces to w³+(1-w)³ ≤ 1. Trivial.
+
+**M''(t) at general t:** 21,496 tests, 0 violations. But M''(t) is NOT monotone (53.8% increasing, 25.2% decreasing) and NOT convex in t (288 violations). So M''(0) ≥ 0 cannot be extended to M''(t) ≥ 0 via monotonicity/convexity.
+
+**φ(σ,b) NOT jointly concave:** 55,344/71,252 Hessian NSD violations. Concavity-based subadditivity proof blocked.
+
+### CE-30c: Subadditivity polynomial
+
+**Script.** `experiments/ce30c_subadditivity_polynomial.py`
+
+**Result:** After clearing denominators, φ-subadditivity becomes a polynomial with **1612 terms, total degree 34** (degree 16 in s=b₁ and t=b₂, degree 26 in w). NOT even in s or t (due to (s+t) cross-terms). At symmetric point (w=1/2, s=t): factors as 3·(27s²-1)·P₆·P₁₄/8.
+
+**Verdict:** Too complex for manual SOS decomposition or ad-hoc algebraic proof.
+
+### Stop-loss assessment
+
+**BLOCKED_WITH_FRONTIER.** Complete algebraic structure understood:
+1. M(0) ≥ 0 — **PROVED** (§9.6)
+2. M''(0) ≥ 0 at b=0 — **PROVED** (Titu + w³+(1-w)³ ≤ 1)
+3. M''(0) ≥ 0 general — reduces to φ-subadditivity (153K tests, conjecture)
+4. M''(t) ≥ 0 for t > 0 — 122K tests, 0 violations, but no structural path
+5. φ-subadditivity polynomial: 1612 terms, degree 34 — out of reach
+
+No theorem-level closure achieved in this cycle. P04 declared BLOCKED_WITH_FRONTIER.
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | validation gate/result | msg delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|----------------------|-----------|----------|
+| E24 | 2026-02-12 | L5 | symbolic verification | f'' structure | CE-30: symbolic factorization + scale-invariant profile | SymPy | Clean h(β) factored; M''(0) ≥ 0 via Titu | ~4 msgs | new structure |
+| E25 | 2026-02-12 | L5 | φ-subadditivity | proof of M''(0) | CE-30b: φ formula + subadditivity tests + M''(t) analysis | numpy + Fraction | 153K+150 tests, 0 violations; M'' not monotone/convex | ~4 msgs | conjecture |
+| E26 | 2026-02-12 | **L5** | polynomial extraction | symbolic closure | **CE-30c: subadditivity polynomial 1612 terms, degree 34 — BLOCKED** | SymPy | Too complex for manual proof | ~3 msgs | **BLOCKED_WITH_FRONTIER** |
+
+### Failed route summary (updated, 13 total)
+
+Routes 1-12: unchanged from Session 18.
+13. **φ-subadditivity polynomial (CE-30c)** — 1612 terms, degree 34; too complex for manual SOS
+
+### Metrics
+
+| Metric | Value |
+|--------|-------|
+| Messages used (this session) | ~11 |
+| Cumulative messages | ~102 |
+| New experiments | CE-30, CE-30b, CE-30c |
+| Status | 🟡 Candidate → BLOCKED_WITH_FRONTIER (13 routes explored; algebraic structure fully understood; polynomial complexity blocks closure) |
+| Budget | 300 messages (GREEN — ~102 used) |
+
+*Cycle footer (Session 19): CE-30 discovers clean f'' factorization and φ-subadditivity structure. CE-30b confirms 153K+150 tests, 0 violations; b=0 case proved via Titu. CE-30c extracts subadditivity polynomial (1612 terms, degree 34) — too complex. Stop-loss triggered: BLOCKED_WITH_FRONTIER. 13 routes total. Status unchanged: 🟡 Candidate. ~91+11 = ~102 messages used.*
+
+---
+
+## Session 22 — P04 Resolution Cycle (CE-31 through CE-32h)
+
+### CE-31: Canonical target memo
+Locked frozen notation, two equivalent forms (superadditivity vs parametric margin), domain constraints, proof chain target. Artifact: `ce31_canonical_target.md`.
+
+### Reproducibility gate
+Re-ran CE-30 (102,294 tests, 0 violations), CE-29c (60,708 tests, 0 failures), CE-30b (153,297 tests, 0 violations). All reproduced exactly.
+
+### CE-32b: f'' factorization at general c' (PROVED)
+Num(f'') = (27b²-8σ³)·Q, Den = (A/2)³·(3B)³. Since (27b²-8σ³)<0 and den<0, f''<0 universally. 42,846 tests pass.
+
+### CE-32c: Matrix PSD conditions
+Diagonal dominance g₁≥g_h: 46,104 tests, 0 violations. Det condition: **FAILS** (2/46,418). Route 14 blocked.
+
+### CE-32d: G(β) monotonicity (PROVED)
+G'(β) factors as -81(27β-4)²P(β) where P<0 on [0,4/27). G increasing + convex PROVED. b2=0 diagonal dominance PROVED.
+
+### CE-32e: M'(0) sign (BLOCKED)
+f'(σ,b,0) ≤ 0 always. M'(0) negative 72.8%. Route 15 blocked.
+
+### CE-32f-h: b²-parametric approach (NEW, NEAR-MISS)
+
+**Key discovery**: P(τ) = N(√τ) where N(θ) = M(w,θb₁,θb₂,c'₁,c'₂).
+- P(0) ≥ 0: **PROVED** (b=0 case)
+- N'(0) = 0: **PROVED** (1/Φ₄ even in b)
+- **P(τ) convex: 100% of 26K+ tests**
+- **C(σ,c') = 648(σ⁴-36c'²)**: PROVED (f̃'' = C/(4AB)³, constant numerator)
+- **P''(τ) increasing: 100% of 12K tests**
+- Second-order bound P(0)+P'(0)+½P''(0) ≥ 0: 99.99% (2 failures, min -8e-04)
+
+### CE-34: Dense exact grid
+339,657 exact Fraction tests, ALL PASS, 0 negative.
+
+### Escalation
+
+| event_id | date | level | trigger | action | result | msg delta | decision |
+|----------|------|-------|---------|--------|--------|-----------|----------|
+| E27-E31 | 2026-02-12 | L5 | symbolic+structural | CE-32b-h: 5 sub-approaches | Routes 14-17; b²-parametric near-miss | ~15 msgs | strengthened frontier |
+
+### Failed route summary (updated, 17 total)
+
+Routes 1-13: unchanged.
+14. **Matrix PSD for M''(θ)** — det condition fails at 2 extreme points
+15. **M'(0) monotonicity shortcut** — M'(0) negative 72.8%
+16. **P(0)+P'(0) first-order bound** — fails 5.5%
+17. **P(0)+P'(0)+½P''(0) second-order bound** — 2 marginal failures (min -8e-04)
+
+### Metrics
+
+| Metric | Value |
+|--------|-------|
+| Messages used (this session) | ~15 |
+| Cumulative messages | ~117 |
+| New experiments | CE-31, CE-32b-h, CE-34 |
+| Status | BLOCKED_WITH_FRONTIER (strengthened: 17 routes; b²-parametric near-miss; C=648(σ⁴-36c'²)) |
+| Budget | 300 messages (GREEN — ~117 used) |
+
+*Cycle footer (Session 22): CE-31 target locked. CE-32b-e: f'' factored, G monotone/convex PROVED, M'(0) negative kills shortcut. CE-32f discovers b²-parametric: P(τ) convex (26K), C=648(σ⁴-36c'²) PROVED. P'' increasing (12K), second-order bound 99.99%. CE-34: 340K exact grid ALL PASS. 17 routes. ~102+15=~117 msgs.*

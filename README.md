@@ -23,6 +23,15 @@ Full protocol and constraints are in `methods_extended.md`. Enforcement and
 provenance are logged in `PXX/audit.md`, `PXX/transcript.md`, and
 `CONTAMINATION.md`.
 
+## Escalation note (active policy)
+
+Final escalation does **not** stop after a single GPT-pro run.
+For the remaining candidate lanes (`P03`, `P04`, `P05`), escalation is
+iterative and multi-model (`GPT-pro` + `Claude Research` + `Claude Code`):
+continue while a cycle yields measurable progress (new bridge lemma, closed
+subcase, sharper blocker with reproducible evidence). Stop only when bounded
+cycles stop producing new pathway signal.
+
 ## Results
 
 | Problem | Domain | Status | Confidence | Budget used |
@@ -30,8 +39,8 @@ provenance are logged in `PXX/audit.md`, `PXX/transcript.md`, and
 | P01 | Stochastic analysis | ✅ Submitted | HIGH (YES, quasi-invariance proved; **R1 CITE_PLUS: BG proof chain verified + Hairer-Steele independent path; all gaps closed**) | ~20/80 msgs |
 | P02 | Representation theory | ✅ Submitted | HIGH (YES, Kirillov + Gauss sums + JPSS + multiplicity-one) | ~12/80 msgs |
 | P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 infeasible — branching fails (EXP-20: 4 obstructions), AS reduction partial; L5 barrier) | ~67/200 msgs |
-| P04 | Finite free convolution | 🟡 Candidate | HIGH (n=2,3 proved; **n=4 even quartic (b=0) PROVED (CE-16)**; general n≥4: **495K exact tests ALL PASS (CE-19, corrected validity filter)**; 9 proof routes failed; b-c' cross-terms uncontrolled) | ~66/300 msgs |
-| P05 | Equivariant homotopy | 🟡 Candidate | HIGH (**7 theorems** + Frontier Thm; Class Ia proved, Class II open; 8+ proof approaches blocked; 825 total / 793 intermediate systems exhaustively tested) | ~37/80 msgs |
+| P04 | Finite free convolution | 🟡 Candidate | HIGH (n=2,3 proved; **n=4 b=0 PROVED (CE-16)**; **n=4 c'=0 PROVED (CE-26)**; general n≥4: **495K+ exact tests ALL PASS**; **φ-subadditivity structure (§9.8, Titu reduction, 153K+150 tests)**; **b²-parametric near-miss (P(τ) convex 26K+, C=648(σ⁴-36c'²) PROVED)**; BLOCKED_WITH_FRONTIER; 17 routes explored) | ~117/300 msgs |
+| P05 | Equivariant homotopy | ✅ Submitted | HIGH (**11 theorems; FULL BICONDITIONAL PROVED**; Thms 1-10: obstruction, positive scope, corrected "only if", dim-uniform, Class Ia, Z/4, V4, **general "if" for ALL G and ALL O (Thm 10, iterated isotropy separation)**; 825 systems verified) | ~57/80 msgs |
 | P06 | Spectral graph theory | ✅ Submitted | HIGH (NO, K_n counterexample) | ~14/300 msgs |
 | P07 | Lattices in Lie groups | ✅ Submitted | HIGH (YES, Q-PD + surgery realization proved) | ~6/80 msgs |
 | P08 | Symplectic geometry | ✅ Submitted | HIGH (NO, Lagrangian octahedron + Gromov) | ~10/80 msgs |

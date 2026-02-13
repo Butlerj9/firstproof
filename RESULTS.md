@@ -1,7 +1,7 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-12 (Session 15: Closeout Escalation Chain complete. CE-19 corrects quartic validity filter, 495K exact tests ALL PASS. EXP-20 kills P03 branching. 9 proof routes failed for P04 b≠0. All 3 🟡 barriers confirmed genuine.)
-Scope: full portfolio (all 10 problems assessed, synthesis pass + escalation complete)
+Snapshot date: 2026-02-12 (Session 22: P04 b²-parametric near-miss (17 routes). Session 21: P05 FULL BICONDITIONAL PROVED (Thm 10). 8 ✅, 2 🟡.)
+Scope: full portfolio (all 10 problems assessed, synthesis pass complete; iterative final escalation active on remaining candidate lanes)
 Methodology and autonomy constraints: see `methods_extended.md`.
 
 ## 1. Portfolio status
@@ -11,8 +11,8 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 | P01 | ✅ Submitted | **YES** — Φ⁴₃ quasi-invariance proved. **R1 CITE_PLUS (Session 10, E11)**: BG proof chain (arXiv:2004.01513) verified lemma-by-lemma for V_c; all 6 lemmas extend via (α) quartic coercivity + (β) UV scaling. **Independent path**: Hairer-Steele (arXiv:2102.11685) sub-Gaussian tails + Young directly yield A4. Two lines close the former gap. |
 | P02 | ✅ Submitted | YES — modified RS integral. Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one). G0-G6 + upgrade cycle done. |
 | P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2,3,4 proved. **L5 barrier**: n≥5 formally infeasible; branching rule induction killed (EXP-20: 4 obstructions); AS reduction partial; 4 approaches all fail. |
-| P04 | 🟡 Candidate | n=2,3 proved. **n=4 even quartic (b=0) PROVED (CE-16).** General n=4 (b≠0): **495K exact tests ALL PASS (CE-19, corrected quartic validity filter)**; 9 proof routes failed; b-c' cross-terms uncontrolled. |
-| P05 | 🟡 Candidate | O-slice connectivity. **7 theorems** + **Impossibility Frontier Theorem**. Class Ia proved; Class II open; **8+ proof approaches blocked**. 825 total / 793 intermediate systems exhaustively tested. No CE found. |
+| P04 | 🟡 Candidate | n=2,3 proved. **n=4 b=0 PROVED (CE-16); n=4 c'=0 PROVED (CE-26).** General n=4: **495K+ exact tests ALL PASS**; **φ-subadditivity structure (§9.8, Titu reduction, 153K+150 exact tests)**; **b²-parametric near-miss: P(τ) convex (26K+), C=648(σ⁴-36c'²) PROVED, P'' increasing (12K), 2nd-order bound 99.99%**; **BLOCKED_WITH_FRONTIER**; 17 routes explored. |
+| P05 | ✅ Submitted | O-slice connectivity. **11 theorems; FULL BICONDITIONAL PROVED.** Thm 10 (Session 21): general "if" direction for ALL G and ALL O via iterated isotropy separation. Key: family F_H = {L : L ⊅ gHg^{-1}} is always a family → Φ^H-equivalence handles each non-celled stratum. Combined with Thm 4 ("only if"), gives complete characterization. 825 systems verified. |
 | P06 | ✅ Submitted | Answer is NO via complete-graph counterexample. **Synthesis pass**: proof verified complete, all tests pass, upgraded to ✅. |
 | P07 | ✅ Submitted | Answer is YES. Q-PD proved (Shapiro). Surgery realization proved self-contained: surgery below middle dim + UCSS duality forces Q-acyclicity. G0-G6 done. |
 | P08 | ✅ Submitted | Answer is NO via Lagrangian octahedron counterexample. G6 patch: topology-preserving definition eliminates regularity gap; proof is 3-step (S² topology → exactness → Gromov). G0-G6 done. |
@@ -29,7 +29,7 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 | L3: Experiment-first validation | Scripted numeric/symbolic checks required before claims | P04, P06, P09, P10 |
 | L4: Scout model augmentation | External LLM checks as secondary verification channel | P10, tooling layer |
 | L5: Latent-limit protocol | Explicit relaxed-pass criteria for theorem-level stalls | P04, P09 (policy enabled) |
-| L6: Final synthesis pass (planned) | Single end-stage GPT-5.2-pro consolidation over all artifacts | Planned after all active problems settle |
+| L6: Iterative final escalation (active) | Multi-cycle GPT-pro + Claude Research + Claude Code escalation while measurable progress persists | Active on P03/P04/P05 |
 
 ## 3. Token and prompt/message accounting
 
@@ -42,14 +42,14 @@ Note: transcript fidelity is mixed. Active closure lanes (e.g., P04/P06/P08/P09/
 | P01 | ~45,000 | ~20 | G0-G2 + Sessions 3-10: A4 closed, CITE_ONLY ingest (E7), scout cross-check (E8), gap analysis (E9-E10: 7 approaches), **Session 10 (E11): R1 CITE_PLUS — BG proof chain verified + Hairer-Steele independent path; gap CLOSED** |
 | P02 | ~33,000 | ~12 | G0-G6 + upgrade cycle: key identity + n=1 proof + JPSS + multiplicity-one |
 | P03 | ~175,000 | ~67 | Full G0-G7 + synthesis + Sessions 9-11 + **Session 15: EXP-20 branching test (4 obstructions → BRANCHING_FAILS)** |
-| P04 | ~155,000 | ~66 | Sessions 8-15 + CE-9/10/11/12d/12e/13/16/17/18/19/20 + **Session 15: quartic validity filter corrected (CE-19: 495K exact ALL PASS); 9 routes failed** |
-| P05 | ~73,000 | ~37 | G0-G5 + Sessions 7-15: 7 theorems + Frontier + 8+ approaches blocked + Kimi scout eval |
+| P04 | ~240,000 | ~117 | Sessions 8-22 + CE-9/10/11/12d/12e/13/16/17/18/19/20/21/24/25/25b/25c/26/27/28/28b/28c/29/29b/29c/29d/30/30b/30c/31/32b-h/34 + **Session 22: b²-parametric (P(τ) convex, C=648(σ⁴-36c'²) PROVED, P'' increasing); 17 routes → BLOCKED_WITH_FRONTIER** |
+| P05 | ~100,000 | ~57 | G0-G5 + Sessions 7-21: **11 theorems; FULL BICONDITIONAL PROVED (Thm 10)**; V4 CLOSED (Thms 9/9'); general "if" for ALL G (iterated isotropy separation); P05 upgraded 🟡→✅ |
 | P06 | ~53,600 | ~14 | from transcript metrics/log |
 | P07 | ~20,000 | ~6 | G0-G6 + patch: Q-PD via Shapiro + surgery realization (self-contained) |
 | P08 | ~30,000 | ~10 | G0-G6 + patch: octahedron counterexample + Gromov obstruction |
 | P09 | ~114,000 | ~58 | from transcript metrics/log + upgrade cycle (EXP-6/6e) + formalization (EXP-10/10b) + Session 7-8: n=5 closure |
 | P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (all problems)** | **~814,600** | **~300** | all values are estimates (token_source: estimate), not API-billed absolutes; sum: 45+33+175+155+73+53.6+20+30+114+116=814.6K tokens, 20+12+67+66+37+14+6+10+58+12=302 msgs |
+| **Total (all problems)** | **~926,600** | **~373** | estimates; sum: 45+33+175+240+100+53.6+20+30+114+116=926.6K tokens, 20+12+67+117+57+14+6+10+58+12=373 msgs |
 
 ## 4. What worked vs. what stalled
 
@@ -69,8 +69,8 @@ Stalled:
 
 ## 5. Final result after synthesis pass
 
-- **Fully submitted: 7 problems** (P01, P02, P06, P07, P08, P09, P10).
-- Candidate: 3 problems (P03, P04, P05).
+- **Fully submitted: 8 problems** (P01, P02, P05, P06, P07, P08, P09, P10).
+- Candidate: 2 problems (P03, P04).
 - Parked: 0 problems.
 - Not started: 0 problems.
 
@@ -82,7 +82,7 @@ All 10 problems assessed to at least G2 (route map) level.
 |---------|--------|-------|--------|
 | P06 | 🟡 Candidate | ✅ Submitted | Proof verified complete; all numerical tests pass; upgraded |
 | P03 | 📊 Conjecture | 🟡 Candidate | EXP-5: Richardson extrapolation (48+ digits); upgraded to 🟡. **Session 4: n=3 PROVED (degree-bound 20 + 82-zero).** **Session 6: n=4 PROVED (modular degree-bound 54 + 90-sweep × 2 primes).** |
-| P04 | 📊 Conjecture | 🟡 Candidate | CE-5/6: n=3 proved. CE-10: closed-form Φ₄ + additive vars. CE-11: 2nd-order PSD + 105K exact tests. **CE-16: n=4 even quartic (b=0) subcase PROVED (convexity + algebraic decomposition).** General n=4 (b≠0) remains open. |
+| P04 | 📊 Conjecture | 🟡 Candidate | CE-5/6: n=3 proved. CE-10: closed-form Φ₄ + additive vars. CE-11: 2nd-order PSD + 105K exact tests. **CE-16: n=4 b=0 PROVED.** **CE-26: c'=0 PROVED.** CE-28/29: parametric c'-convexity + discriminant bound. **CE-30: φ-subadditivity (Titu, 153K+150 tests).** **CE-32b-h: b²-parametric near-miss (P(τ) convex 26K+, C=648(σ⁴-36c'²) PROVED, P'' increasing 12K, 2nd-order 99.99%). CE-34: 340K exact grid ALL PASS.** 17 routes → BLOCKED_WITH_FRONTIER. |
 | P09 | 📊 Conjecture | **✅ Submitted** | EXP-6/6e: D≤6 established. EXP-8 series: kernel formula 9·C(n−2,4). **EXP-9: D_n masking PROVED n≥6.** **EXP-10/10b: Kernel formula exact.** **Session 7: All 4 gaps closed n≥6.** **Session 8: n=5 kernel=15 proved exactly (EXP-11b: modular rank 1756 at 2 primes).** Upgraded to ✅. |
 | P07 | ❌ Parked | ✅ Submitted | Escalation success: Q-PD proved (Shapiro); surgery gap closed (below-middle-dim surgery + UCSS duality); upgraded to ✅ |
 | P08 | ❌ Parked | ✅ Submitted | Escalation produced counterexample; G6 patch adopted topology-preserving definition, eliminating regularity gap; upgraded to ✅ |
@@ -96,8 +96,8 @@ All 10 problems assessed to at least G2 (route map) level.
 | P01 | **L3** | **L3** | **G7 (unconditional; G6 ACCEPT, G7 ACCEPT)** | ~~BG Thm 3 gap~~ CLOSED | Claude Opus 4.6 + CITE_PLUS (BG proof chain) + Hairer-Steele | R1 CITE_PLUS: all 6 BG lemmas verified for V_c; Hairer-Steele independent path | **✅ Submitted** | Proved + CITE_PLUS verified |
 | P02 | L0 (Mode R) | L0 | G6 C3 | Partial ideal gen (JPSS) | Claude Opus 4.6 + scout briefs | AGRS multiplicity-one (CITE) | ✅ Submitted | Proved + Cited |
 | P03 | **L5** | L3 | G6 C2 + EXP-14b + EXP-16 + EXP-17 | Symmetry Conjecture n≥5 | Perturbation + degree-bound + 5 reduction attempts (EXP-17) | 8 structural shortcuts all fail; L5 barrier certificate | 🟡 Candidate | Proved (n≤4) + L5 barrier (n≥5, 8 shortcuts) |
-| P04 | L4 | **L4 (n=4 b=0 proved)** | G6 + CE-6 + CE-10 + CE-11 + CE-13 + **CE-16** | General n=4 (b≠0): b-c' cross-terms; SDP/SOS solver needed | Φ₄ closed-form + additive vars + 2nd-order PSD (CE-11) + **CE-16: convexity proof for b=0** | CE-11: 105K exact ALL PASS; **CE-16: algebraic proof verified** | 🟡 Candidate | **Proved (n≤3 + n=4 b=0)** + Empirical (general n≥4) |
-| P05 | **L5** | — | G5 (7 theorems + frontier theorem) | "If" direction Class II genuinely new; t-structure for non-regular cells | Claude Opus 4.6, WebFetch (ar5iv ×3), Python exhaustive computation | 5 approaches blocked; Thms 6-7: dim-uniform char + restricted sufficiency; 825 total / 793 intermediate systems tested; Class Ia proved; no CE | 🟡 Candidate | 7 theorems + Frontier Thm + restricted sufficiency |
+| P04 | **L5** | **L5 (n=4 b=0 + c'=0 proved; φ-subadditivity + b²-parametric)** | G6 + CE-6/10/11/13 + **CE-16 + CE-26 + CE-28/29 + CE-30 + CE-32b-h + CE-34** | General n=4: **17 routes explored**; b²-parametric near-miss (P(τ) convex 26K+, C=648(σ⁴-36c'²) PROVED, 2nd-order 99.99%); **BLOCKED_WITH_FRONTIER** | Φ₄ closed-form + additive vars + **CE-16: b=0** + **CE-26: c'=0** + **CE-28: parametric convexity (122K)** + **CE-30: Titu (153K+150)** + **CE-32f-h: b²-parametric (26K)** + **CE-34: dense grid (340K)** | CE-11: 105K; CE-19: 495K; CE-27: 100K; CE-28: 122K; CE-29c: 60K; CE-30b: 153K; **CE-34: 340K** ALL PASS | 🟡 Candidate | **Proved (n≤3 + n=4 b=0 + c'=0)** + Empirical (general n≥4) + **Structural (BLOCKED_WITH_FRONTIER, 17 routes)** |
+| P05 | **L7** | — | G7 (**11 theorems; FULL BICONDITIONAL**) | *(resolved)* | Claude Opus 4.6, WebFetch (ar5iv ×3), Python computation, GPT-pro R2 + Claude Research scouts | **Thm 10: GENERAL "IF" PROVED (all G, all O)** via iterated isotropy separation; Thms 9/9': V4 closed; F_H always a family; full characterization | ✅ Submitted | **11 theorems; full biconditional proved** |
 | P06 | L3 | L2 | G6 + CE-1/CE-2 + synthesis | K_n eigenspace boundary | ce1 (n=3-24), ce2 (non-complete) | Synthesis pass | ✅ Submitted | Proved |
 | P07 | L0 (Mode R) | L0 | G6 patch | Surgery realization gap | Shapiro + surgery below mid-dim | EXP-1 Q-PD verification | ✅ Submitted | Proved + Cited |
 | P08 | L1 | L0 | External G6 + EXP-1/2 | Hausdorff vs topology-preserving def | exp1 octahedron + exp2 action | Codex external review | ✅ Submitted | Proved + Cited |
@@ -113,16 +113,24 @@ Priority order (by tractability):
 2. **P07** (Lattices) — ✅ RESOLVED: Q-PD proved (Shapiro), surgery realization proved (self-contained). Upgraded to Submitted.
 3. **P01** (Stochastic) — ✅ RESOLVED: quasi-invariance proved. R1 CITE_PLUS (E11): BG proof chain verified lemma-by-lemma; Hairer-Steele independent path. Upgraded to Submitted.
 4. **P02** (Rep theory) — ✅ RESOLVED: general n proved via JPSS + multiplicity-one (AGRS). Upgraded to Submitted.
-5. **P05** (Eq. homotopy) — 🟡 STRENGTHENED: **7 theorems** (Thms 1-4, 6-7) + **Impossibility Frontier Theorem (Thm 5)**. Class Ia (regular-only systems) PROVED by Thm 7 (restricted sufficiency). Class II (non-regular intermediate) remains open; **5 proof approaches blocked** (Session 13: isotropy separation for Z/4). Exhaustive computation: 104/793 intermediate systems proved (825 total across 17 groups).
+5. **P05** (Eq. homotopy) — 🟡 STRENGTHENED: **8 theorems** (Thms 1-4, 6-8) + **Impossibility Frontier Theorem (Thm 5)**. **Thm 8 (Session 20): Z/4 smallest Class II case CLOSED** via geometric triviality lemma + isotropy separation + Φ^G-equivalence. Scout-assisted breakthrough (GPT-pro R2 identified local lemma; Claude Research identified structural tools). Frontier narrowed: only non-cyclic Class II remains open (new smallest: Z/2×Z/2). 104+1/793 intermediate systems proved.
 
-## 7. GPT-5.2-pro final synthesis (planned)
+## 7. Final escalation policy (active)
 
-After all active problem tracks are settled, run one final synthesis pass with GPT-5.2-pro:
+Final escalation is **iterative**, not single-pass.
 
-1. Input all finalized artifacts (`answer.md`, `audit.md`, `transcript.md`, experiments) for each attempted problem.
-2. Require strict mode: no new external theorem search for foundational lemmas in llm-only runs.
-3. Ask for end-to-end reconciliation of unresolved MAJOR/FATAL bottlenecks only.
-4. If GPT-5.2-pro still cannot close those bottlenecks with full artifact context, record this as evidence that the remaining gaps are not currently solvable with LLM-only methods (given current training/architecture).
+For remaining candidate lanes (`P03`, `P04`, `P05`), run bounded cycles that combine:
+1. `GPT-pro` for frontier reframing and bridge-lemma generation,
+2. `Claude Research` for route expansion and theorem-map extraction,
+3. `Claude Code` for reproducible implementation, falsification, and artifact integration.
+
+Continue cycling while there is measurable pathway progress (new lemma, reduced blocker, proven subcase, or stronger finite test closure). Freeze a lane only after bounded cycles cease producing new bridge-level signal.
+
+Guardrails remain unchanged:
+1. no direct-solution retrieval,
+2. strict `Proved / Cited / Empirical / Unresolved` separation,
+3. contamination logging for all external theorem intake,
+4. no status upgrade without theorem-level closure or machine-checkable certificate.
 
 ## 8. Tooling provenance index
 
@@ -183,7 +191,7 @@ Closeout Cycle 6: R1 websearch + SDP check + final assessment. Candidate-G6 ACCE
 | Lane | Closure tier | Cycle 6 action | Unresolved core claim | Why not escalated further |
 |------|-------------|---------------|----------------------|--------------------------|
 | P03 | L5 (barrier cert) | **R1 websearch: Alexandersson-Sawhney (arXiv:1801.04550).** Leading term E_{λ⁻}(x;1,t) proved symmetric for all n via AS+Hecke. Full E*_{λ⁻} gap persists (interpolation corrections not covered). Author correction applied. | Symmetry Conjecture for n ≥ 5 (lower-degree corrections) | 8 shortcuts fail; R1 lead partially closes (leading term only); same blocker class |
-| P04 | L4 (b=0 proved) | **CE-16 (Session 14)**: Convexity in w + algebraic decomposition at endpoints proves −H ≥ 0 for b=0 subcase. General n=4 (b≠0) still open. | General n=4 (b≠0): b-c' cross-terms in degree-16 polynomial | b=0 RESOLVED; general case needs SDP or novel analytic technique |
+| P04 | **L5 → BLOCKED_WITH_FRONTIER** | **CE-16 (S14)**: b=0 proved. **CE-26 (S17)**: c'=0 proved. **CE-28/29 (S18)**: parametric c'-convexity + discriminant bound. **CE-30 (S19)**: φ-subadditivity via Titu (153K+150 tests). **CE-32b-h (S22)**: f'' factored, G monotone/convex PROVED; b²-parametric near-miss (P(τ) convex 26K+, C=648(σ⁴-36c'²), 2nd-order 99.99%). **CE-34 (S22)**: 340K exact grid ALL PASS. 17 routes explored. | General n=4: proving P''(τ)≥0 algebraically or second-order discriminant bound | b=0 + c'=0 RESOLVED; b²-parametric provides strongest chain; polynomial complexity blocks symbolic closure |
 | P05 | L5 (frontier thm) | **Final assessment**: no 6th approach identified. All 5 approaches reduce to non-uniform dim(V^L). L5 barrier reconfirmed. | "If" direction for Class II: t-structure for non-regular cells | 5 approaches blocked; irreducible at current tool level |
 
 **Escalation policy compliance**: All 4 policy rules satisfied:
@@ -191,6 +199,12 @@ Closeout Cycle 6: R1 websearch + SDP check + final assessment. Candidate-G6 ACCE
 2. No escalation beyond definitions attempted (R1 websearch for P03 used CITE_ONLY)
 3. Blockers are sharply defined single-sentence statements
 4. Each lane frozen after same blocker class repeated across multiple attempts
+
+### 11b. Supersession note (iterative escalation resumed)
+
+The Cycle 6 freeze interpretation above is superseded by the active final-escalation policy in Section 7.
+Operational update: for `P03`/`P04`, escalation continues across bounded multi-model cycles while measurable progress persists. `P05` is **CLOSED** (Session 21: full biconditional proved).
+Lanes are frozen only when repeated bounded cycles stop yielding new bridge-level signal.
 
 ---
 
@@ -216,7 +230,7 @@ Each claim in the portfolio falls into one of three evidence tiers:
 
 3. **Finite-n theorem gap** (P03, P04, P09): Strong numerical evidence (relative errors 10^{-4} to 10^{-6}) was obtained for finite cases, but the symbolic/algebraic bridge from numerics to theorem was not crossed. P04's n=3 gap was resolved by deriving a closed-form for Φ₃ and reducing to Jensen's inequality (CE-6), but the n≥4 gap remains open — CE-7 confirms that the n=3 technique (clean coefficient additivity under ⊞₃) does not extend. **P03's n=3 gap was resolved** by a degree-bound argument (EXP-14b/13c: max degree 20, 82 zeros > 20). **P03's n=4 gap was resolved** by the same logical structure scaled to modular arithmetic (EXP-16/16b/16d: max degree 54, 90 zeros > 54, two independent primes). **P09's gaps #1–#4 were ALL closed** in Session 7: separation genericity proved algebraically (§2.5b), kernel upper bound proved via base-case coverage (§2.5c). P09 upgraded to 🟡 Candidate. P03 n≥5 and P04 n≥4 remain open.
 
-4. **Reference-blocked domains** (P01 FULLY RESOLVED; P02 fully unblocked; P05 partially unblocked): **P01 was FULLY RESOLVED** at R1 CITE_PLUS level (Session 10, E11). Two independent lines close the former gap: (1) BG proof chain (arXiv:2004.01513) verified lemma-by-lemma — all 6 lemmas extend to V_c via (α) quartic coercivity + (β) UV scaling hierarchy; (2) Hairer-Steele (arXiv:2102.11685) sub-Gaussian tails + Young's inequality directly yield A4 without needing BG extension. This resolves the L5 barrier from E10 (7 approaches exhausted at CITE_ONLY level). P02 was fully unblocked by deriving the key identity from first principles and closing the general-n gap via the AGRS multiplicity-one theorem. P05 was partially unblocked via CITE_ONLY definition ingest (BH, Rubin, HY), enabling formulation of candidate characterizations — but a Z/p² counterexample shows the stated characterization fails for intermediate transfer systems. **4 theorems proved** for P05: obstruction (Thm 1), positive scope (Thms 2-3), corrected "only if" with ν_O^eff (Thm 4). **Session 10**: "if" direction analyzed — 3 proof approaches blocked (equivariant Whitehead requires unproved t-structure; orbit filtration blocked by cross-level mixing in ν_O^eff; geometric detection requires RO(G)-graded extension); no counterexample found; classified as genuinely new technical result. **Session 11**: 4th approach (norm/restriction adjunction) also blocked (requires multiplicative structure; Wirthmüller bypass fails due to non-uniform isotropy separation). **Impossibility Frontier Theorem (Thm 5)** formalizes Class I (proved) vs Class II (open) boundary with explicit subgroup-lattice class map. **Session 13 (Cycle 5)**: 5th approach (isotropy separation for Z/4) reduces "if" to localized t-structure for non-regular representation spheres; BLOCKED — confirms gap irreducible at current tool level.
+4. **Reference-blocked domains** (P01 FULLY RESOLVED; P02 fully unblocked; P05 partially unblocked): **P01 was FULLY RESOLVED** at R1 CITE_PLUS level (Session 10, E11). Two independent lines close the former gap: (1) BG proof chain (arXiv:2004.01513) verified lemma-by-lemma — all 6 lemmas extend to V_c via (α) quartic coercivity + (β) UV scaling hierarchy; (2) Hairer-Steele (arXiv:2102.11685) sub-Gaussian tails + Young's inequality directly yield A4 without needing BG extension. This resolves the L5 barrier from E10 (7 approaches exhausted at CITE_ONLY level). P02 was fully unblocked by deriving the key identity from first principles and closing the general-n gap via the AGRS multiplicity-one theorem. P05 was partially unblocked via CITE_ONLY definition ingest (BH, Rubin, HY), enabling formulation of candidate characterizations — but a Z/p² counterexample shows the stated characterization fails for intermediate transfer systems. **4 theorems proved** for P05: obstruction (Thm 1), positive scope (Thms 2-3), corrected "only if" with ν_O^eff (Thm 4). **Session 10**: "if" direction analyzed — 3 proof approaches blocked (equivariant Whitehead requires unproved t-structure; orbit filtration blocked by cross-level mixing in ν_O^eff; geometric detection requires RO(G)-graded extension); no counterexample found; classified as genuinely new technical result. **Session 11**: 4th approach (norm/restriction adjunction) also blocked (requires multiplicative structure; Wirthmüller bypass fails due to non-uniform isotropy separation). **Impossibility Frontier Theorem (Thm 5)** formalizes Class I (proved) vs Class II (open) boundary with explicit subgroup-lattice class map. **Session 13 (Cycle 5)**: 5th approach (isotropy separation for Z/4) reduces "if" to localized t-structure for non-regular representation spheres; BLOCKED — confirms gap irreducible at current tool level. **Session 20**: Scout-assisted breakthrough — GPT-pro R2 identified geometric triviality lemma (W^H=0 ⟹ S^W ∧ ẼP_H ≃ ẼP_H), resolving Session 16 circularity; Z/4 case CLOSED (Thm 8). **Session 21**: V4 all 9 Class II cases CLOSED (Thms 9/9') via iterated isotropy separation; **GENERAL "if" PROVED (Thm 10)** for ALL G and ALL O — key insight: F_H = {L : L ⊅ gHg^{-1}} is always a family. Full biconditional characterization established. P05 upgraded 🟡→✅.
 
 5. **Definition sensitivity** (P08): The external review revealed that the self-review had conflated two different definitions of "smoothing" (topological isotopy vs Hausdorff convergence). The agent's self-review accepted the proof under the stronger definition while the answer was written under the weaker one. This definitional drift is a subtle failure mode that only surfaced under adversarial external review.
 

@@ -804,12 +804,166 @@ Added to answer.md:
 
 *Cycle footer (Session 15): EXP-20 kills branching rule induction (4 independent obstructions). n≥5 barrier confirmed genuine. Status unchanged: 🟡 Candidate. ~63+4 = ~67 messages used.*
 
+---
+
+## Session 22 — Scout Intake: GPT-pro + Claude Research (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | S22 Scout Intake |
+| Date | 2026-02-12 |
+| Objective | Intake and evaluate GPT-pro R1 + Claude Research R1 scout responses for P03 |
+| Message cap | 10 |
+| Escalation level | L3 (scout assessment) |
+
+### GPT-pro R1 Intake
+
+Source: `gpt-pro-final/transcripts/P03_gpt_pro_response_2026-02-12.md`
+
+**Verdict**: BLOCKED_WITH_FRONTIER (agrees with our assessment).
+
+**Critical claim — ASSESSED AS INCORRECT**: GPT-pro asserts that "under the standard definitions of interpolation ASEP/Macdonald polynomials, the 'Mallows / x-independent' stationary distribution cannot hold even for n=2." This contradicts our EXP-3b (exact symbolic proof: f*_{(0,2)}/f*_{(2,0)} = 1/t at q=1, x-independent). GPT-pro appears to confuse the direct q=1 Hecke specialization (which IS x-dependent) with the q→1 limit (which IS x-independent/Mallows). Our EXP-20 finding #4 explicitly identified this distinction: "E*_μ from Hecke operators at q=1 are DIFFERENT from f*_μ = lim_{q→1} E*(q)."
+
+**Proposed routes (12 families, de-duped)**:
+
+| GPT-pro Route | Novelty vs Existing | Decision |
+|---------------|---------------------|----------|
+| qKZ/exchange → generator | Novel; related to Hecke machinery but distinct approach | KEEP (bounded test) |
+| Hecke-random-walk | Variant of existing Hecke approach (Sessions 2-4) | DROP |
+| Doob h-transform | Novel (cross-domain probabilistic) | KEEP (speculative) |
+| SMQ lumping to bottom row | Novel; requires BDW formula implementation | KEEP (dependency-blocked) |
+| SMQ Gibbs | Variant of lumping | DROP |
+| BDW recursion → insertion chain | Novel; requires BDW recursion details | KEEP (dependency-blocked) |
+| Vertex model transfer matrix | Novel (integrable probability cross-domain) | KEEP (speculative) |
+| Stochastic R-matrix | Novel; needs model identification | KEEP (speculative) |
+| Fusion methods | Low priority | DROP |
+| Local Gibbs form | Unlikely; our evidence shows Mallows = global property | DROP |
+| Block Gibbs sampler | Weak without additional structure | DROP |
+| Intertwining/projection | Related to lumping; speculative | DROP |
+
+**Assessment**: GPT-pro's core "correction" about x-dependence is a misunderstanding. The proposed approach families are reasonable but none is immediately executable — all require either BDW formula implementation or substantial new theory. No closure path for n≥5 Symmetry Conjecture.
+
+### Claude Research R1 Intake
+
+Source: `claude-research-final/transcripts/P03_claude_research_response_2026-02-12.md`
+
+**14 approach families with contamination ratings for 18 sources.**
+
+**De-dup gate vs killed routes**:
+
+| Approach | Novelty | Decision |
+|----------|---------|----------|
+| 1. Signed MLQ q=1 analysis | HIGH (new BDW formula) | KEEP |
+| 2. Signed tableaux at q=1 | MEDIUM-HIGH (new BDW formula) | KEEP |
+| 3. PushTASEP reversibility | HIGH (cross-domain) | KEEP (dependency: forthcoming [BDW]) |
+| 4. SSEP symmetry transfer | MEDIUM | KEEP (speculative) |
+| 5. Kasatani-Takeyama rational KZ | MEDIUM-HIGH (distinct from killed Route 7) | KEEP |
+| 6. Sahi binomial expansion | MEDIUM (spectral collision risk) | KEEP |
+| 7. Yang-Baxter eigenvalue degeneracy | MEDIUM (partial: repeated parts only) | DROP (restricted scope) |
+| 8. Rains elliptic degeneration | MEDIUM (long-term) | DROP (out of sprint scope) |
+| 9. Nonsymmetric plethysm | MEDIUM (new tools, 2025) | DROP (out of sprint scope) |
+| 10. Symmetric vanishing dimension count | MEDIUM-HIGH (refined Route 5) | **TEST** (bounded computation) |
+| 11. Dunkl operator eigenspace | MEDIUM | DROP (insufficient theory) |
+| 12. Knop-Sahi creation operator q=1 | LOW-MEDIUM (overlaps killed routes) | DROP |
+| 13. Vertex model at q=1 | MEDIUM | KEEP (speculative) |
+| 14. Sahi Jordan algebra/Capelli | MEDIUM | DROP (requires new theory) |
+
+**Key new references identified**:
+- Ben Dali-Williams (arXiv:2510.02587, Oct 2025): signed MLQ formula for interpolation polynomials
+- Ayyer-Martin-Williams (arXiv:2403.10485, 2024): PushTASEP stationary distributions
+- Kasatani-Takeyama (arXiv:0810.2581, 2008): rational KZ → shifted Jack polynomials
+- Blasiak-Haiman-Morse-Pun-Seelinger (arXiv:2506.09015, Jun 2025; arXiv:2509.24040, Sep 2025): nonsymmetric plethysm
+- Carrick's hunting the poles (arXiv:2601.12881, Jan 2026)
+
+**Assessment**: The most actionable route is Approach 10 (symmetric vanishing dimension count) — testable computationally. However, our EXP-5b already found the symmetric vanishing space has dimension 14 (not 1) at n=3, which suggests this approach cannot work as stated. The issue: at q=1, vanishing conditions are too few to determine the polynomial; the unique solution comes from the LIMIT, not the conditions alone.
+
+### Approach 10 Feasibility Assessment
+
+**Why it likely fails**: Our EXP-5b found at exact q=1 (n=3):
+- 56 compositions collapse to 6 distinct spectral vectors
+- 5 independent vanishing conditions for 55 unknowns (null dim 50)
+- With symmetry imposed: 5 equations for 15 unknowns → 14-dim symmetric null space
+
+The Symmetry Conjecture is true (proved for n=3) but NOT because the vanishing space is 1-dimensional. It's because the LIMIT from q<1 selects a specific point in the null space that happens to be symmetric. This is a structural property of the perturbation theory (proved via degree-bound + 82 zeros), not a consequence of q=1 vanishing conditions.
+
+**Verdict**: Approach 10 is structurally incompatible with the known proof mechanism. Not tested.
+
+### Overall P03 Scout Verdict
+
+**No closure route identified.** The scouts provide valuable new references (BDW 2025, AMW 2024) but no immediately executable path to prove the n≥5 Symmetry Conjecture. All viable approaches require either:
+1. Implementing the BDW signed MLQ formula (substantial coding + mathematical work)
+2. Accessing the forthcoming [BDW] probabilistic interpretation paper
+3. New theoretical advances beyond current tooling
+
+GPT-pro's "x-dependent" correction is assessed as a definitional error (confuses specialization with limit).
+
+**Status unchanged**: 🟡 Candidate (n≤4 proved, n≥5 conditional, L5 barrier).
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E15 | 2026-02-12 | L3 | Scout intake (GPT-pro R1 + Claude Research R1) | n≥5 Symmetry Conjecture | GPT-pro: 12 routes assessed (5 KEEP, 7 DROP); "x-dependent" claim assessed as incorrect. Claude Research: 14 routes assessed (7 KEEP, 7 DROP); Approach 10 assessed as structurally incompatible with known proof mechanism. New references logged. | Claude Opus 4.6; scout transcripts | audit.md Session 22 | No closure; scout approaches blocked or dependency-constrained | ~4 msgs | **🟡 CANDIDATE (unchanged)** |
+
+*Cycle footer (Session 22): Scout intake complete. GPT-pro R1 + Claude Research R1 assessed. No closure route identified. GPT-pro's x-dependent claim rebutted by EXP-3b. New references (BDW 2510.02587, AMW 2403.10485, KT 0810.2581) logged. Status unchanged: 🟡 Candidate. ~67+4 = ~71 messages used.*
+
+---
+
+## Session 23 — Scout Reconciliation: GPT-pro R2 + Claude Research R3 (2026-02-13)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | S23 Scout Reconciliation |
+| Date | 2026-02-13 |
+| Objective | Reconcile two new scout responses (GPT-pro R2, Claude Research R3), select immediate execution route |
+| Message cap | 10 |
+| Escalation level | L3 (scout reconciliation + route selection) |
+
+### Scout Review Summary
+
+**GPT-pro R2**: 12 approach families. Primary bridge: (1-q)-divisibility of (T_i−t)E*. Top 3: LRW/Sahi, divisibility, BDW queue. R1 "x-dependent" misunderstanding corrected.
+
+**Claude Research R3**: 14 approach families across 6 domains. Primary bridge: BinAS Moebius cancellation. Top 3: D1 BinAS, D2 SMLQ, D3 SSD.
+
+### Reconciliation Results
+
+- **4 merged route families** (from 26 total proposals)
+- **1 quarantined claim**: Claude Research's "integrality ⟹ limit=specialization" conflicts with EXP-20 finding #4
+- **No fatal conflicts** with lane facts (F1-F7)
+- **Spectral collision (F7)** flagged as risk for BinAS and SSD routes
+
+### Selected Route: R1-DIV (divisibility kill-test)
+
+**Bridge**: (T_i − t)E*_{λ⁻} ∈ (1−q)·R ⟹ symmetry at q=1.
+**Kill-test**: Compute quotient (T_i−t)E*/(1−q) at 15 exact rational q (n=3, Fraction arithmetic).
+**Fallback**: R1-DIV → R2-BinAS → R3-SMLQ → HOLD.
+
+### Artifacts
+
+| Artifact | Path |
+|----------|------|
+| EXP-27 | `experiments/exp27_scout_reconciliation_matrix.md` |
+| EXP-28 | `experiments/exp28_scout_route_rank.md` |
+| EXP-29 | `experiments/exp29_scout_conflict_audit.md` |
+| EXP-30 | `experiments/exp30_selected_route_plan.md` |
+| EXP-31 | `experiments/exp31_combined_scout_decision.md` |
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E16 | 2026-02-13 | L3 | Scout reconciliation (GPT-pro R2 + Claude Research R3) | n≥5 Symmetry Conjecture | Reconciled 26 route proposals → 4 merged families → 3 ranked routes. 1 claim quarantined. R1-DIV selected for immediate execution. | Claude Opus 4.6 | exp27-31, audit.md S23 | Route selected; no closure yet | ~4 msgs | **🟡 CANDIDATE (unchanged)** |
+
+*Cycle footer (Session 23): Scout reconciliation complete. GPT-pro R2 + Claude Research R3 reconciled. 4 merged routes, 3 ranked (R1-DIV > R2-BinAS > R3-SMLQ). 1 quarantined claim (integrality scoping). R1-DIV selected for immediate execution. Status unchanged: 🟡 Candidate. ~71+4 = ~75 messages used.*
+
+---
+
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~63 (58 prior + 5 Session 11 AS websearch) |
-| Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions + n>=5 feasibility + infeasibility cert + reduction attempts + R1 websearch |
-| Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**; n>=5 conditional + 48-digit evidence + L5 barrier + AS leading term reduction) |
+| Messages used | ~75 (71 prior + 4 Session 23 scout reconciliation) |
+| Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions + n>=5 feasibility + infeasibility cert + reduction attempts + R1 websearch + 2 scout intakes + scout reconciliation |
+| Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**; n>=5 conditional + 48-digit evidence + L5 barrier + R1-DIV route selected) |
 | G6 cycles | 1 reject + 1 accept + 2 Candidate-G6 accept = 4 cycles |
-| Budget | 200 messages (YELLOW -- ~63 used) |
+| Budget | 200 messages (GREEN -- ~75 used) |

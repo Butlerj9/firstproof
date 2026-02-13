@@ -334,10 +334,10 @@ P05 strengthened within Candidate. Two new theorems proved (Thms 6-7). The open 
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~35 (2 prior + 8 definition cycle + 4 Session 7 + 4 Session 8 + 3 Session 9 + 2 Session 10 + 3 Session 11 + 4 Session 12 + 3 Session 13 + 2 Session 14) |
-| Gate | G5 (7 theorems; "if" direction proved for Class Ia; Class II remains open; 5 approaches blocked) |
-| Status | 🟡 Candidate (**7 theorems**: Thms 1-4 from Sessions 8-9; Thm 5 frontier classification; **Thm 6 dimension-uniform characterization + Thm 7 restricted sufficiency** from Session 12/R2; Session 13: 5th approach blocked; "if" direction OPEN only for Class II) |
-| Budget | 80 messages (used ~33) |
+| Messages used | ~57 (2 prior + 8 def cycle + 4 S7 + 4 S8 + 3 S9 + 2 S10 + 3 S11 + 4 S12 + 3 S13 + 2 S14 + 2 S15 + 8 S16 + 5 S20 + 7 S21) |
+| Gate | G7 (**11 theorems; FULL BICONDITIONAL PROVED** — Thm 4 "only if" + Thm 10 "if" for ALL G, ALL O) |
+| Status | ✅ Submitted (**11 theorems**: Thms 1-10; full characterization; no open cases) |
+| Budget | 80 messages (used ~57) |
 
 ## Session 12 cycle footer
 
@@ -537,3 +537,212 @@ Agent launched to search for counterexample: a Z/4-Mackey functor where geometri
 | Status | 🟡 Candidate (unchanged — 7 theorems proved, Class II open, L5 barrier) |
 
 *Cycle footer (Session 15): Kimi approaches evaluated (all reduce to same obstruction). Z/4 CE search incomplete. Status unchanged: 🟡 Candidate. ~35+2 = ~37 messages used.*
+
+---
+
+## Session 16 — P05 Final Round (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | P05 Final Round |
+| Date | 2026-02-12 |
+| Objective | GPT-pro transcript intake + last-chance closure attempts (Route T, A2) |
+| Message cap | 26 |
+| Escalation level | L5 (barrier confirmed) |
+
+### GPT-pro Transcript Intake + De-dup Gate
+
+Source: `gpt-pro-final/transcripts/P05_gpt_pro_response_2026-02-12.md`
+
+GPT-pro verdict: BLOCKED_WITH_FRONTIER (agrees with our assessment).
+
+| GPT-pro Approach | Mapped to Existing | Decision |
+|------------------|-------------------|----------|
+| A1: Bredon-Euler Class Detection | Kimi E-scout2 Euler Class + our Approach 3 | **DROP** (variant) |
+| A2: Weight-Structure Replacement | Novel (Bondarko-style) | **KEEP** |
+| A3: Effective Dimension Factorization | Novel (combinatorial) | **DROP** (empirically contradicted in Z/4 by GPT-pro) |
+| Route T: Localized t-structure for Z/4 | Extends our Approach 5 (Session 13) with explicit RO(Z/4) computation | **KEEP** |
+
+### Route T: Z/4 Explicit RO(Z/4)-Graded Analysis
+
+**Setup**: G = Z/4, O = {Z/2 ≤_O Z/4}. V = ind_{Z/2}^{Z/4}(1) = 1 ⊕ χ.
+
+**Fixed-point dimensions**: dim(V^1) = 2, dim(V^{Z/2}) = 2, dim(V^{Z/4}) = 1.
+Compare ρ: dim(ρ^1) = 4, dim(ρ^{Z/2}) = 2, dim(ρ^{Z/4}) = 1. Non-uniformity at L=1.
+
+**Key computation (extending Session 13)**:
+
+1. **Z/4-local simplification**: For X = ẼP_{Z/4} ∧ E, the proper part EP_{Z/4,+} ∧ X ≃ 0. This gives X^{Z/4} ≅ Φ^{Z/4}(X) (genuine = geometric for Z/4-local objects). **NEW INSIGHT** — not identified in Session 13.
+
+2. **Localizing subcategory comparison**: Attempted to show Loc({S^{kV} ∧ ẼP}) = Loc({S^{kρ} ∧ ẼP}) via invertibility of S^{σ⊕σ³} ∧ ẼP (where ρ = V ⊕ (σ⊕σ³)). The argument is **circular**: showing the exotic Picard element S^{k(σ⊕σ³)} ∧ ẼP lies in Loc(V-generators) requires the "if" direction itself.
+
+3. **Cell-attachment approach**: The V-cell Hurewicz map [S^{mV}, X]^{Z/4} → π_m(Φ^{Z/4}(X)) factors through (−)^{Z/4}. By step 1, X^{Z/4} ≅ Φ^{Z/4}(X), so the integer-graded part is controlled. But the RO(Z/4)-graded group [S^{mV}, X]^{Z/4} can contain **exotic equivariant maps** invisible to Φ^{Z/4} — maps in the RO(Z/4)-grading that don't reduce to integer-graded fixed-point data.
+
+4. **Core obstruction**: The map [S^{mV}, X]^{Z/4} → π_m(Φ^{Z/4}(X)) need not be surjective/injective for non-regular V. For V = ρ (regular), Hill-Yarnall proves surjectivity in the connective range. For V = 1⊕χ (non-regular), the RO(Z/4)-grading m(1⊕χ) involves the non-trivial character χ, introducing equivariant self-maps of representation spheres not captured by integer-graded homotopy.
+
+**Verdict**: BLOCKED. Same Gap (a) as Session 13, now with the additional precision that the obstruction lives entirely in the RO(Z/4)-graded exotic maps (not in the fixed-point comparison, which is an isomorphism for Z/4-local objects).
+
+### A2: Weight-Structure Pilot
+
+Tested Bondarko-style weight structure for Z/4-local O-cells. The basic orthogonality [S^{(k+1)V} ∧ ẼP, S^{kV} ∧ ẼP]^{Z/4} = π_{-V}^{Z/4}(ẼP_{Z/4}) requires computing the RO(Z/4)-graded Tate cohomology of the sphere, which is equivalent in difficulty to the t-structure computation.
+
+**Verdict**: BLOCKED. Weight-structure orthogonality reduces to the same RO(G)-graded Ext computations as the t-structure approach.
+
+### Final Assessment
+
+**Total approach count**: 10 independent approaches, all reducing to the same irreducible obstruction (non-uniform dim(V^L) for non-regular representations, manifesting as exotic RO(G)-graded maps).
+
+| # | Approach | Source | Result |
+|---|----------|--------|--------|
+| 1 | Equivariant Whitehead | Session 10 | BLOCKED (t-structure) |
+| 2 | Orbit filtration | Session 10 | BLOCKED (cross-level mixing) |
+| 3 | Geometric FP detection | Session 10 | BLOCKED (RO(G) Whitehead) |
+| 4 | Norm/restriction adjunction | Session 11 | BLOCKED (multiplicative + non-uniform) |
+| 5 | Isotropy separation (Z/4) | Session 13 | BLOCKED (localized t-structure) |
+| 6 | O-Cellular Homology | Kimi scout | BLOCKED (variant of 2) |
+| 7 | Euler Class Annihilation | Kimi scout | BLOCKED (variant of 3) |
+| 8 | Simplicial O-Resolution | Kimi scout | BLOCKED (Segal map compatibility) |
+| 9 | Route T: Explicit RO(Z/4) | GPT-pro + this session | BLOCKED (exotic RO-graded maps) |
+| 10 | Weight-Structure | GPT-pro + this session | BLOCKED (same RO-graded gap) |
+
+**New insight from this session**: For Z/4-local objects, genuine fixed points = geometric fixed points (X^{Z/4} ≅ Φ^{Z/4}(X)). The obstruction is purely at the level of RO(Z/4)-graded equivariant mapping spectra, not at the fixed-point level.
+
+**Decision**: **HOLD at 🟡 Candidate.** 7 theorems + Frontier Theorem stand. Class II "if" direction is genuinely open with 10 blocked approaches. No counterexample found. L5 barrier reconfirmed.
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E11 | 2026-02-12 | L5 | GPT-pro transcript intake + final round | Class II "if" direction | GPT-pro de-dup (A1 DROP, A3 DROP); Route T: explicit RO(Z/4) computation (new insight: genuine=geometric for Z/4-local, but exotic RO-graded maps block); A2: weight-structure blocked by same RO-graded gap | Claude Opus 4.6, GPT-pro transcript | audit.md Session 16 | 10 approaches blocked; L5 barrier reconfirmed | ~8 msgs | **🟡 CANDIDATE (unchanged)** |
+
+### Metrics
+
+| Metric | Value |
+|--------|-------|
+| Messages used (this session) | ~8 |
+| Cumulative messages | ~45 |
+| New insights | Genuine = geometric for Z/4-local objects; obstruction localized to RO(Z/4)-graded exotic maps |
+| Status | 🟡 Candidate (unchanged — 7 theorems proved, Class II open, 10 approaches blocked, L5 barrier) |
+
+*Cycle footer (Session 16): GPT-pro intake + 2 approaches tested (Route T, A2), both BLOCKED. New insight recorded. 10 total approaches exhausted. Status unchanged: 🟡 Candidate. ~37+8 = ~45 messages used.*
+
+---
+
+## Session 20 — P05 Escalation Cycle: Geometric Triviality Breakthrough (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | S20 Geometric Triviality |
+| Date | 2026-02-12 |
+| Objective | Intake GPT-pro R2 + Claude Research scouts; attempt closure of Z/4 case |
+| Message cap | 20 |
+| Escalation level | L3 → L5 (theorem-level advance) |
+
+### Scout intake
+
+**GPT-pro Round 2**: Identified geometric triviality lemma (W^H=0 ⟹ S^W ∧ ẼP_H ≃ ẼP_H). Proved locally; declared global lifting still blocked.
+
+**Claude Research**: Identified 5 converging structural tools (Carrick O-slice t-structure, Smith reconstruction, Schwede-Shipley, MNN, Pstrągowski Hurewicz). Tensor-ideal gap as key obstacle. 18 sources with contamination ratings.
+
+### Key insight
+
+The geometric triviality lemma **resolves the circularity** from Session 16 Route T. Session 16 declared that showing S^{σ⊕σ³} ∧ ẼP invertible in Loc(V-generators) was circular. The lemma shows S^{σ⊕σ³} ∧ ẼP_{Z/4} ≃ ẼP_{Z/4} directly (since (σ⊕σ³)^{Z/4} = 0), breaking the circle.
+
+Moreover, the argument does NOT need the Loc comparison at all: it works directly with the O-cell generators via isotropy separation + geometric triviality + Φ^G-equivalence on ẼP_G-modules + extension closure.
+
+### Result: Theorem 8 (Z/4 "if" direction CLOSED)
+
+**New theorem proved**: For G = Z/4, O = {Z/2 ≤_O Z/4}, the "if" direction holds.
+
+**Proof structure** (5 steps, ~1 page):
+1. Isotropy separation: EP_{Z/4,+} ∧ E → E → ẼP_{Z/4} ∧ E
+2. Proper part: n-connective at all levels → in τ_{≥n}^{O_min} ⊆ τ_{≥n}^O
+3. O-cell generators: S^{kV} isotropy-separated; proper part n-connective (2k ≥ n); extension closure gives Σ^k ẼP_{Z/4} ∈ τ_{≥n}^O
+4. Detection: Φ^{Z/4}: ẼP_{Z/4}-Mod ≃ Sp; hypothesis gives ẼP_{Z/4} ∧ E in preimage of Sp_{≥⌈n/2⌉}
+5. Extension closure: E ∈ τ_{≥n}^O
+
+**Dependencies**: Geometric triviality lemma (§10.1, proved inline). No external sources beyond existing CITE_ONLY dependencies.
+
+### Updated frontier
+
+| Class | Status | Reference |
+|-------|--------|-----------|
+| I (extremal/Z/p) | PROVED | Thms 2-3 |
+| Ia (regular-only) | PROVED | Thm 7 |
+| IIa (Z/4 smallest) | **PROVED** | **Thm 8** |
+| II (remaining) | OPEN | Non-cyclic groups; global lifting |
+
+New smallest open case: G = Z/2 × Z/2 (Klein four) with intermediate O.
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E12 | 2026-02-12 | L5 | Scout intake (GPT-pro R2 + Claude Research) | Z/4 "if" direction (smallest Class II case) | Geometric triviality lemma breaks Session 16 circularity; Theorem 8 proved (Z/4 closure) via isotropy separation + Φ^G-equivalence | Claude Opus 4.6; GPT-pro R2 + Claude Research scouts | answer.md §10 (Thm 8 + lemma), audit.md Session 20 | G5: **8 theorems** proved; Z/4 CLOSED | ~5 msgs | **🟡 CANDIDATE (strengthened, 8 theorems, frontier narrowed)** |
+
+### Cycle footer (Session 20)
+
+| Metric | Value |
+|--------|-------|
+| Proved | **Theorem 8**: Z/4 "if" direction. Geometric triviality lemma + corollary. Total: 8 theorems. |
+| New insight | Geometric triviality resolves Session 16 circularity; local obstruction was a "mirage" in ẼP_G-localization |
+| Unresolved | "If" direction for non-cyclic Class II (global lifting for multi-width lattices). New smallest open: Z/2 × Z/2. |
+| Decision | **HOLD at 🟡 Candidate.** 8 theorems. Frontier materially narrowed. |
+| Messages | ~45+5 = ~50 messages used (vs 80 cap). |
+
+---
+
+## Session 21 — P05: Iterated Isotropy Separation — FULL CLOSURE (2026-02-12)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | S21 Full Closure |
+| Date | 2026-02-12 |
+| Objective | Attack V4 = Z/2 × Z/2 Class II cases; attempt general proof |
+| Message cap | 20 |
+| Escalation level | L5 → **L7 (full problem closure)** |
+
+### Route A: V4 enumeration
+
+Exhaustive analysis of V4 transfer systems (exp2_v4_class2_summary.py):
+- 19 total transfer systems, 17 intermediate, 9 non-uniform (Class II)
+- 3 symmetry classes: Type A (1 non-triv-K, 3 systems), Type B (1 non-triv-K + all regular, 3 systems), Type C (2 non-triv-K, 3 systems)
+- Canonical case: O = {1 ≤_O H1, 1 ≤_O H3, H2 ≤_O G} with V = ind_{H2}^G(1)
+
+### Route B: V4 proof (Theorem 9)
+
+**Theorem 9**: V4 canonical case PROVED via **iterated isotropy separation**:
+1. First isotropy separation at G (geometric triviality: χ^G = 0)
+2. Second isotropy separation at H2 using family F = {1, H1, H3}
+3. F-part: standard HY with regular cells at H1 and H3
+4. H2-local proper part: Φ^{H2}-equivalence; O-cells produce S^{2k} ≥ n; hypothesis gives n-connective
+
+**Theorem 9'**: All 9 V4 Class II systems follow by symmetry/same argument.
+
+### Route C: General closure (Theorem 10)
+
+**Critical discovery**: For ANY subgroup H ≤ G, the set F_H = {L : L does not contain any conjugate of H} is ALWAYS a family (subgroup-closed + conjugation-closed). This works for ALL groups, including non-abelian.
+
+**Theorem 10 (General "if" direction)**: For ANY finite group G and ANY transfer system O, the "if" direction holds. Proof by induction on number of conjugacy classes of non-celled subgroups:
+- G-local: geometric triviality (V̄^G = 0 always)
+- Non-celled H: family F_H separation + Φ^H-equivalence
+- Celled H: standard Hill-Yarnall
+- Assembly: extension closure
+
+**Full biconditional**: Thm 4 (only if) + Thm 10 (if) = complete characterization.
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E13 | 2026-02-12 | L7 | V4 analysis reveals general principle | "If" direction for all Class II | Iterated isotropy separation: family F_H always exists; Φ^H-equivalence handles each stratum; induction closes | Claude Opus 4.6; exp2/exp3 scripts | answer.md §11 (Thms 9/9'/10 + full characterization), audit.md Session 21 | G7: **11 theorems; FULL BICONDITIONAL** | ~7 msgs | **✅ SUBMITTED (11 theorems, full biconditional proved)** |
+
+### Cycle footer (Session 21)
+
+| Metric | Value |
+|--------|-------|
+| Proved | **Theorems 9/9'** (V4 all 9 Class II); **Theorem 10** (general "if" for ALL G, ALL O). Total: **11 theorems**. Full biconditional. |
+| Key insight | F_H = {L : L ⊅ gHg^{-1} ∀g} is ALWAYS a family → iterated isotropy separation works for ALL groups |
+| Unresolved | None (A vs B route equivalence is cosmetic, not a gap) |
+| Decision | **UPGRADE to ✅ Submitted.** Full biconditional characterization proved. |
+| Messages | ~50+7 = ~57 messages used (vs 80 cap). |

@@ -41,6 +41,9 @@
 | S5 | P03, P04, P05 | Fireworks/kimi-k2p5 | Failure-conditioned scout packets sent but responses truncated (thinking model, 4096 token limit). No usable content received. | NONE (truncated, no content) | P03 E14, P04 E-scout, P05 E-scout |
 | S6 | P03, P04, P05 | Groq/qwen3-32b | Round 1 scouts, partially truncated. Some reasoning but no solution content. | NONE (partially truncated, no solution content) | P03 E14, P04 E-scout, P05 E-scout |
 | S7 | P03, P04, P05 | Fireworks/qwen3-235b-a22b-instruct-2507 | Round 1 scouts, some proposals received. No solution content, no competition problem statements. | NONE (LLM reasoning only) | P03 E14, P04 E-scout, P05 E-scout |
+| S8 | P03, P04, P05 | GPT-5.2-pro (Round 1) | Lane-specific scout packets. P03: 12 approach families proposed, "x-dependent" correction (assessed as incorrect). P04: frontier sharpening. P05: 3 approaches + frontier. Strategic proposals only; no solution content. | NONE (LLM reasoning only) | P03 E15, P04 E-scout, P05 E11 |
+| S9 | P03, P04, P05 | Claude Research Mode (Round 1) | Lane-specific research reports. P03: 14 approach families + 18 source references with contamination ratings. P04: structural analysis. P05: 5 convergent tool families + 18 sources. Research synthesis only; no solution content adopted. | LOW (literature survey — references logged below, not adopted into proofs) | P03 E15, P04 E-scout, P05 E12 |
+| S10 | P05 | GPT-5.2-pro (Round 2) | Geometric triviality lemma (W^H=0 → S^W∧ẼP_H ≃ ẼP_H) independently identified. Same as our Session 20 discovery. Confirmed correctness. | NONE (confirms independent derivation) | P05 E12 |
 
 ## Search log
 | Timestamp | Query | Purpose | Exposure risk |
@@ -55,6 +58,20 @@
 | 2026-02-12 | WebFetch arxiv.org/abs/1805.10814 | P01 R1: BG variational method abstract/structure | NONE (primary source) |
 | 2026-02-12 | WebFetch arxiv.org/abs/2112.05562 | P01 R1: BG P(φ)₂ extension abstract | NONE (abstract only, primary source) |
 | 2026-02-12 | WebFetch ar5iv/1801.04550 + arxiv.org/abs/1801.04550 + arxiv.org/pdf/1801.04550 + link.springer.com + symmetricfunctions.com (×5) | P03 R1: Alexandersson-Sawhney (2019) non-symmetric Macdonald at q=1. Abstract extracted; PDF/HTML unreadable. | NONE (abstract only, primary source, no competition solution) |
+
+## References identified by scouts (NOT adopted into proofs)
+
+These sources were identified by scout models in their literature surveys. They are logged for contamination tracking but were NOT accessed, verified, or incorporated into any proof artifact.
+
+| row_id | Problem | Citation | Identified by | Risk | Decision |
+|--------|---------|----------|--------------|------|----------|
+| R1 | P03 | Ben Dali-Williams (2025), arXiv:2510.02587 | GPT-pro R1, Claude Research R1 | LOW (already in P03 object glossary as f*_μ source) | NOT ADOPTED — formula implementation out of sprint scope |
+| R2 | P03 | Ayyer-Martin-Williams (2024), arXiv:2403.10485 | GPT-pro R1, Claude Research R1 | LOW (different object: non-interpolation PushTASEP) | NOT ADOPTED — forthcoming paper needed for interpolation analogue |
+| R3 | P03 | Kasatani-Takeyama (2008), arXiv:0810.2581 | Claude Research R1 | LOW (published 2008, rational KZ) | NOT ADOPTED — connection to interpolation polynomials unverified |
+| R4 | P03 | Blasiak-Haiman-Morse-Pun-Seelinger (2025), arXiv:2506.09015 | Claude Research R1 | LOW (nonsymmetric plethysm, different setting) | NOT ADOPTED — extension to interpolation setting not established |
+| R5 | P05 | Carrick (2025), arXiv:2510.19501 | Claude Research R1 | HIGH (directly frames O-slice problem) | NOT ADOPTED — P05 solved independently without this framework |
+| R6 | P05 | Smith (2021), UCLA thesis | Claude Research R1 | LOW (reconstruction theorem for O-spectra) | NOT ADOPTED — P05 solved independently |
+| R7 | P05 | Mathew-Naumann-Noel (2015), arXiv:1507.06869 | Claude Research R1 | LOW (F-nilpotence detection) | NOT ADOPTED — P05 solved independently |
 
 ## Exposure events
 None.

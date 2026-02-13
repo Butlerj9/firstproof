@@ -1,9 +1,9 @@
 # P04: Inequality for Φₙ under Finite Free Convolution ⊞ₙ
 
-**Status**: 🟡 Candidate (proved for $n=2$, $n=3$, and $n=4$ even subcase; general $n \geq 4$ open)
-**Answer**: YES for $n = 2$ (proved, equality holds exactly). YES for $n = 3$ (proved, §4c: closed-form Φ₃ + Jensen's inequality). YES for $n = 4$, even quartics (proved, §9.4: convexity + algebraic decomposition). YES for $n \geq 4$ general (conjectured, supported by 285K+ trials + 105K exact Fraction tests + 495K exact tests with corrected validity filter CE-19).
+**Status**: 🟡 Candidate (proved for $n=2$, $n=3$, $n=4$ even subcase, and $n=4$ $c'=0$ subcase; general $n \geq 4$ open)
+**Answer**: YES for $n = 2$ (proved, equality holds exactly). YES for $n = 3$ (proved, §4c: closed-form Φ₃ + Jensen's inequality). YES for $n = 4$, even quartics (proved, §9.4: convexity + algebraic decomposition). YES for $n = 4$, $c'=0$ quartics (proved, §9.6: concavity of scale-invariant profile + weighted Jensen). YES for $n \geq 4$ general (conjectured, supported by 285K+ trials + 105K exact Fraction tests + 495K exact tests (CE-19) + 122K convexity tests (CE-28) + 60K discriminant bound tests (CE-29)).
 **Reviewer**: Codex 5.2 — G6 verdict: 📊 (4 red flags, patched). Upgrade cycle: CE-5/5b/5c strengthen evidence to 150 digits + new n=3 equality result. G5 closure: CE-6 proves n=3 general case. CE-7: n=4 cross-term obstruction confirmed. CE-19: quartic validity filter corrected (Delta>0 insufficient, need A·B<0); 495K exact tests ALL PASS.
-**Code verification**: `experiments/` — all trials passed; 150-digit verification (CE-5); n=3 equality verified at 200 digits (CE-5b/5c); n=3 algebraic proof verified (CE-6); n=4 exact Fraction tests 105K+ (CE-11); 495K exact tests with corrected validity filter (CE-19)
+**Code verification**: `experiments/` — all trials passed; 150-digit verification (CE-5); n=3 equality verified at 200 digits (CE-5b/5c); n=3 algebraic proof verified (CE-6); n=4 exact Fraction tests 105K+ (CE-11); 495K exact tests with corrected validity filter (CE-19); c'=0 concavity proof verified (CE-26); full Hessian test (CE-27); parametric c'-convexity 122K tests (CE-28); discriminant bound 60K tests (CE-29); individual concavity 95K tests (CE-29d); symbolic f'' factorization + φ-subadditivity 153K+150 exact tests (CE-30)
 **External deps**: MSS (2015) real-rootedness preservation (cited, not proved)
 
 ### Reviewer red flags (G6)
@@ -261,9 +261,9 @@ Clustered-root stress tests at 150 digits: all cases $n = 4, 5, 6$ with $\vareps
 
 | Tier | Content |
 |------|---------|
-| **Proved** | $n=2$ equality (§4); $n=3$ general inequality (§4c); $n=3$ equally-spaced equality (§4b); K-transform framework (§3, §5); $n=4$ second-order margin PSD (§9.1); **$n=4$ even quartic ($b=0$) subcase (§9.4)** |
+| **Proved** | $n=2$ equality (§4); $n=3$ general inequality (§4c); $n=3$ equally-spaced equality (§4b); K-transform framework (§3, §5); $n=4$ second-order margin PSD (§9.1); **$n=4$ even quartic ($b=0$) subcase (§9.4)**; **$n=4$ $c'=0$ subcase (§9.6)** |
 | **Cited** | MSS real-rootedness [1] Thm 4.2; K-additivity [2] Thm 2.7 |
-| **Empirical (exact + 150 digits)** | General $n \geq 4$ inequality: 285K trials (CE-1) + 450 at 150 digits (CE-5) + 105K exact Fraction tests (CE-11) + 495K exact tests with corrected quartic validity filter (CE-19) |
+| **Empirical (exact + 150 digits)** | General $n \geq 4$ inequality: 285K trials (CE-1) + 450 at 150 digits (CE-5) + 105K exact Fraction tests (CE-11) + 495K exact tests with corrected quartic validity filter (CE-19) + 122K parametric c'-convexity tests (CE-28/29) + 60K discriminant bound tests (CE-29c) |
 
 ### 9. Closed-form $\Phi_4$ and additive variables (NEW, CE-10)
 
@@ -393,30 +393,181 @@ where $Q(t_1, t_2) = (1+6t_2)(6t_1+3) + 36t_2^2$.
 
 *Code verification.* `experiments/ce16_symbolic_proof.py` confirms: (a) all decompositions match symbolically (`expand(LHS - RHS) == 0`); (b) $Q$ at all 4 corners of $[-1/12, 1/6]^2$ satisfies $Q \geq 3/2 > 5/4$; (c) dense $500^3$ numerical grid has global minimum $\geq 0$; (d) domain contraction test independently confirms no interior minimizer with $w^* \in [0,1]$.
 
+### 9.5. Scale-invariant structure at $c'=0$ (NEW, CE-24/25)
+
+**Observation.** At $c' = 0$ (i.e., $c = a^2/12$), $1/\Phi_4$ admits a clean scale-invariant decomposition. Define $\beta = b^2/\sigma^3$ where $\sigma = -a > 0$. Then:
+
+$$\frac{1}{\Phi_4(\sigma, b, 0)} = \sigma \cdot g(\beta)$$
+
+where $g: [0, 4/27) \to \mathbb{R}$ is the **scale-invariant profile**:
+
+$$g(\beta) = \frac{16 - 216\beta - 729\beta^2}{72(4 - 27\beta)}.$$
+
+**Key properties of $g$:**
+
+1. $g(0) = 1/18$ (equality manifold value).
+2. $g'(\beta) = -(648\beta + 120)/(72(4-27\beta)^2) < 0$ on $[0, 4/27)$ — $g$ is strictly decreasing.
+3. $g''(\beta) = -648/(4-27\beta)^3 < 0$ on $[0, 4/27)$ — **$g$ is strictly concave**.
+4. Domain: $\beta \in [0, 4/27)$ corresponds to the validity condition $27b^2 < 4\sigma^3$.
+
+*Verification.* All properties verified symbolically (SymPy) and numerically (CE-26). The concavity $g'' < 0$ is immediate: numerator $-648 < 0$ and denominator $(4-27\beta)^3 > 0$ on $[0, 4/27)$.
+
+### 9.6. Proof of $c'=0$ subcase via concavity (NEW, CE-26)
+
+**Theorem.** For all pairs of centered quartics $p(x) = x^4 - \sigma_1 x^2 + b_1 x + \sigma_1^2/12$, $q(x) = x^4 - \sigma_2 x^2 + b_2 x + \sigma_2^2/12$ with $\sigma_i > 0$ and simple real roots (i.e., $27b_i^2 < 4\sigma_i^3$):
+
+$$\frac{1}{\Phi_4(p \boxplus_4 q)} \;\geq\; \frac{1}{\Phi_4(p)} + \frac{1}{\Phi_4(q)}.$$
+
+**Proof.**
+
+**Step 1 (Concavity of $\psi$).** Define $u_i = b_i / \sigma_i^{3/2}$ and $\psi(u) = g(u^2)$. Then $1/\Phi_4(\sigma_i, b_i, 0) = \sigma_i \cdot \psi(u_i)$. The composition $\psi$ satisfies:
+
+$$\psi''(u) = 2g'(u^2) + 4u^2 g''(u^2) = \frac{-(59049u^6 - 26244u^4 + 11664u^2 + 192)}{4(4-27u^2)^3}.$$
+
+The numerator polynomial $N(u^2) = 59049\beta^3 - 26244\beta^2 + 11664\beta + 192$ satisfies $N(0) = 192 > 0$, $N'(\beta) = 177147\beta^2 - 52488\beta + 11664 > 0$ for all $\beta \geq 0$ (discriminant $< 0$), so $N > 0$ on $[0, 4/27)$. The denominator $4(4-27u^2)^3 > 0$. Therefore **$\psi''(u) < 0$** on $(-2/(3\sqrt{3}), 2/(3\sqrt{3}))$, and $\psi$ is strictly concave.
+
+**Step 2 (Normalization).** Set $\sigma_h = \sigma_1 + \sigma_2$. Under $\boxplus_4$ at $c'=0$: $b_h = b_1 + b_2$. We need:
+
+$$\sigma_h \cdot \psi(u_h) \;\geq\; \sigma_1 \cdot \psi(u_1) + \sigma_2 \cdot \psi(u_2)$$
+
+where $u_h = b_h / \sigma_h^{3/2} = (b_1 + b_2)/(\sigma_1 + \sigma_2)^{3/2}$.
+
+**Step 3 (Weighted Jensen).** Define $c_i = \sigma_i^{3/2} / \sigma_h^{3/2}$ and $w_i = \sigma_i / \sigma_h$. Then $c_1 + c_2 = (\sigma_1^{3/2} + \sigma_2^{3/2})/\sigma_h^{3/2} \leq 1$ (by concavity of $x^{3/2}$), and $u_h = c_1 u_1 + c_2 u_2$.
+
+Since $\psi$ is concave and $c_1 + c_2 \leq 1$:
+
+$$\psi(u_h) = \psi(c_1 u_1 + c_2 u_2) \;\geq\; c_1 \psi(u_1) + c_2 \psi(u_2) + (1 - c_1 - c_2)\psi(0).$$
+
+Multiplying by $\sigma_h$:
+
+$$\sigma_h \psi(u_h) \;\geq\; \sigma_h c_1 \psi(u_1) + \sigma_h c_2 \psi(u_2) + \sigma_h(1-c_1-c_2)\psi(0).$$
+
+**Step 4 (Gap lemma).** We need to bridge from the Jensen bound to the target. Note $\sigma_h c_i = \sigma_i^{3/2}/\sigma_h^{1/2}$. We claim:
+
+$$\sigma_i^{3/2}/\sigma_h^{1/2} \cdot \psi(u_i) + \sigma_h(1-c_1-c_2)\psi(0)/2 \;\geq\; \sigma_i \cdot \psi(u_i)$$
+
+for each $i$. Since $\sigma_i^{3/2}/\sigma_h^{1/2} \geq \sigma_i$ iff $\sigma_i^{1/2} \geq \sigma_h^{1/2}$, which fails for the smaller component, we instead use: $(\sigma_i^{3/2}/\sigma_h^{1/2} - \sigma_i)\psi(u_i) = \sigma_i(\sigma_i^{1/2}/\sigma_h^{1/2} - 1)\psi(u_i)$. Since $\sigma_i^{1/2}/\sigma_h^{1/2} \leq 1$ and $\psi(u_i) \leq \psi(0) = g(0) = 1/18$ (because $g$ is decreasing and $u_i^2 \geq 0$):
+
+$$(\sigma_i^{3/2}/\sigma_h^{1/2} - \sigma_i)(\psi(u_i) - \psi(0)) \;\geq\; 0$$
+
+since both factors are non-positive. Rearranging: $\sigma_i^{3/2}\psi(u_i)/\sigma_h^{1/2} \geq \sigma_i \psi(u_i) + (\sigma_i^{3/2}/\sigma_h^{1/2} - \sigma_i)\psi(0)$.
+
+Summing over $i$ and using $\sum_i (\sigma_i^{3/2}/\sigma_h^{1/2} - \sigma_i) = \sigma_h(c_1+c_2-1) \cdot (-1) \cdot \ldots$ — more precisely:
+
+$$\sigma_h\psi(u_h) \geq \sum_i \sigma_h c_i \psi(u_i) + \sigma_h(1-c_1-c_2)\psi(0) \geq \sum_i \sigma_i \psi(u_i)$$
+
+where the last step uses the gap lemma: for each $i$, $\sigma_h c_i \psi(u_i) \geq \sigma_i \psi(u_i) - \sigma_i(1-\sigma_i^{1/2}/\sigma_h^{1/2})\psi(0)$, and the residual $\psi(0)$ terms sum to exactly $\sigma_h(1-c_1-c_2)\psi(0)$. $\square$
+
+*Code verification.* `experiments/ce26_concavity_proof.py` confirms: (a) $g'' < 0$ symbolically; (b) $\psi'' < 0$ via sign analysis (positive numerator, negative denominator); (c) $g$ decreasing on $[0, 4/27)$; (d) 10,000 random margin tests: 0 violations, min margin $2.34 \times 10^{-7}$; (e) 10,000 gap lemma tests: 0 violations; (f) 50,000 full margin tests: 0 violations.
+
+### 9.7. Parametric c'-convexity and discriminant bound (NEW, CE-28/29)
+
+**Setting.** For fixed $(w, b_1, b_2)$ and a c'-direction $(c_1', c_2')$, define the parameterized margin:
+
+$$M(t) := M(w, b_1, b_2, t \cdot c_1', t \cdot c_2')$$
+
+so that $M(0)$ is the proved $c'=0$ margin and $M(1)$ is the full margin we want.
+
+**Finding 1 (Parametric c'-convexity).** $M''(t) \geq 0$ for all valid $t$ and all tested parameter sets. Confirmed with **0 violations in 122,243 tests** (CE-28b: 61,535 tests; CE-28c: 60,708 tests), minimum $M'' = 5.65 \times 10^{-6}$ (strictly positive).
+
+**Finding 2 (Individual concavity).** Each component $1/\Phi_4(\sigma_i, b_i, c_i')$ is **concave in $c_i'$** (94,906 tests, all $d^2f/dc'^2 < 0$, max $= -0.66$). The parametric convexity of $M(t)$ arises because the "parts are more concave than the whole": the negative contribution $(c_1'+c_2')^2 f_h''$ from the sum is outweighed by the positive contributions $c_1'^2 |f_1''|$ and $c_2'^2 |f_2''|$ from the parts.
+
+**Finding 3 (p⊞q never degenerates first).** At the validity boundary (discriminant $\to 0$), the degenerate polynomial is always $p$ or $q$, **never** $p \boxplus_4 q$. Confirmed in 27,704 near-boundary tests. This means the boundary of the valid domain is always "favorable" (one part's contribution vanishes, not the sum's).
+
+**Finding 4 (Discriminant bound).** Define $\kappa = \min_{t \in [0, t_{\max}]} M''(t)$. The condition $2\kappa \cdot M(0) \geq M'(0)^2$ holds with **0 failures in 60,708 tests** (min slack $= 6.88 \times 10^{-9}$). Combined with convexity ($M'' \geq \kappa > 0$), this implies:
+
+$$M(t) \geq M(0) + M'(0) \cdot t + \tfrac{1}{2}\kappa \cdot t^2 \geq 0$$
+
+for all $t$, since the quadratic lower bound has non-positive discriminant (the condition $2\kappa M(0) \geq M'(0)^2$ is exactly $b^2 \leq 4ac$ for a quadratic $at^2 + bt + c$ with $a = \kappa/2 > 0$, $c = M(0) \geq 0$).
+
+**Proof chain (numerically verified, not yet proved symbolically):**
+1. $M(0) \geq 0$ — **PROVED** (§9.6, $c'=0$ subcase)
+2. $M''(t) \geq \kappa > 0$ for all valid $t$ — 122K tests, 0 violations
+3. $2\kappa \cdot M(0) \geq M'(0)^2$ — 60K tests, 0 violations
+4. Therefore $M(t) \geq 0$ for all valid $t \in [0, t_{\max}]$
+
+**Polynomial structure (CE-29).** After clearing denominators, the superadditivity inequality is equivalent to a polynomial $P \geq 0$ on the validity domain. $P$ has **837 terms, total degree 14, 5 variables** $(w, b_1, b_2, c_1', c_2')$. $P$ is negative outside the validity domain (43.8% of random $\mathbb{R}^5$ points), so **constrained SOS is required** (unconstrained SOS is infeasible). On the validity domain, $P \geq 0$ in all 13,329 tested valid-domain points (min $P = 1.67 \times 10^{-8}$).
+
+**Boundary monotonicity FAILS.** The condition $1/\Phi_4(p \boxplus_4 q) \geq 1/\Phi_4(q)$ when $p$ is exactly degenerate fails in 4,908/118,729 tests (CE-29c Section 3). However, this does not affect the discriminant bound approach, which controls the interior minimum via the convex lower bound.
+
+*Code verification.* `experiments/ce28_schur_radial_test.py`, `ce28b_cp_convexity_deep.py`, `ce28c_convexity_proof_structure.py`, `ce29_exact_polynomial.py`, `ce29b_fast_polynomial.py`, `ce29c_discriminant_bound.py`, `ce29d_individual_convexity.py`.
+
+### 9.8. Algebraic structure of $M''(0)$ and $\varphi$-subadditivity (CE-30)
+
+**Symbolic second derivative.** At $c'=0$, the second derivative $f''(\sigma, b) := d^2(1/\Phi_4)/dc'^2|_{c'=0}$ has the factored form:
+
+$$f''(\sigma, b) = \frac{(27b^2 - 8\sigma^3)\bigl((27\beta-4)^3 - 864\beta\bigr)}{\sigma^6(27b^2 - 4\sigma^3)^3}$$
+
+where $\beta = b^2/\sigma^3$. On the validity domain ($\beta < 4/27$), both numerator factors are negative and the denominator is negative, giving $f'' < 0$ (individual concavity in $c'$, consistent with CE-29d).
+
+**Scale-invariant profile.** Define $\varphi(\sigma, b) = \sigma^3 / |f''(\sigma, b)|$. Then $\varphi = \sigma^3 \cdot F(u)$ where $u = 27b^2/(4\sigma^3) \in [0,1)$ and
+
+$$F(u) = \frac{(1-u)^3}{4(2-u)\bigl((1-u)^3 + 2u\bigr)}$$
+
+$F$ is strictly decreasing and convex on $[0,1)$, with $F(0) = 1/8$, $F(u) \to 0$ as $u \to 1^-$.
+
+**Titu's lemma reduction.** The condition $M''(0) \geq 0$ is equivalent to $c_1'^2 g_1 + c_2'^2 g_2 \geq (c_1'+c_2')^2 g_h$ where $g_i = -f''(\sigma_i, b_i) > 0$. By Titu's lemma (Engel form of Cauchy-Schwarz), a **sufficient condition** is the $\varphi$-subadditivity:
+
+$$\varphi(w, b_1) + \varphi(1-w, b_2) \leq \varphi(1, b_1+b_2)$$
+
+**$\varphi$-subadditivity verified.** 0 violations in **153,297 tests** (CE-30b), max ratio $(\varphi_1+\varphi_2)/\varphi_h = 0.857$. Confirmed with **150 exact Fraction tests** (min ratio $0.00184$). The subadditivity has substantial slack.
+
+**$b=0$ case proved.** At $b_1 = b_2 = 0$: $\varphi$-subadditivity reduces to $w^3 F(0) + (1-w)^3 F(0) \leq F(0)$, i.e., $w^3 + (1-w)^3 \leq 1$, which holds for $w \in (0,1)$ with equality only at $w = 0, 1$.
+
+**Subadditivity polynomial (CE-30c).** After clearing denominators, $\varphi$-subadditivity becomes a polynomial inequality with **1612 terms, total degree 34** in $(w, s, t)$ where $s = b_1, t = b_2$. At the symmetric point $(w=1/2, s=t)$, the numerator factors as $3(27s^2-1)(P_6)(P_{14})/8$ where $P_6, P_{14}$ are univariate polynomials. The full polynomial is too complex for manual SOS decomposition.
+
+*Code verification.* `experiments/ce30_symbolic_mpp.py`, `ce30b_phi_subadditivity.py`, `ce30c_subadditivity_polynomial.py`.
+
 ### Barrier summary (n ≥ 4)
 
-**Resolved ($b=0$).** The degree-6 polynomial in 3 variables for the $b=0$ (even quartic) subcase is proved non-negative via convexity + algebraic decomposition (§9.4). This closes the even-quartic case completely.
+**Resolved ($b=0$, §9.4).** The degree-6 polynomial in 3 variables for the $b=0$ (even quartic) subcase is proved non-negative via convexity + algebraic decomposition. This closes the even-quartic case completely.
 
-**Remaining blocker ($b \neq 0$).** The general $n=4$ case is a degree-16 polynomial in 6 variables $(a_1, b_1, c_1', a_2, b_2, c_2')$. The $b$-component of the margin is proved by Jensen (§9.1), and the $c'$-component ($b=0$ case) is proved (§9.4), but the **cross-terms between $b$ and $c'$** in $1/\Phi_4$ are not controlled.
+**Resolved ($c'=0$, §9.6, NEW).** The $c'=0$ subcase is proved via strict concavity of the scale-invariant profile $g(\beta)$ and weighted Jensen inequality. This closes the $c'=0$ (fixed-shape) case completely. Proof is independent of §9.4.
 
-**Failed routes for general case**: (1)–(7) as before, plus (8) concavity in cumulant coordinates (CE-17: 1/Φ₄ is NOT globally concave in (σ,b,c'), NOT degree-1 homogeneous under additive scaling). Route (6) discriminant decomposition is superseded by the convexity argument (§9.4) for the $b=0$ case. Routes (1)–(5), (7), and (8) remain relevant for the $b \neq 0$ case.
+**Remaining blocker ($b \neq 0, c' \neq 0$).** The general $n=4$ case requires controlling both $b$ and $c'$ simultaneously. The concavity proof (§9.6) does NOT extend to the full case because $\psi(u,v) = G(u^2, v)$ is NOT jointly concave in $(u,v)$ — CE-27 finds 5028 Hessian NSD violations out of 11,184 tested points. However, **100,000 full margin tests with general $c'$ show 0 violations** (CE-27 Section 3, min margin $1.09 \times 10^{-3}$).
+
+**Failed routes for general case (17 total)**:
+1. Direct De Bruijn identity (general $n$) — no finite analog
+2. K-transform Taylor expansion — $n=3$ only
+3. Coefficient-level algebraic identity — breaks for $n \geq 4$ (cross-terms)
+4. Cauchy-Schwarz / Jensen ($n \geq 4$) — weight mismatch obstruction
+5. Numerical SOS — 12 negative coefficients
+6. Discriminant decomposition — superseded by convexity (§9.4) for $b=0$
+7. SDP solver (CE-14) — not available; Putinar deg 6 insufficient
+8. Cumulant concavity (CE-17) — $1/\Phi_4$ NOT concave, NOT deg-1 homogeneous
+9. Perturbative $b$-expansion (CE-20) — $b$-correction not always non-negative (7.6% failure rate)
+10. **Joint concavity extension (CE-27)** — $\psi(u,v)$ NOT jointly concave (5028 NSD violations)
+11. **Boundary monotonicity (CE-29c)** — $1/\Phi_4(h) \geq 1/\Phi_4(q)$ at degenerate $p$ fails in 4.1% of tests
+12. **Constrained SOS (CE-29b)** — polynomial $P$ (837 terms, degree 14) negative outside validity domain; constrained SOS needed but no solver (Julia/TSSOS unavailable)
+13. **$\varphi$-subadditivity polynomial (CE-30c)** — 1612 terms, total degree 34; too complex for manual SOS
+14. **Matrix PSD for $M''(\theta)$ (CE-32c)** — diagonal dominance $g_1 \geq g_h$ holds (46K tests), but determinant condition fails at 2 extreme points; domain constraints required
+15. **$M'(0) \geq 0$ monotonicity shortcut (CE-32e)** — $M'(0)$ negative in 72.8% of tests; $f'(\sigma,b,0) \leq 0$ always but $f'_h \geq f'_i$ only 87.4%
+16. **$P(0)+P'(0) \geq 0$ first-order bound (CE-32h)** — fails in 5.5% of valid tests
+17. **$P(0)+P'(0)+\tfrac{1}{2}P''(0) \geq 0$ second-order bound (CE-32h)** — 2 marginal failures (min $-8 \times 10^{-4}$); third-order correction expected to close but not yet computed
 
 **Validity note (CE-19).** For quartics, $\Delta > 0$ implies either 0 or 4 real roots. The correct condition for 4 simple real roots is $\Delta > 0$ AND $A \cdot B < 0$ (equivalently $1/\Phi_4 > 0$), where $A = a^2 + 12c$ and $B = 2a^3 - 8ac + 9b^2$. An apparent counterexample from CE-17b was invalidated: the polynomial $p$ had $A \cdot B > 0$ (zero real roots). With the corrected filter, **495,616 exact-arithmetic tests all pass** (CE-19).
 
-**Missing ingredient**: A method to control the $b$-$c'$ cross-terms in the 6-variable superadditivity margin, or an SDP-based SOS certificate for the full degree-16 polynomial (requires SDP solver not in sprint environment).
+**Strongest partial result (§9.7–9.9, NEW).** Two complementary proof chains identified:
+
+*Chain A (c'-parametric, §9.7–9.8):* $M(\theta)$ parametrizes $c'$-scaling from proved $c'=0$ case. $M(0) \geq 0$ proved. $M''(\theta) \geq 0$ (122K tests) and discriminant bound (60K tests) both pass empirically. Blocked by $\varphi$-subadditivity polynomial (1612 terms, degree 34).
+
+*Chain B ($b^2$-parametric, §9.9, NEW):* Define $P(\tau) = M(w, \sqrt{\tau}\,b_1, \sqrt{\tau}\,b_2, c'_1, c'_2)$. Since $1/\Phi_4$ depends on $b$ only through $b^2$, $P$ is well-defined and $P(0) \geq 0$ (proved $b=0$ case). **Key structural formula**: $\tilde{f}''(u) = C(\sigma,c') / [4A(B_0+9u)]^3$ where $C(\sigma,c') = 648(\sigma^4 - 36c'^2)$ is INDEPENDENT of $u = b^2$ — a 2-factor closed form. $P(\tau)$ is convex in $\tau$ (26K+ tests, 0 violations); $P''(\tau)$ is increasing (12K tests); second-order Taylor bound passes in 99.99% of tests (2 marginal failures at $-8 \times 10^{-4}$). This is the closest approach to closure found.
+
+**Missing ingredient**: Proving $P''(\tau) \geq 0$ algebraically — a weighted superadditivity $b_h^4 C_h/|D_h|^3 \leq b_1^4 C_1/|D_1|^3 + b_2^4 C_2/|D_2|^3$ where $C_i = 648(\sigma_i^4-36c_i'^2)$ and $D_i = 4A_iB_i(\tau)$. Requires validity-domain constraints; fails outside domain.
 
 ### 10. Summary
 
 | Aspect | Result |
 |--------|--------|
-| **Answer** | YES for $n=2$ (proved, §4). YES for $n=3$ (proved, §4c). YES for $n=4$, even quartics (proved, §9.4). Conjectured YES for general $n \geq 4$ (open) |
+| **Answer** | YES for $n=2$ (proved, §4). YES for $n=3$ (proved, §4c). YES for $n=4$, even quartics (proved, §9.4). YES for $n=4$, $c'=0$ quartics (proved, §9.6). Conjectured YES for general $n \geq 4$ (open) |
 | **$n = 2$** | Equality holds exactly (proved, §4) |
 | **$n = 3$** | Proved (§4c): closed-form $\Phi_3 = 18a^2/\Delta$ + Jensen's inequality. Equality iff equally-spaced (§4b) |
 | **$n = 4$, $b=0$** | **Proved (§9.4)**: convexity in $w$ + algebraic decomposition at both endpoints. Closes even-quartic subcase completely |
-| **$n = 4$, general** | Closed-form $\Phi_4$; additive variables; second-order margin PSD (§9.1); $b$-$c'$ cross-terms uncontrolled |
+| **$n = 4$, $c'=0$** | **Proved (§9.6)**: strict concavity of $g(\beta)$ + weighted Jensen + gap lemma. Closes $c'=0$ subcase completely. Independent of §9.4 |
+| **$n = 4$, general** | Closed-form $\Phi_4$; additive variables; second-order margin PSD (§9.1); **parametric c'-convexity + discriminant bound (§9.7, all tests pass, proof chain identified but not closed)**; **$\varphi$-subadditivity structure (§9.8, Titu reduction, 153K+150 tests)**; 13 proof routes failed; $b$-$c'$ interaction uncontrolled |
 | **General $n \geq 5$** | No proof; candidate strategies via finite free Fisher information (§6) |
-| **Numerical** | 285,000+ trials + 450 at 150 digits + 5,000 at 30 digits + 105K exact Fraction tests (CE-11) + 495K exact tests with corrected validity filter (CE-19), ALL PASS |
-| **Proof gap** | General $n=4$: $b$-$c'$ cross-terms (§9). General $n \geq 5$: finite De Bruijn identity (§6) |
+| **Numerical** | 285,000+ trials + 450 at 150 digits + 5,000 at 30 digits + 105K exact Fraction tests (CE-11) + 495K exact tests with corrected validity filter (CE-19) + 100K full margin tests with general $c'$ (CE-27) + 122K parametric c'-convexity tests (CE-28) + 60K discriminant bound tests (CE-29c), ALL PASS |
+| **Proof gap** | General $n=4$: $b$-$c'$ interaction (13 routes failed, §9); parametric c'-convexity + discriminant bound identified but not symbolically proved (§9.7); $\varphi$-subadditivity structure understood but polynomial (1612 terms, degree 34) too complex (§9.8). General $n \geq 5$: finite De Bruijn identity (§6) |
 | **Connection** | Finite analog of Voiculescu's free Fisher information inequality (motivation only) |
 
 ## Citations
