@@ -51,7 +51,7 @@ Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | 
 
 ## Sprint summary
 
-**9 of 10 problems submitted** across 28 sessions, ~977K tokens, ~414 messages. One problem (P03) remains at Candidate status with an L5 barrier (n=2,3,4 proved; n>=5 computationally infeasible within sprint constraints).
+**9 of 10 problems submitted** across 28 sessions, ~414 agent messages, ~977K artifact tokens (~5-10M+ total compute across all models including thinking, tool I/O, reviewer sessions, and scout calls). One problem (P03) remains at Candidate status with an L5 barrier (n=2,3,4 proved; n>=5 computationally infeasible within sprint constraints).
 
 ### Escalation levels used
 
@@ -68,8 +68,10 @@ Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | 
 
 ### Token and message budget
 
-| Problem | Domain | Est. tokens | Messages | Key sessions |
-|---------|--------|-------------|----------|-------------|
+**Artifact tokens** (~977K) reflect deliverable text visible in answer/audit/transcript files. **Total compute** is substantially higher — each Claude Code session involves system prompts, tool calls, file reads, experiment outputs, and extended thinking, none of which is counted in artifact estimates. Codex reviewer sessions, scout model API calls (GPT-pro, Claude Research, DeepSeek-R1, Qwen3-480B, Kimi K2.5), and multi-round escalation cycles add further. A conservative estimate of total compute across all models is **5-10M+ tokens**, with the heaviest consumers being P04 (28 sessions of SOS solver development) and P05 (14 sessions of equivariant homotopy theory).
+
+| Problem | Domain | Artifact tokens | Messages | Key sessions |
+|---------|--------|----------------|----------|-------------|
 | P01 | Stochastic analysis | ~45K | ~20 | S10: R1 CITE_PLUS closure |
 | P02 | Representation theory | ~33K | ~12 | JPSS + multiplicity-one |
 | P03 | Algebraic combinatorics | ~195K | ~83 | S4: n=3 proved; S6: n=4 proved; S24: R1-DIV |
@@ -80,7 +82,8 @@ Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | 
 | P08 | Symplectic geometry | ~30K | ~10 | Lagrangian octahedron + Gromov |
 | P09 | Tensor polynomial map | ~114K | ~58 | S7-8: all gaps closed, n=5 kernel proved |
 | P10 | RKHS CP-ALS | ~116K | ~12 | Matrix-free PCG solver |
-| **Total** | | **~977K** | **~414** | |
+| **Total (artifacts)** | | **~977K** | **~414** | |
+| **Est. total compute (all models)** | | **~5-10M+** | | Includes thinking, tool I/O, reviewer, scouts |
 
 ## Active open lanes
 
