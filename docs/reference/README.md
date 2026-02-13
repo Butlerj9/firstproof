@@ -1,24 +1,26 @@
-# Reference Docs
+# Reference Guide
 
-Operational references:
+This section indexes operational references, source material, and provenance policies used in the project.
 
-- `firstproof.md` (canonical directives)
-- `firstproof_sprint_plan.md` (timeline, gates, publishing ops)
-- `firstproof_implementation_guide.md` (implementation guidance)
-- `firstproof_research_landscape.md` (research context)
-- `agent_producer_cheatsheet.md` (producer-side workflow checklist)
+## Operational References
 
-Source material:
+- `firstproof.md`: canonical directives.
+- `firstproof_sprint_plan.md`: timeline, gates, and publication operations.
+- `firstproof_implementation_guide.md`: implementation guidance.
+- `firstproof_research_landscape.md`: research context.
+- `agent_producer_cheatsheet.md`: producer-side workflow checklist.
+
+## Source Material
 
 - `2602.05192v1.pdf`
 - `2602.05192v1.txt`
 
-Integrity and provenance:
+## Integrity and Provenance
 
 - `CONTAMINATION.md`
 - `tools/README.md`
 
-Citation and attribution:
+## Citation and Attribution
 
 - `CITATION.cff`
 - `CITATION.bib`

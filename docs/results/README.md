@@ -1,16 +1,18 @@
-# Results Docs
+# Results Guide
 
-Consolidated portfolio results:
+This section indexes the principal outcome artifacts for the portfolio.
 
-- `RESULTS.md` (repo root)
+## Consolidated Results
 
-Problem-level outputs:
+- `RESULTS.md` (repository root): portfolio-level status, escalation history, and cost/accounting summary.
 
-- `PXX/answer.md` — clean claim/proof/counterexample/conjecture
-- `PXX/audit.md` — gate-by-gate decisions, escalations, interventions
-- `PXX/transcript.md` — prompt/tool/model provenance log
-- `PXX/experiments/` — scripts and outputs
+## Problem-Level Artifacts
 
-Quick board view:
+- `PXX/answer.md`: formal claim/proof/counterexample/conjecture statement.
+- `PXX/audit.md`: gate-by-gate decisions, escalations, and intervention log.
+- `PXX/transcript.md`: prompt/tool/model provenance record.
+- `PXX/experiments/`: scripts and computational outputs.
 
-- `README.md` (repo root)
+## Executive Board View
+
+- `README.md` (repository root).

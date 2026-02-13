@@ -13,13 +13,13 @@ A relaxed mode permits limited internet retrieval strictly for published definit
 - Agents may use external tooling (e.g., code execution, CAS, numeric computation, repository automation) and scaffolding documents (templates, gate checklists, escalation policies, coordination notes) for context and coordination.
 - Provenance constraint: these tools and scaffolding artifacts are created by the agents themselves during the run (or derived from agent-authored instructions), as part of a self-bootstrapping workflow.
 - The Producer's role is restricted to executing agent-authored procedures, enforcing rigid constraints, and maintaining high-reliability continuity (logging, audits, contamination hygiene, and publication).
-- With additional engineering time, the Producer role could be replaced by a controller agent or deterministic automation (policy engine + executor) that applies the same constraints, escalation triggers, and publishing cadence; the nontrivial part is project-management dynamics, not mathematical content injection.
+- With additional engineering effort, the Producer role could be replaced by a controller agent or deterministic automation (policy engine + executor) that enforces the same constraints, escalation triggers, and publication cadence; the principal challenge is workflow coordination, not mathematical-content generation.
 
 ---
 
-## 1. What is being evaluated
+## 1. Study Design and Evaluation Target
 
-### 1.1 Unit under test
+### 1.1 Unit of analysis
 
 The evaluated object is the system, not a single prompt or model:
 
@@ -31,7 +31,7 @@ The evaluated object is the system, not a single prompt or model:
 - controlled internet retrieval for foundational references only (in relaxed mode)
 - complete logging suitable for external audit
 
-### 1.2 What success means in this repo
+### 1.2 Outcome taxonomy
 
 The output is always publishable as an attempt, even without a full proof:
 
@@ -42,7 +42,7 @@ The output is always publishable as an attempt, even without a full proof:
 
 The system is optimized to avoid silent failure (unlogged reasoning, untestable claims, overconfident proofs) and maximize the informational value of partial progress.
 
-### 1.3 Non-goals
+### 1.3 Scope exclusions
 
 This repo does not claim:
 
@@ -54,14 +54,14 @@ This repo does not claim:
 
 ---
 
-## 2. Autonomy boundary: what humans may and may not do
+## 2. Autonomy Boundary
 
-### 2.1 Human role: Producer (workflow only)
+### 2.1 Producer role (workflow only)
 
 In this run, Producer activity is constrained to operational control:
 
 - prompt dispatch and handoffs between model roles
-- occasional administrative decisions (prioritization, budgets, park/escalate, publication timing)
+- occasional administrative decisions (prioritization, budgets, escalation/freeze state, publication timing)
 - process decisions under pre-decided rules (gate criteria, stop-loss caps, escalation triggers)
 - execution of model-authored scripts/commands (verbatim)
 - enforcement of logging, status taxonomy, and contamination policy
@@ -69,7 +69,7 @@ In this run, Producer activity is constrained to operational control:
 
 Operationally, the Producer functions as a runtime operator, not a domain expert. The Producer does not add mathematical ideas, proof strategy, or domain interpretation, and does not exercise expert-level judgment over solution procedures or eventual solution content. Mathematical correctness is evaluated by agent review/falsification and deterministic checks, not by the Producer.
 
-### 2.2 Disallowed human actions (mathematical content)
+### 2.2 Disallowed human actions
 
 The Producer must not:
 
@@ -81,7 +81,7 @@ The Producer must not:
 
 If a boundary violation occurs, it must be logged and the affected claim treated as non-autonomous.
 
-### 2.3 Prompt authorship discipline (anti-leakage)
+### 2.3 Prompt-authorship discipline
 
 Prompts containing mathematical content should be authored by model roles (Implementer/Reviewer) and relayed verbatim when dispatched to other models/tools. This mitigates accidental human signal injection through prompt rewriting.
 
@@ -93,9 +93,9 @@ Evidence for boundary enforcement is maintained in:
 
 ---
 
-## 3. System architecture (roles and rationale)
+## 3. System Architecture
 
-### 3.0 Full control stack
+### 3.0 Control-stack decomposition
 
 The run uses a layered control stack:
 
@@ -109,26 +109,26 @@ In this sprint, Layer 3 is human-operated as a runtime function. The stack is au
 ### 3.1 Roles
 
 - Implementer (I): produces math artifacts (formalization, route map, lemma DAG, proof drafts, experiments, scripts, writeups).
-- Reviewer (R): adversarially audits Implementer outputs for missing hypotheses, quantifier errors, circularity, uncited dependencies, and overclaim.
+- Reviewer (R): adversarially audits Implementer outputs for missing hypotheses, quantifier errors, circularity, uncited dependencies, and unsupported claims.
 - Scouts (S): independent model families used primarily for falsification, gap-finding, and independent re-derivation checks.
 - Producer (H): workflow administration only.
 
-### 3.2 Why role separation matters
+### 3.2 Rationale for role separation
 
 Role separation reduces:
 
 - self-confirmation loops
 - hidden edge-case failures
-- overclaiming without closure
+- unsupported closure claims
 - unbounded exploration without exits
 
 Reviewer and Scout roles provide internal adversarial pressure analogous to seminar and peer-review dynamics.
 
 ---
 
-## 4. Artifacts and auditability
+## 4. Artifact Specification and Auditability
 
-### 4.1 Canonical per-problem artifacts
+### 4.1 Canonical per-lane artifacts
 
 Each problem lane maintains:
 
@@ -137,7 +137,7 @@ Each problem lane maintains:
 - `transcript.md`: interaction provenance (prompts, responses, tool calls, outputs)
 - `experiments/`: model-authored scripts and reproducible outputs
 
-### 4.2 Why this design is used
+### 4.2 Design rationale
 
 The artifact split provides:
 
@@ -150,7 +150,7 @@ This structure prevents result laundering by preserving unsuccessful attempts an
 
 ---
 
-## 5. Gate protocol (main control loop)
+## 5. Gate Protocol
 
 Execution follows gate phases with required deliverables:
 
@@ -171,17 +171,17 @@ Gate/stop-loss/escalation policy is defined in:
 
 ---
 
-## 6. Stop-loss and escalation
+## 6. Stop-Loss and Escalation Policy
 
 ### 6.1 Why stop-loss is necessary
 
-Without explicit stop-loss, LLM workflows tend to burn budget in:
+Without explicit stop-loss, LLM workflows tend to consume budget in:
 
 - rewrite loops (same argument rephrased)
 - idea sprawl without closure
-- pseudo-rigor with untracked gaps
+- formally styled arguments with untracked gaps
 
-### 6.2 Stall detection (conceptual)
+### 6.2 Stall detection
 
 Escalation should trigger when repeated iterations produce:
 
@@ -198,9 +198,9 @@ Typical progression:
 2. Reviewer-minimal patch request with explicit defect categories
 3. Scout falsification/gap pass
 4. relaxed definition-only retrieval if blocked by missing machinery
-5. park with explicit failure analysis if unresolved
+5. freeze the lane with explicit failure analysis if unresolved
 
-### 6.4 Parking is valid
+### 6.4 Parking as a valid outcome
 
 Parking is successful process execution when it yields:
 
@@ -211,13 +211,13 @@ Parking is successful process execution when it yields:
 
 ---
 
-## 7. Verification stack (why claims are trusted)
+## 7. Validation Framework
 
-### 7.1 Deterministic computation (model-authored)
+### 7.1 Deterministic computation
 
 Where relevant, models author scripts for identity checks, boundary tests, and counterexample search; outputs are committed as evidence. Scripts support claims but do not replace logical proof where theorem closure is required.
 
-### 7.2 Adversarial review for strong claims
+### 7.2 Adversarial review requirements
 
 No submitted claim is accepted without Reviewer sign-off. Reviewer checks target:
 
@@ -244,13 +244,13 @@ A practical observation in this run: stronger outcomes correlate with independen
 
 ---
 
-## 8. Relaxed mode: controlled internet use
+## 8. Controlled Internet Retrieval (Relaxed Mode)
 
 ### 8.1 Motivation
 
 Relaxed mode exists for cases where missing definitions or theorem statements block progress and are unreliable in model priors.
 
-### 8.2 Allowed retrieval
+### 8.2 Permitted retrieval
 
 Permitted targets:
 
@@ -264,7 +264,7 @@ Purpose:
 - avoid hallucinated foundational facts
 - improve statement-level citation accuracy
 
-### 8.3 Disallowed retrieval
+### 8.3 Prohibited retrieval
 
 Prohibited:
 
@@ -272,7 +272,7 @@ Prohibited:
 - queries likely to retrieve direct solution writeups
 - incorporation of external solution text into mathematical content
 
-### 8.4 Contamination handling
+### 8.4 Contamination protocol
 
 If accidental direct-solution exposure occurs:
 
@@ -288,9 +288,9 @@ Policy and logging references:
 
 ---
 
-## 9. Why this method vs single-shot prompting
+## 9. Methodological Rationale (Relative to Single-Shot Prompting)
 
-### 9.1 Single-shot limitations
+### 9.1 Limitations of single-shot workflows
 
 Single-shot workflows are often bottlenecked by:
 
@@ -300,7 +300,7 @@ Single-shot workflows are often bottlenecked by:
 - weak counterexample coverage
 - poor long-horizon state management
 
-### 9.2 Orchestration gains
+### 9.2 Advantages of orchestration
 
 This method adds:
 
@@ -311,13 +311,13 @@ This method adds:
 - bounded exploration (stop-loss/escalation)
 - auditable provenance
 
-Net effect: reduced overclaim risk and higher value partial results.
+Net effect: reduced unsupported-claim risk and higher-value partial results.
 
 ---
 
-## 10. Threat model and validity
+## 10. Threat Model and Validity
 
-### 10.1 Autonomy threats
+### 10.1 Threats to autonomy validity
 
 Threat: subtle human mathematical injection (prompt edits, lemma guidance, interpretive summaries).  
 Mitigation: role boundary, transcript logging, intervention classification, prompt authorship discipline.
@@ -325,7 +325,7 @@ Mitigation: role boundary, transcript logging, intervention classification, prom
 Threat: contamination through retrieval.  
 Mitigation: constrained relaxed mode, explicit logging, quarantine protocol.
 
-### 10.2 Correctness threats
+### 10.2 Threats to correctness validity
 
 Threat: hallucinated citations/statements.  
 Mitigation: statement-level citation requirements, Reviewer enforcement, controlled retrieval.
@@ -338,7 +338,7 @@ Mitigation: lemma DAG + defect tracking + adversarial gate.
 
 ---
 
-## 11. Interpreting failure modes
+## 11. Interpretation of Failure Modes
 
 Different unresolved outcomes provide different signals:
 
@@ -351,7 +351,7 @@ These failures are treated as informative outputs, not discarded noise.
 
 ---
 
-## 12. Reproducibility and replication
+## 12. Reproducibility and Replication
 
 A third party should be able to:
 
@@ -367,7 +367,7 @@ Portfolio summaries are maintained in:
 
 ---
 
-## 13. Practical autonomy in this project
+## 13. Operational Autonomy in This Project
 
 Autonomy is operationalized as:
 
@@ -376,11 +376,11 @@ Autonomy is operationalized as:
 - model-authored solution and verification artifacts
 - human role restricted to runtime operation, operational continuity, and integrity enforcement under pre-decided rules
 
-This is a laboratory protocol, not a prompt demo. It is intended to measure what frontier models can do when human input is reduced to administrative functions that are, in principle, automatable.
+This is a laboratory protocol rather than a prompt demonstration. It is intended to measure what frontier models can do when human input is restricted to administrative functions that are, in principle, automatable.
 
 ---
 
-## 14. Minimal executive summary (README-sized)
+## 14. Executive Summary (README-Length)
 
 - We use an agentic, multi-model LLM pipeline with explicit gates, adversarial review, falsification, and deterministic verification.
 - Human input is restricted to workflow administration and integrity enforcement; no mathematical content is provided by the human operator.
@@ -389,7 +389,7 @@ This is a laboratory protocol, not a prompt demo. It is intended to measure what
 
 ---
 
-## 15. Observed Capability Boundaries and Future Work
+## 15. Observed Capability Boundary and Future Work
 
 This sprint identified a practical boundary between:
 
@@ -416,9 +416,9 @@ Extended discussion:
 
 ---
 
-## 16. Agent-to-LLM Prompt Equivalency (Heuristic)
+## 16. Agent-to-LLM Prompt Equivalency (Reporting Heuristic)
 
-For documentation and replication planning, this project uses a rough equivalency estimate between:
+For documentation and replication planning, this project uses an approximate equivalency estimate between:
 
 - one orchestrated agent prompt (role-aware, gate-scoped, with artifact constraints), and
 - an equivalent amount of single-model (llm-only) prompting needed to reach comparable control and validation.
@@ -432,7 +432,7 @@ Heuristic:
   - `8` short prompts (state updates, local repairs, checklists, narrow retries)
   - `2` long prompts (route reset, synthesis, closure packaging)
 
-This is intentionally approximate. It is a planning aid, not a measured law.
+This estimate is intentionally approximate. It is a planning aid, not an empirical law.
 
 ### 16.2 Why this conversion is reasonable here
 

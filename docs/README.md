@@ -1,27 +1,28 @@
-# Docs Index
+# Documentation Guide
 
-This folder provides a standard, navigable documentation layout for the project.
-Canonical operational files remain at repo root for compatibility with existing runbooks and automation.
+This directory provides the primary documentation map for the repository.  
+Canonical operational artifacts remain at repository root unless explicitly migrated.
 
-## Sections
+## Contents
 
-- [`docs/methods/README.md`](methods/README.md) — methodology, autonomy boundary, enforcement protocol, technical limitations, future-work directions, and speculative applications
-- [`docs/results/README.md`](results/README.md) — consolidated outcomes and per-problem status artifacts
-- [`docs/reference/README.md`](reference/README.md) — runbooks, background context, and source-material references
-- [`tools/gpt-pro-final/README.md`](../tools/gpt-pro-final/README.md) — GPT-pro package index (prompts, lane packets, transcripts)
-- [`tools/claude-research-final/README.md`](../tools/claude-research-final/README.md) — Claude Research package index (prompts, lane packets, transcripts)
+- [`docs/methods/README.md`](methods/README.md): methodological protocol, autonomy boundary, escalation logic, technical limitations, and forward directions.
+- [`docs/results/README.md`](results/README.md): consolidated outcomes and per-problem artifact structure.
+- [`docs/reference/README.md`](reference/README.md): runbooks, implementation references, and source-material context.
+- [`tools/gpt-pro-final/README.md`](../tools/gpt-pro-final/README.md): GPT-pro package index (prompts, lane packets, transcripts).
+- [`tools/claude-research-final/README.md`](../tools/claude-research-final/README.md): Claude Research package index (prompts, lane packets, transcripts).
 
-## Attribution and citation
+## Citation and Attribution
 
-- `CITATION.cff` and `CITATION.bib` (preferred citation metadata)
-- `NOTICE` (attribution notice)
-- `docs/reference/attribution_and_citation_policy.md` (credit and reuse policy)
+- `CITATION.cff` and `CITATION.bib`: preferred citation metadata.
+- `NOTICE`: attribution notice.
+- `docs/reference/attribution_and_citation_policy.md`: credit and reuse policy.
 
-## Canonical file policy
+## Canonical Artifact Policy
 
-- Root files remain canonical unless explicitly migrated:
-  - `methods_extended.md`
-  - `RESULTS.md`
-  - `firstproof.md`
-  - `firstproof_sprint_plan.md`
-  - `CONTAMINATION.md`
+The following files are canonical at repository root unless superseded by explicit migration notes:
+
+- `methods_extended.md`
+- `RESULTS.md`
+- `firstproof.md`
+- `firstproof_sprint_plan.md`
+- `CONTAMINATION.md`

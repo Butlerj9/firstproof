@@ -1,16 +1,18 @@
-# Methods Docs
+# Methods Guide
 
-Primary method specification and autonomy constraints:
+This section collects the methodological documents governing study design, autonomy constraints, escalation, and interpretation.
 
-- `methods_extended.md` (repo root)
-- `docs/methods/technical_limitations.md` (escalation rationale and current system limits)
-- `docs/methods/future_work.md` (applications, class-level automation outlook, and boundary-shift directions beyond this sprint)
-- `methods_extended.md` §16 (agent-to-llm prompt-equivalency heuristic: `1` orchestrated prompt ~= `10` llm-only prompts, `8` short + `2` long)
+## Core Method Documents
 
-Related enforcement and operations:
+- `methods_extended.md` (repository root): full protocol specification.
+- `docs/methods/technical_limitations.md`: limitation analysis and escalation rationale.
+- `docs/methods/future_work.md`: applications, class-level automation outlook, and boundary-expansion directions.
+- `methods_extended.md`, Section 16: agent-to-LLM prompt-equivalency heuristic (`1` orchestrated prompt ~= `10` llm-only prompts; `8` short + `2` long).
 
-- `firstproof.md` (canonical runbook)
-- `firstproof_sprint_plan.md` (sprint execution plan)
-- `common/claude_handoff_checklist.md` (handoff quality gate)
-- `common/definition_only_escalation.md` (definition-only escalation protocol)
-- `CONTAMINATION.md` (contamination policy and log)
+## Enforcement and Operations
+
+- `firstproof.md`: canonical runbook.
+- `firstproof_sprint_plan.md`: sprint execution plan.
+- `common/claude_handoff_checklist.md`: handoff quality gate.
+- `common/definition_only_escalation.md`: definition-only escalation protocol.
+- `CONTAMINATION.md`: contamination policy and log.

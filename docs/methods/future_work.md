@@ -1,189 +1,136 @@
-# Future Work: Shifting the Observed Capability Boundary
+# Future Work and Open Directions
 
-## Scope
+## Abstract
 
-This document describes practical system-level directions that could move the capability boundary observed in this sprint. It is intentionally framed as boundary analysis, not retrospective "how we could have won."
+This note records the principal boundary findings of the current run and outlines plausible next steps for extending capability. The goal is methodological: to identify which parts of theorem-space are presently reachable under strict autonomy constraints, and which parts remain open. We emphasize that this is a forward-looking research program, not a retrospective account of missed tactics.
 
-## 1. Empirical boundary observed in this sprint
+## 1. Problem Setting and Scope
 
-Outcomes clustered into three regimes:
+We evaluate a tool-augmented, multi-agent LLM workflow under the following fixed constraint: no human mathematical content in the proof loop. Within this setting, we ask two questions:
 
-1. Structured derivations and bounded algebraic domains.
-These closed reliably under orchestration plus adversarial review.
+1. Which classes of problems are currently tractable for closure with high reliability?
+2. Which classes remain blocked, and for what technical reasons?
 
-2. Counterexample-driven or computationally falsifiable domains.
-These closed when deterministic experiments and high-precision checks were integrated.
+Throughout, "future work" refers to boundary-shifting directions that were intentionally out of scope for the sprint baseline.
 
-3. Machinery-heavy or abstraction-bridging domains.
-These stalled on:
-- finite-n to uniform-n bridge construction,
-- formulation-level definition precision,
-- invariant discovery beyond direct theorem composition,
-- deep categorical or functional-analytic abstraction jumps.
+## 2. Main Empirical Findings
 
-This pattern did not look primarily workflow-bound. It remained after strong orchestration, review pressure, and experiment discipline.
+The observed outcomes separate into three regimes.
 
-## 2. Limitation model
+### 2.1 Closeable regime
 
-Two limitation classes best explain the stalls:
+Structured derivations in bounded algebraic settings were frequently tractable for closure under adversarial review plus deterministic validation.
 
-### 2.1 Coverage and encoding gaps
+### 2.2 Evidence-driven regime
 
-- niche definitions weakly represented in priors,
-- theorem statements with delicate hypothesis structures,
-- sparse public duplication of domain-specific machinery.
+Counterexample-sensitive and computation-heavy lanes were tractable for closure when supported by high-precision scripts, reproducible sweeps, and explicit certificate workflows.
 
-These are mainly training-distribution and retrieval-coverage problems.
+### 2.3 Frontier regime
 
-### 2.2 Structural abstraction gaps
+Machinery-heavy lanes requiring non-local abstraction remained open. Recurring blockers included:
 
-- new invariant discovery,
-- non-local abstraction bridges,
-- uniformization over arbitrary parameters,
-- symbolic closure from strong empirical evidence.
+- finite-to-uniform bridges (e.g., finite-n to all-n transitions),
+- high-sensitivity formulation dependencies,
+- missing invariant-level reductions,
+- long-horizon composition across deep technical frameworks.
 
-These are representational and composition problems, not only missing-text problems.
+These blockers persisted after strong workflow controls, indicating that the residual gap is not primarily operational.
 
-## 3. Why orchestration did not fully remove the boundary
+## 3. Limitation Profile
 
-This pipeline already included:
-- multi-agent adversarial review,
-- falsification and counterexample pressure,
-- deterministic experiment harnesses,
-- stop-loss and escalation,
-- artifact-level provenance and no-overclaim gates.
+The unresolved lanes are best explained by two limitation classes.
 
-These controls improved reliability and reduced hallucination, but they do not by themselves create:
-- new representational capacity,
-- new invariant-discovery ability,
-- or stronger theorem-space exploration geometry.
+### 3.1 Coverage and statement-precision limitations
 
-## 4. What this work can be used for now
+Some domains depend on niche definitions and theorem statements with delicate hypotheses. Failure here is often traceable to weak prior coverage or retrieval precision.
 
-This pipeline has direct practical value even before full domain-level autonomy:
+### 3.2 Structural-composition limitations
 
-1. Proof-lane triage and prioritization.
-Use the gate/escalation stack to quickly separate:
+Other domains require new organizing structure (for example, a bridge invariant or a global reduction lemma). In these cases, empirical evidence is strong, but symbolic closure remains open.
+
+In short: retrieval improves correctness at the statement level, but does not by itself generate missing structural glue.
+
+## 4. Immediate Scientific Uses of the Current Pipeline
+
+Even before full domain-level autonomy, the current workflow has direct research value.
+
+### 4.1 Lane triage and ranking
+
+The gate/escalation protocol supports fast separation of:
 - closeable lanes,
 - certificate-limited lanes,
-- and structural frontier lanes.
+- and structurally open lanes.
 
-2. Reproducible conjecture hardening.
-Convert weak hypotheses into high-signal frontier statements with:
-- explicit blocker lemmas,
-- counterexample pressure,
-- and machine-checkable evidence bundles.
+### 4.2 Conjecture sharpening
 
-3. Counterexample and obstruction discovery.
-Systematically mine "no" results, impossibility frontiers, and corrected scope statements that are publishable research outputs.
+Weak hypotheses can be upgraded to precise frontier statements with explicit blocker lemmas and reproducible evidence.
 
-4. Rapid domain bootstrap.
-For new technical domains, use controlled reference retrieval plus agent-authored tooling to build a reusable workflow without human mathematical steering.
+### 4.3 Obstruction and counterexample discovery
 
-5. Artifact-grade research operations.
-Produce auditable proof attempts (not only final claims) with strong provenance and reproducibility, suitable for replication and external review.
+The workflow is effective at producing negative results, impossibility frontiers, and corrected scope statements that are independently publishable.
 
-6. Producer-role automation blueprint.
-The current human operator role is mostly policy execution (gates, escalation, logging, run control) and can be replaced by a controller agent or deterministic workflow engine without changing the no-human-math boundary.
+### 4.4 Reproducible artifact production
 
-## 5. Candidate directions to shift the boundary
+Outputs are audit-ready: experiments, review logs, and status transitions are preserved in a form suitable for independent replication.
 
-These were out of scope for this sprint but are plausible boundary-shifting directions.
+### 4.5 Automation-ready workflow control
+
+The current Producer role is largely policy execution (gate control, escalation triggers, run control, logging). This is a practical candidate for replacement by a controller agent or deterministic orchestration engine without changing the no-human-math boundary.
+
+## 5. Directions for Boundary Expansion (Out of Scope for This Sprint)
+
+The following directions are plausible mechanisms for reducing the observed frontier.
 
 ### 5.1 Domain-adaptive fine-tuning
 
-Fine-tune on adjacent theorem families and foundational corpora to:
-- increase density of relevant structural patterns,
-- improve invariant recognition,
-- reduce definition drift in niche domains.
+Fine-tune on adjacent theorem families and foundational corpora to improve statement fidelity and invariant recognition in target domains.
 
-Target classes of problems, not single benchmark items.
+### 5.2 Formal verification coupling
 
-### 5.2 Formal verifier coupling
+Integrate Lean/Coq/SMT feedback loops to enforce quantifier discipline and convert proof-check failures into structured search signals.
 
-Integrate Lean/Coq/SMT in loop to:
-- enforce quantifier discipline,
-- expose hidden circular dependencies,
-- turn proof-check failures into search guidance.
+### 5.3 Structure-aware theorem retrieval
 
-### 5.3 Theorem retrieval with structural matching
+Move from keyword retrieval to hypothesis-shape and operator-structure matching.
 
-Move beyond keyword retrieval to structure-aware matching on:
-- hypothesis templates,
-- operator algebra form,
-- categorical signatures.
+### 5.4 Verifier-oriented process training
 
-### 5.4 Process-level verifier fine-tuning
+Train on audit traces and patch cycles (e.g., quantifier failures, citation misapplication, dependency leaks) to improve internal proof hygiene.
 
-Train on audit/failure corpora:
-- recurring quantifier errors,
-- patch cycles,
-- dependency-ledger failures,
-- theorem-misapplication patterns.
+### 5.5 Class-level program design
 
-### 5.5 Multi-problem domain pipelines
-
-Shift objective from one-off closure to domain colonization:
-- solve adjacent families procedurally,
-- build reusable invariant templates,
-- compound solvable subspaces over time.
+Target families of adjacent problems rather than isolated instances, so successful reductions can be reused across a growing domain neighborhood.
 
 ### 5.6 Architecture-level improvements
 
-Likely helpful:
-- deeper compositional inductive biases,
-- neural-symbolic hybrid reasoning modules,
-- stronger long-range abstraction tracking.
+Likely contributors include stronger compositional biases, neural-symbolic coupling, and improved long-range abstraction tracking.
 
-## 6. From single-problem closure to class-level automation
+## 6. From Individual Closures to Class-Level Programs
 
-The strategic objective is not only "solve one theorem," but procedural expansion of solvable theorem-space regions:
+A central open direction is methodological: replacing one-off theorem closure with procedural expansion of a solvable class.
 
-1. Solve adjacent families, not isolated tasks.
-Target a class where shared invariants and proof templates can be reused.
+Concretely:
 
-2. Promote discovered structure into reusable assets.
-When a lane closes, capture:
-- invariant templates,
-- certification patterns,
-- and reusable experiment harnesses.
+1. Solve adjacent families with shared structure.
+2. Promote successful reductions into reusable templates.
+3. Reuse certification patterns and experiment harnesses across neighboring lanes.
+4. Treat solved subspaces as foundations for harder adjacent regions.
 
-3. Iterate tooling as part of the research loop.
-Each cycle should reduce setup cost and improve closure probability for neighboring problems.
+This reframes progress as controlled enlargement of reachable theorem-space.
 
-4. Treat solved subspaces as foundations.
-Use closed families as scaffolding for harder adjacent spaces, enabling compounding progress over time.
+## 7. Why These Directions Were Excluded Here
 
-This is the practical path toward automated research acceleration: domain colonization by reusable procedures, not one-off wins.
+These extensions were excluded to preserve baseline comparability under strict autonomy constraints. Introducing heavy specialization in the sprint would have confounded interpretation of what general frontier models plus orchestration can already achieve.
 
-## 7. Why these were excluded in this run
+## 8. Concluding Remarks
 
-These methods were excluded to preserve:
-- comparability under general frontier-model conditions,
-- strict autonomy constraints,
-- clean interpretation of what orchestration alone can do.
+The present evidence supports three conclusions.
 
-Including heavy specialization in-sprint would confound the baseline.
+1. Under strict no-human-math constraints, general frontier models can close nontrivial advanced lanes with high rigor when scaffolded correctly.
+2. Remaining blockers are concentrated in structural-composition gaps, not merely prompt quality or workflow hygiene.
+3. The most credible path forward is class-level system development (training, retrieval, formal verification, and orchestration), not isolated prompt-level optimization.
 
-## 8. Interpretation
-
-The observed limitations do not imply "AI cannot do research mathematics."
-
-They imply a boundary:
-- some theorem-space regions are currently reachable under strict autonomy plus orchestration,
-- others likely require denser domain representation or stronger abstraction mechanisms.
-
-The likely trajectory is gradual expansion of automatically solvable subspaces, not immediate universal closure.
-
-## 9. Practical takeaway
-
-This sprint supports three claims:
-
-1. General frontier models can autonomously solve nontrivial advanced problems with rigorous scaffolding.
-2. Remaining blockers are not mainly promptcraft or orchestration hygiene failures.
-3. Future gains will likely come from training/system architecture/verification integration, not workflow tuning alone.
-
-## 10. Pointers
+## 9. Related Documents
 
 - Method protocol: `methods_extended.md`
 - Limitation analysis: `docs/methods/technical_limitations.md`
