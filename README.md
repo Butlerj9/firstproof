@@ -93,7 +93,7 @@ Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | 
 | Scouts (mixed) | Secondary verification | ~0.5M | ~$1/M | ~$1 |
 | **Total** | | **~10.5M** | | **~$407** |
 
-Cost is dominated by Claude Opus (~94% of spend). Heaviest per-problem consumers: P04 (~$130, 28 sessions of SOS solver development) and P03/P05/P09 (~$55–80 each).
+Cost is dominated by Claude Opus. Heaviest per-problem consumers: P04 (~$130, 28 sessions of SOS solver development) and P03/P05/P09 (~$55–80 each).
 
 ## Active open lanes
 
