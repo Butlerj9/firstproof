@@ -7,6 +7,14 @@ The Symmetry Conjecture: For all n >= 1 and all partitions λ of weight n(n+1)/2
 
 Here λ⁻ is the anti-dominant permutation (reverse-sorted) of the partition λ.
 
+## Critical Disambiguation (must honor)
+
+Do NOT conflate:
+1) direct specialization E*_{λ⁻}(x; q=1, t), and
+2) the lane object f* defined by the q -> 1 limit used in existing P03 proofs.
+
+Any claim that depends on this distinction must state explicitly which object is being used.
+
 ## Proved Scope
 
 - n=2: Symbolic proof (direct computation, 2 variables)
@@ -16,6 +24,9 @@ Here λ⁻ is the anti-dominant permutation (reverse-sorted) of the partition λ
 ## Unresolved Blocker (single sentence)
 
 For n ≥ 5, the perturbation system is ~11K × 11K with degree bound 112, requiring ~247 days of single-threaded computation — no algebraic shortcut has been found to bypass this computational barrier.
+
+Equivalent structural blocker:
+For n ≥ 5, the missing ingredient is a proof (or disproof) that the lower-degree interpolation corrections selected by the q -> 1 limit mechanism are symmetric.
 
 ## Failed Approaches (8 total, with reason each failed)
 
