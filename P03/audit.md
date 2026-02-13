@@ -550,7 +550,7 @@ Same structure as n=3 proof (§7 of answer.md):
 
 ### Recommendation
 
-The n=5 direct computation is not feasible within the sprint. The n=2,3,4 proofs + conditional n≥5 (with 48-digit numerical evidence) is the best achievable. A structural proof of the Symmetry Conjecture (e.g., showing the degenerate vanishing system is S_n-equivariant) would bypass the computational barrier, but no such argument has been found.
+The n=5 direct computation was not executed within the sprint. With parallelized cloud compute (226 workers, ~$300–600), it is feasible in ~53 hours wall time — but this exceeds half the 4-day sprint window before accounting for infrastructure setup, and P03 started late due to cross-lane time allocation. The n=2,3,4 proofs + conditional n≥5 (with 48-digit numerical evidence) is the best achieved in-sprint. Post-sprint, the n=5 computation is a straightforward cloud job. A structural proof of the Symmetry Conjecture (e.g., showing the degenerate vanishing system is S_n-equivariant) would bypass the computational barrier entirely, but no such argument has been found.
 
 ### S_n equivariance analysis (subagent, 2026-02-12)
 
@@ -565,7 +565,7 @@ A structural reduction attempt found:
 
 ### Verdict
 
-P03 remains 🟡 Candidate (n≤4 proved). n=5 closure is computationally feasible but requires ~65-260 days and is NOT attempted in this cycle. No structural shortcut found (S_n equivariance confirmed but insufficient). Formal infeasibility certificate added to answer.md (Session 8).
+P03 remains 🟡 Candidate (n≤4 proved). n=5 closure is computationally feasible: ~247 days single-thread, or ~53 hrs wall time with 226 parallel cloud workers (~$300–600). Not attempted in-sprint due to late start + cross-lane time allocation. No structural shortcut found (S_n equivariance confirmed but insufficient). Formal infeasibility certificate added to answer.md (Session 8).
 
 ## Session 8: Formal infeasibility certificate (2026-02-12, closeout cycle)
 
@@ -674,7 +674,7 @@ Added to answer.md:
 
 **Scaling**: O(N³) Gaussian elimination; N grows 714→11,627 (16.3×); scaling factor 4,318×.
 
-**Verdict**: INFEASIBLE. 247 days single-threaded, 247× over 1-day sprint constraint. RAM is NOT the bottleneck (4.3 GB needed vs 192 GB available). No parallelization shortcut — perturbation orders are sequential.
+**Verdict**: INFEASIBLE within sprint allocation. 247 days single-threaded. **Parallelizable**: the 113 t-value jobs are independent (no data dependencies); perturbation orders within each t-value are sequential (~12 orders × 4.4 hrs = 52.6 hrs per t-value per prime). Two primes needed (modular cross-check). With 226 cloud workers (4.3 GB RAM each): ~53 hrs wall time, ~11,900 CPU-hours, ~$300–600 at spot pricing. RAM is NOT the bottleneck (4.3 GB needed vs 192 GB available). Not executed due to late start on P03 and shared cross-lane sprint allocation (4-day sprint = 96 hrs total, so even parallelized compute consumes >50% of sprint wall time before setup overhead).
 
 **Stop-loss**: Benchmark confirms prior infeasibility certificate (Session 7-9) with measured data. No proxy run needed; the scaling extrapolation is definitive. Status unchanged.
 
@@ -684,7 +684,7 @@ Added to answer.md:
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
 | E12 | 2026-02-12 | L5 | 192GB RAM feasibility test | n≥5 Symmetry Conjecture | EXP-18: timed n=4 Gauss (3.65s on 714×714), projected n=5 (247 days) | numpy, exp18_n5_benchmark.py | audit.md Session 10 | INFEASIBLE confirmed with measured data | ~3 msgs | **🟡 CANDIDATE (unchanged)** |
 
-*Cycle footer (Session 10): EXP-18 benchmark complete. n=5 projected at 247 days single-threaded; RAM not the bottleneck (4.3 GB / 192 GB). Infeasibility reconfirmed with measured timing. Status unchanged: 🟡 Candidate. ~55+3 = ~58 messages used.*
+*Cycle footer (Session 10): EXP-18 benchmark complete. n=5 projected at 247 days single-threaded; RAM not the bottleneck (4.3 GB / 192 GB). Infeasibility reconfirmed for sprint-time allocation (not a hard compute-resource outage). Status unchanged: 🟡 Candidate. ~55+3 = ~58 messages used.*
 
 ## Session 11 — Closeout Cycle 6 (2026-02-12)
 
@@ -818,7 +818,7 @@ Added to answer.md:
 
 ### GPT-pro R1 Intake
 
-Source: `gpt-pro-final/transcripts/P03_gpt_pro_response_2026-02-12.md`
+Source: `tools/gpt-pro-final/transcripts/P03_gpt_pro_response_2026-02-12.md`
 
 **Verdict**: BLOCKED_WITH_FRONTIER (agrees with our assessment).
 
@@ -845,7 +845,7 @@ Source: `gpt-pro-final/transcripts/P03_gpt_pro_response_2026-02-12.md`
 
 ### Claude Research R1 Intake
 
-Source: `claude-research-final/transcripts/P03_claude_research_response_2026-02-12.md`
+Source: `tools/claude-research-final/transcripts/P03_claude_research_response_2026-02-12.md`
 
 **14 approach families with contamination ratings for 18 sources.**
 

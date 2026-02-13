@@ -58,11 +58,39 @@ These controls improved reliability and reduced hallucination, but they do not b
 - new invariant-discovery ability,
 - or stronger theorem-space exploration geometry.
 
-## 4. Candidate directions to shift the boundary
+## 4. What this work can be used for now
+
+This pipeline has direct practical value even before full domain-level autonomy:
+
+1. Proof-lane triage and prioritization.
+Use the gate/escalation stack to quickly separate:
+- closeable lanes,
+- certificate-limited lanes,
+- and structural frontier lanes.
+
+2. Reproducible conjecture hardening.
+Convert weak hypotheses into high-signal frontier statements with:
+- explicit blocker lemmas,
+- counterexample pressure,
+- and machine-checkable evidence bundles.
+
+3. Counterexample and obstruction discovery.
+Systematically mine "no" results, impossibility frontiers, and corrected scope statements that are publishable research outputs.
+
+4. Rapid domain bootstrap.
+For new technical domains, use controlled reference retrieval plus agent-authored tooling to build a reusable workflow without human mathematical steering.
+
+5. Artifact-grade research operations.
+Produce auditable proof attempts (not only final claims) with strong provenance and reproducibility, suitable for replication and external review.
+
+6. Producer-role automation blueprint.
+The current human operator role is mostly policy execution (gates, escalation, logging, run control) and can be replaced by a controller agent or deterministic workflow engine without changing the no-human-math boundary.
+
+## 5. Candidate directions to shift the boundary
 
 These were out of scope for this sprint but are plausible boundary-shifting directions.
 
-### 4.1 Domain-adaptive fine-tuning
+### 5.1 Domain-adaptive fine-tuning
 
 Fine-tune on adjacent theorem families and foundational corpora to:
 - increase density of relevant structural patterns,
@@ -71,21 +99,21 @@ Fine-tune on adjacent theorem families and foundational corpora to:
 
 Target classes of problems, not single benchmark items.
 
-### 4.2 Formal verifier coupling
+### 5.2 Formal verifier coupling
 
 Integrate Lean/Coq/SMT in loop to:
 - enforce quantifier discipline,
 - expose hidden circular dependencies,
 - turn proof-check failures into search guidance.
 
-### 4.3 Theorem retrieval with structural matching
+### 5.3 Theorem retrieval with structural matching
 
 Move beyond keyword retrieval to structure-aware matching on:
 - hypothesis templates,
 - operator algebra form,
 - categorical signatures.
 
-### 4.4 Process-level verifier fine-tuning
+### 5.4 Process-level verifier fine-tuning
 
 Train on audit/failure corpora:
 - recurring quantifier errors,
@@ -93,21 +121,42 @@ Train on audit/failure corpora:
 - dependency-ledger failures,
 - theorem-misapplication patterns.
 
-### 4.5 Multi-problem domain pipelines
+### 5.5 Multi-problem domain pipelines
 
 Shift objective from one-off closure to domain colonization:
 - solve adjacent families procedurally,
 - build reusable invariant templates,
 - compound solvable subspaces over time.
 
-### 4.6 Architecture-level improvements
+### 5.6 Architecture-level improvements
 
 Likely helpful:
 - deeper compositional inductive biases,
 - neural-symbolic hybrid reasoning modules,
 - stronger long-range abstraction tracking.
 
-## 5. Why these were excluded in this run
+## 6. From single-problem closure to class-level automation
+
+The strategic objective is not only "solve one theorem," but procedural expansion of solvable theorem-space regions:
+
+1. Solve adjacent families, not isolated tasks.
+Target a class where shared invariants and proof templates can be reused.
+
+2. Promote discovered structure into reusable assets.
+When a lane closes, capture:
+- invariant templates,
+- certification patterns,
+- and reusable experiment harnesses.
+
+3. Iterate tooling as part of the research loop.
+Each cycle should reduce setup cost and improve closure probability for neighboring problems.
+
+4. Treat solved subspaces as foundations.
+Use closed families as scaffolding for harder adjacent spaces, enabling compounding progress over time.
+
+This is the practical path toward automated research acceleration: domain colonization by reusable procedures, not one-off wins.
+
+## 7. Why these were excluded in this run
 
 These methods were excluded to preserve:
 - comparability under general frontier-model conditions,
@@ -116,7 +165,7 @@ These methods were excluded to preserve:
 
 Including heavy specialization in-sprint would confound the baseline.
 
-## 6. Interpretation
+## 8. Interpretation
 
 The observed limitations do not imply "AI cannot do research mathematics."
 
@@ -126,7 +175,7 @@ They imply a boundary:
 
 The likely trajectory is gradual expansion of automatically solvable subspaces, not immediate universal closure.
 
-## 7. Practical takeaway
+## 9. Practical takeaway
 
 This sprint supports three claims:
 
@@ -134,7 +183,7 @@ This sprint supports three claims:
 2. Remaining blockers are not mainly promptcraft or orchestration hygiene failures.
 3. Future gains will likely come from training/system architecture/verification integration, not workflow tuning alone.
 
-## 8. Pointers
+## 10. Pointers
 
 - Method protocol: `methods_extended.md`
 - Limitation analysis: `docs/methods/technical_limitations.md`

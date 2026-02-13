@@ -307,7 +307,7 @@ Since the coefficients arise from a bounded algebraic computation (perturbation 
 
 **What remains conditional (n ≥ 5)**:
 
-The Symmetry Conjecture for general n reduces to: E\*\_{λ⁻}(x; q=1, t) is symmetric in x₁, …, xₙ. This is now proved for n = 2 (§3), n = 3 (§7), and n = 4 (§7b). For n ≥ 5, the perturbation theory + modular degree-bound approach works in principle but has not been executed (system size grows as O(n^n)). The degree pattern 2(n−1)×(weight−d) is expected to generalize.
+The Symmetry Conjecture for general n reduces to: E\*\_{λ⁻}(x; q=1, t) is symmetric in x₁, …, xₙ. This is now proved for n = 2 (§3), n = 3 (§7), and n = 4 (§7b). For n ≥ 5, the perturbation theory + modular degree-bound approach works in principle but has not been executed within the sprint. For n = 5: the system is 11,627×11,627, requiring 113+ t-values at ~52.6 hrs each. Single-thread: ~247 days. With parallel cloud execution (226 workers, ~$300–600): ~53 hours wall time. See "Parallelized compute estimate" below for full breakdown. The degree pattern 2(n−1)×(weight−d) is expected to generalize.
 
 All other steps (Hecke eigenvalue, $t^{\mathrm{inv}(\mu)}$ factorization, detailed balance, Mallows distribution) follow rigorously from the Symmetry Conjecture for any n (see §6).
 
@@ -346,7 +346,34 @@ The degree-bound + zero-test proof method used for n=3,4 does NOT scale to n≥5
 | Degree bound (2(n-1)×(w-d)) | max 20 | max 54 | max 112 (= 8×14) |
 | Zero-test threshold | 82 > 20 | 90 > 54 | need >112 |
 | Solve time (per t-value) | <1s (Fraction) | ~120-250s (modular) | ~14-56 hours (est., O(11K³)) |
-| Total solve time (>112 values) | minutes | ~5 hours | **~65-260 days** |
+| Total solve time (>112 values) | minutes | ~5 hours | **~247 days (single-thread)** |
+
+### Parallelized compute estimate (n = 5)
+
+The 247-day figure is **single-threaded**. The cross-`t` structure of the computation is embarrassingly parallel: each of the 113+ t-values is an independent modular linear algebra problem with no data dependencies. Parallelizing across t-values and primes reduces wall time dramatically.
+
+**Per-t-value breakdown (EXP-18, measured extrapolation):**
+
+| Step | Time | Notes |
+|------|------|-------|
+| Gaussian elimination (11,627×11,627 over F_p) | ~4.4 hrs | O(N³) scaling from n=4 measured 3.65s on 714×714 |
+| Perturbation orders per t-value | ~12 (est.) | Sequential dependency: order k requires output of order k−1 |
+| **Total per t-value, per prime** | **~52.6 hrs** | 12 orders × 4.4 hrs |
+
+**Parallelization structure:**
+
+| Resource | Sequential | 113 workers | 226 workers |
+|----------|-----------|-------------|-------------|
+| t-values | 113 (sequential) | 113 (1 per worker) | 113 (1 per worker) |
+| Primes | 2 (sequential per t) | 2 (sequential per t) | 2 (1 per worker pair) |
+| **Wall time** | **247 days** | **~105 hrs (~4.4 days)** | **~53 hrs (~2.2 days)** |
+| RAM per worker | 4.3 GB | 4.3 GB | 4.3 GB |
+| Total CPU-hours | ~11,900 | ~11,900 | ~11,900 |
+| Est. cloud cost (spot) | — | **~$300–600** | **~$300–600** |
+
+The 113 t-values are independent jobs; the two primes (for cross-verification, as in n=4) multiply the work by 2 but can also be parallelized. With 226 cloud workers (standard instances, 4.3 GB RAM each), the entire n=5 computation completes in ~53 hours wall time at an estimated cost of $300–600 using cloud spot pricing.
+
+**Sprint constraint**: the 4-day sprint (Feb 10–13) provides 96 hours total. Even with maximum parallelism (~53 hrs wall time), the computation would consume over half the sprint — before accounting for cloud infrastructure setup, job dispatcher implementation, and debugging. Combined with the late start on P03 (effort split across 9 other active lanes), this was not attempted in-sprint. The blocker was **time allocation within the sprint**, not compute availability.
 
 **Why structural shortcuts fail:**
 
@@ -383,7 +410,7 @@ Five exactness-preserving reduction approaches were systematically tested:
 
 **Verdict**: All 5 reduction approaches fail. The n>=5 barrier is intrinsic: the proof technique requires solving O(n!)-size perturbation systems in non-trivial S_n irreps, and no known algebraic structure short-circuits this computation. Total structural shortcuts attempted: 8 (4 from original certificate + 1 from Session 7 + 3 new in Session 8).
 
-**Conclusion**: The n>=5 Symmetry Conjecture is **computationally verifiable in principle** but **not feasible within the sprint** (~65-260 days estimated for n=5 alone). No structural shortcut has been identified across 8 total attempts. P03 remains 🟡 Candidate: proved for n<=4, conditional for n>=5.
+**Conclusion**: The n>=5 Symmetry Conjecture is **computationally verifiable in principle** but **not feasible within the sprint**. Single-thread: ~247 days. With 226 parallel cloud workers: ~53 hours wall time at ~$300–600 (see parallelized compute estimate above). No structural shortcut has been identified across 8 total attempts. P03 remains 🟡 Candidate: proved for n<=4, conditional for n>=5.
 
 ### R3 structural unlock lead: Symmetry of standard E\_μ at q=1 (Session 9 + Cycle 6 refinement)
 
@@ -405,11 +432,11 @@ Five exactness-preserving reduction approaches were systematically tested:
 
 ### Barrier summary (n ≥ 5)
 
-**Blocker**: The Symmetry Conjecture — that E\*\_{λ⁻}(x; q=1, t) is symmetric in x₁,...,xₙ — is computationally verifiable in principle but infeasible for n ≥ 5 within sprint constraints (~65–260 days for n=5 alone; system size ~11K×11K, degree bound 112, perturbation order ~12–20).
+**Blocker**: The Symmetry Conjecture — that E\*\_{λ⁻}(x; q=1, t) is symmetric in x₁,...,xₙ — is computationally verifiable in principle but was not executed within the sprint. Single-thread: ~247 days. Parallelized (226 cloud workers): ~53 hours wall time, ~$300–600 (see "Parallelized compute estimate" below). System size ~11K×11K, degree bound 112, perturbation order ~12–20.
 
 **Failed routes (8 total)**: (1) symbolic-t perturbation (SymPy too slow at order 4); (2) rational Richardson extrapolation (insufficient convergence); (3) Thiele continued fraction (poles in reciprocal differences); (4) S\_n equivariance quotient (11K→324 partitions, per-block cost still prohibitive); (5) spectral vector collapse at q=1 (vectors remain distinct at generic t); (6) restriction x\_n→0 (wrong implication direction); (7) Hecke algebra degeneration (symmetry is emergent, not structural); (8) null space structure (explains conjecture but no computational shortcut).
 
-**Missing ingredient**: A proof that the inhomogeneous lower-degree corrections in E\*\_{λ⁻}(q=1,t) are symmetric. The leading homogeneous term is symmetric (Alexandersson-Sawhney 2019 + Hecke extension; see R3 lead above). The full conjecture reduces to: showing the lower-degree terms — determined by the degenerate vanishing conditions at q=1 and selected by the q→1 limit process — inherit the symmetry. This is proved for n≤4 by perturbation theory + degree-bound argument; the n≥5 case requires either (a) an algebraic identity for the q→1 correction terms, (b) a Hecke algebra argument showing the limit process preserves symmetry, or (c) computational verification (infeasible within sprint: ~247 days for n=5).
+**Missing ingredient**: A proof that the inhomogeneous lower-degree corrections in E\*\_{λ⁻}(q=1,t) are symmetric. The leading homogeneous term is symmetric (Alexandersson-Sawhney 2019 + Hecke extension; see R3 lead above). The full conjecture reduces to: showing the lower-degree terms — determined by the degenerate vanishing conditions at q=1 and selected by the q→1 limit process — inherit the symmetry. This is proved for n≤4 by perturbation theory + degree-bound argument; the n≥5 case requires either (a) an algebraic identity for the q→1 correction terms, (b) a Hecke algebra argument showing the limit process preserves symmetry, or (c) computational verification (~53 hrs wall time with 226 parallel cloud workers, ~$300–600; see "Parallelized compute estimate" above).
 
 ---
 

@@ -552,7 +552,7 @@ Agent launched to search for counterexample: a Z/4-Mackey functor where geometri
 
 ### GPT-pro Transcript Intake + De-dup Gate
 
-Source: `gpt-pro-final/transcripts/P05_gpt_pro_response_2026-02-12.md`
+Source: `tools/gpt-pro-final/transcripts/P05_gpt_pro_response_2026-02-12.md`
 
 GPT-pro verdict: BLOCKED_WITH_FRONTIER (agrees with our assessment).
 

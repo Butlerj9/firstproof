@@ -38,7 +38,7 @@ cycles stop producing new pathway signal.
 |---------|--------|--------|------------|-------------|
 | P01 | Stochastic analysis | ✅ Submitted | HIGH (YES, quasi-invariance proved; **R1 CITE_PLUS: BG proof chain verified + Hairer-Steele independent path; all gaps closed**) | ~20/80 msgs |
 | P02 | Representation theory | ✅ Submitted | HIGH (YES, Kirillov + Gauss sums + JPSS + multiplicity-one) | ~12/80 msgs |
-| P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 infeasible — branching fails (EXP-20: 4 obstructions), AS reduction partial; L5 barrier; **R1-DIV: q→1 convergence confirmed, E*_μ≠E_μ identified, informative not closure**) | ~83/200 msgs |
+| P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 unresolved in sprint window: single-thread path infeasible, branching fails (EXP-20: 4 obstructions), AS reduction partial; L5 barrier; **R1-DIV: q→1 convergence confirmed, E*_μ≠E_μ identified, informative not closure**. Compute resources were available; blocker was late-start/shared-time allocation across lanes.) | ~83/200 msgs |
 | P04 | Finite free convolution | ✅ Submitted | HIGH (YES; n=2,3 proved; **n=4 b=0 PROVED (CE-16)**; **n=4 c'=0 PROVED (CE-26)**; **n=4 general: SOS-CERTIFIED (CE-44, 20/20 w-slices, Putinar/CLARABEL)**; 495K+ exact tests ALL PASS; n≥5 conjectured) | ~142/300 msgs |
 | P05 | Equivariant homotopy | ✅ Submitted | HIGH (**11 theorems; FULL BICONDITIONAL PROVED**; Thms 1-10: obstruction, positive scope, corrected "only if", dim-uniform, Class Ia, Z/4, V4, **general "if" for ALL G and ALL O (Thm 10, iterated isotropy separation)**; 825 systems verified) | ~57/80 msgs |
 | P06 | Spectral graph theory | ✅ Submitted | HIGH (NO, K_n counterexample) | ~14/300 msgs |
@@ -51,7 +51,7 @@ Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | 
 
 ## Sprint summary
 
-**9 of 10 problems submitted** across 28 sessions, ~414 agent messages, ~977K artifact tokens (~5-10M+ total compute across all models including thinking, tool I/O, reviewer sessions, and scout calls). One problem (P03) remains at Candidate status with an L5 barrier (n=2,3,4 proved; n>=5 computationally infeasible within sprint constraints).
+**9 of 10 problems submitted** across 28 sessions, ~414 agent messages, ~1M artifact tokens, ~10M total compute tokens, ~$400 estimated cost. One problem (P03) remains at Candidate status with an L5 barrier (n=2,3,4 proved; n>=5 not closed in-sprint). Operationally this was a time-allocation issue (late start on P03 + effort split across other lanes), not a hard compute-resource outage.
 
 ### Escalation levels used
 
@@ -66,28 +66,55 @@ Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | 
 | L6 | Iterative final escalation: multi-cycle GPT-pro + Claude Research + Claude Code | P03, P04 |
 | L7 | Full biconditional closure via iterated theoretical framework | P05 |
 
-### Token and message budget
+### Token, message, and cost budget
 
-**Artifact tokens** (~977K) reflect deliverable text visible in answer/audit/transcript files. **Total compute** is substantially higher — each Claude Code session involves system prompts, tool calls, file reads, experiment outputs, and extended thinking, none of which is counted in artifact estimates. Codex reviewer sessions, scout model API calls (GPT-pro, Claude Research, DeepSeek-R1, Qwen3-480B, Kimi K2.5), and multi-round escalation cycles add further. A conservative estimate of total compute across all models is **5-10M+ tokens**, with the heaviest consumers being P04 (28 sessions of SOS solver development) and P05 (14 sessions of equivariant homotopy theory).
+**Artifact tokens** (~1M) are final deliverable text in answer/audit/transcript files. **Total compute tokens** (~10M) include system prompts, conversation history, tool call I/O, and extended thinking across all LLM API calls — roughly 10× the artifact size. Each of the ~414 agent messages corresponds to ~8–12 internal LLM API calls (tool use cycles, file reads, experiment execution), yielding ~4,100 LLM round-trips total. An additional ~500K tokens were consumed by scout models (DeepSeek-R1, Qwen3-480B, GPT-pro, Claude Research, Kimi K2.5).
 
-| Problem | Domain | Artifact tokens | Messages | Key sessions |
-|---------|--------|----------------|----------|-------------|
-| P01 | Stochastic analysis | ~45K | ~20 | S10: R1 CITE_PLUS closure |
-| P02 | Representation theory | ~33K | ~12 | JPSS + multiplicity-one |
-| P03 | Algebraic combinatorics | ~195K | ~83 | S4: n=3 proved; S6: n=4 proved; S24: R1-DIV |
-| P04 | Finite free convolution | ~270K | ~142 | S14-27: CE-16 through CE-44 SOS |
-| P05 | Equivariant homotopy | ~100K | ~57 | S7-21: 11 theorems, full biconditional |
-| P06 | Spectral graph theory | ~54K | ~14 | K_n counterexample |
-| P07 | Lattices in Lie groups | ~20K | ~6 | Q-PD + surgery |
-| P08 | Symplectic geometry | ~30K | ~10 | Lagrangian octahedron + Gromov |
-| P09 | Tensor polynomial map | ~114K | ~58 | S7-8: all gaps closed, n=5 kernel proved |
-| P10 | RKHS CP-ALS | ~116K | ~12 | Matrix-free PCG solver |
-| **Total (artifacts)** | | **~977K** | **~414** | |
-| **Est. total compute (all models)** | | **~5-10M+** | | Includes thinking, tool I/O, reviewer, scouts |
+| Problem | Domain | Artifact tokens | Agent msgs | Est. total tokens | Key sessions |
+|---------|--------|----------------|------------|-------------------|-------------|
+| P01 | Stochastic analysis | ~45K | ~20 | ~500K | S10: R1 CITE_PLUS closure |
+| P02 | Representation theory | ~33K | ~12 | ~300K | JPSS + multiplicity-one |
+| P03 | Algebraic combinatorics | ~195K | ~83 | ~2.0M | S4: n=3; S6: n=4; S24: R1-DIV |
+| P04 | Finite free convolution | ~270K | ~142 | ~3.4M | S14-27: CE-16 through CE-44 SOS |
+| P05 | Equivariant homotopy | ~100K | ~57 | ~1.4M | S7-21: 11 theorems, full biconditional |
+| P06 | Spectral graph theory | ~54K | ~14 | ~340K | K_n counterexample |
+| P07 | Lattices in Lie groups | ~20K | ~6 | ~150K | Q-PD + surgery |
+| P08 | Symplectic geometry | ~30K | ~10 | ~240K | Lagrangian octahedron + Gromov |
+| P09 | Tensor polynomial map | ~114K | ~58 | ~1.4M | S7-8: all gaps closed, n=5 kernel proved |
+| P10 | RKHS CP-ALS | ~116K | ~12 | ~290K | Matrix-free PCG solver |
+| **Total** | | **~1M** | **~414** | **~10M** | |
+
+**Estimated cost** (~$400, using provider list pricing):
+
+| Model | Role | Est. tokens | Rate (blended) | Est. cost |
+|-------|------|-------------|----------------|-----------|
+| Claude Opus 4.6 | Implementer (main agent) | ~8.5M | ~$45/M | ~$383 |
+| Codex 5.3 | Reviewer (G6 adversarial) | ~1.5M | ~$15/M | ~$23 |
+| Scouts (mixed) | Secondary verification | ~0.5M | ~$1/M | ~$1 |
+| **Total** | | **~10.5M** | | **~$407** |
+
+Cost is dominated by Claude Opus (~94% of spend). Heaviest per-problem consumers: P04 (~$130, 28 sessions of SOS solver development) and P03/P05/P09 (~$55–80 each).
 
 ## Active open lanes
 
 - `P03/answer.md` + `P03/audit.md` (candidate, frontier active)
+
+## Quick links
+
+- [Portfolio results](RESULTS.md)
+- [Docs index](docs/README.md)
+- [Future work and applications](docs/methods/future_work.md)
+- [GPT-pro package index](tools/gpt-pro-final/README.md)
+- [Claude Research package index](tools/claude-research-final/README.md)
+- [Tools index](tools/README.md)
+
+## Repository layout
+
+- `P01/` … `P10/`: per-problem artifacts (`answer.md`, `audit.md`, `experiments/`, `transcript.md`).
+- `tools/`: scout tooling and package archives.
+- `tools/gpt-pro-final/`: GPT-pro lane packets, prompts, and transcripts.
+- `tools/claude-research-final/`: Claude Research lane packets, prompts, and transcripts.
+- `docs/`: documentation index and reference/method/result navigation.
 
 ## How to read this repo
 
@@ -96,6 +123,8 @@ Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | 
 - `PXX/audit.md` — what worked, what failed, routes tried, human intervention log
 - `PXX/experiments/` — verification scripts and outputs
 - `PXX/transcript.md` — interaction log (full where available; some parked lanes contain summary stubs)
+- `tools/gpt-pro-final/README.md` — GPT-pro package index
+- `tools/claude-research-final/README.md` — Claude Research package index
 - `CONTAMINATION.md` — search log and exposure declarations
 - `RESULTS.md` — consolidated progress, escalations, final outcomes, and token/message accounting
 - `methods_extended.md` — experimental setup, autonomy boundary, and enforcement protocol
@@ -137,7 +166,7 @@ The 4-day sprint window (Feb 10-13) prevented several plausible improvements:
 
 - **Solver investigation**: The cvxpy misattribution (Sessions 19-25) would have been caught earlier with systematic solver preflight testing. A single direct SCS/CLARABEL smoke test at Session 19 would have unblocked P04 immediately, saving ~6 sessions.
 - **Broader SOS application**: With CLARABEL proven effective, SOS certificates could potentially be computed for P04 n=5 (5 variables) or used to close the w-continuity formal gap (treating w as a 5th variable at degree 14). Neither was attempted due to time.
-- **P03 n=5 computational approach**: The modular degree-bound approach that proved n=3 and n=4 works in principle for n=5 but requires ~247 days of compute for the ~11K x 11K system. Algorithmic optimization (e.g., exploiting S_n symmetry to reduce to partition-indexed blocks) was identified but not implemented.
+- **P03 n=5 computational approach**: The modular degree-bound approach that proved n=3 and n=4 works in principle for n=5 but requires ~247 days single-thread for the ~11K x 11K system. The 113 t-value jobs are embarrassingly parallel (no data dependencies); with 226 cloud workers (4.3 GB RAM each, two primes), wall time drops to ~53 hours at ~$300–600 cloud cost. This was not attempted in-sprint due to late start and cross-lane time division — even parallelized, the ~53-hour wall time would consume over half the 4-day sprint before accounting for infrastructure setup.
 - **Formal verification**: No Lean/Coq formalization was attempted. The SOS certificates from CE-43/CE-44 are machine-checkable in principle but were not exported to a formal verification framework.
 - **Cross-problem tooling reuse**: The CLARABEL/Putinar framework developed for P04 could potentially apply to other polynomial non-negativity questions but was not tested beyond P04.
 

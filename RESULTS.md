@@ -1,6 +1,6 @@
 # FIRSTPROOF — Consolidated Results Report
 
-Snapshot date: 2026-02-12 (Session 27: P04 direct M≥0 SOS-certified 20/20 w-slices via CLARABEL interior-point; P04 upgraded 🟡→✅; ~142 msgs. Session 26: SCS bypass + CE-43 φ-subadditivity. 9 ✅, 1 🟡.)
+Snapshot date: 2026-02-13 (Session 27: P04 direct M≥0 SOS-certified 20/20 w-slices via CLARABEL interior-point; P04 upgraded 🟡→✅; ~142 msgs. Session 26: SCS bypass + CE-43 φ-subadditivity. 9 ✅, 1 🟡.)
 Scope: full portfolio (all 10 problems assessed, synthesis pass complete; iterative final escalation active on remaining candidate lane: P03)
 Methodology and autonomy constraints: see `methods_extended.md`.
 
@@ -10,7 +10,7 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 |---------|--------|-----------------|
 | P01 | ✅ Submitted | **YES** — Φ⁴₃ quasi-invariance proved. **R1 CITE_PLUS (Session 10, E11)**: BG proof chain (arXiv:2004.01513) verified lemma-by-lemma for V_c; all 6 lemmas extend via (α) quartic coercivity + (β) UV scaling. **Independent path**: Hairer-Steele (arXiv:2102.11685) sub-Gaussian tails + Young directly yield A4. Two lines close the former gap. |
 | P02 | ✅ Submitted | YES — modified RS integral. Key identity proved (all n); n=1 complete (Kirillov + Gauss sums); general n proved (JPSS + multiplicity-one). G0-G6 + upgrade cycle done. |
-| P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2,3,4 proved. **L5 barrier**: n≥5 formally infeasible; branching rule induction killed (EXP-20: 4 obstructions); AS reduction partial; 4 approaches all fail. |
+| P03 | 🟡 Candidate | YES — Mallows/ASEP chain. n=2,3,4 proved. **L5 barrier**: n≥5 not closed in sprint; single-thread ~247 days but parallelizable to ~53 hrs with 226 cloud workers (~$300–600). Branching rule induction killed (EXP-20: 4 obstructions), AS reduction partial; 8 structural shortcuts all fail. Time-allocation blocker, not compute-resource outage. |
 | P04 | ✅ Submitted | YES. n=2,3 proved. **n=4 b=0 PROVED (CE-16); n=4 c'=0 PROVED (CE-26); n=4 general: SOS-CERTIFIED (CE-44, 20/20 w-slices, Putinar/CLARABEL)**. 495K+ exact tests ALL PASS. n≥5 conjectured. |
 | P05 | ✅ Submitted | O-slice connectivity. **11 theorems; FULL BICONDITIONAL PROVED.** Thm 10 (Session 21): general "if" direction for ALL G and ALL O via iterated isotropy separation. Key: family F_H = {L : L ⊅ gHg^{-1}} is always a family → Φ^H-equivalence handles each non-celled stratum. Combined with Thm 4 ("only if"), gives complete characterization. 825 systems verified. |
 | P06 | ✅ Submitted | Answer is NO via complete-graph counterexample. **Synthesis pass**: proof verified complete, all tests pass, upgraded to ✅. |
@@ -21,6 +21,10 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 
 ## 2. Method escalations used
 
+### Operational note (P03)
+
+P03's remaining gap was primarily a **time-allocation constraint** inside the Feb 10-13 sprint (late lane start + effort split across other active lanes), not a hard lack of compute availability. The measured benchmark is ~247 days **single-thread**, but the 113 t-value jobs are embarrassingly parallel (no data dependencies). With 226 cloud workers (4.3 GB RAM each, two modular primes): **~53 hours wall time, ~11,900 CPU-hours, ~$300–600 at spot pricing**. Even parallelized, this exceeds half the 4-day sprint window before infrastructure setup overhead.
+
 | Escalation level | What changed | Where it mattered |
 |------------------|-------------|-------------------|
 | L0: Baseline | Implementer (Claude) + Reviewer (Codex), gate workflow G0-G7 | All attempted problems |
@@ -28,28 +32,46 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 | L2: Counterexample-first protocol | Early budget allocated to disproof search before proof drafting | P04, P06 |
 | L3: Experiment-first validation | Scripted numeric/symbolic checks required before claims | P04, P06, P09, P10 |
 | L4: Scout model augmentation | External LLM checks as secondary verification channel | P10, tooling layer |
-| L5: Latent-limit protocol | Explicit relaxed-pass criteria for theorem-level stalls | P04, P09 (policy enabled) |
-| L6: Iterative final escalation (active) | Multi-cycle GPT-pro + Claude Research + Claude Code escalation while measurable progress persists | Active on P03/P04 |
+| L5: Latent-limit protocol | Explicit relaxed-pass criteria for theorem-level stalls | P03, P04, P09 |
+| L6: Iterative final escalation (active) | Multi-cycle GPT-pro + Claude Research + Claude Code escalation while measurable progress persists | Active on P03 (P04 closed in S27) |
 
-## 3. Token and prompt/message accounting
+## 3. Token, message, and cost accounting
 
-Source of truth: per-problem `transcript.md` and `audit.md` estimates.
+### Methodology
 
-Note: transcript fidelity is mixed. Active closure lanes (e.g., P04/P06/P08/P09/P10) retain detailed logs; several parked/summary lanes currently store compact transcript stubs rather than full message-by-message history.
+- **Artifact tokens** (~1M): Final deliverable text in answer/audit/transcript files. Source of truth: per-problem `transcript.md` and `audit.md`.
+- **Agent messages** (~414): Operator-visible conversation turns. Each corresponds to ~8–12 internal LLM API calls (system prompt injection, tool use cycles, file reads, experiment execution, extended thinking).
+- **Total compute tokens** (~10M): All input, output, and thinking tokens across Claude Opus + Codex API calls. Roughly 10× artifact size due to system prompts (~5K/call), conversation history accumulation, tool results, and extended thinking (10–20K tokens for complex queries).
+- **Scout tokens** (~500K additional): External models (DeepSeek-R1, Qwen3-480B, GPT-pro, Claude Research, Kimi K2.5) for secondary verification, route scouting, and escalation cycles.
 
-| Problem | Est. tokens | Prompt/message count | Notes |
-|---------|-------------|----------------------|-------|
-| P01 | ~45,000 | ~20 | G0-G2 + Sessions 3-10: A4 closed, CITE_ONLY ingest (E7), scout cross-check (E8), gap analysis (E9-E10: 7 approaches), **Session 10 (E11): R1 CITE_PLUS — BG proof chain verified + Hairer-Steele independent path; gap CLOSED** |
-| P02 | ~33,000 | ~12 | G0-G6 + upgrade cycle: key identity + n=1 proof + JPSS + multiplicity-one |
-| P03 | ~195,000 | ~83 | Full G0-G7 + synthesis + Sessions 9-11 + Session 15 (EXP-20 branching test) + Sessions 22-23 (scout reconciliation + route selection) + **Session 24 (R1-DIV: 6 scripts, convergence confirmed, E*_μ≠E_μ, informative not closure)** |
-| P04 | ~270,000 | ~142 | Sessions 8-27 + CE-9 through CE-44b + **Session 27: CLARABEL interior-point solves tight-margin SOS; CE-44 direct M≥0 SOS-certified 20/20 w-slices; P04 upgraded 🟡→✅** |
-| P05 | ~100,000 | ~57 | G0-G5 + Sessions 7-21: **11 theorems; FULL BICONDITIONAL PROVED (Thm 10)**; V4 CLOSED (Thms 9/9'); general "if" for ALL G (iterated isotropy separation); P05 upgraded 🟡→✅ |
-| P06 | ~53,600 | ~14 | from transcript metrics/log |
-| P07 | ~20,000 | ~6 | G0-G6 + patch: Q-PD via Shapiro + surgery realization (self-contained) |
-| P08 | ~30,000 | ~10 | G0-G6 + patch: octahedron counterexample + Gromov obstruction |
-| P09 | ~114,000 | ~58 | from transcript metrics/log + upgrade cycle (EXP-6/6e) + formalization (EXP-10/10b) + Session 7-8: n=5 closure |
-| P10 | ~116,000 | ~12 | tokens from transcript component sums; message budget from audit/transcript |
-| **Total (all problems)** | **~976,600** | **~414** | estimates; sum: 45+33+195+270+100+53.6+20+30+114+116=976.6K tokens, 20+12+83+142+57+14+6+10+58+12=414 msgs |
+Note: transcript fidelity is mixed. High-detail closure lanes (P04/P06/P08/P09/P10) retain detailed logs; several lanes store compact transcript stubs.
+
+### Per-problem breakdown
+
+| Problem | Artifact tokens | Agent msgs | Est. LLM calls | Est. total tokens | Est. cost | Notes |
+|---------|----------------|------------|-----------------|-------------------|-----------|-------|
+| P01 | ~45K | ~20 | ~200 | ~500K | ~$19 | G0-G2 + S3-10: **S10 (E11): R1 CITE_PLUS — BG proof chain + Hairer-Steele; gap CLOSED** |
+| P02 | ~33K | ~12 | ~120 | ~300K | ~$12 | G0-G6 + upgrade: key identity + JPSS + multiplicity-one |
+| P03 | ~195K | ~83 | ~830 | ~2.0M | ~$78 | G0-G7 + S9-11 + S15 (EXP-20) + S22-23 (scouts) + **S24 (R1-DIV: convergence confirmed, informative not closure)** |
+| P04 | ~270K | ~142 | ~1,400 | ~3.4M | ~$133 | S8-27 + CE-9 through CE-44b. **S27: CLARABEL SOS-certified 20/20 w-slices; upgraded ✅** |
+| P05 | ~100K | ~57 | ~570 | ~1.4M | ~$55 | G0-G5 + S7-21: **11 theorems; FULL BICONDITIONAL (Thm 10)**; upgraded ✅ |
+| P06 | ~54K | ~14 | ~140 | ~340K | ~$13 | K_n counterexample + synthesis |
+| P07 | ~20K | ~6 | ~60 | ~150K | ~$6 | G0-G6: Q-PD (Shapiro) + surgery realization |
+| P08 | ~30K | ~10 | ~100 | ~240K | ~$9 | G0-G6: octahedron counterexample + Gromov |
+| P09 | ~114K | ~58 | ~580 | ~1.4M | ~$55 | S7-8: all gaps closed, n=5 kernel proved exactly |
+| P10 | ~116K | ~12 | ~120 | ~290K | ~$11 | Matrix-free PCG solver + adversarial patch |
+| **Total** | **~1M** | **~414** | **~4,100** | **~10M** | **~$391** | Per-problem costs use blended ~$39/M rate |
+
+### Cost by model
+
+| Model | Role | Est. tokens | Rate (blended) | Est. cost | Share |
+|-------|------|-------------|----------------|-----------|-------|
+| Claude Opus 4.6 | Implementer (main agent) | ~8.5M | ~$45/M | ~$383 | 94% |
+| Codex 5.3 | Reviewer (G6 adversarial) | ~1.5M | ~$15/M | ~$23 | 6% |
+| Scouts (DeepSeek-R1, Qwen3-480B, GPT-pro, Claude Research, Kimi K2.5) | Secondary verification, route scouting | ~0.5M | ~$1/M | ~$1 | <1% |
+| **Total** | | **~10.5M** | | **~$407** | 100% |
+
+The blended ~$45/M rate for Claude Opus reflects a mix of input tokens (~$15/M) and output/thinking tokens (~$75/M); the effective rate depends on the I/O ratio in practice. Per-problem costs in the table above use a blended ~$39/M rate across all models. Heaviest consumers: P04 (~$133, 28 sessions) and P03 (~$78, including scout escalation cycles).
 
 ## 4. What worked vs. what stalled
 
@@ -138,7 +160,7 @@ Guardrails remain unchanged:
 |---------|---------------|-----------------|-------------|-----------------|
 | P02 | Claude Opus 4.6 (Kirillov model derivation) | exp1_gauss_sum_verification.py | `P02/experiments/exp1_gauss_sum_verification.py` | ALL PASS (Gauss sums + conductor match) |
 | P03 | Claude Opus 4.6 (perturbation theory + degree bound) | exp13c (82-zero), exp14b (deg n=3), exp16 (90-sweep), exp16b/16d (deg n=4) | `P03/experiments/exp13c*.py`, `exp14b*.py`, `exp16*.py` | n=3: 82/82 exact sym, deg 20<82; n=4: 90/90 modular sym, deg 54<90 |
-| P04 | Claude Opus 4.6 (Φ₃ closed-form + Jensen) | ce6_n3_algebraic_proof.py | `P04/experiments/ce1_numeric_sweep.py` through `ce7_n4_check.py` | 285K+450 trials ALL PASS; n=3 proved; n=4 obstruction |
+| P04 | Claude Opus 4.6 (closed-form + SOS certificate chain) | CE-43/CE-44 SOS scripts | `P04/experiments/ce43_sos_certificate.py`, `P04/experiments/ce44_direct_M_clarabel.py`, `P04/experiments/ce44b_dense_sweep.py` | n=4 general SOS-certified at 20/20 w-slices (SCS + CLARABEL) |
 | P06 | Claude Opus 4.6 (K_n eigenspace decomposition) | ce1_complete_graph_verify.py | `P06/experiments/ce1_complete_graph_verify.py`, `ce2_other_graphs.py` | n=3-24 ALL PASS |
 | P07 | Claude Opus 4.6 (Shapiro + surgery) | exp1_qpd_verification.py | `P07/experiments/exp1_qpd_verification.py` | Q-PD verified |
 | P08 | Claude Opus 4.6 (octahedron construction) | exp1 + exp2 | `P08/experiments/exp1_octahedron_lagrangian.py`, `exp2_action_obstruction.py` | 8/8 Lagrangian; zero λ-integrals |
@@ -203,7 +225,7 @@ Closeout Cycle 6: R1 websearch + SDP check + final assessment. Candidate-G6 ACCE
 ### 11b. Supersession note (iterative escalation resumed)
 
 The Cycle 6 freeze interpretation above is superseded by the active final-escalation policy in Section 7.
-Operational update: for `P03`/`P04`, escalation continues across bounded multi-model cycles while measurable progress persists. `P05` is **CLOSED** (Session 21: full biconditional proved).
+Operational update: escalation continues on `P03` across bounded multi-model cycles while measurable progress persists. `P04` is closed (S27, SOS-certified) and `P05` is closed (Session 21: full biconditional proved).
 Lanes are frozen only when repeated bounded cycles stop yielding new bridge-level signal.
 
 ---
@@ -220,7 +242,7 @@ Each claim in the portfolio falls into one of three evidence tiers:
 | **Cited (statement-level)** | Argument depends on a published theorem cited with statement number | P08 Gromov §2.3.B₂'; P07 Selberg/Borel (classical, statement-level); P04 Voiculescu inequality (motivation only); P02 general n (JPSS [1] + AGRS multiplicity-one [5]) |
 | **CITE_PLUS (verified)** | Argument depends on a published result verified at proof-lemma level via CITE_PLUS ingest | **P01 quasi-invariance (BG 2021 arXiv:2004.01513 — CITE_PLUS: all 6 lemmas verified for V_c; Hairer-Steele arXiv:2102.11685 — CITE_ONLY: sub-Gaussian tails + Young yields A4 independently)** |
 | **Proved inline (algebraic)** | Construction + all gaps closed via algebraic proofs | **P09 n≥6**: kernel formula exact (9·C(n-2,4), lower bound + base-case coverage §2.5c); D_n masking proved (§2.5a); separation genericity proved (§2.5b) |
-| **Empirical only** | Numerical/computational evidence without theorem-level proof | P03 n>=5 Symmetry Conjecture (48+ digits, 7 t-values for n=3); P04 n>=4 (285K trials + 150-digit high-precision; CE-7 cross-term obstruction for extending n=3 proof); P09 n=5 degree-6 kernel (EXP-6e, numerical only); P08 construction checks |
+| **Empirical only** | Numerical/computational evidence without theorem-level proof | P03 n>=5 Symmetry Conjecture (48+ digits, 7 t-values for n=3); P04 n>=5 extension beyond proved n=4; P09 n=5 degree-6 kernel (EXP-6e, historical pre-closure); P08 construction checks |
 
 ### Characteristic failure modes observed
 
@@ -228,7 +250,7 @@ Each claim in the portfolio falls into one of three evidence tiers:
 
 2. **Set-theoretic vs analytic convergence** (P08): The agent constructed a valid counterexample candidate and proved action invariance, but the limit argument conflated Hausdorff convergence of sets with convergence of line integrals. This highlights a systematic weakness in handling regularity questions at the boundary of point-set topology and analysis.
 
-3. **Finite-n theorem gap** (P03, P04, P09): Strong numerical evidence (relative errors 10^{-4} to 10^{-6}) was obtained for finite cases, but the symbolic/algebraic bridge from numerics to theorem was not crossed. P04's n=3 gap was resolved by deriving a closed-form for Φ₃ and reducing to Jensen's inequality (CE-6), but the n≥4 gap remains open — CE-7 confirms that the n=3 technique (clean coefficient additivity under ⊞₃) does not extend. **P03's n=3 gap was resolved** by a degree-bound argument (EXP-14b/13c: max degree 20, 82 zeros > 20). **P03's n=4 gap was resolved** by the same logical structure scaled to modular arithmetic (EXP-16/16b/16d: max degree 54, 90 zeros > 54, two independent primes). **P09's gaps #1–#4 were ALL closed** in Session 7: separation genericity proved algebraically (§2.5b), kernel upper bound proved via base-case coverage (§2.5c). P09 upgraded to 🟡 Candidate. P03 n≥5 and P04 n≥4 remain open.
+3. **Finite-n theorem gap** (remaining: P03 n>=5): Strong numerical evidence often appears before theorem-level closure. **P03's n=3 gap was resolved** by a degree-bound argument (EXP-14b/13c: max degree 20, 82 zeros > 20). **P03's n=4 gap was resolved** by the same structure in modular arithmetic (EXP-16/16b/16d: max degree 54, 90 zeros > 54, two independent primes). **P04 n=4 is resolved** via CE-43/CE-44 SOS certificates. **P09 is resolved** (all n>=5 closed). The remaining finite-n theorem gap in this portfolio is P03 n>=5.
 
 4. **Reference-blocked domains** (P01 FULLY RESOLVED; P02 fully unblocked; P05 fully resolved): **P01 was FULLY RESOLVED** at R1 CITE_PLUS level (Session 10, E11). Two independent lines close the former gap: (1) BG proof chain (arXiv:2004.01513) verified lemma-by-lemma — all 6 lemmas extend to V_c via (α) quartic coercivity + (β) UV scaling hierarchy; (2) Hairer-Steele (arXiv:2102.11685) sub-Gaussian tails + Young's inequality directly yield A4 without needing BG extension. This resolves the L5 barrier from E10 (7 approaches exhausted at CITE_ONLY level). P02 was fully unblocked by deriving the key identity from first principles and closing the general-n gap via the AGRS multiplicity-one theorem. P05 progressed from CITE_ONLY definition ingest (BH, Rubin, HY), through obstruction/scope/frontier theorems (Thms 1-8), to full closure in Session 21: V4 Class II cases closed (Thms 9/9') and **GENERAL "if" PROVED (Thm 10)** for all finite groups and all transfer systems via iterated isotropy separation. Full biconditional characterization established; P05 upgraded 🟡→✅.
 

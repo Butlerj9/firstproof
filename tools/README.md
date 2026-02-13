@@ -2,6 +2,11 @@
 
 `tools/scout_api.py` is a small OpenAI-compatible CLI for scout-model calls.
 
+## Package archives
+
+- `tools/gpt-pro-final/` — GPT-pro prompt packages, lane packets, and transcripts.
+- `tools/claude-research-final/` — Claude Research prompt packages, lane packets, and transcripts.
+
 It supports:
 - `groq` (default key env: `GROQ_API_KEY`)
 - `moonshot` (default key env: `MOONSHOT_API_KEY`)

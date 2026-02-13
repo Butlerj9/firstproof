@@ -707,7 +707,7 @@ All three decompositions verified symbolically (`expand(LHS - RHS) == 0`).
 
 ### Input: Claude Research Report
 
-Ingested `claude-research-final/P04/` containing:
+Ingested `tools/claude-research-final/P04/` containing:
 - `P04_claude_research_breakdown_2026-02-12.md` — 3 ranked routes: TSSOS sparse SOS, Shlyakhtenko-Tao projection, Schur complement lifting
 - `100_claude_code_checklist_from_claude_research_round1.md` — Bounded cycle checklist
 - `99_claude_code_checklist_from_gpt_pro_round2.md` — GPT-pro Round 2 checklist
@@ -979,9 +979,9 @@ Routes 1-13: unchanged.
 
 ### Input: Two new scout responses
 
-1. **Claude Research R2** (`claude-research-final/transcripts/P04_claude_research_response_2026-02-13_round2.md`): 14 lanes, 5 claimed CLOSEABLE_NOW (L1 TSSOS, L2 parametric SOS, L5 Bernstein, L11 Schmudgen, L13 fiber-wise+Lipschitz). Top 3: parametric SOS+TSSOS, cumulant convexity, score-projection.
+1. **Claude Research R2** (`tools/claude-research-final/transcripts/P04_claude_research_response_2026-02-13_round2.md`): 14 lanes, 5 claimed CLOSEABLE_NOW (L1 TSSOS, L2 parametric SOS, L5 Bernstein, L11 Schmudgen, L13 fiber-wise+Lipschitz). Top 3: parametric SOS+TSSOS, cumulant convexity, score-projection.
 
-2. **GPT-pro R2** (`gpt-pro-final/transcripts/P04_gpt_pro_response_2026-02-13_round2.md`): 3 approaches. Top route: invariant reduction to P_+, P_- via r-split (r = sign(b₁b₂)). Verdict: BLOCKED_WITH_FRONTIER (sharper frontier).
+2. **GPT-pro R2** (`tools/gpt-pro-final/transcripts/P04_gpt_pro_response_2026-02-13_round2.md`): 3 approaches. Top route: invariant reduction to P_+, P_- via r-split (r = sign(b₁b₂)). Verdict: BLOCKED_WITH_FRONTIER (sharper frontier).
 
 ### CE-42: Route Assessment Experiment
 

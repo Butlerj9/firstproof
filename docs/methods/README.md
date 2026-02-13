@@ -4,7 +4,7 @@ Primary method specification and autonomy constraints:
 
 - `methods_extended.md` (repo root)
 - `docs/methods/technical_limitations.md` (escalation rationale and current system limits)
-- `docs/methods/future_work.md` (boundary-shift directions beyond this sprint)
+- `docs/methods/future_work.md` (applications, class-level automation outlook, and boundary-shift directions beyond this sprint)
 - `methods_extended.md` §16 (agent-to-llm prompt-equivalency heuristic: `1` orchestrated prompt ~= `10` llm-only prompts, `8` short + `2` long)
 
 Related enforcement and operations:
