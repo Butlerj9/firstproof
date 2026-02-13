@@ -2,6 +2,9 @@
 
 Lane-only packets are now available.
 
+Current canonical portfolio state is tracked in root `README.md` / `RESULTS.md`.
+As of 2026-02-13: open candidate lanes are `P03` and `P04`; `P05` is closed (✅).
+
 ## Root
 - 00_gpt_pro_master_prompt.md (combined, multi-lane)
 - 01_shared_context.md
@@ -38,6 +41,7 @@ Lane-only packets are now available.
 - transcripts/P04_gpt_pro_breakdown_2026-02-12.md
 - transcripts/P04_gpt_pro_full_exchange_2026-02-12.md
 - transcripts/P04_gpt_pro_response_2026-02-13.md
+- transcripts/P04_gpt_pro_response_2026-02-13_round2.md
 - transcripts/P04_gpt_pro_breakdown_2026-02-13.md
 - transcripts/P04_gpt_pro_full_exchange_2026-02-13.md
 - transcripts/P05_gpt_pro_response_2026-02-12.md

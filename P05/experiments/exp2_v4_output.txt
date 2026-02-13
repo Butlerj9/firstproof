@@ -1,0 +1,141 @@
+V4 subgroups: [(0, '1', 1), (1, 'H1', 2), (2, 'H2', 2), (3, 'H3', 2), (4, 'G', 4)]
+Non-reflexive pairs: 7
+Total transfer systems: 19
+
+Class II (non-uniform, non-trivial K) systems: 9
+======================================================================
+
+--- Class II #1 (1 non-triv-K pairs, 3 total pairs) ---
+  1 <=_O H1  (|H:K|=2)
+  1 <=_O H3  (|H:K|=2)
+  H2 <=_O G  (|H:K|=2) *CLASS_II*
+  V = ind_{H2}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 1
+    dim(V^{H2}) = 2
+    dim(V^{H3}) = 1
+    dim(V^{G}) = 1
+
+--- Class II #2 (1 non-triv-K pairs, 3 total pairs) ---
+  1 <=_O H1  (|H:K|=2)
+  1 <=_O H2  (|H:K|=2)
+  H3 <=_O G  (|H:K|=2) *CLASS_II*
+  V = ind_{H3}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 1
+    dim(V^{H2}) = 1
+    dim(V^{H3}) = 2
+    dim(V^{G}) = 1
+
+--- Class II #3 (1 non-triv-K pairs, 3 total pairs) ---
+  1 <=_O H2  (|H:K|=2)
+  1 <=_O H3  (|H:K|=2)
+  H1 <=_O G  (|H:K|=2) *CLASS_II*
+  V = ind_{H1}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 2
+    dim(V^{H2}) = 1
+    dim(V^{H3}) = 1
+    dim(V^{G}) = 1
+
+--- Class II #4 (1 non-triv-K pairs, 5 total pairs) ---
+  1 <=_O H1  (|H:K|=2)
+  1 <=_O H2  (|H:K|=2)
+  1 <=_O H3  (|H:K|=2)
+  1 <=_O G  (|H:K|=4)
+  H2 <=_O G  (|H:K|=2) *CLASS_II*
+  V = ind_{H2}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 1
+    dim(V^{H2}) = 2
+    dim(V^{H3}) = 1
+    dim(V^{G}) = 1
+
+--- Class II #5 (1 non-triv-K pairs, 5 total pairs) ---
+  1 <=_O H1  (|H:K|=2)
+  1 <=_O H2  (|H:K|=2)
+  1 <=_O H3  (|H:K|=2)
+  1 <=_O G  (|H:K|=4)
+  H1 <=_O G  (|H:K|=2) *CLASS_II*
+  V = ind_{H1}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 2
+    dim(V^{H2}) = 1
+    dim(V^{H3}) = 1
+    dim(V^{G}) = 1
+
+--- Class II #6 (1 non-triv-K pairs, 5 total pairs) ---
+  1 <=_O H1  (|H:K|=2)
+  1 <=_O H2  (|H:K|=2)
+  1 <=_O H3  (|H:K|=2)
+  1 <=_O G  (|H:K|=4)
+  H3 <=_O G  (|H:K|=2) *CLASS_II*
+  V = ind_{H3}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 1
+    dim(V^{H2}) = 1
+    dim(V^{H3}) = 2
+    dim(V^{G}) = 1
+
+--- Class II #7 (2 non-triv-K pairs, 6 total pairs) ---
+  1 <=_O H1  (|H:K|=2)
+  1 <=_O H2  (|H:K|=2)
+  1 <=_O H3  (|H:K|=2)
+  1 <=_O G  (|H:K|=4)
+  H1 <=_O G  (|H:K|=2) *CLASS_II*
+  H3 <=_O G  (|H:K|=2) *CLASS_II*
+  V = ind_{H1}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 2
+    dim(V^{H2}) = 1
+    dim(V^{H3}) = 1
+    dim(V^{G}) = 1
+  V = ind_{H3}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 1
+    dim(V^{H2}) = 1
+    dim(V^{H3}) = 2
+    dim(V^{G}) = 1
+
+--- Class II #8 (2 non-triv-K pairs, 6 total pairs) ---
+  1 <=_O H1  (|H:K|=2)
+  1 <=_O H2  (|H:K|=2)
+  1 <=_O H3  (|H:K|=2)
+  1 <=_O G  (|H:K|=4)
+  H2 <=_O G  (|H:K|=2) *CLASS_II*
+  H3 <=_O G  (|H:K|=2) *CLASS_II*
+  V = ind_{H2}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 1
+    dim(V^{H2}) = 2
+    dim(V^{H3}) = 1
+    dim(V^{G}) = 1
+  V = ind_{H3}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 1
+    dim(V^{H2}) = 1
+    dim(V^{H3}) = 2
+    dim(V^{G}) = 1
+
+--- Class II #9 (2 non-triv-K pairs, 6 total pairs) ---
+  1 <=_O H1  (|H:K|=2)
+  1 <=_O H2  (|H:K|=2)
+  1 <=_O H3  (|H:K|=2)
+  1 <=_O G  (|H:K|=4)
+  H1 <=_O G  (|H:K|=2) *CLASS_II*
+  H2 <=_O G  (|H:K|=2) *CLASS_II*
+  V = ind_{H1}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 2
+    dim(V^{H2}) = 1
+    dim(V^{H3}) = 1
+    dim(V^{G}) = 1
+  V = ind_{H2}^{G}(1), dim=2
+    dim(V^{1}) = 2
+    dim(V^{H1}) = 1
+    dim(V^{H2}) = 2
+    dim(V^{H3}) = 1
+    dim(V^{G}) = 1
+
+======================================================================
+CANONICAL: Class II #1

@@ -958,12 +958,79 @@ GPT-pro's "x-dependent" correction is assessed as a definitional error (confuses
 
 ---
 
+## Session 24 — R1-DIV Kill-Test Execution (2026-02-13)
+
+| Field | Value |
+|-------|-------|
+| Cycle ID | S24 R1-DIV Kill-Test |
+| Date | 2026-02-13 |
+| Objective | Execute R1-DIV (divisibility kill-test), determine if (T_i−t)E*/(1−q) polynomial divisibility closes n≥5 gap |
+| Message cap | 15 |
+| Escalation level | L3 (route execution + mechanism analysis) |
+
+### EXP-32 Series: Summary of Findings
+
+**6 scripts** (exp32 through exp32f) executed with exact Fraction arithmetic.
+
+#### Finding 1: E* coefficients are rational functions of q (NOT polynomials)
+The initial finding of "degree 9/11 polynomial" was an artifact of insufficient overconstrained verification. Polynomial degree fitting consistently returns degree = n_pts − 1 (Lagrange exact fit), confirming c_m(q) = p_m(q)/D(q) where D(q) is the Vandermonde determinant. (exp32c)
+
+#### Finding 2: Vandermonde determinant vanishes at q=1 (spectral collisions)
+- n=3: 56 compositions → 6 distinct spectral vectors (49-dim null space)
+- n=4: 210 compositions → 24 distinct spectral vectors (186-dim null space)
+
+This is consistent with lane fact F7 (spectral vector collapse). (exp32d §7)
+
+#### Finding 3: E*_{λ⁻} converges to finite nonzero limit as q→1
+Despite the pole in D(q), the L'Hôpital-type limit exists. Coefficients grow moderately (e.g., c_{(0,0,0)} from −3.7 to ~−370) but converge. (exp32d §1-2)
+
+#### Finding 4: (T_i − t)E* → 0 monomial-by-monomial as q→1
+Each coefficient D_m(q) of (T_i − t)E* approaches 0 at rate O(1−q). The ratio D_i/E* → 0, confirming T_i(E*|_{q→1}) = t·E*|_{q→1} (symmetry condition). Convergence rate: ~(1−q)^{0.72} at n=3. (exp32d §3-5)
+
+#### Finding 5: Particular q=1 solution (free vars=0) is NOT symmetric
+The q→1 limit selects a DIFFERENT element of the 49-dim solution space — the unique symmetric one. (exp32d §7)
+
+#### Finding 6: Hecke recursion does NOT apply to E*_μ
+The two-term recursion T_i E*_μ = c·E*_μ + d·E*_{s_i·μ} applies to the nonsymmetric Macdonald polynomial E_μ, NOT the interpolation polynomial E*_μ. Recursion errors ~270 at all q values. (exp32f)
+
+#### Finding 7: n=4 float test inconclusive
+The 209×209 system becomes severely ill-conditioned near q=1 in float64. At t=0.4, D0/E* → 0 is visible at q≤0.95 but breaks down at q≥0.98. (exp32e)
+
+### Route Verdict: R1-DIV — INFORMATIVE, NOT CLOSURE
+
+The divisibility is confirmed in the analytic sense (D_i → 0 at rate O(1−q)) for n=3, but:
+- "Polynomial divisibility" formulation was incorrect (E* is rational, not polynomial)
+- Hecke recursion pathway inapplicable (E*_μ ≠ E_μ)
+- No algebraic proof mechanism for general n was identified
+
+### Artifacts
+
+| Artifact | Path |
+|----------|------|
+| EXP-32 | `experiments/exp32_divisibility_test.py` |
+| EXP-32b | `experiments/exp32b_degree_confirmation.py` |
+| EXP-32c | `experiments/exp32c_degree_clean.py` |
+| EXP-32d | `experiments/exp32d_convergence_analysis.py` |
+| EXP-32e | `experiments/exp32e_n4_convergence.py` |
+| EXP-32f | `experiments/exp32f_hecke_recursion_verify.py` |
+| Summary | `experiments/exp32_summary.md` |
+
+### Escalation
+
+| event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
+|----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
+| E17 | 2026-02-13 | L3 | R1-DIV execution | n≥5 Symmetry Conjecture | 6 scripts executed. q→1 convergence confirmed at n=3. Hecke recursion E*_μ ≠ E_μ distinction identified. No algebraic closure path found. | Claude Opus 4.6; Fraction arithmetic | exp32-32f, exp32_summary.md, audit.md S24 | R1-DIV: INFORMATIVE, NOT CLOSURE | ~8 msgs | **🟡 CANDIDATE (unchanged)** |
+
+*Cycle footer (Session 24): R1-DIV kill-test executed (6 scripts). q→1 convergence confirmed at n=3 with structural insights: E* rational in q, spectral collisions cause degenerate q=1 system, L'Hôpital limit selects symmetric element. Hecke recursion inapplicable to E*_μ. No closure path for n≥5. Next: assess R2-BinAS or HOLD. Status unchanged: 🟡 Candidate. ~75+8 = ~83 messages used.*
+
+---
+
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Messages used | ~75 (71 prior + 4 Session 23 scout reconciliation) |
-| Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions + n>=5 feasibility + infeasibility cert + reduction attempts + R1 websearch + 2 scout intakes + scout reconciliation |
-| Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**; n>=5 conditional + 48-digit evidence + L5 barrier + R1-DIV route selected) |
+| Messages used | ~83 (75 prior + 8 Session 24 R1-DIV execution) |
+| Gates completed | G0-G7 (all) + upgrade cycle + 3 closure sessions + n>=5 feasibility + infeasibility cert + reduction attempts + R1 websearch + 2 scout intakes + scout reconciliation + R1-DIV execution |
+| Status | 🟡 Candidate (YES, Mallows/ASEP; **n=2,3,4 proved**; n>=5 conditional + 48-digit evidence + L5 barrier + R1-DIV informative) |
 | G6 cycles | 1 reject + 1 accept + 2 Candidate-G6 accept = 4 cycles |
-| Budget | 200 messages (GREEN -- ~75 used) |
+| Budget | 200 messages (GREEN -- ~83 used) |

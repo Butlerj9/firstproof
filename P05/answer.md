@@ -1,8 +1,10 @@
 # Answer: P05
 
-**Status**: 🟡 Candidate (**11 theorems proved, FULL BICONDITIONAL CLOSED**: obstruction (Thm 1); positive scope (Thms 2-3); corrected "only if" (Thm 4); Impossibility Frontier (Thm 5); dim-uniform (Thm 6); Class Ia sufficiency (Thm 7); Z/4 closure (Thm 8); V4 closure (Thms 9/9'); **General "if" direction for ALL groups and ALL transfer systems (Thm 10, Session 21)**; full biconditional characterization established)
+**Status**: ✅ Submitted (**11 theorems proved, FULL BICONDITIONAL CLOSED**: obstruction (Thm 1); positive scope (Thms 2-3); corrected "only if" (Thm 4); Impossibility Frontier (Thm 5); dim-uniform (Thm 6); Class Ia sufficiency (Thm 7); Z/4 closure (Thm 8); V4 closure (Thms 9/9'); **General "if" direction for ALL groups and ALL transfer systems (Thm 10, Session 21)**; full biconditional characterization established)
 **Reviewer**: Codex supervisor audit — park confirmed; **S5**: definition-only escalation; **S8**: formal obstruction + positive scope; **S10-11**: "if" approaches blocked, frontier formalized; **S12**: exhaustive computation, Class Ia proved; **S20**: geometric triviality, Z/4 CLOSED; **S21**: iterated isotropy separation, **FULL "IF" DIRECTION CLOSED (Thm 10)**
 **External deps**: Resolved via CITE_ONLY ingest (Blumberg-Hill, Rubin, Hill-Yarnall); see §4 for dependency table
+
+**Historical note**: Sections 3-10 preserve the chronological development (including now-superseded "open/frontier" checkpoints). The authoritative final state is §11 + the status line above.
 
 ## 1. Problem statement
 

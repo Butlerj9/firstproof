@@ -2,6 +2,9 @@
 
 Research-mode package for final lane-by-lane closure attempts.
 
+Current canonical portfolio state is tracked in root `README.md` / `RESULTS.md`.
+As of 2026-02-13: open candidate lanes are `P03` and `P04`; `P05` is closed (✅).
+
 ## Root
 - 00_claude_research_master_prompt.md
 - 01_shared_context.md
@@ -27,6 +30,8 @@ Research-mode package for final lane-by-lane closure attempts.
 - P04/100_claude_code_checklist_from_claude_research_round1.md
 - P04/101_claude_code_checklist_from_gpt_pro_round3.md
 - P04/102_claude_code_checklist_from_claude_research_round2.md
+- P04/103_claude_code_checklist_from_claude_research_round3.md
+- P04/104_claude_code_checklist_from_gpt_pro_round4.md
 
 ## P05
 - P05/00_claude_research_prompt_p05.md
@@ -50,6 +55,7 @@ Research-mode package for final lane-by-lane closure attempts.
 - transcripts/P04_claude_research_full_exchange_2026-02-12.md
 - transcripts/P04_claude_research_breakdown_2026-02-12.md
 - transcripts/P04_claude_research_response_2026-02-13.md
+- transcripts/P04_claude_research_response_2026-02-13_round2.md
 - transcripts/P04_claude_research_full_exchange_2026-02-13.md
 - transcripts/P04_claude_research_breakdown_2026-02-13.md
 - transcripts/P05_claude_research_response_2026-02-12.md

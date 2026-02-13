@@ -2,6 +2,10 @@
 Generated: 2026-02-12 12:11:53 -08:00
 Root: D:\firstproof
 
+> **Supersession note (2026-02-13):** This file is an archival snapshot generated before Sessions 20-23.  
+> Authoritative current state is in root `README.md` and `RESULTS.md`: **8 submitted / 2 candidate (P03, P04), P05 closed**.  
+> Any contradictory status/totals below are historical context only.
+
 
 
 ======================================================================
