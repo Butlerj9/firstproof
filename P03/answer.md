@@ -2,7 +2,7 @@
 
 **Status**: 🟡 Candidate (n=2,3,4 proved; n ≥ 5 conditional on Symmetry Conjecture with 48+ digit evidence)
 **Confidence**: HIGH for n=2 (exact symbolic proof); HIGH for n=3 (Symmetry Conjecture proved via degree-bound + 82-zero test); HIGH for n=4 (Symmetry Conjecture proved via modular degree-bound + 90-value sweep); HIGH for n ≥ 5 (rigorous conditional proof + 48-digit verification)
-**Answer**: **YES** — the ASEP chain with rates (t, 1) has stationary distribution π(μ) = f\*\_μ / P\*\_λ = t^{inv(μ)} / [n]\_t!
+**Answer**: **YES** — the ASEP chain with rates (t, 1) has stationary distribution π(μ) = f\*\_μ / P\*\_λ = $t^{\mathrm{inv}(\mu)}$ / [n]\_t!
 **Reviewer**: Codex G6: Cycle 1 REJECT (4 faults) → Cycle 2 ACCEPT (0 faults); Upgrade cycle: EXP-5 strengthens evidence from 5 to 48+ digits; **Session 4: n=3 PROVED; Session 6: n=4 PROVED (EXP-16 sweep 90/90 + EXP-16b/16d degree bound 54 < 90)**
 
 ---
@@ -22,7 +22,7 @@ For n = 2, λ = (2, 0): the Markov chain on S₂(λ) = {(0,2), (2,0)} with trans
 - swap at rate **t** if μ₁ < μ₂ ("uphill"),
 - swap at rate **1** if μ₁ > μ₂ ("downhill"),
 
-has stationary distribution π(μ) = f\*\_μ(x; q=1, t) / P\*\_λ(x; q=1, t) = t^{inv(μ)} / (1+t).
+has stationary distribution π(μ) = f\*\_μ(x; q=1, t) / P\*\_λ(x; q=1, t) = $t^{\mathrm{inv}(\mu)}$ / (1+t).
 
 *Proved exactly in §3.*
 
@@ -57,13 +57,13 @@ $$f^*_\mu(x;\, q=1,\, t) = C(x, t) \cdot t^{\mathrm{inv}(\mu)}$$
 
 for all μ ∈ Sₙ(λ), where C(x, t) is a function independent of μ.
 
-**Degenerate locus.** C(x, t) may vanish at specific (x, t) values. For n = 2: C = (y₁+y₂−1−1/t)² = 0 iff y₁+y₂ = 1+1/t. At such points, all f\*\_μ vanish simultaneously and π(μ) is defined by continuity (as the constant limit t^{inv(μ)}/[n]\_t!).
+**Degenerate locus.** C(x, t) may vanish at specific (x, t) values. For n = 2: C = (y₁+y₂−1−1/t)² = 0 iff y₁+y₂ = 1+1/t. At such points, all f\*\_μ vanish simultaneously and π(μ) is defined by continuity (as the constant limit $t^{\mathrm{inv}(\mu)}$/[n]\_t!).
 
-**Consequence (conditional on the identity).** The ratio f\*\_μ / P\*\_λ = C · t^{inv(μ)} / (C · ∑\_ν t^{inv(ν)}) = t^{inv(μ)} / [n]\_t!, which is independent of x. Since t > 0, all terms t^{inv(μ)} > 0, so [n]\_t! > 0 and π(μ) > 0 for all μ.
+**Consequence (conditional on the identity).** The ratio f\*\_μ / P\*\_λ = C · $t^{\mathrm{inv}(\mu)}$ / (C · ∑\_ν $t^{\mathrm{inv}(\nu)}$) = $t^{\mathrm{inv}(\mu)}$ / [n]\_t!, which is independent of x. Since t > 0, all terms $t^{\mathrm{inv}(\mu)}$ > 0, so [n]\_t! > 0 and π(μ) > 0 for all μ.
 
 **Proof of detailed balance (conditional on the identity).** For any adjacent transposition sᵢ with μᵢ < μᵢ₊₁:
 
-π(μ) · t = (t^{inv(μ)} / [n]\_t!) · t = t^{inv(μ)+1} / [n]\_t! = t^{inv(sᵢμ)} / [n]\_t! = π(sᵢμ) · 1
+π(μ) · t = ($t^{\mathrm{inv}(\mu)}$ / [n]\_t!) · t = $t^{\mathrm{inv}(\mu)+1}$ / [n]\_t! = $t^{\mathrm{inv}(s_i\mu)}$ / [n]\_t! = π(sᵢμ) · 1
 
 since inv(sᵢμ) = inv(μ) + 1 when μᵢ < μᵢ₊₁. ∎ (This step is unconditional given the identity.)
 
@@ -111,7 +111,7 @@ So C(y₁, y₂, t) = (y₁ + y₂ − 1 − 1/t)², which is a **perfect square
 
 **Inversion counts:**
 
-| μ | inv(μ) | t^{inv} / [3]\_t! (Mallows) |
+| μ | inv(μ) | $t^{\mathrm{inv}}$ / [3]\_t! (Mallows) |
 |---|--------|----------------------------|
 | (0,2,3) | 0 | 1 / [3]\_t! |
 | (0,3,2) | 1 | t / [3]\_t! |
@@ -146,11 +146,11 @@ Errors are O(1−q) = O(10⁻⁴), consistent with linear convergence as q → 1
 
 Linear convergence O(1−q) observed numerically. Result is consistent across t ∈ {0.4, 0.7, 1.5, 3.0} and multiple x-values. **This convergence is numerical evidence supporting the conjecture; it does not constitute a proof that the exact q = 1 limit yields the Mallows distribution for n = 3.**
 
-**C(x,t) constancy check:** f\*\_μ / t^{inv(μ)} is approximately constant across all 6 states to relative deviation ~10⁻⁴ (at q = 0.9999), across all tested x-values. The deviation is consistent with the O(1−q) error from evaluating at q < 1 rather than q = 1.
+**C(x,t) constancy check:** f\*\_μ / $t^{\mathrm{inv}(\mu)}$ is approximately constant across all 6 states to relative deviation ~10⁻⁴ (at q = 0.9999), across all tested x-values. The deviation is consistent with the O(1−q) error from evaluating at q < 1 rather than q = 1.
 
 ### 4b. High-precision verification via Richardson extrapolation (EXP-5)
 
-**Method.** Richardson extrapolation with Neville's algorithm at 250-digit arithmetic (mpmath). Compute E\*\_{(0,2,3)} at q = 1 − 10^{−k} for k = 5, 10, 15, …, 50 (10 evaluation points), then polynomial-extrapolate each coefficient to exact q = 1.
+**Method.** Richardson extrapolation with Neville's algorithm at 250-digit arithmetic (mpmath). Compute E\*\_{(0,2,3)} at q = 1 − $10^{-k}$ for k = 5, 10, 15, …, 50 (10 evaluation points), then polynomial-extrapolate each coefficient to exact q = 1.
 
 **Symmetry verification (coefficient-level).** Group all 56 monomials by sorted exponent tuple. For each group, compare coefficients across all permutations.
 
@@ -172,11 +172,11 @@ Linear convergence O(1−q) observed numerically. Result is consistent across t 
 
 **Hecke eigenvalue.** T₀ E\* = t E\* and T₁ E\* = t E\* verified pointwise at 50 random points to 48+ digits (at t = 7/10).
 
-**Mallows distribution (direct).** f\*\_μ / t^{inv(μ)} is constant across all 6 states to 48+ digit precision at the extrapolated q=1 value.
+**Mallows distribution (direct).** f\*\_μ / $t^{\mathrm{inv}(\mu)}$ is constant across all 6 states to 48+ digit precision at the extrapolated q=1 value.
 
 ### 4c. Degenerate system analysis (EXP-5b)
 
-**Key structural finding.** At exact q=1, the 56 compositions of weight ≤ 5 into 3 parts collapse to only **6 distinct k-vectors** (because q^{νᵢ} = 1 for all νᵢ). After removing the k-vector of λ⁻ = (0,2,3) itself, this gives only **5 independent vanishing conditions** for 55 unknown coefficients. The null space has dimension 50.
+**Key structural finding.** At exact q=1, the 56 compositions of weight ≤ 5 into 3 parts collapse to only **6 distinct k-vectors** (because $q^{\nu_i}$ = 1 for all νᵢ). After removing the k-vector of λ⁻ = (0,2,3) itself, this gives only **5 independent vanishing conditions** for 55 unknown coefficients. The null space has dimension 50.
 
 Even with symmetry imposed (reducing 55 unknowns to 15 independent symmetric coefficients), the system remains underdetermined: 5 equations for 15 unknowns.
 
@@ -194,7 +194,7 @@ For n = 2: f\_{(0,2)}/f\_{(2,0)} = y₂²/(y₁(y₁+y₂−ty₂)) ≠ 1/t.
 
 ## 6. Conjectural mechanism: symmetry of E\*\_{λ⁻} at q=1 (NOT a proof for n ≥ 5)
 
-The key identity f\*\_μ(q=1) = C(x,t) · t^{inv(μ)} follows from a single structural claim about the interpolation polynomial E\*\_{λ⁻}. **The argument below is rigorous conditional on Step 0 (which is proved for n=2,3,4).**
+The key identity f\*\_μ(q=1) = C(x,t) · $t^{\mathrm{inv}(\mu)}$ follows from a single structural claim about the interpolation polynomial E\*\_{λ⁻}. **The argument below is rigorous conditional on Step 0 (which is proved for n=2,3,4).**
 
 0. **Symmetry conjecture (proved for n=2,3,4; conjectured for n ≥ 5).** The interpolation nonsymmetric Macdonald polynomial E\*\_{λ⁻}(x; q=1, t) is a **symmetric polynomial** in x₁, …, xₙ.
 
@@ -202,7 +202,7 @@ The key identity f\*\_μ(q=1) = C(x,t) · t^{inv(μ)} follows from a single stru
    - **n = 3**: **PROVED for all t > 0** (§7). Degree-bound argument: coefficients are rational functions of t with max total degree 20; exact symmetry at 82 > 20 rational t values forces symmetry identically. ✓
    - **n = 4**: **PROVED for all t > 0** (§7b). Modular degree-bound argument: coefficients are rational functions of t with max total degree 54 (pattern 6×(9−d)); symmetry verified at 90 > 54 rational t values mod two independent primes. ✓
    - **n ≥ 5**: Richardson extrapolation to exact q=1 (EXP-5, 250-digit arithmetic) confirms coefficient symmetry to **48+ digits** at 7 generic t-values for n=3. See §4b for full table.
-   - **Mechanism**: At generic q, the spectral vectors ν̃ᵢ = q^{νᵢ}·t^{−kᵢ(ν)} distinguish all compositions. At q=1, spectral vectors collapse (q^{νᵢ}=1), and only the t-dependent part t^{−kᵢ} survives. For the anti-dominant λ⁻, the spectral vector at q=1 is (t^{−(n−1)}, t^{−(n−2)}, …, t⁰), which is a function only of position — not of the composition. This collapse forces the vanishing conditions to symmetrize the polynomial.
+   - **Mechanism**: At generic q, the spectral vectors $\tilde{\nu}_i = q^{\nu_i} \cdot t^{-k_i(\nu)}$ distinguish all compositions. At q=1, spectral vectors collapse ($q^{\nu_i}=1$), and only the t-dependent part $t^{-k_i}$ survives. For the anti-dominant λ⁻, the spectral vector at q=1 is $(t^{-(n-1)}, t^{-(n-2)}, \ldots, t^0)$, which is a function only of position — not of the composition. This collapse forces the vanishing conditions to symmetrize the polynomial.
 
 1. **Hecke eigenvalue (UNCONDITIONAL given Step 0).** If E\*\_{λ⁻}(q=1) is symmetric, then sᵢ(E\*\_{λ⁻}) = E\*\_{λ⁻} for all i. The Hecke operator gives:
 
@@ -212,9 +212,9 @@ The key identity f\*\_μ(q=1) = C(x,t) · t^{inv(μ)} follows from a single stru
 
    This is verified at extrapolated q=1 for n = 3: T₀ E\* = t E\* and T₁ E\* = t E\* to 48+ digits (EXP-5, Phase 4).
 
-2. **Hecke relation (standard, unconditional).** The quadratic relation Tᵢ² = (t−1)Tᵢ + t holds in the Hecke algebra for all n. Since Tᵢf = tf (from Step 1), the chain of Hecke applications f\*\_μ = T\_{w\_μ} E\*\_{λ⁻} produces a factor of t at each step, giving f\*\_μ = t^{ℓ(w\_μ)} · E\*\_{λ⁻} = t^{inv(μ)} · E\*\_{λ⁻}.
+2. **Hecke relation (standard, unconditional).** The quadratic relation Tᵢ² = (t−1)Tᵢ + t holds in the Hecke algebra for all n. Since Tᵢf = tf (from Step 1), the chain of Hecke applications f\*\_μ = T\_{w\_μ} E\*\_{λ⁻} produces a factor of t at each step, giving f\*\_μ = $t^{\ell(w_\mu)}$ · E\*\_{λ⁻} = $t^{\mathrm{inv}(\mu)}$ · E\*\_{λ⁻}.
 
-3. **Mallows distribution (conditional on Step 0 only).** The resulting π(μ) = t^{inv(μ)}/[n]\_t! is the Mallows distribution on Sₙ, a well-studied object in combinatorics and statistics. Steps 1–3 are fully rigorous given Step 0.
+3. **Mallows distribution (conditional on Step 0 only).** The resulting π(μ) = $t^{\mathrm{inv}(\mu)}$/[n]\_t! is the Mallows distribution on Sₙ, a well-studied object in combinatorics and statistics. Steps 1–3 are fully rigorous given Step 0.
 
 ---
 
@@ -222,7 +222,7 @@ The key identity f\*\_μ(q=1) = C(x,t) · t^{inv(μ)} follows from a single stru
 
 ### What is proved
 
-- **n = 2** (§3): The key identity f\*\_μ(q=1) = C(x,t) · t^{inv(μ)} is proved exactly via symbolic computation. C = (y₁+y₂−1−1/t)² is an explicit perfect square. The ASEP chain has stationary distribution π(μ) = t^{inv(μ)}/(1+t) for all t > 0 and generic x.
+- **n = 2** (§3): The key identity f\*\_μ(q=1) = C(x,t) · $t^{\mathrm{inv}(\mu)}$ is proved exactly via symbolic computation. C = (y₁+y₂−1−1/t)² is an explicit perfect square. The ASEP chain has stationary distribution π(μ) = $t^{\mathrm{inv}(\mu)}$/(1+t) for all t > 0 and generic x.
 
 ### What is proved for n = 3
 
@@ -309,7 +309,7 @@ Since the coefficients arise from a bounded algebraic computation (perturbation 
 
 The Symmetry Conjecture for general n reduces to: E\*\_{λ⁻}(x; q=1, t) is symmetric in x₁, …, xₙ. This is now proved for n = 2 (§3), n = 3 (§7), and n = 4 (§7b). For n ≥ 5, the perturbation theory + modular degree-bound approach works in principle but has not been executed (system size grows as O(n^n)). The degree pattern 2(n−1)×(weight−d) is expected to generalize.
 
-All other steps (Hecke eigenvalue, t^{inv(μ)} factorization, detailed balance, Mallows distribution) follow rigorously from the Symmetry Conjecture for any n (see §6).
+All other steps (Hecke eigenvalue, $t^{\mathrm{inv}(\mu)}$ factorization, detailed balance, Mallows distribution) follow rigorously from the Symmetry Conjecture for any n (see §6).
 
 ### Evidence taxonomy
 
