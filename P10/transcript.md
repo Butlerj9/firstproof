@@ -1,8 +1,8 @@
-# Transcript: P10 — RKHS CP-ALS Matrix-free PCG
+﻿# Transcript: P10 — RKHS CP-ALS Matrix-free PCG
 
 **Started**: 2026-02-10
 **Implementer**: Claude Opus 4.6
-**Reviewer**: Codex 5.2
+**Reviewer**: Codex 5.3
 **Producer**: Human (logistics only)
 
 ---
@@ -129,7 +129,7 @@ Updated answer.md status to ✅ Submitted. Updated audit.md with full review his
 |----------|--------------|------------|---------------|-------------------|---------------|---------------|
 | E1 | Supervisor | Producer | GPT-5.2-pro (scout), Claude Opus 4.6 | — | answer.md draft | YES (scout candidate + independent verification) |
 | E2 | Implementer | Auto | Claude Opus 4.6 | `python verify_matvec.py` | experiments/output.txt | YES (6/6 tests PASS) |
-| E3 | Supervisor | Producer | Codex 5.2 | — | — | YES (G6 C1 REJECT: 4 flags patched) |
+| E3 | Supervisor | Producer | Codex 5.3 | — | — | YES (G6 C1 REJECT: 4 flags patched) |
 | E4 | Implementer | Auto | Claude Opus 4.6 | — | answer.md patched | YES (G6 C2 ACCEPT → G7 → ✅) |
 
 **P10 COMPLETE. Status: ✅ Submitted. Budget used: ~12 of 120.**

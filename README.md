@@ -1,7 +1,7 @@
-# First Proof — Agentic LLM Orchestration for Research-Grade Mathematics
+﻿# First Proof — Agentic LLM Orchestration for Research-Grade Mathematics
 
 **Sprint**: Feb 10-13, 2026 | **Answers release**: Feb 13 11:59 PM PT
-**Agents**: Claude Opus 4.6 (Implementer) + Codex 5.2 (Reviewer) + multi-model scouts
+**Agents**: Claude Opus 4.6 (Implementer) + Codex 5.3 (Reviewer) + multi-model scouts
 **Human role**: Logistics only (no mathematical ideas or content)
 **Paper**: [arXiv:2602.05192](https://arxiv.org/abs/2602.05192) | [1stproof.org](https://1stproof.org)
 

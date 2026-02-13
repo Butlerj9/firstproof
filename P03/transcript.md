@@ -1,4 +1,4 @@
-# Transcript: P03
+﻿# Transcript: P03
 
 ## Scope
 
@@ -71,14 +71,14 @@ Close or strengthen the single blocking gap (Symmetry Conjecture for n ≥ 3) to
 | event_id | prompt author | dispatcher | model/provider | script command(s) | output file(s) | incorporated? |
 |----------|--------------|------------|---------------|-------------------|---------------|---------------|
 | E1 | Supervisor | Producer | Claude Opus 4.6 | exp1-exp4 | experiments/ | YES (G0-G5 full lane) |
-| E2 | Supervisor | Producer | Codex 5.2 | — | — | YES (G6 C1 REJECT → 4 faults patched) |
+| E2 | Supervisor | Producer | Codex 5.3 | — | — | YES (G6 C1 REJECT → 4 faults patched) |
 | E3 | Implementer | Auto | Claude Opus 4.6 | — | answer.md patched | YES (G6 C2 ACCEPT) |
 | E4 | Implementer | Auto | Claude Opus 4.6 | `python exp5_exact_q1_symmetry.py` | exp5 output | YES (48+ digit symmetry, upgrade 📊→🟡) |
 | E5 | Implementer | Auto | Claude Opus 4.6 | `python exp5b_exact_q1_direct.py` | exp5b output | YES (structural insight: 50-dim null space) |
 | E6 | Supervisor | Producer | Claude Opus 4.6 + 3 scouts | exp7-exp12 | experiments/ | PARTIAL (scouts unhelpful; 6 experiments, no closure) |
 | E7 | Supervisor | Producer | Claude Opus 4.6 | `python exp13b_order4_perturbation.py`, `python exp13c_multi_t_symmetry.py` | exp13/13b/13c output | YES (82/82 exact symmetry) |
 | E8 | Supervisor | Producer | Claude Opus 4.6 | `python exp14b_degree_analysis.py` | exp14b output | YES (**PROVED** n=3 all t: degree 20 < 82 zeros) |
-| E9 | Supervisor | Producer | Codex 5.2 | `apply_patch` + doc/link checks (`rg`, `Get-Content`) | methods_extended.md, README.md, RESULTS.md, docs/*.md | YES (methods/reporting traceability update; non-math) |
+| E9 | Supervisor | Producer | Codex 5.3 | `apply_patch` + doc/link checks (`rg`, `Get-Content`) | methods_extended.md, README.md, RESULTS.md, docs/*.md | YES (methods/reporting traceability update; non-math) |
 
 ## Session 5: Methods/Documentation Governance (repo-wide)
 

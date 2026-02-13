@@ -1,7 +1,7 @@
-# P10: RKHS CP-ALS — Matrix-free Preconditioned Conjugate Gradient Solver
+﻿# P10: RKHS CP-ALS — Matrix-free Preconditioned Conjugate Gradient Solver
 
 **Status**: ✅ Submitted
-**Reviewer**: Codex 5.2 — verdict: ACCEPT (0 faults, 3 minor residual risks acknowledged)
+**Reviewer**: Codex 5.3 — verdict: ACCEPT (0 faults, 3 minor residual risks acknowledged)
 **Scout check**: GPT Pro — consistent with our derivation
 **Code verification**: `experiments/verify_matvec.py` — ALL TESTS PASSED (seed=42, n=4, r=2, q=8)
 **External deps**: 0 unresolved (all results are standard linear algebra, proved inline)

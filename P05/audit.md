@@ -1,4 +1,4 @@
-# Audit: P05 — O-slice connectivity characterization via geometric fixed points
+﻿# Audit: P05 — O-slice connectivity characterization via geometric fixed points
 
 ## G0 Formalize
 
@@ -132,7 +132,7 @@ Compute explicitly for G = Z/p with complete and trivial systems, verify the cha
 | E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6 | answer.md stub, audit.md G0 | G0 ACCEPT | ~1 msg | proceed |
 | E2 | 2026-02-10 | L0 | G0 complete | Inaccessible refs: BH (2015, 2016), Hill (2012) | G1-G2 route map + dependency check | Claude Opus 4.6 | audit.md G1-G2 | G2 ACCEPT (3+ refs blocked) | ~1 msg | **PARK** |
 | E3 | 2026-02-11 | L2 | Supervisor dispatch: definition-only escalation | D1-D9 unresolved | CITE_ONLY ingest from 3 primary sources | Claude Opus 4.6, WebFetch (ar5iv) | answer.md §2-§5, audit.md G1-G2 refresh, transcript.md, CONTAMINATION.md | G1 ACCEPT, G2 ACCEPT (2 routes calibrated) | ~8 msgs | **PROCEED (🟡)** |
-| E4 | 2026-02-12 | L0 | Methods/reporting review request | Reviewer traceability for method constraints and provenance | Logged key prompts/responses; aligned method/autonomy docs and docs index | Codex 5.2, `apply_patch`, `rg`, `Get-Content` | methods_extended.md, README.md, RESULTS.md, docs/*.md, P03/P05/P09 audit/transcript | Documentation checks PASS; no mathematical artifact change | ~2 msgs | proceed |
+| E4 | 2026-02-12 | L0 | Methods/reporting review request | Reviewer traceability for method constraints and provenance | Logged key prompts/responses; aligned method/autonomy docs and docs index | Codex 5.3, `apply_patch`, `rg`, `Get-Content` | methods_extended.md, README.md, RESULTS.md, docs/*.md, P03/P05/P09 audit/transcript | Documentation checks PASS; no mathematical artifact change | ~2 msgs | proceed |
 
 **Escalation summary**: Level reached: L3 (formal theorem proving). Status upgraded: ❌→🟡 (E3); strengthened within 🟡 (E5: 3 theorems, E6: 4 theorems). CONTAM: 3 CITE_ONLY sources logged.
 

@@ -1,4 +1,4 @@
-# P04 Problem Context Bundle
+﻿# P04 Problem Context Bundle
 Generated: 2026-02-12 16:07:59 -08:00
 Root: D:\firstproof
 
@@ -11,7 +11,7 @@ SOURCE: P04\answer.md
 
 **Status**: 🟡 Candidate (proved for $n=2$, $n=3$, $n=4$ even subcase, and $n=4$ $c'=0$ subcase; general $n \geq 4$ open)
 **Answer**: YES for $n = 2$ (proved, equality holds exactly). YES for $n = 3$ (proved, §4c: closed-form Φ₃ + Jensen's inequality). YES for $n = 4$, even quartics (proved, §9.4: convexity + algebraic decomposition). YES for $n = 4$, $c'=0$ quartics (proved, §9.6: concavity of scale-invariant profile + weighted Jensen). YES for $n \geq 4$ general (conjectured, supported by 285K+ trials + 105K exact Fraction tests + 495K exact tests (CE-19) + 122K convexity tests (CE-28) + 60K discriminant bound tests (CE-29)).
-**Reviewer**: Codex 5.2 — G6 verdict: 📊 (4 red flags, patched). Upgrade cycle: CE-5/5b/5c strengthen evidence to 150 digits + new n=3 equality result. G5 closure: CE-6 proves n=3 general case. CE-7: n=4 cross-term obstruction confirmed. CE-19: quartic validity filter corrected (Delta>0 insufficient, need A·B<0); 495K exact tests ALL PASS.
+**Reviewer**: Codex 5.3 — G6 verdict: 📊 (4 red flags, patched). Upgrade cycle: CE-5/5b/5c strengthen evidence to 150 digits + new n=3 equality result. G5 closure: CE-6 proves n=3 general case. CE-7: n=4 cross-term obstruction confirmed. CE-19: quartic validity filter corrected (Delta>0 insufficient, need A·B<0); 495K exact tests ALL PASS.
 **Code verification**: `experiments/` — all trials passed; 150-digit verification (CE-5); n=3 equality verified at 200 digits (CE-5b/5c); n=3 algebraic proof verified (CE-6); n=4 exact Fraction tests 105K+ (CE-11); 495K exact tests with corrected validity filter (CE-19); c'=0 concavity proof verified (CE-26); full Hessian test (CE-27); parametric c'-convexity 122K tests (CE-28); discriminant bound 60K tests (CE-29); individual concavity 95K tests (CE-29d); symbolic f'' factorization + φ-subadditivity 153K+150 exact tests (CE-30)
 **External deps**: MSS (2015) real-rootedness preservation (cited, not proved)
 
@@ -725,9 +725,9 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
-| E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6, Codex 5.2 | audit.md G0 | G0 C1 REJECT → C2 ACCEPT | ~4 msgs | proceed |
+| E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6, Codex 5.3 | audit.md G0 | G0 C1 REJECT → C2 ACCEPT | ~4 msgs | proceed |
 | E2 | 2026-02-10 | L2/L3 | G0 complete | No counterexample known | CE-1 to CE-4: counterexample search + symbolic | ce1 (285K), ce2/ce2_mpmath, ce4_symbolic | experiments/ created | G4: ALL PASS (no CE) | ~8 msgs | proceed to proof |
-| E3 | 2026-02-10 | L0 | G5 complete | Finite De Bruijn identity unverified n≥3 | G6 adversarial review | Codex 5.2 | — | G6: REJECT (4 red flags) | ~2 msgs | patch |
+| E3 | 2026-02-10 | L0 | G5 complete | Finite De Bruijn identity unverified n≥3 | G6 adversarial review | Codex 5.3 | — | G6: REJECT (4 red flags) | ~2 msgs | patch |
 | E4 | 2026-02-10 | L0 | G6 REJECT | RF1-4: overclaim, asymptotic≠finite, precision | Patch 4 flags; G7 package | Claude Opus 4.6 | answer.md §6, header, §8 | G7: ACCEPT (📊) | ~4 msgs | proceed |
 | E5 | 2026-02-11 | L3/L5 | Upgrade cycle | n=3 general proof missing | CE-5/5b/5c: 150-digit sweep + equality | ce5 (450 trials), ce5b, ce5c | answer.md §4b | Numerical: ALL PASS | ~4 msgs | proceed |
 | E6 | 2026-02-11 | L3 | n=3 closure | n=3 algebraic proof | CE-6: Φ₃ closed-form + Jensen | ce6_n3_algebraic_proof.py | answer.md §4c | CE-6: PROVED | ~2 msgs | upgrade 📊→🟡 |
@@ -1501,7 +1501,7 @@ SOURCE: P04\transcript.md
 
 **Started**: 2026-02-10
 **Implementer**: Claude Opus 4.6
-**Reviewer**: Codex 5.2
+**Reviewer**: Codex 5.3
 **Producer**: Human (logistics only)
 
 ---
@@ -1797,9 +1797,9 @@ Proof: Φ₃ = 9/(2d²) for equally-spaced roots with gap d. The ⊞₃ coeffici
 
 | event_id | prompt author | dispatcher | model/provider | script command(s) | output file(s) | incorporated? |
 |----------|--------------|------------|---------------|-------------------|---------------|---------------|
-| E1 | Supervisor | Producer | Claude Opus 4.6, Codex 5.2 | — | audit.md G0 | YES (G0 C1 REJECT → C2 ACCEPT) |
+| E1 | Supervisor | Producer | Claude Opus 4.6, Codex 5.3 | — | audit.md G0 | YES (G0 C1 REJECT → C2 ACCEPT) |
 | E2 | Implementer | Auto | Claude Opus 4.6 | `python ce1_numeric_sweep.py` through `python ce4_symbolic_n3.py` | experiments/ outputs | YES (285K trials, no CE found) |
-| E3 | Supervisor | Producer | Codex 5.2 | — | — | YES (G6 REJECT, 4 red flags patched) |
+| E3 | Supervisor | Producer | Codex 5.3 | — | — | YES (G6 REJECT, 4 red flags patched) |
 | E4 | Implementer | Auto | Claude Opus 4.6 | — | answer.md §6, §8 | YES (G7 ACCEPT as 📊) |
 | E5 | Supervisor | Producer | Claude Opus 4.6 | `python ce5_highprec_sweep.py`, `python ce5b_edge_verify.py`, `python ce5c_equality_cases.py` | experiments/ outputs | YES (150-digit sweep, equality cases) |
 | E6 | Implementer | Auto | Claude Opus 4.6 | `python ce6_n3_algebraic_proof.py` | ce6 output | YES (**n=3 PROVED** via Φ₃ + Jensen) |

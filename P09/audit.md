@@ -1,4 +1,4 @@
-# Audit: P09 — Tensor polynomial map
+﻿# Audit: P09 — Tensor polynomial map
 
 ## G0 Formalize
 
@@ -277,15 +277,15 @@ P09 stays at 📊 Conjecture. Confidence upgraded from MEDIUM-HIGH to HIGH. The 
 
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
-| E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6, Codex 5.2 | audit.md G0 | G0 C1 REJECT (4 faults) → C2 ACCEPT | ~4 msgs | proceed |
+| E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6, Codex 5.3 | audit.md G0 | G0 C1 REJECT (4 faults) → C2 ACCEPT | ~4 msgs | proceed |
 | E2 | 2026-02-10 | L3 | G0 complete | Polynomial separator unknown | EXP-1 to EXP-5b: construction + vanishing search | exp1-exp5b | experiments/ created | G4: degree-4 Frobenius products found | ~8 msgs | proceed |
-| E3 | 2026-02-10 | L1 | G5 complete | 5 faults including overclaim of "theorem" | G6 adversarial review (2 cycles) | Codex 5.2 | — | G6 C1 REJECT → C2 REJECT → patch → ACCEPT | ~4 msgs | patch |
+| E3 | 2026-02-10 | L1 | G5 complete | 5 faults including overclaim of "theorem" | G6 adversarial review (2 cycles) | Codex 5.3 | — | G6 C1 REJECT → C2 REJECT → patch → ACCEPT | ~4 msgs | patch |
 | E4 | 2026-02-10 | L0 | G6 ACCEPT | — | G7 package | Claude Opus 4.6 | All deliverables | G7 ACCEPT (📊) | ~2 msgs | proceed |
 | E5 | 2026-02-11 | L3/L5 | Upgrade cycle (Session 2) | D=4 fails at n=5; masking gap open | EXP-6/6e: n=5 boundary + degree-6; EXP-7: masking analysis | exp6, exp6e, exp7 | answer.md §2.5 updated | EXP-6e: 15-dim kernel at n=5 | ~6 msgs | proceed |
 | E6 | 2026-02-11 | L3 | Session 3 (kernel formula) | n-uniformity gap | EXP-8/8b/8c: monomial kernel decomposition n=6-10 | exp8, exp8b, exp8c | answer.md §2.4 + formula 9·C(n-2,4) | Formula verified n=5-10 | ~8 msgs | proceed |
 | E7 | 2026-02-11 | L3 | Session 4 (masking closure) | D_n masking gap (#2) | EXP-9/9b: Jacobian test + algebraic proof | exp9, exp9b | answer.md §2.5a | **Gap #2 CLOSED** (n≥6 proved) | ~6 msgs | **CONJECTURE** (conf. upgraded) |
 | E8 | 2026-02-11 | L3 | Session 5 (formalization pass) | Gaps #1, #3 algebraic formalization | EXP-10: kernel structure decomposition; EXP-10b: exact rational arithmetic base case | exp10, exp10b | answer.md §2.3b, §2.5, §2.6, §3, §4 | **Gaps #1, #3 largely closed**: kernel ≥ 9·C(n-2,4) proved for all n≥6 | ~8 msgs | **CONJECTURE** (conf. HIGH) |
-| E9 | 2026-02-12 | L0 | Methods/reporting review request | Need explicit reviewer-facing provenance of prompts/responses and toolchain governance | Logged key prompts/responses and documentation alignment actions | Codex 5.2, `apply_patch`, `rg`, `Get-Content` | methods_extended.md, README.md, RESULTS.md, docs/*.md, P03/P05/P09 audit/transcript | Documentation checks PASS; no mathematical artifact change | ~3 msgs | proceed |
+| E9 | 2026-02-12 | L0 | Methods/reporting review request | Need explicit reviewer-facing provenance of prompts/responses and toolchain governance | Logged key prompts/responses and documentation alignment actions | Codex 5.3, `apply_patch`, `rg`, `Get-Content` | methods_extended.md, README.md, RESULTS.md, docs/*.md, P03/P05/P09 audit/transcript | Documentation checks PASS; no mathematical artifact change | ~3 msgs | proceed |
 
 | E10 | 2026-02-12 | L3 | Session 7 (final closure) | Gaps #1/#3 upper bound + Gap #4 separation genericity | Algebraic proofs: §2.5b separation genericity via witness + Zariski; §2.5c upper bound via base-case coverage + semicontinuity | No new scripts (pure theory) | answer.md §2.5b, §2.5c, §2.5, §4 updated; status → 🟡 Candidate | **Gaps #1, #3, #4 ALL CLOSED** for n≥6 | ~4 msgs | **CANDIDATE** (upgrade from 📊) |
 

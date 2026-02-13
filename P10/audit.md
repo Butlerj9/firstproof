@@ -1,4 +1,4 @@
-# Audit: P10 — RKHS CP-ALS: Matrix-free PCG with preconditioner
+﻿# Audit: P10 — RKHS CP-ALS: Matrix-free PCG with preconditioner
 
 ## G0 Formalize
 
@@ -161,7 +161,7 @@ All criteria met:
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
 | E1 | 2026-02-10 | L4 | Sprint kickoff | — | Scout candidate ingested + independent verification | GPT-5.2-pro (scout), Claude Opus 4.6 (implementer) | answer.md drafted from scout candidate | G0 ACCEPT | ~2 msgs | proceed |
 | E2 | 2026-02-10 | L3 | G0 complete | Matvec correctness, RHS match, Gram identity | Experiment-first validation (6 tests) | verify_matvec.py (seed=42) | experiments/ output | G4: ALL 6 PASS | ~2 msgs | proceed |
-| E3 | 2026-02-10 | L1 | G5 complete | SPD claim fails for PSD K; Gram identity proof inconsistency; complexity undercounting | G6 adversarial review Cycle 1 | Codex 5.2 (reviewer) | — | G6 C1: REJECT (4 flags) | ~2 msgs | patch |
+| E3 | 2026-02-10 | L1 | G5 complete | SPD claim fails for PSD K; Gram identity proof inconsistency; complexity undercounting | G6 adversarial review Cycle 1 | Codex 5.3 (reviewer) | — | G6 C1: REJECT (4 flags) | ~2 msgs | patch |
 | E4 | 2026-02-10 | L1 | G6 C1 REJECT | SPD/PSD, Gram proof, complexity, notation | Patch all 4 faults | Claude Opus 4.6 | answer.md patched (4 sections) | G6 C2: ACCEPT (0 faults) | ~4 msgs | proceed |
 | E5 | 2026-02-10 | L0 | G6 C2 ACCEPT | — | G7 package finalized | Claude Opus 4.6 | All deliverables finalized | G7 ACCEPT | ~2 msgs | **SUBMITTED** |
 

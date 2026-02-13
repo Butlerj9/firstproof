@@ -1,4 +1,4 @@
-# Audit: P08 — Lagrangian smoothing of polyhedral Lagrangian surfaces
+﻿# Audit: P08 — Lagrangian smoothing of polyhedral Lagrangian surfaces
 
 ## G0 Formalize
 
@@ -155,7 +155,7 @@ The entire 7-step limit argument is eliminated. The proof is now 3 steps with no
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
 | E1 | 2026-02-10 | L0 | Sprint kickoff | Symplectic smoothing defs inaccessible | G0-G2 feasibility blitz | Claude Opus 4.6 | audit.md G0-G2 | G2 ACCEPT | ~2 msgs | PARK |
 | E2 | 2026-02-11 | L0 (Mode R) | Escalation protocol triggered | Gromov obstruction statement needed | Definition-only escalation; G3-G5 | Claude Opus 4.6 + scout briefs | answer.md drafted, exp1/exp2 scripts | G5 draft complete | ~6 msgs | proceed |
-| E3 | 2026-02-11 | L1 | G5 complete | Step 2/5 regularity gap; definition mismatch | External Codex G6 review | Codex 5.2 (external reviewer) | — | G6: REJECT (2 MAJOR) | ~1 msg | patch |
+| E3 | 2026-02-11 | L1 | G5 complete | Step 2/5 regularity gap; definition mismatch | External Codex G6 review | Codex 5.3 (external reviewer) | — | G6: REJECT (2 MAJOR) | ~1 msg | patch |
 | E4 | 2026-02-11 | L0 | G6 REJECT | Hausdorff vs topology-preserving definition | Adopt topology-preserving definition; eliminate limit argument | Claude Opus 4.6 | answer.md simplified to 3-step proof | G6 patch: ACCEPT | ~1 msg | upgrade ❌→**SUBMITTED** |
 
 **Escalation summary**: Level reached: L1 (external adversarial review). Closure level: L0. Validation: external G6 + EXP-1/EXP-2. CONTAM: Gromov (1985) §2.3.B₂' statement-level → CONTAMINATION.md row 3.

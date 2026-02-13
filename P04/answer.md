@@ -1,8 +1,8 @@
-# P04: Inequality for Φₙ under Finite Free Convolution ⊞ₙ
+﻿# P04: Inequality for Φₙ under Finite Free Convolution ⊞ₙ
 
 **Status**: ✅ Submitted (proved for $n=2,3$; $n=4$: subcases proved analytically, general case computationally certified via SOS at 20 $w$-slices; $n \geq 5$ conjectured)
 **Answer**: YES. Proved for $n = 2$ (equality, §4), $n = 3$ (§4c), $n = 4$ even quartics (§9.4), $n = 4$ $c'=0$ (§9.6). **$n = 4$ general: computationally certified** via Putinar SOS certificates (CLARABEL interior-point) at 20 rational $w$-slices (§9.9), supported by 495K+ exact tests (CE-19). Conjectured YES for $n \geq 5$.
-**Reviewer**: Codex 5.2 — G6 verdict: 📊 (4 red flags, patched). Upgrade cycle: CE-5/5b/5c strengthen evidence to 150 digits + new n=3 equality result. G5 closure: CE-6 proves n=3 general case. CE-7: n=4 cross-term obstruction confirmed. CE-19: quartic validity filter corrected (Delta>0 insufficient, need A·B<0); 495K exact tests ALL PASS.
+**Reviewer**: Codex 5.3 — G6 verdict: 📊 (4 red flags, patched). Upgrade cycle: CE-5/5b/5c strengthen evidence to 150 digits + new n=3 equality result. G5 closure: CE-6 proves n=3 general case. CE-7: n=4 cross-term obstruction confirmed. CE-19: quartic validity filter corrected (Delta>0 insufficient, need A·B<0); 495K exact tests ALL PASS.
 **Code verification**: `experiments/` — all trials passed; 150-digit verification (CE-5); n=3 algebraic proof verified (CE-6); 495K exact tests (CE-19); c'=0 concavity proof (CE-26); parametric c'-convexity 122K tests (CE-28); discriminant bound 60K tests (CE-29); φ-subadditivity 153K+150 tests (CE-30); **φ-subadditivity SOS 20/20 (CE-43, SCS/Putinar); direct M≥0 SOS 20/20 (CE-44, CLARABEL/Putinar)**
 **External deps**: MSS (2015) real-rootedness preservation (cited, not proved)
 

@@ -1,4 +1,4 @@
-# Audit: P03 — Markov chain with interpolation ASEP stationary distribution
+﻿# Audit: P03 — Markov chain with interpolation ASEP stationary distribution
 
 ## G0 Formalize
 
@@ -402,14 +402,14 @@ Pattern: total degree = 2 × (5 − monomial degree). Maximum total degree: **20
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
 | E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0-G5 full lane (formalization → proof draft) | Claude Opus 4.6 | answer.md, audit.md G0-G5, exp1-exp4 | G5 complete | ~12 msgs | proceed |
-| E2 | 2026-02-10 | L1 | G5 complete | Overclaim YES for all n; n≥3 numerical only | G6 adversarial review Cycle 1 | Codex 5.2 | — | G6 C1: REJECT (4 faults) | ~1 msg | patch |
+| E2 | 2026-02-10 | L1 | G5 complete | Overclaim YES for all n; n≥3 numerical only | G6 adversarial review Cycle 1 | Codex 5.3 | — | G6 C1: REJECT (4 faults) | ~1 msg | patch |
 | E3 | 2026-02-10 | L0 | G6 C1 REJECT | F1-F4: global YES overclaim, unproved eigenvalue, t>0 domain, q=0.9999≠q=1 | Patch all 4; downgrade to 📊 | Claude Opus 4.6 | answer.md §1,§2,§4,§6 patched | G6 C2: ACCEPT (0 faults) | ~2 msgs | G7 |
 | E4 | 2026-02-10 | L3 | Upgrade cycle | Symmetry evidence only 5 digits | EXP-5: Richardson extrapolation (250-digit, 10 q-values) | exp5_exact_q1_symmetry.py (mpmath) | answer.md §4b, audit.md | EXP-5: 48+ digit symmetry at 7 t-values | ~4 msgs | upgrade 📊→🟡 |
 | E5 | 2026-02-10 | L3 | EXP-5 complete | Degenerate system at q=1 | EXP-5b: null space analysis | exp5b_exact_q1_direct.py | answer.md §4c | Structural insight (50-dim null space) | ~2 msgs | proceed |
 | E6 | 2026-02-11 | L5 | Session 2 closure | Symmetry Conjecture n≥3 (general t) | 6 experiments (EXP-7 to EXP-12) + scout briefs | exp7-exp12, 3 scout models | audit.md Session 2 | STALLED (no closure route) | ~8 msgs | continue |
 | E7 | 2026-02-11 | L3 | Session 3 closure | Perturbation rank insufficient at order 3 | EXP-13/13b/13c: order-4 perturbation + multi-t sweep | exp13/13b/13c (Fraction arithmetic) | answer.md, audit.md Session 3 | 82/82 exact symmetry | ~8 msgs | proceed |
 | E8 | 2026-02-11 | L3 | Session 4 closure | General-t proof still open | EXP-14 (symbolic, killed) → EXP-14b (degree-bound) | exp14 (SymPy, killed), exp14b (Fraction interp) | answer.md §7 | **PROVED: n=3 all t > 0** (82 > 20) | ~8 msgs | **CANDIDATE** |
-| E9 | 2026-02-12 | L0 | Methods/reporting review request | Reviewer traceability for content/method constraints | Logged key prompts/responses; aligned method/autonomy docs and repo docs index | Codex 5.2, `apply_patch`, `rg`, `Get-Content` | methods_extended.md, README.md, RESULTS.md, docs/*.md, P03/P05/P09 audit/transcript | Documentation checks PASS; no mathematical artifact change | ~3 msgs | proceed |
+| E9 | 2026-02-12 | L0 | Methods/reporting review request | Reviewer traceability for content/method constraints | Logged key prompts/responses; aligned method/autonomy docs and repo docs index | Codex 5.3, `apply_patch`, `rg`, `Get-Content` | methods_extended.md, README.md, RESULTS.md, docs/*.md, P03/P05/P09 audit/transcript | Documentation checks PASS; no mathematical artifact change | ~3 msgs | proceed |
 | E10 | 2026-02-11 | L3 | n=4 closure attempt | Symmetry Conjecture n=4 open | EXP-15g/16/16b/16d: modular perturbation + degree-bound + 90-sweep | exp15g, exp16, exp16b, exp16d (numpy modular) | answer.md §7b, audit.md Session 6 | **PROVED: n=4 all t > 0** (90 > 54, 2 primes) | ~10 msgs | **CANDIDATE (n≤4)** |
 
 **Escalation summary**: Level reached: L5. Closure level: L3 (degree-bound + multi-t sweep). Validation: G6 C2 + EXP-13c + EXP-14b (n=3) + EXP-16 + EXP-16b/16d (n=4). CONTAM: none.

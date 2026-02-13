@@ -1,4 +1,4 @@
-# Transcript: P08
+﻿# Transcript: P08
 
 ## Session 1 — 2026-02-10 PT: RED-feasibility blitz + definition-only escalation
 
@@ -99,7 +99,7 @@ The definitional question itself is mathematically interesting: under the weaker
 |----------|--------------|------------|---------------|-------------------|---------------|---------------|
 | E1 | Supervisor | Producer | Claude Opus 4.6 | — | audit.md G0-G2 | YES (feasibility → PARK) |
 | E2 | Supervisor | Producer | Claude Opus 4.6 + scout briefs | `python exp1_octahedron_lagrangian.py`, `python exp2_action_obstruction.py` | exp1/exp2 output | YES (definition-only escalation → counterexample found) |
-| E3 | Supervisor | Producer | Codex 5.2 (external) | — | — | YES (external G6 REJECT: 2 MAJOR issues caught) |
+| E3 | Supervisor | Producer | Codex 5.3 (external) | — | — | YES (external G6 REJECT: 2 MAJOR issues caught) |
 | E4 | Implementer | Auto | Claude Opus 4.6 | — | answer.md simplified | YES (topology-preserving def → 3-step proof → ❌→✅) |
 
 ## Orientation Note (2026-02-12)

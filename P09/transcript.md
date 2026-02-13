@@ -1,8 +1,8 @@
-# Transcript: P09 — Tensor polynomial map
+﻿# Transcript: P09 — Tensor polynomial map
 
 **Started**: 2026-02-10
 **Implementer**: Claude Opus 4.6
-**Reviewer**: Codex 5.2
+**Reviewer**: Codex 5.3
 **Producer**: Human (logistics only)
 
 ---
@@ -270,14 +270,14 @@ Close or strengthen gaps to upgrade from 📊 Conjecture to 🟡 Candidate. Acce
 
 | event_id | prompt author | dispatcher | model/provider | script command(s) | output file(s) | incorporated? |
 |----------|--------------|------------|---------------|-------------------|---------------|---------------|
-| E1 | Supervisor | Producer | Claude Opus 4.6, Codex 5.2 | — | audit.md G0 | YES (G0 C1 REJECT → C2 ACCEPT) |
+| E1 | Supervisor | Producer | Claude Opus 4.6, Codex 5.3 | — | audit.md G0 | YES (G0 C1 REJECT → C2 ACCEPT) |
 | E2 | Implementer | Auto | Claude Opus 4.6 | `python exp1-exp5b` | experiments/ outputs | YES (degree-4 Frobenius products found) |
-| E3 | Supervisor | Producer | Codex 5.2 | — | — | YES (G6 C1 REJECT → C2 REJECT → patch → ACCEPT) |
+| E3 | Supervisor | Producer | Codex 5.3 | — | — | YES (G6 C1 REJECT → C2 REJECT → patch → ACCEPT) |
 | E4 | Implementer | Auto | Claude Opus 4.6 | — | answer.md, all deliverables | YES (G7 ACCEPT as 📊) |
 | E5 | Supervisor | Producer | Claude Opus 4.6 | `python exp6.py`, `python exp6e.py`, `python exp7_masking_analysis.py` | experiments/ outputs | YES (n=5 boundary: D=4 fails, D=6 works) |
 | E6 | Supervisor | Producer | Claude Opus 4.6 | `python exp8.py`, `python exp8b_n9_check.py`, `python exp8c_formula_verify.py` | experiments/ outputs | YES (kernel formula 9·C(n-2,4) at n=6-10) |
 | E7 | Supervisor | Producer | Claude Opus 4.6 | `python exp9_masking_lemma.py`, `python exp9b_masking_n5_n8.py` | experiments/ outputs | YES (**Gap #2 CLOSED**: masking lemma proved n≥6) |
-| E8 | Supervisor | Producer | Codex 5.2 | `apply_patch` + doc/link checks (`rg`, `Get-Content`) | methods_extended.md, README.md, RESULTS.md, docs/*.md | YES (methods/reporting traceability update; non-math) |
+| E8 | Supervisor | Producer | Codex 5.3 | `apply_patch` + doc/link checks (`rg`, `Get-Content`) | methods_extended.md, README.md, RESULTS.md, docs/*.md | YES (methods/reporting traceability update; non-math) |
 
 ---
 

@@ -1,4 +1,4 @@
-# Audit: P04 — Inequality for Φ_n under finite free convolution ⊞_n
+﻿# Audit: P04 — Inequality for Φ_n under finite free convolution ⊞_n
 
 ## G0 Formalize
 
@@ -137,9 +137,9 @@ Fast-tracked: P04 background is well-established finite free probability (MSS 20
 
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
-| E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6, Codex 5.2 | audit.md G0 | G0 C1 REJECT → C2 ACCEPT | ~4 msgs | proceed |
+| E1 | 2026-02-10 | L0 | Sprint kickoff | — | G0 formalization | Claude Opus 4.6, Codex 5.3 | audit.md G0 | G0 C1 REJECT → C2 ACCEPT | ~4 msgs | proceed |
 | E2 | 2026-02-10 | L2/L3 | G0 complete | No counterexample known | CE-1 to CE-4: counterexample search + symbolic | ce1 (285K), ce2/ce2_mpmath, ce4_symbolic | experiments/ created | G4: ALL PASS (no CE) | ~8 msgs | proceed to proof |
-| E3 | 2026-02-10 | L0 | G5 complete | Finite De Bruijn identity unverified n≥3 | G6 adversarial review | Codex 5.2 | — | G6: REJECT (4 red flags) | ~2 msgs | patch |
+| E3 | 2026-02-10 | L0 | G5 complete | Finite De Bruijn identity unverified n≥3 | G6 adversarial review | Codex 5.3 | — | G6: REJECT (4 red flags) | ~2 msgs | patch |
 | E4 | 2026-02-10 | L0 | G6 REJECT | RF1-4: overclaim, asymptotic≠finite, precision | Patch 4 flags; G7 package | Claude Opus 4.6 | answer.md §6, header, §8 | G7: ACCEPT (📊) | ~4 msgs | proceed |
 | E5 | 2026-02-11 | L3/L5 | Upgrade cycle | n=3 general proof missing | CE-5/5b/5c: 150-digit sweep + equality | ce5 (450 trials), ce5b, ce5c | answer.md §4b | Numerical: ALL PASS | ~4 msgs | proceed |
 | E6 | 2026-02-11 | L3 | n=3 closure | n=3 algebraic proof | CE-6: Φ₃ closed-form + Jensen | ce6_n3_algebraic_proof.py | answer.md §4c | CE-6: PROVED | ~2 msgs | upgrade 📊→🟡 |

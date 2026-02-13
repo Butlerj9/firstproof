@@ -1,4 +1,4 @@
-# Audit: P06 — Alpha-light sets in spectral graph theory
+﻿# Audit: P06 — Alpha-light sets in spectral graph theory
 
 ## G0 Formalize
 
@@ -87,9 +87,9 @@ Fast-tracked: counterexample is self-contained standard linear algebra.
 
 | event_id | date | level | trigger | blocking claim | action taken | tools/models/scripts | artifact updates | validation gate/result | msg/token delta | decision |
 |----------|------|-------|---------|---------------|-------------|---------------------|-----------------|----------------------|----------------|----------|
-| E1 | 2026-02-10 | L2 | Sprint kickoff | — | G0 formalization + counterexample identification (K_n) | Claude Opus 4.6, Codex 5.2 | audit.md G0, answer.md draft | G0 C1 REJECT → C2 ACCEPT | ~4 msgs | proceed |
+| E1 | 2026-02-10 | L2 | Sprint kickoff | — | G0 formalization + counterexample identification (K_n) | Claude Opus 4.6, Codex 5.3 | audit.md G0, answer.md draft | G0 C1 REJECT → C2 ACCEPT | ~4 msgs | proceed |
 | E2 | 2026-02-10 | L3 | G0 complete | Eigenvalue formula correctness | CE-1: K_n verification (n=3-24) + CE-2: non-complete graphs | ce1_complete_graph_verify.py, ce2_other_graphs.py | experiments/ created | G4: ALL PASS | ~4 msgs | proceed |
-| E3 | 2026-02-10 | L0 | G5 complete | k=n boundary, c≥1 logic, "hardest" overclaim | G6 adversarial review | Codex 5.2 | — | G6: 3 red flags | ~2 msgs | patch |
+| E3 | 2026-02-10 | L0 | G5 complete | k=n boundary, c≥1 logic, "hardest" overclaim | G6 adversarial review | Codex 5.3 | — | G6: 3 red flags | ~2 msgs | patch |
 | E4 | 2026-02-10 | L0 | G6 flags | RF1-3: boundary, case split, overclaim | Patch 3 flags; G7 package | Claude Opus 4.6 | answer.md §2-§4 patched | G7: ACCEPT | ~2 msgs | proceed |
 | E5 | 2026-02-11 | L0 | Synthesis pass | Verify proof completeness | Full proof re-verification | Claude Opus 4.6 | — | Synthesis: PASS | ~2 msgs | upgrade 🟡→**SUBMITTED** |
 

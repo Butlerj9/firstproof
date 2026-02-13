@@ -1,8 +1,8 @@
-# P06: Alpha-Light Sets in Graphs
+﻿# P06: Alpha-Light Sets in Graphs
 
 **Status**: ✅ Submitted
 **Answer**: **NO.** No universal constant $c > 0$ exists. The complete graph $K_n$ provides an explicit counterexample family.
-**Reviewer**: Codex 5.2 — G6 final verdict: ACCEPT (initial red flags patched)
+**Reviewer**: Codex 5.3 — G6 final verdict: ACCEPT (initial red flags patched)
 **Code verification**: `experiments/` — eigenvalue formula verified exhaustively for $n \leq 24$; boundary condition confirmed
 **External deps**: None (self-contained linear algebra)
 
