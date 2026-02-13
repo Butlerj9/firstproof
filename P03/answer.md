@@ -35,7 +35,7 @@ For general n, the Markov chain on Sₙ(λ) with transitions: for each adjacent 
 
 conjecturally has stationary distribution
 
-$$\pi(\mu) = \frac{f^{*}_{\mu}(x_1,\ldots,x_n;\, q=1,\, t)}{P^{*}_{\lambda}(x_1,\ldots,x_n;\, q=1,\, t)} = \frac{t^{\mathrm{inv}(\mu)}}{[n]_t!}$$
+$$\pi(\mu) = \frac{f^{\ast}_{\mu}(x_1,\ldots,x_n;\, q=1,\, t)}{P^{\ast}_{\lambda}(x_1,\ldots,x_n;\, q=1,\, t)} = \frac{t^{\mathrm{inv}(\mu)}}{[n]_t!}$$
 
 where inv(μ) = #{(i,j) : i < j, μᵢ > μⱼ} and [n]\_t! = ∏ᵢ₌₁ⁿ⁻¹ (1 + t + ⋯ + tⁱ).
 
@@ -53,7 +53,7 @@ Both the theorem and conjecture reduce to a single algebraic identity:
 
 **Identity (proved for n=2,3,4; conjectured for n ≥ 5).** For t > 0 and generic x, at q = 1,
 
-$$f^{*}_{\mu}(x;\, q=1,\, t) = C(x, t) \cdot t^{\mathrm{inv}(\mu)}$$
+$$f^{\ast}_{\mu}(x;\, q=1,\, t) = C(x, t) \cdot t^{\mathrm{inv}(\mu)}$$
 
 for all μ ∈ Sₙ(λ), where C(x, t) is a function independent of μ.
 
@@ -79,7 +79,7 @@ since inv(sᵢμ) = inv(μ) + 1 when μᵢ < μᵢ₊₁. ∎ (This step is unco
 
 Solving the 5×5 linear system (5 vanishing conditions, 5 lower-degree unknowns) symbolically in SymPy gives:
 
-$$E^{*}_{(0,2)} = y_2^2 + \frac{(q+1)(t-1)}{q^2t-1} y_1 y_2 + \frac{t-1}{q^2t-1} y_1^2 + \cdots$$
+$$E^{\ast}_{(0,2)} = y_2^2 + \frac{(q+1)(t-1)}{q^2t-1} y_1 y_2 + \frac{t-1}{q^2t-1} y_1^2 + \cdots$$
 
 with 5 rational-in-(q,t) coefficients (full expressions in EXP-3b script).
 
@@ -89,9 +89,9 @@ $$T_0 f = t \cdot s_0(f) + (t-1) \cdot \frac{y_1}{y_1 - y_2} (f - s_0 f)$$
 
 **Step 3: Take q → 1 limit.** Using SymPy's `limit`, we obtain:
 
-$$f^{*}_{(0,2)}(q{=}1) = \left(\frac{t(y_1 + y_2) - t - 1}{t}\right)^{\!2} = \left(y_1 + y_2 - 1 - \frac{1}{t}\right)^{\!2}$$
+$$f^{\ast}_{(0,2)}(q{=}1) = \left(\frac{t(y_1 + y_2) - t - 1}{t}\right)^{\!2} = \left(y_1 + y_2 - 1 - \frac{1}{t}\right)^{\!2}$$
 
-$$f^{*}_{(2,0)}(q{=}1) = t \cdot f^{*}_{(0,2)}(q{=}1)$$
+$$f^{\ast}_{(2,0)}(q{=}1) = t \cdot f^{\ast}_{(0,2)}(q{=}1)$$
 
 **Verification:** simplify(f\*\_{(2,0)}/t − f\*\_{(0,2)}) = 0 ✓
 
@@ -393,15 +393,15 @@ Five exactness-preserving reduction approaches were systematically tested:
 
 **Hecke algebra extension (derived)**: For any composition $\mu = \sigma(\lambda)$ where $\lambda$ is the underlying partition, the Hecke algebra gives $E_\mu(x; 1, t) = t^{-\ell(\sigma)} \cdot E_\lambda(x; 1)$. This is because $T_i^{-1}$ acts on a symmetric function $f$ by $T_i^{-1}(f) = f/t$ (from $T_i f = tf$ and the quadratic relation $T_i^2 = (t-1)T_i + t$). Therefore **all standard non-symmetric Macdonald polynomials $E_\mu(x; 1, t)$ are symmetric** — they are scalar multiples of the symmetric $E_\lambda(x; 1)$.
 
-**Relevance to Symmetry Conjecture**: The Symmetry Conjecture is about the **interpolation** polynomial $E^{*}_{\lambda^-}(x; q=1, t)$ (Knop-Sahi), which differs from the standard $E_{\lambda^-}(x; 1, t)$ by inhomogeneous lower-degree correction terms (imposed by vanishing conditions at spectral vectors). The AS result implies:
+**Relevance to Symmetry Conjecture**: The Symmetry Conjecture is about the **interpolation** polynomial $E^{\ast}_{\lambda^-}(x; q=1, t)$ (Knop-Sahi), which differs from the standard $E_{\lambda^-}(x; 1, t)$ by inhomogeneous lower-degree correction terms (imposed by vanishing conditions at spectral vectors). The AS result implies:
 
-1. The **leading homogeneous component** of $E^{*}_{\lambda^-}(x; 1, t)$ equals $E_{\lambda^-}(x; 1, t) = t^{-n(n-1)/2} E_\lambda(x; 1)$, which is **symmetric** for all $n$.
+1. The **leading homogeneous component** of $E^{\ast}_{\lambda^-}(x; 1, t)$ equals $E_{\lambda^-}(x; 1, t) = t^{-n(n-1)/2} E_\lambda(x; 1)$, which is **symmetric** for all $n$.
 2. The Symmetry Conjecture thus **reduces** from "the full interpolation polynomial is symmetric" to "the inhomogeneous lower-degree corrections are also symmetric."
 3. **Subtlety**: This reduction is NOT trivial. The $E_\mu$ basis degenerates at $q=1$ (all compositions in the same $S_n$ orbit give proportional $E_\mu$), so the $E$-basis spans only the symmetric subspace at $q=1$. Coefficient blowup in the degenerate expansion can in principle project outside the symmetric subspace. (Counterexample: $v_1(q) = (1,q)$, $v_2(q) = (1,-q)$; with coefficients $1/(2q)$ and $-1/(2q)$, the sum approaches $(0,1) \notin \text{span}\{(1,0)\}$ as $q \to 0$.)
 
 **Status**: The AS result is verified at CITE_ONLY level (abstract accessed from arxiv.org). The Hecke extension is a derived consequence. The full paper text (needed for stronger claims) remains inaccessible (ar5iv conversion error, PDF not machine-readable).
 
-**Verdict**: Meaningful structural reduction identified. The Symmetry Conjecture for $E^{*}_{\lambda^-}$ is now understood as: "the leading term is symmetric (proved via AS + Hecke); the lower-degree corrections must also be symmetric (verified for $n \leq 4$, open for $n \geq 5$)." This does NOT close the gap but sharpens the missing ingredient.
+**Verdict**: Meaningful structural reduction identified. The Symmetry Conjecture for $E^{\ast}_{\lambda^-}$ is now understood as: "the leading term is symmetric (proved via AS + Hecke); the lower-degree corrections must also be symmetric (verified for $n \leq 4$, open for $n \geq 5$)." This does NOT close the gap but sharpens the missing ingredient.
 
 ### Barrier summary (n ≥ 5)
 
