@@ -6,9 +6,9 @@ This memo estimates how much accuracy could improve under specific workflow chan
 
 Baseline (from current comparison audit):
 
-- Strict theorem-level alignment: `30%` (`3/10`)
-- Directional alignment: `60%` (`6/10`)
-- Risk-adjusted alignment: `47.5%`
+- Strict theorem-level alignment: `30%-40%` (`3/10` to `4/10`, pending P06)
+- Directional alignment: `60%-70%` (`6/10` to `7/10`, pending P06)
+- Risk-adjusted alignment: `47.5%-57.5%` (neutral midpoint `52.5%`)
 
 Main result:
 
@@ -27,10 +27,11 @@ We use lane-level counterfactual flips:
 
 Process-controllable high-impact lanes:
 
-- `P06`, `P07`, `P08` (formalization/definition/polarity control failures)
+- `P07`, `P08` (formalization/definition/polarity control failures)
 - `P01` (closure promotion without contradiction hardening)
 - `P05` (normalization debt; consistency, not theorem sign)
 - `P03` (time/allocation planning rather than pure theorem impossibility)
+- `P06` (quantifier-form adjudication and statement-lock governance)
 
 ---
 

@@ -1,0 +1,230 @@
+
+
+===== PAGE 1 =====
+
+Question
+Letn⩾5. LetA (1), . . . , A(n) ∈R 3×4 be Zariski-generic. Forα, β, γ, δ∈[n], construct
+Q(αβγδ) ∈R 3×3×3×3 so that its (i, j, k, ℓ) entry for 1⩽i, j, k, ℓ⩽3 is given byQ (αβγδ)
+ijkℓ =
+det
+
+A(α)(i,:);A (β)(j,:);A (γ)(k,:);A (δ)(ℓ,:)
+
+. HereA(i,:) denotes theith row of a matrixA, and
+semicolon denotes vertical concatenation. We are interested in algebraic relations on the set of
+tensors{Q (αβγδ) :α, β, γ, δ∈[n]}.
+More precisely, does there exist a polynomial mapF:R 81n4
+→R N that satisfies the following
+three properties?
+•The mapFdoes not depend onA (1), . . . A(n).
+•The degrees of the coordinate functions ofFdo not depend onn.
+•Letλ∈R n×n×n×n satisfyλ αβγδ ̸= 0 for preciselyα, β, γ, δ∈[n] that are not identical.
+ThenF(λ αβγδ Q(αβγδ) :α, β, γ, δ∈[n]) = 0 holds if and only if there existu, v, w, x∈(R ∗)n
+such thatλ αβγδ =u αvβwγxδ for allα, β, γ, δ∈[n] that are not identical.
+JK acknowledges support from NSF DMS 2309782, NSF CISE-IIS 2312746, DE SC0025312, and the Sloan
+Foundation.
+1
+
+===== PAGE 2 =====
+
+Answer(from work by Daniel Miao, Gilad Lerman, Joe Kileel)
+Yes, such algebraic relations do exist. Assemble the various tensors{Q (αβγδ) :α, β, γ, δ∈[n]}
+into one tensorQ∈R 3n×3n×3n×3n, thought of as ann×n×n×nblock tensor where the
+(α, β, γ, δ)-block isQ (αβγδ) ∈R 3×3×3×3. LetFbe the polynomial map sending{Q (αβγδ) :
+α, β, γ, δ∈[n]}to the 5×5 minors of the four 3n×27n 3 matrix flattenings ofQ. We will prove
+thatFsatisfies the desired properties.
+A key point is to discover the following algebraic identity.
+Lemma 1.ConsiderQ∈R 3n×3n×3n×3n as above. It admits a Tucker tensor decomposition
+Q=C × 1 A× 2 A× 3 A× 4 A,(1)
+forC ∈R 4×4×4×4 andA∈R 3n×4. Explicitly, we can take
+Cabcd =
+(
+sgn(abcd)ifa, b, c, d∈[4]are distinct
+0otherwise,
+where sgn is parity of a permutation, andAto be the vertical concatenation[A (1);. . .;A (n)].
+Proof.Let [n]×[3] stand for the indices ofQin each mode and for the row indices ofA. By
+definition of Tucker product, for all (α, i),(β, j),(γ, k),(δ, ℓ)∈[n]×[3] we have
+(C × 1 A× 2 A× 3 A× 4 A)(α,i),(β,j),(γ,k),(δ,ℓ) =
+X
+a,b,c,d∈[4]
+CabcdA(α,i),aA(β,j),b A(γ,k),c A(δ,ℓ),d
+=
+X
+a,b,c,d∈[4] distinct
+sgn(abcd)A(α)
+ia A(β)
+jb A(α)
+kc A(α)
+ℓd = det
+h
+A(α)(i,:);A (β)(j,:);A (γ)(k,:);A (δ)(ℓ,:)
+i
+=Q (αβγδ)
+ijkℓ =Q (α,i),(β,j),(γ,k),(δ,ℓ) .□
+The lemma explains whyFcaptures algebraic relations between the tensors{Q (αβγδ) :
+α, β, γ, δ∈[n]}. Indeed, the block tensorQhas multilinear rank bounded by (4,4,4,4) due to
+the Tucker decomposition in (1). Therefore, all 5×5 minors inFvanish.
+Below we break up the proof of the third property into two directions. The other properties
+are clear. Throughout the proof, forλ∈R n×n×n×n we letλ⊙ b Q∈R 3n×3n×3n×3n denote
+blockwise scalar multiplication, i.e., the (α, β, γ, δ)-block ofλ⊙ b Qisλ αβγδ Q(αβγδ) ∈R 3×3×3×3.
+Roughly speaking, we need to show that a blockwise scaling ofQpreserves multilinear rank if
+and only if the scaling is a rank-1 tensor off the diagonal.
+“If” Direction
+This follows easily from Lemma 1. Assumeλ∈R n×n×n×n agrees off-diagonal withu⊗v⊗w⊗x
+foru, v, w, x∈(R ∗)n and is 0 on the diagonal. Then
+λ⊙ b Q= (u⊗v⊗w⊗x)⊙ b Q,
+because the diagonal blocks ofQvanish. That is,Q (αααα) = 0 since each entry ofQ (αααα) is
+the determinant of a matrix with a repeated row. Note that blockwise scalar product with a
+rank-1 tensor with nonzero entries is equivalent to Tucker product with invertible matrices:
+(u⊗v⊗w⊗w)⊙ b Q=Q× 1 Du ×2 Dv ×3 Dw ×4 Dx.
+HereD u ∈R 3n×3n is the diagonal matrix triplicating the entries ofuand likewise forD v, Dw, Dx.
+Thusλ⊙ b QandQhave the same multilinear rank, and from the lemmaF(λ αβγδ Q(αβγδ) :
+α, β, γ, δ∈[n]) = 0.
+2
+
+===== PAGE 3 =====
+
+“Only If” Direction
+The converse takes more work. Letλ∈R n×n×n×n have nonzero entries precisely off the diagonal
+and assumeF(λ αβγδ Q(αβγδ) :α, β, γ, δ∈[n]) = 0. We further assumeλ α111 =λ 1β11 =λ 11γ1 =
+λ111δ = 1 for allα, β, γ, δ∈ {2, . . . , n}. We reduce to this case by replacingλby its entrywise
+product with ¯u⊗¯v⊗¯w⊗¯x, where
+¯uα =
+(
+1 forα= 1
+λ−1
+α111 forα∈ {2, . . . , n},
+and ¯v,¯w,¯xare defined similarly using the second, third and fourth modes respectively. The
+replacement preserves the multilinear rank ofλ⊙ b Qand whether or notλagrees off-diagonal
+with a rank-1 tensor. Hence it is without loss of generality.
+Through some explicit calculations, we will prove there existsc∈R ∗ such that
+•λ αβγδ =cif exactly two ofα, β, γ, δequal 1
+•λ αβγδ =c 2 if exactly one ofα, β, γ, δequals 1
+•λ αβγδ =c 3 if none ofα, β, γ, δequal 1 andα, β, γ, δare not identical.
+This will establish the “only if” direction, as settingu=v=w= (1, c, . . . , c) andx=
+( 1
+c ,1, . . . ,1) givesλ αβγδ =u αvβwγxδ wheneverα, β, γ, δare not identical. Our proof strategy is
+to examine appropriate coordinates ofF(λ αβγδ Q(αβγδ) :α, β, γ, δ∈[n]) = 0 in order to constrain
+λ. Equivalently, we will consider the vanishing of the determinants of certain well-chosen 5×5
+submatrices of the flattenings ofλ⊙ b Q. WriteQ (1) and (λ⊙ b Q)(1) for mode-1 flattenings in
+R3n×27n3
+. Rows correspond to the first tensor mode and are indexed by (α, i)∈[n]×[3], while
+columns correspond to the other modes and are indexed by ((β, j),(γ, k),(δ, ℓ))∈([n]×[3]) 3.
+Step 1: The first submatrix of (λ⊙bQ)(1) we consider has column indices ((α,1),(1,3),(1,2)),
+((1,2),(β,2),(1,1)), ((1,2),(β,3),(1,1)), ((1,3),(β,3),(1,2)), ((1,1),(β,1),(1,3)) and row in-
+dices (1,1), (1,2), (1,3), (α,1), (α,2), whereα, β∈ {2, . . . , n}. Explicitly, the submatrix is
+
+
+Q(1α11)
+1132 Q(11β1)
+1221 Q(11β1)
+1231 Q(11β1)
+1332 Q(11β1)
+1113
+Q(1α11)
+2132 Q(11β1)
+2221 Q(11β1)
+2231 Q(11β1)
+2332 Q(11β1)
+2113
+Q(1α11)
+3132 Q(11β1)
+3221 Q(11β1)
+3231 Q(11β1)
+3332 Q(11β1)
+3113
+λαα11Q(αα11)
+1132 λα1β1Q(α1β1)
+1221 λα1β1Q(α1β1)
+1231 λα1β1Q(α1β1)
+1332 λα1β1Q(α1β1)
+1113
+λαα11Q(αα11)
+2132 λα1β1Q(α1β1)
+2221 λα1β1Q(α1β1)
+2231 λα1β1Q(α1β1)
+2332 λα1β1Q(α1β1)
+2113
+
+
+,
+which we abbreviate as
+
+
+∗ ∗ ∗ ∗ ∗
+∗ ∗ ∗ ∗ ∗
+∗ ∗ ∗ ∗ ∗
+λαα11∗λ α1β1∗λ α1β1∗λ α1β1∗λ α1β1∗
+λαα11∗λ α1β1∗λ α1β1∗λ α1β1∗λ α1β1∗
+
+
+,(2)
+with asterisk denoting the corresponding entry inQ (1). We view the determinant of (2) as a
+polynomial with respect toλ. It has degree⩽2 in the variablesλ αα11, λα1β1. Observe that if
+λα1β1 = 0, the bottom two rows of the matrix are linearly independent. Also ifλα1β1 −λαα11 = 0,
+then (2) equals a 5×5 submatrix ofQ (1) with rows operations performed; therefore (2) is rank-
+deficient. It follows that the determinant of (2) takes the form
+sλα1β1(λα1β1 −λ αα11).
+3
+
+===== PAGE 4 =====
+
+Here the scales=s(A (1), A(α), A(β)) is a polynomial in theA-matrices. Due to polynomiality,
+sis nonzero Zariski-generically if we can exhibit asingleinstance of matricesA (1), A(α), A(β)
+where the determinant of (2) does not vanish identically for allλ α1β1, λαα11. Furthermore,
+we just need an instance withα=β, as this corresponds to a specialization of the caseα̸=
+β. Computational verification with a random numerical instance ofA (1), A(α) proves the non-
+vanishing (see attached code). Recalling the standing assumptions, we deduceλ α1β1 =λ αα11.
+We apply the same argument to modewise permutations ofλ⊙ b QandQ, and obtain
+λπ(α1β1) =λ π(αα11) for allα, β∈ {2, . . . , n}and permutationsπ.
+The argument goes through asπ·Qandπ·(λ⊙ b Q) have multilinear ranks bounded by (4,4,4,4)
+andπ·Q= sgn(π)Q. So (2) looks the same but with indices permuted and possibly a sign flip.
+We now see thatλ-entries with two 1-indices agree. Indeed, takingα=βabove gives
+λπ1(α1α1) =λ π2(αα11) for allπ 1 andπ 2 that fix (αα11) and (α1α1) respectively. So,λ αα11 =
+λπ(αα11) for allπ. Takingα̸=βgivesλ αα11 =λ π(α1β1) =λ ββ11 for allπ. Together, there exists
+c∈R ∗ such thatc=λ π(αβ11) for allα, β∈ {2, . . . , n}and permutationsπ.
+Step 2: Next we consider the submatrix of (λ⊙bQ)(1) with column indices ((β,1),(γ,3),(1,2)),
+((1,2),(β,2),(1,1)), ((1,2),(β,3),(1,1)), ((1,3),(β,3),(1,2)), ((1,1),(β,1),(1,3)) and row in-
+dices (1,1), (1,2), (1,3), (α,1), (α,2), whereα, β, γ∈ {2, . . . , n}. It looks like
+
+
+c∗ ∗ ∗ ∗ ∗
+c∗ ∗ ∗ ∗ ∗
+c∗ ∗ ∗ ∗ ∗
+λαβγ1 ∗c∗c∗c∗c∗
+λαβγ1 ∗c∗c∗c∗c∗
+
+
+,(3)
+where asterisks denote corresponding entries inQ (1). As a polynomial incandλ αβγ1, the
+determinant of (3) is a scalar multiple ofc(c 2 −λ αβγ1). This is because the polynomial has
+degree⩽3, ifc= 0 then the bottom two rows of (3) are linearly dependent, and ifc 2 =λ αβγ1
+then (3) is a 5×5 submatrix ofQ (1) with row and column operations performed. The scale is
+a polynomial inA (1), A(α), A(β), A(γ). It is Zariski-generically nonzero if we exhibit one instance
+ofA-matrices such that the determinant of (2) does not vanish for allc, λ αβγ1. Further, it
+suffices to find an instance whereα=β=γ, as all other cases specialize to this. Computational
+verification with a random numerical instance ofA (1), A(α) proves the non-vanishing. It follows
+thatc 2 =λ αβγ1. Appealing to symmetry like before,c 2 =λ π(αβγ1) for allα, β, γ∈ {2, . . . , n}
+and permutationsπ. Summarizing, allλ-entries with a single 1-index equalc 2.
+Step 3: Consider the submatrix of (λ⊙Q)(1) with columns ((β,1),(γ,3),(δ,2)), ((1,2),(α,2),
+(1,1)), ((1,2),(α,3),(1,1)), ((1,3),(α,3),(1,2)), ((1,1),(α,1),(1,3)) and rows (1,1), (1,2), (1,3),
+(α,1), (α,2), whereα, β, γ, δ∈ {2, . . . , n}andα, δare distinct. The submatrix looks like
+
+
+c2∗ ∗ ∗ ∗ ∗
+c2∗ ∗ ∗ ∗ ∗
+c2∗ ∗ ∗ ∗ ∗
+λαβγδ ∗c∗c∗c∗c∗
+λαβγδ ∗c∗c∗c∗c∗
+
+
+.(4)
+The determinant of (4) isc(c 3 −λ αβγδ ) multiplied by a polynomial inA (1), A(α), A(β), A(γ), A(δ).
+The most specialized case isα=β=γ. Computer verification with a random numerical
+instance proves the polynomial is not identically zero. We deduce thatc3 =λ αβγδ . By symmetry,
+c3 =λ π(αβγδ) for allα, β, γ, δ∈ {2, . . . , n}withα, δdistinct and all permutationsπ. In other
+words,λ-entries with no 1-indices and non-identical indices equalc 3.
+Steps 1, 2 and 3 show thatλtakes the announced form. So,λis rank-1 off the diagonal. This
+finishes the “only if” direction. Overall, we have proven that the 5×5 minors of the 3n×27n 3
+flattenings ofQgive algebraic relations on{Q (αβγδ) :α, β, γ, δ∈[n]}with the desired properties.
+4

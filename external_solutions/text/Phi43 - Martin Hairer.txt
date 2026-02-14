@@ -1,0 +1,440 @@
+
+
+===== PAGE 1 =====
+
+(Lack of) quasi-shift invariance of theΦ 4
+3 measure
+Martin Hairer
+1 Question
+Let T3 be the three dimensional unit size torus and letµ be the Φ4
+3 measure on the space
+of distributions D′(T3). Let ψ:T 3 →R be a smooth function that is not identically
+zero and let Tψ :D ′(T3)→ D ′(T3) be the shift map given by Tψ(u)=u+ψ (with
+the usual identification of smooth functions as distributions). Prove or disprove the
+statement “the measures µ and T ∗
+ψµ are equivalent”. Here, equivalence of measures is
+in the sense of having the same null sets andT ∗
+ψ denotes the pushforward underT ψ.
+2 Some Context
+One of the very few interacting quantum field theories that can be rigorously constructed
+is the so-called (bosonic)Φ4 theory in (space-time) dimensions2 and 3. It has long been
+known that in dimension2 and finite volume there is a natural identification between the
+Hilbert space of the interacting theory and that of the corresponding free theory. On the
+other hand, Glimm [Gli68] observed that this is no longer the case in dimension 3. At
+the level of the corresponding Euclidean theories (which are represented by probability
+measures on the space of Schwartz distributions on the corresponding space-time), this
+translates into the fact that the Φ4 measure µ and the corresponding free field measure
+νare equivalent in dimension2but mutually singular in dimension3. In fact, there is
+a sense in which the dimension that delimits between the two behaviors is 8/3. It is
+then natural to ask in which dimensions µ has the weaker property that µ and T ∗
+ψµ are
+equivalent for smooth ψ. Here it turns out that the borderline dimension is 3, and the
+question probes on which side it falls.
+2.1 An incorrect heuristic
+Regarding the proof, a tempting heuristic is to use the fact that one should think of µ as
+having the density with respect to “Lebesgue measure on D′” (which of course doesn’t
+exist) proportional to
+exp
+
+−
+Z
+T3
+1
+2 |∇Φ(x)|2 + 1
+4 |Φ(x)|4 − C
+2 |Φ(x)|2
+
+dx
+
+,
+
+===== PAGE 2 =====
+
+Notations2
+where C is a (diverging) constant of the formC= 3c 1 −9c 2, where c1 is the expectation
+of |Φ(x)|2 under the free field measure ν (which is of course infinite) and c2 is an
+additional logarithmically divergent constant. The density of T ∗
+ψµ with respect to µ is
+then formally given by
+exp
+
+−
+Z
+T3
+1
+2 |∇ψ(x)|2 + 1
+4 |ψ(x)|4 + Φ(x)∆ψ(x)−Φ(x)ψ 3(x)
+−ψ(x)(Φ 3(x)−CΦ(x)) + ψ2(x)
+2 (3Φ2(x)−C)
+
+dx
+
+,
+Since the terms on the first line are well-defined for smoothψ and one expectsΦ3 −3c 1Φ
+and Φ2 −c 1 to be quite well-behaved, the additional logarithmically divergent terms
+proportional to c2 cause this “density” to diverge, suggesting (correctly) thatµ and T ∗
+ψµ
+are mutually singular.
+There are at least two problems with such an approach. First,Φ3 −3c1Φ does actually
+notdefine a random distribution, whether Ψ is distributed according to µ or to the free
+field ν (which guides the heuristic). This is because if it were, it would have a covariance
+behaving like |x−y| −3 around the diagonal, which is not integrable in dimension 3.
+The second problem is that such an argument suggests that, if µn = exp(−fn)ν for
+some “nice” probability measure ν and functions fn that fail to converge to a “nice”
+limit, then µn fails to converge to a limit µ. This of course is not true: for a suitable
+(diverging) sequence of constants cn, the sequence fn(x)=c n +ncos(nx) is such that
+if ν is Lebesgue measure on [0,1] , then µn converges weakly to Lebesgue measure
+even though the log-densities fn fail to converge. Any proof needs to be based on a
+different approach or to satisfactorily address these problems.
+Acknowledgement
+The proof presented below is a simplified version of an argument that will appear as part of a
+joint publication with Jacopo Peroni. This in turn is based on the article [HKN24].
+3 Notations
+We fix a space-time white noise ξ on R×T 3. We define as the stationary solution to
+the linear equation
+(∂t + 1−∆) =ξ,onR×T 3 .
+(We use the convention that symbols represent random space-time distributions rather
+than elements of a regularity structure.) Starting from this process, we define and
+as its Wick square and cube respectively, which are given by
+= lim
+N→∞
+H2( N , cN ), = lim
+N→∞
+H3( N , cN ),
+where N =P N and cN =E 2
+N (which is constant in space and time). Here, PN
+denotes the projection onto Fourier modes with |k| ≤N and Hn denotes the nth
+
+===== PAGE 3 =====
+
+Solution and Proof3
+Hermite polynomial normalised such that H0 ≡1 , H ′
+n =nH n−1, and EHn(Z,1)= 0
+for a normal random variable Z. The first convergence takes place in the space of
+continuous functions of time with values inC−1−2κ, while the second convergence takes
+place in the space-time parabolic spaceC − 3
+2 −3κ.
+With these notations in place, we define as the stationary solution to
+(∂t + 1−∆) = ,
+and similarly for . For a more comprehensive and pedagogical introduction to the
+general tree-like notation, we refer the reader to [ MWX17]. We also write “ ≺” for
+Bony’s paraproduct (in space) as defined for example in [GIP15, Sec. 2.1] and, given
+a random N-dependent process w, we will sometimes use the physicists shorthand
+notation:w k:instead ofH k(w, cN ).
+4 Solution and Proof
+The statement isfalse. In particular, for any smooth function ψ̸≡0 and any choice of
+the parameters involved in the definition ofµ (mass and coupling constant, provided
+that the latter is non-zero), the measuresµandT ∗
+ψµare mutually singular.
+For notational simplicity, we fix the mass and the coupling constant to1, but this
+has no incidence on the proof. Our main starting point is the following statement, a
+proof of which can be found for example in [ HM18] and [EW24, Lemma 4.19] for
+(4.1), combined with [CC18] for (4.2) (see Ansatz 2.11 there). Throughout this proof,
+κ >0is chosen small enough (κ= 1/100is certainly sufficient).
+Proposition 4.1.There exists a stationary process v that is almost surely continuous in
+time with values inC 1−2κ(Td)and such that the process
+u= − +v ,(4.1)
+is stationary with fixed time distribution equal to µ. Furthermore, the process v is such
+that
+v=−3((v− )≺ ) +v ♯ ,(4.2)
+wherev ♯ is continuous with values inC 1+4κ(Td).
+It was furthermore shown in [HKN24, Lemmas 3.1 & 3.4] (but see [Hai14] for a
+similar result using a slightly different regularisation) that the processes and are
+almost surely continuous in time with values inC − 1
+2 −κ andC
+1
+2 −3κ respectively.
+Before we proceed, we remind some notations and preliminary results. First of all,
+we define the additional diverging constant
+cN,2 :=E[ N N],(4.3)
+
+===== PAGE 4 =====
+
+Solution and Proof4
+where N :=P N and N :=P N . The main ingredient of our proof is the event
+Bγ :=
+n
+u∈ D ′ : lim
+N→∞
+
+(logN) −γ (H3 (PN u;c N) + 9cN,2PN u), ψ
+
+T3 = 0
+o
+,
+which will be used to distinguish between the shifted and the non-shifted measures.
+We will also use the following two technical lemmas whose proofs can be found in
+Section 4.1. These are very similar to [HKN24, Lemma 3.11 and Lemma 3.12].
+Lemma 4.2.Letγ > 1
+2. Then, for any fixedt >0,
+lim
+N→∞
+(logN) −γ:( N)3:(t)= 0
+almost surely inC − 3
+2 (T3)and inL p(Ω;C − 3
+2 (T3))for anyp >0.
+Lemma 4.3.ForNlarge, one hasc N,2 ≳logN.
+The following results are essentially standard, but we recall their statements for
+later reference.
+Lemma 4.4.For any polynomial P , the expression N P( N ) converges almost surely
+to some finite limit inC − 1
+2 −κ.
+Proof. By paralinearisation and standard commutator estimates (see [GIP15, Lems 2.4
+& 2.6]) it suffices to consider the case P(x)=x . This is by now standard, see for
+example [CC18, Sec. 4.4].
+Lemma 4.5.Let v be a process satisfying the decomposition(4.2). Then, the expressions
+: 2
+N: N −3c N,2 N and : 2
+N:vN + 3cN,2(vN − N ) both converge almost surely to finite
+limits inC −1−2κ asN→ ∞.
+Proof. Regarding the first expression, its convergence was essentially for example in
+[CC18, Sec. 4.6]. (The approximation used there is slightly different, but the differences
+are unimportant.) Regarding the second expression, the claim follows from [ CC18,
+Sec. 4.5] (modulo again unimportant changes in the approximation scheme), combined
+with the commutator estimate [GIP15, Lem. 2.4].
+We now turn to the proof of the main claim. For this, we first claim that if u is as in
+(4.1), then, for any fixedt, one has u(t)∈B γ. Indeed, writing uN as a shorthand for
+
+===== PAGE 5 =====
+
+Solution and Proof5
+PN uand expanding the Wick power, we have
+(logN) −γH3 (uN;c N) =(logN) −γH3 (( N − N +v N) ;cN)
+=(logN) −γ
+3X
+i=0
+3
+i
+
+:( N)i: (− N +v N)3−i
+=(logN) −γ
+3X
+i=0
+3−iX
+j=0
+3
+i
+3−i
+j
+
+:( N)i: (− N)j (vN)3−i−j
+=(logN) −γ: 3
+N:−3(logN) −γ: 2
+N: N + 3(logN) −γ: 2
+N:v N
++(logN) −γ
+X
+0≤i+j≤3
+(i,j)̸=(3,0),(2,1),(2,0)
+3
+i
+3−i
+j
+
+:( N)i: (− N)j (vN)3−i−j .
+The first term (logN) −γ: 3
+N: and the terms present in the last sum all converge to 0 by
+Lemma 4.2 (given that γ > 1
+2), standard product estimates (e.g. [Bon81, Theorem 2.5]
+or [MWX17, Proposition 2.3]) and Lemma 4.4.
+It therefore remains to show that −: 2
+N: N + : 2
+N:vN + 3cN,2uN also converges to
+zero almost surely in the sense of distributions. We rewrite this term as
+: 2
+N:vN + 3cN,2(vN − N )−(: 2
+N: N −3c N,2 N).
+By Lemma 4.5 we know that this expression converges to an element ofC−1−2κ(Td),
+whence we conclude that
+⟨(logN) −γ 
+−: 2
+N: N + : 2
+N:vN + 3cN,2uN
+
+, ψ⟩
+N→∞
+− − − →0
+almost surely, thus proving thatµ(B γ)= 1.
+In order to conclude the proof, it suffices to show that u+ψ̸∈B γ. For this, we
+expand similarly to before the expression appearing in this event as
+(logN) −γH3 ((uN +ψ N) ;cN) +(logN) −γ9cN,2 (uN +ψ N)
+=(logN) −γ
+3X
+i=0
+3
+i
+
+:(uN)i: (ψN)3−i +(logN) −γ9cN,2 (uN +ψ N)
+=(logN) −γ:(uN)3: +(logN) −γ9cN,2uN
++ 3(logN) −γ:(uN)2: (ψN) + 3(logN) −γ (uN) (ψN)2
++(logN) −γ (ψN)3 +(logN) −γ9cN,2ψN .
+The sum of the first two terms was just shown to converge to 0 almost surely in
+C− 3
+2 −3κ(Td)forN→ ∞.
+Since :u2
+N: and uN both converge to finite distributional limits almost surely by
+Lemma 4.4, the next three terms also converge to0almost surely.
+
+===== PAGE 6 =====
+
+Solution and Proof6
+Concerning the last element however, we know from Lemma 4.3 that
+(logN) −γ cN,2 ≳(logN) −γ+1 .
+Since the contribution of this term to the expression in the eventB γ is given by
+9 (logN) −γ cN,2⟨ψN , ψ⟩,
+and since ⟨ψN , ψ⟩ → ∥ψ∥ 2 >0 , this diverges, whence we conclude that u+ψ̸∈B γ
+and therefore(T ∗
+ψµ)(Bγ)= 0, so thatT ∗
+ψµandµare mutually singular.
+4.1 Proof of the lemmas
+Proof of Lemma 4.2. We use the embedding W β,2p ,→W β− d
+2p ,∞ ,→ C β− d
+2p , with
+β=− d
+2. Using the definition of W β,2p norm and the equivalence of moments for
+Gaussian polynomials, one has
+E
+
+
+
+(logN) −γ:( N)J:
+
+
+
+
+2p
+W − 3
+2 ,2p
+
+≲
+Z
+Td
+E
+
+(logN) −2γ
+⟨∇⟩− 3
+2 :( N)3:
+
+2p
+dx .
+Since one has
+E
+
+(logN) −2γ
+⟨∇⟩− 3
+2 :( N)3:
+
+2
+≲(logN) −2γ
+X
+|ωi|≤N
+⟨ω1 +· · ·+ω 3⟩−3
+3Y
+i=1
+⟨ωi⟩−2
+≲(logN) −2γ
+NX
+r1=0
+r2
+1
+(1 +r 2
+1)
+5
+2
+r2
+1 ≲(logN) −2γ+1 ,
+the desired result follows from a standard Borel–Cantelli argument.
+Next, we prove Lemma 4.3, which provides a lower bound on the parameterγ. This
+bound ensures that the event Aγ (or Bγ) is distinguishable under the shifted measure
+when compared to the non-shifted one.
+Proof of Lemma 4.3.Expanding the definition ofc N,2 :=E[ N N], we get
+cN,2 = 2
+X
+ω1+ω2=ω3
+|ωi|≤N
+Z
+R
+ˆPt−u(ω3)
+Z
+R
+ˆPt−u1(ω1) ˆPu−u1(−ω1)du1
+×
+Z
+R
+ˆPt−u2(ω2) ˆPu−u2(−ω2)du2du
+≃
+X
+ω1+ω2=ω3
+|ωi|≤N
+Z
+R
+e−|t−u|⟨ω3⟩2 e−|t−u|⟨ω1⟩2
+⟨ω1⟩2
+e−|t−u|⟨ω2⟩2
+⟨ω2⟩2 du
+≳
+X
+|ωi|≤N
+1
+⟨ω1⟩2
+1
+⟨ω2⟩2
+1
+⟨ω1⟩2 +⟨ω 2⟩2 +⟨ω 1 +ω 2⟩2
+
+===== PAGE 7 =====
+
+Solution and Proof7
+≳
+X
+|ωi|≤N
+1
+1 +|ω 1|2
+1
+1 +|ω 2|2
+1
+1 +|ω 1|2 ∨ |ω2|2
+≳
+X
+|ω1|≤|ω2|≤N
+1
+1 +|ω 1|2
+1
+1 +|ω 2|4 .
+Bounding the sum by an integral, we finally conclude that this expression is bounded
+from below by a multiple of
+Z N
+0
+r2
+1 +r 2
+Z ∞
+r
+s2
+1 +s 4 ds dr≳
+Z N
+0
+1
+1 +r 2 dr≃logN ,
+as claimed.
+References
+[Bon81] Jean-Michel Bony. Calcul symbolique et propagation des singularit ´es pour les
+´equations aux d ´eriv´ees partielles non lin ´eaires.Ann. Sci. ´Ecole Norm. Sup. (4),
+14(2):209–246, 1981.
+[CC18] R´emi Catellier and Khalil Chouk. Paracontrolled distributions and the 3-dimensional
+stochastic quantization equation.Ann. Probab., 46(5):2621–2679, 2018.
+[EW24] Salvador Esquivel and Hendrik Weber. A priori bounds for the dynamic fractional
+ϕ4 model onT 3 in the full subcritical regime.arXiv preprint, 2024.
+[GIP15] Massimiliano Gubinelli, Peter Imkeller, and Nicolas Perkowski. Paracontrolled
+distributions and singular PDEs.Forum Math. Pi, 3:e6, 75pp, 2015.
+[Gli68] James Glimm. Boson fields with the :Φ4: interaction in three dimensions.Comm.
+Math. Phys., 10(1):1–47, 1968.
+[Hai14] Martin Hairer. A theory of regularity structures.Invent. Math., 198(2):269–504,
+2014.
+[HKN24] Martin Hairer, Seiichiro Kusuoka, and Hirotatsu Nagoji. Singularity of solutions to
+singular SPDEs.arXiv preprint, 2024.
+[HM18] Martin Hairer and Konstantin Matetski. Discretisations of rough stochastic PDEs.
+Ann. Probab., 46(3):1651–1709, 2018.
+[MWX17] Jean-Christophe Mourrat, Hendrik Weber, and Weijun Xu. Construction of Φ4
+3
+diagrams for pedestrians. InFrom particle systems to partial differential equations,
+volume 209 ofSpringer Proc. Math. Stat., pages 1–46. Springer, Cham, 2017.

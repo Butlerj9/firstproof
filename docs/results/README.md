@@ -11,6 +11,10 @@ This section indexes the principal outcome artifacts for the portfolio.
 - `docs/results/post_mortem_2026-02-14.md`: extended forensic post-mortem with lane-level sign-conflict analysis, retry/logging forensics, ROI/debt estimates, and systems-level improvement paths.
 - `docs/results/workflow_adjustment_impact_2026-02-14.md`: estimated accuracy impact of workflow adjustments, divergence/convergence analysis, premise-safe counterfactuals, closure-cost/throughput economics, and domain-normalized multiplier tables.
 
+Adjudication note:
+
+- `P06` is currently tracked as `DISPUTED_QUANTIFIER_FORM`; scorecards are reported as bands pending official ruling.
+
 ## Problem-Level Artifacts
 
 - `PXX/answer.md`: formal claim/proof/counterexample/conjecture statement.

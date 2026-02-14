@@ -1,8 +1,8 @@
 # Post-Mortem: First Proof Sprint — Root Cause Analysis
 
 **Date**: 2026-02-14
-**Scope**: All 10 problems (P01–P10), with deep focus on the 4 sign conflicts
-**Alignment score**: 47.5% risk-adjusted (3A + 1B + 2C + 4F)
+**Scope**: All 10 problems (P01–P10), with deep focus on confirmed sign conflicts and the P06 quantifier dispute
+**Alignment score band**: 47.5%-57.5% risk-adjusted (pending P06 adjudication)
 
 ---
 
@@ -12,9 +12,10 @@ Of 10 research-level mathematics problems attempted in a ~4-day sprint:
 - **3 correct** (P02, P09, P10) — all theorem-level aligned with external solutions
 - **1 directionally correct** (P05) — same characterization, internal documentation issues
 - **2 partial** (P03, P04) — correct answer (YES) but proved only for small n; external solutions prove all n
-- **4 wrong sign** (P01, P06, P07, P08) — repo answer is the OPPOSITE of the external solution
+- **3 confirmed wrong sign** (P01, P07, P08) — repo answer is opposite the external solution
+- **1 disputed quantifier-form lane** (`P06`) — requires formal adjudication
 
-The 4 sign conflicts represent the most serious failures. This document traces each to root causes across model capability, agent design, tooling, orchestration, workflow, and time constraints.
+The confirmed sign conflicts and the disputed P06 lane represent the most serious failures. This document traces each to root causes across model capability, agent design, tooling, orchestration, workflow, and time constraints.
 
 ---
 
@@ -55,7 +56,7 @@ The 4 sign conflicts represent the most serious failures. This document traces e
 
 **Root causes — NOTE: This case may be a false positive in the comparison**:
 
-The external comparison document classifies this as a "Critical Mismatch." However, careful analysis reveals that Spielman's bound |S| >= alpha*n/42 does NOT give a universal constant c independent of alpha. As alpha -> 0, the guaranteed set size also -> 0. Our K_n counterexample shows: for K_n at alpha = c/2, max alpha-light = floor(cn/2) < cn. This is numerically consistent with Spielman's bound (cn/84 < cn/2) — there is no contradiction between the two results.
+Earlier comparison drafts treated this as a critical mismatch. Current adjudication tracking is `DISPUTED_QUANTIFIER_FORM` pending formal quantifier ruling. The key issue is that Spielman's bound |S| >= alpha*n/42 does NOT give a universal constant c independent of alpha. As alpha -> 0, the guaranteed set size also -> 0. Our K_n counterexample shows: for K_n at alpha = c/2, max alpha-light = floor(cn/2) < cn. This is numerically consistent with Spielman's bound (cn/84 < cn/2) — there is no contradiction between the two results.
 
 **Possible resolutions**:
 - **Quantifier interpretation difference**: If "constant c" is meant to be universal over both G AND alpha, our answer (NO) appears correct. If c is allowed to depend on alpha (c = alpha/42), Spielman's answer (YES) is correct. The problem statement's quantifier structure (exists c, forall G, forall alpha) supports our reading.
@@ -267,7 +268,7 @@ P04 and P03 jointly consumed the largest share of effort and ended as partial-vs
 
 The model producing wrong mathematical reasoning is expected behavior. LLMs generate plausible-but-wrong proofs routinely. That's why the agent architecture (gates, reviews, escalation) and the human operator exist: to be the CHECK on the model. When neither the agent nor the operator pushed back, the errors went straight to submission.
 
-1. **Agent design** (35%): The agent's job is to be skeptical of the model's output, and it failed at this core function across all 4 sign-conflict problems:
+1. **Agent design** (35%): The agent's job is to be skeptical of the model's output, and it failed at this core function across the confirmed sign-conflict lanes (and in dispute-handling for P06):
    - **No opposition pass**: The agent never required the model to seriously attempt the opposite direction before committing. In P01, after 7 failed YES approaches, the agent should have FORCED a NO exploration. It didn't.
    - **Self-review accepted without challenge**: In P01 and P07, the agent ran self-review (Claude reviewing Claude) instead of demanding external adversarial review. Self-review consistently rubber-stamped the model's reasoning.
    - **No "trivial problem" sanity check**: In P08, the agent accepted a counterexample that would make a competition problem trivially solvable. The agent should have flagged: "If this is correct, why would an expert symplectic topologist pose it?"
@@ -559,7 +560,7 @@ Accordingly, the highest-ROI strategy is: deploy Package A immediately, Package 
 
 ## Part XII: Minimum Viable Operator Review
 
-A careful operator review — requiring no deep mathematical expertise — would have caught 3 of 4 sign conflicts in approximately 30 minutes total.
+A careful operator review — requiring no deep mathematical expertise — would have caught all 3 confirmed sign conflicts and correctly flagged P06 as disputed in approximately 30 minutes total.
 
 ### The protocol (per submitted problem)
 
@@ -575,9 +576,9 @@ A careful operator review — requiring no deep mathematical expertise — would
 | P07 | Agent flagged "surgery gap" in G6, then "closed" it with same flawed argument. Ask: "You flagged this gap, then closed it with no new evidence — show me the actual construction." | YES — forces honest downgrade or real fix | 5 min |
 | P08 | Problem authored by Abouzaid (Fields-adjacent symplectologist). Ask: "Would a world expert pose a question whose answer is a 3-step argument using only Gromov 1985?" | YES — triggers deeper investigation | 5 min |
 | P01 | 7 failed approaches before "breakthrough" on attempt 8. Ask: "7 failures followed by a breakthrough — is the breakthrough real or did we lower our standards?" | LIKELY — reviewing BG extension requires some effort, but the pattern is a red flag | 10 min |
-| P06 | Genuinely disputed quantifier interpretation. Operator review would be inconclusive — which is correct (should stay Candidate, not Submitted). | AMBIGUOUS — correct outcome is to flag, not resolve | 5 min |
+| P06 | Genuinely disputed quantifier interpretation. Operator review would be inconclusive — which is correct (should stay disputed, not settled). | AMBIGUOUS — correct outcome is to flag, not resolve | 5 min |
 
-**Result**: 3 of 4 sign conflicts caught or flagged, ~25-30 minutes total. The review doesn't require the operator to do math — only to ask skeptical questions about the agent's own process.
+**Result**: 3 confirmed sign conflicts caught plus P06 flagged, ~25-30 minutes total. The review doesn't require the operator to do math — only to ask skeptical questions about the agent's own process.
 
 ---
 
@@ -681,7 +682,7 @@ The warm-start lemma database is the single highest-ROI intervention:
 
 ## Part XV: Executive Synthesis — Review, Tooling, and Compensation Capacity
 
-A disciplined operator review could likely have corrected 2-3 of the 4 sign-conflict lanes before submission (P07, P08, and likely P01; P06 remains quantifier-disputed).
+A disciplined operator review could likely have corrected 2-3 confirmed sign-conflict lanes before submission (P07, P08, and likely P01; P06 remains quantifier-disputed).
 
 Practical effect of stronger controls:
 

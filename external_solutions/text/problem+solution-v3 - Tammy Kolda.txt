@@ -1,0 +1,331 @@
+
+
+===== PAGE 1 =====
+
+Iterative Solution of Structured Problem
+Tamara G. Kolda
+February 3, 2026
+1 Problem
+Given a d-way tensor T ∈ Rn1×n2×···×nd such that the data is unaligned (meaning the tensor
+T has missing entries), we consider the problem of computing a CP decomposition of rank r
+where some modes are infinite-dimensional and constrained to be in a Reproducing Kernel
+Hilbert Space (RKHS). We want to solve this using an alternating optimization approach,
+and our question is focused on the mode- k subproblem for an infinite-dimensional mode.
+For the subproblem, then CP factor matrices A1, . . . , Ak−1, Ak+1, . . . , Ad are fixed, and we
+are solving for Ak.
+Our notation is as follows. Let N =Q
+i ni denote the product of all sizes. Let n ≡ nk be
+the size of mode k, let M =Q
+i̸=k ni be the product of all dimensions except k, and assume
+n ≪ M. Since the data are unaligned, this means only a subset of T ’s entries are observed,
+and we let q ≪ N denote the number of observed entries. We let T ∈ Rn×M denote the
+mode-k unfolding of the tensor T with all missing entries set to zero. The vec operations
+creates a vector from a matrix by stacking its columns, and we let S ∈ RN ×q denote the
+selection matrix (a subset of the N × N identity matrix) such that ST vec(T ) selects the
+q known entries of the tensor T from the vectorization of its mode- k unfolding. We let
+Z = Ad ⊙ · · · ⊙ Ak+1 ⊙ Ak−1 ⊙ · · · ⊙ A1 ∈ RM ×r be the Khatri-Rao product of the factor
+matrices corresponding to all modes except mode k. We let B = T Z denote the MTTKRP
+of the tensor T and Khatri-Rao product Z.
+We assume Ak = KW where K ∈ Rn×n denotes the psd RKHS kernel matrix for mode
+k. The matrix W of size n × r is the unknown for which we must solve. The system to be
+solved is 
+(Z ⊗ K)T SS T (Z ⊗ K) + λ(Ir ⊗ K)
+
+vec(W ) = (Ir ⊗ K) vec(B). (1)
+Here, Ir denotes the r × r identity matrix. This is a system of size nr × nr Using a standard
+linear solver costs O(n3r3), and explicitly forming the matrix is an additional expense.
+Explain how an iterative preconditioned conjugate gradient linear solver can be used
+to solve this problem more efficiently. Explain the method and choice of preconditioner.
+Explain in detail how the matrix-vector products are computed and why this works. Provide
+complexity analysis. We assume n, r < q ≪ N. Avoid any computation of order N.
+2 Context
+This is an optimization problem that arises in fitting a canonical tensor decomposition to
+real-world data. Such techniques are often used for data exploration, finding correlations
+1
+
+===== PAGE 2 =====
+
+among data elements (e.g., co-occurring gene expression), and data compression. The spe-
+cific problem here is fitting a relatively novel version of tensor decomposition that allows
+some modes to be infinite-dimensional from a Reproducing Kernel Hilbert Space (RKHS);
+in other words, the decomposition is in terms of functions rather than vectors. The opti-
+mization problem reduces to a structured regression problem, and the goal of the question
+is to find an efficient iterative method to solve it.
+3 Potential of Contamination
+The work on this project began long before the “1st Proof” project was conceived. As a
+result, it has and is using various online systems that may have fed our data to AI models.
+We don’t think this is the case, but the possibility exists. Specifically, the paper was written
+using Overleaf (thought not using their AI tools), various GitHub repositories contain the
+codes, and one author uses GitHub copilot for various tasks, mostly inline completion.
+4 Solution Notes
+What follows is a specific solution. As this is an open-ended question, there is the potential
+for many other possible solution. In particular, a relatively efficient solution is still possible
+without transforming the problem. There are a couple things to look for. . .
+1. Is the problem reasonably and correctly transformed using the eigendecomposition of
+the kernel matrix in a way that leads to good preconditioning? (This is very advanced,
+and I would be impressed if the AI can do this.)
+2. Does the solution include an explanation of how to do matrix-vector products effi-
+ciently? (This is relatively standard, and I think the AI should be able to solve this.)
+3. Does the method create any objects of size Q
+k nk orQ
+i̸=k ni? (This is bad because
+it would be even more expensive than the “standard solver” approach.)
+4. Does it propose a reasonable preconditioner? (There are a lot of options here, depend-
+ing on whether or not a transformation is used. The main criteria is that it must be
+easy to solve.)
+2
+
+===== PAGE 3 =====
+
+Solution Source:
+Johannes Brust and Tamara G. Kolda,
+Fast and Accurate CP-HIFI Solution (tentative title), 2025.
+We consider several approaches for solving Eq. (1) in the remainder of this section. We
+present a direct method for the symmetric linear system in Section 4.1, using an additional
+regularization term. In Section 4.2, we present a transformation of the symmetric system
+based on the eigendecomposition of K. In Section 4.4, we present an iterative method based
+on the transformed symmetric system, adding some regularization akin to the symmetric
+direct method. In Table 1 and Section 4.5, we provide an accounting of the costs and
+comparison of direct and iterative methods.
+4.1 Direct Solution of UI Subproblem (Symmetric Form)
+Equation (1) is an indefinite symmetric linear system of size rn × rn. Since it is indefinite,
+we add a regularization term parameterized by ρ > 0 to ensure positive definiteness. The
+modified system is
+[F T F + λ(Ir ⊗ K) + ρIrn] vec(W ) = vec(KB), (2)
+where F = ST (Z ⊗ U D). Observe that we have pulled K inside the vectorization on the
+right-hand side.
+To compute F , we want to avoid forming the N ×nr Kronecker product Z ⊗K explicitly.
+Instead, we create two special matrices: ˆK ∈ Rq×n and ˆZ ∈ Rq×r. Each index ℓ ∈ [q]
+corresponds to a known entry index that we denote as ( i(ℓ)
+1 , i(ℓ)
+2 , . . . , i(ℓ)
+d ) ∈ Ω. Then, for
+each ℓ ∈ [q], we let
+ˆZ(ℓ, :) =
+
+Ad(i(ℓ)
+d , :) ∗ · · · ∗ Ak+1(i(ℓ)
+k+1, :) ∗ Ak−1(i(ℓ)
+k−1, :) ∗ · · · ∗ A1(i(ℓ)
+1 , :)
+T
+, and (3)
+ˆK(ℓ, :) = K(i(ℓ)
+k , :). (4)
+Here, ∗ represents elementwise multiplication. In other words, ˆZ and ˆK represent the subset
+of rows of Z and K, respectively, that corresponds to the known entries of T . Then, row ℓ
+of F is given by
+F (ℓ, :) = ˆZ(ℓ, :) ⊗ ˆK(ℓ, :). (5)
+4.2 Transforming the UI Subproblem
+we can exploit a factorization of K to transform Eq. (1) into an equivalent but potentially
+better conditioned system. Assuming we have the eigendecomposition K = U DUT , we can
+rewrite Eq. (1) by factoring out ( Ir ⊗ U) to obtain
+[(Z ⊗ U D)T S| {z }
+¯F T
+ST (Z ⊗ U D)| {z }
+¯F
++λ(Ir ⊗ D)] vec(U T W|{z}
+¯W
+) = vec(DU T B| {z }
+¯B
+). (6)
+Now we have a transformed system in the variable ¯W = U T W , and we can solve for W via
+W = U ¯W after solving the system. Note that we cannot pull D into the definition of ¯W
+because it is indefinite. We define ¯F := ST (Z ⊗ U D) ∈ Rq×rn, which is analogous to F
+with K replaced by U D. We define ¯B := DU T B ∈ Rn×r. Adding a regularization term as
+before, we obtain the modified system
+[ ¯F T ¯F + λ(Ir ⊗ D) + ρ Irn] vec( ¯W ) = vec( ¯B). (7)
+3
+
+===== PAGE 4 =====
+
+4.3 Key Lemmas for PCG Solution of UI Subproblem
+Before we continue to the details of solving Eq. (7) via PCG, we present some key lemmas
+about working with matrices where each row is a Kronecker product of rows of two other
+matrices. These lemmas are important for efficiently computing the matrix-vector products
+and a preconditioner needed for PCG. We state these generically here so they can be reused
+in other contexts.
+Let A ∈ Rq×r and B ∈ Rq×n. Define the q × rn matrix C row-wise as
+C(ℓ, :) = A(ℓ, :) ⊗ B(ℓ, :), for ℓ = 1, . . . , q. (8)
+Recall that for the Kronecker product of an n-vector and an r-vector or the vectorization
+of an n × r matrix, there is a correspondence between k ∈ [rn] and the pair ( i, j) with
+i ∈ [n] and j ∈ [r] such that k = i + (j − 1)n. For the Kronecker product means, this means
+Cℓk = BℓiAℓj. For a vectorized matrix, we have (vec( X))k = Xij.
+Lemma 1 shows how to compute the matrix-vector product Cx efficiently. This would
+normally cost O(qrn) if we formed C explicitly. However, using the structure of C, we can
+compute it using only O(q(r + n)) operations. Moreover, we avoid forming C explicitly,
+which reduces the memory from O(qrn) to O(q(r + n)).
+Lemma 1. Given the setup in Eq. (8), let X ∈ Rn×r be a matrix and define x = vec(X).
+Then we have
+Cx = (A ∗ BX)1r.
+Here 1r denotes the r-vector of all ones.
+Proof. For all ℓ = 1, . . . , q we have
+(Cx)ℓ =
+rnX
+k=1
+Cℓkxk =
+nX
+j=1
+nX
+i=1
+BℓiXijAℓj =
+rX
+j=1
+(BX)ℓjAℓj.
+Lemma 2 shows how to compute the matrix-vector product C T v without forming C
+explicitly. The cost is unchanged at O(qrn), but the memory is reduced from O(qrn) to
+O(q(r + n)).
+Lemma 2. Given the setup in Eq. (8), let v ∈ Rq. Then we have
+C T v = vec(BT diag(v) A).
+Proof. Define k = i + (j − 1)n for i = 1, . . . , n and j = 1, . . . , r. Then, we have
+(C T v)k =
+qX
+ℓ=1
+Cℓkvℓ =
+qX
+ℓ=1
+BℓiAℓjvℓ = (BT diag(v) A)ij. =
+ 
+vec(BT diag(v) A)
+
+k .
+Lemma 3 shows how to compute the diagonal of C T C efficiently. We reduce the compu-
+tation from O(qr2n2) to O(q(r2+n2)) operations. And, again, we avoid forming C explicitly,
+which reduces the memory from O(qrn) to O(q(r + n)).
+Lemma 3. Given the setup in Eq. (8). Then
+diag(C T C) = vec
+ 
+(B ∗ B)T (A ∗ A)
+
+.
+4
+
+===== PAGE 5 =====
+
+Proof. Define k = i + (j − 1)n for i = 1, . . . , n and j = 1, . . . , r. Then, we have
+(C T C)kk =
+qX
+ℓ=1
+C2
+ℓk =
+qX
+ℓ=1
+B2
+ℓiA2
+ℓj
+=
+
+(B ∗ B)T (A ∗ A)
+
+ij =
+
+vec
+ 
+(B ∗ B)T (A ∗ A)
+
+k .
+We apply these results in the next section.
+4.4 PCG Solution of Transformed UI Subproblem
+We can form ¯F similarly to how we formed F . We define H = U D ∈ Rn×n and ˆH ∈ Rq×n
+such that ˆH(ℓ, :) = H(i(ℓ)
+k , :) for each ℓ ∈ [q]. Then, for each ℓ ∈ [q], we let
+¯F (ℓ, :) = ˆZ(ℓ, :) ⊗ ˆH(ℓ, :). (9)
+Let x ∈ Rrn be an arbitrary vector, and let X ∈ Rn×r be its matrix representation
+so that vec( X) = x. From Lemmas 1 and 2 in Section 4.3, we can compute ¯F T ¯F x as
+vec
+
+ˆH T diag
+
+( ˆZ ∗ ˆHX )1r
+
+ˆZ
+
+.
+Then, we can compute the matrix-vector products for the conjugate gradient iterations
+without forming any Kronecker products using
+  ¯F T ¯F + λ(Ir ⊗ D) + ρ Irn
+
+x = vec
+
+ˆH T diag
+
+( ˆZ ∗ ˆHX )1r
+
+ˆZ + λDX + ρX
+
+. (10)
+We propose a diagonal preconditioner of the form
+¯D = diag(diag( ¯F T ¯F )) + λ(Ir ⊗ D) + ρ Irn.
+Observe that ¯d := diag( ¯D) is easy to compute since
+¯d = diag(diag(diag( ¯F T ¯F )) + λ(Ir ⊗ D) + ρ Irn)
+= diag( ¯F T ¯F ) + λ(1r ⊗ diag(D)) + ρ 1rn
+= vec(( ˆH ∗ ˆH)T ( ˆZ ∗ ˆZ)) + λ(1r ⊗ diag(D)) + ρ 1rn
+(11)
+The last step comes from Lemma 3 in Section 4.3.
+4.5 Comparison of Costs
+A comparison of the direct solution of the original symmetric problem Eq. (2) and PCG
+iterative solutions of the transformed problem Eq. (7) are shown in Table 1. For PCG, we
+let p denote the number of iterations needed for convergence. Recall that d is the order
+of the tensor, n is the size of mode k, r is the target rank, and q is the number of known
+entries. In general, we do not make assumptions about the relative sizes of n and r. We do
+assume, however, that d < n, r ≪ q. Because we are working with an incomplete tensors,
+the MTTKRP is relatively cheap and never dominates the cost.
+F actorizing the kernel matrix K for the transformed system The eigendecompo-
+sition of K costs O(n3) flops. We stress once again that this is only done one time before
+the outermost alternating optimization iterations begin. In the methods we compare here,
+this is needed only for the PCG iterative method.
+5
+
+===== PAGE 6 =====
+
+Table 1: Comparison of costs to solve the mode-k unaligned infinite-dimensional subproblem
+Eq. (1) of size nr × nr where n is the size of mode k and r is the target tensor decomposition
+rank. The variable q is the number of known entries in the observed tensor T . For the PCG
+iterative method, p is the number of iterations.
+Description Direct Symmetric PCG Iterative
+Factorize K = U DUT one-time cost! — O(n3)
+Compute ˆZ and MTTKRP B := T Z O(qrd) O(qrd)
+Form F (and G) or H O(qrn) O(n2)
+Form matrix for linear solve O(qr2n2) —
+Form right-hand side O(n2r) O(n2r)
+Form Preconditioner ( ¯d) — O(qn2 + qr2)
+Solve system O(r3n3) O(pnqr)
+Recover W — O(n2r)
+Total Cost O(qn2r2 + n3r3) O(qn2 + qr2 + qnrp)
+Storage O(qnr + r2n2) O(qn + qr)
+Shared costs of all methods The q × r matrix ˆZ defined in Eq. (3) is used by both
+methods. Likewise, the n × r MTTKRP B = T Z is used by all methods. The cost to
+compute ˆZ is O(qrd), Computing B is an MTTKRP with an incomplete tensor (Ballard
+and Kolda, Tensor Decompositions for Data Science, Cambridge University Press, 2025 with
+PDF available freely online). This would normally cost O(qrd) operations, but we can use
+ˆZ to reduce the cost to O(qr) operations.
+Direct solve of symmetric regularized system We first analyze the cost to form and
+solve the system as discussed in Section 4.1. We have to explicitly form F to form the
+system in Eq. (2). The cost to compute the q × rn matrix F is O(qrn) and requires O(qrn)
+storage. Forming the rn × rn matrix F ′F + λ(Ir ⊗ K) + ρ Irn is dominated by the cost
+to compute F ′F , which costs O(qr2n2) operations. We also have to compute the right-
+hand side vec(KB), which costs O(n2r) operations. Finally, using a direct method such as
+Cholesky to solve the system costs O((rn)3) operations. The storage is either dominated
+by storing F or the system matrix, which is O(rnq + r2n2).
+PCG iterative solve of transformed system We now analyze the cost of using PCG
+to solve the transformed system Eq. (7) as discussed in Section 4.4. The right hand side
+vec( ¯B) = vec( DU T B) can be computed at a cost of O(n2r) operations. We first have to
+compute the n × n matrix H := U D, which costs O(n2) operations. Forming the diagonal
+preconditioner, the rn-vector ¯d in Eq. (11), costs O(qn2 + qr2) operations. We never form
+¯F explicitly, which saves both computation and storage. Each matrix vector product is
+computed as in Eq. (10) at a cost of O(qnr) operations. Each preconditioner application
+costs O(rn) operations. Assuming that PCG converges in p iterations, the total cost for
+the PCG iterations is O(pqnr) operations. Finally, after solving for ¯W , we have to recover
+W = U ¯W , which costs O(n2r) operations. The storage needed for PCG is dominated by
+storing ˆZ and ˆH, which is O(qn + qr).
+6
+
+===== PAGE 7 =====
+
+Summary and Comparison The direct method is cubic in the size of the unknown
+matrix W . In contrast, the PCG iterative method has a cost that is orders of magnitude
+lower, depending on the number of iterations p needed for convergence and the relative sizes
+of n, r, and p. In general, we expect the problem to be well conditioned so that p is not
+too large. The PCG method also has significantly lower storage requirements. Assuming
+r < n < rn < q , we have qrn storage for the direct methods versus qn storage for PCG.
+7

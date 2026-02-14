@@ -11,6 +11,15 @@ Canonical operational artifacts remain at repository root unless explicitly migr
 - [`tools/gpt-pro-final/README.md`](../tools/gpt-pro-final/README.md): GPT-pro package index (prompts, lane packets, transcripts).
 - [`tools/claude-research-final/README.md`](../tools/claude-research-final/README.md): Claude Research package index (prompts, lane packets, transcripts).
 
+## Interpretation Policy
+
+Use both views together:
+
+1. Internal sprint outcomes (what the run produced): `README.md`, `RESULTS.md`.
+2. External expected-vs-actual adjudication (what aligned): `docs/results/solution_comparison_2026-02-14.md` and `docs/results/solution_comparison_full_audit_2026-02-14.md`.
+
+Where they differ, adjudication documents take precedence for alignment reporting.
+
 ## Citation and Attribution
 
 - `CITATION.cff` and `CITATION.bib`: preferred citation metadata.

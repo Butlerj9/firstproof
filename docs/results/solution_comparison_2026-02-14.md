@@ -25,7 +25,7 @@ Extraction notes:
 | P03 | `external_solutions/text_clean/ShortSolution_probabilistic_model_interpolation_polynomials - Lauren Williams.txt` | "answer ... yes" (`:31`), theorem (`:106`) |
 | P04 | `external_solutions/text_clean/proofofstam - Nikhil Srivastava.txt` | finite free Stam theorem (`:9`) |
 | P05 | `external_solutions/text_clean/main - Andrew J. Blumberg.txt` | O-slice connectivity characterization (`:156`, `:287`) |
-| P06 | `external_solutions/text_clean/lightSet - Dan Spielman.txt` | epsilon-light existence with constant 1/42 (`:19-20`) |
+| P06 | `external_solutions/text_clean/lightSet - Dan Spielman.txt` | epsilon-light existence with alpha-scaled bound (`:19-20`) |
 | P07 | `external_solutions/text_clean/Submission-Weinberger.txt` | "no compact closed manifold ... rationally acyclic"; extends to 2-torsion (`:5`) |
 | P08 | `external_solutions/text_clean/Abouzaid-solution.txt` | smoothing proposition is affirmative (`:19-20`) |
 | P09 | `external_solutions/text_clean/answer-kileel-with-acknowledgements.txt` | "Yes ... relations do exist" (`:31`) |
@@ -40,7 +40,7 @@ Extraction notes:
 | P03 | YES (full theorem) | Candidate; partial closure (`P03/answer.md:3`) | **Partial** | Repo leaves `n >= 5` unresolved. |
 | P04 | YES (finite free Stam theorem) | Submitted up to `n=4`, `n>=5` conjectured (`P04/answer.md:3-4`) | **Partial** | Repo does not claim full general-`n` closure. |
 | P05 | Characterization proved | Submitted, full biconditional claim (`P05/answer.md:3`) | **Likely Match** | Scope appears aligned; statement-level cross-check recommended. |
-| P06 | YES (constant exists, `>= eps n / 42`) | NO (`P06/answer.md:4`) | **Mismatch (Critical)** | Direct sign conflict. |
+| P06 | YES packet claim (alpha-scaled lower bound) | NO (`P06/answer.md:4`) | **Disputed (Quantifier Form)** | External packet appears to address `c(alpha)` form; repo addresses universal `c` independent of `alpha`. |
 | P07 | NO (impossibility with 2-torsion) | YES (`P07/answer.md:4`) | **Mismatch (Critical)** | Direct sign conflict. |
 | P08 | YES (smoothing exists under 4-face condition) | NO (`P08/answer.md:4`) | **Mismatch (Critical)** | Direct sign conflict. |
 | P09 | YES (polynomial relations exist) | YES (`P09/answer.md:3`) | **Match** | Strong thematic alignment. |
@@ -64,14 +64,21 @@ The comments packet includes question-by-question notes on pre-release AI attemp
 
 Relative to this repository:
 
-1. The strongest risk concentration is the four binary-sign conflicts at P01, P06, P07, P08.
-2. P03 and P04 remain partial relative to the externally provided full-solution packets.
-3. P02, P05, P09, P10 are directionally consistent at the statement level.
+1. The strongest confirmed risk concentration is the three binary-sign conflicts at P01, P07, P08.
+2. P06 is currently a formal quantifier-form dispute, not a settled contradiction.
+3. P03 and P04 remain partial relative to the externally provided full-solution packets.
+4. P02, P05, P09, P10 are directionally consistent at the statement level.
+
+## Score Snapshot (pending P06 adjudication)
+
+1. Strict theorem-level alignment band: `30%-40%` (`3/10` to `4/10`).
+2. Directional alignment band: `60%-70%` (`6/10` to `7/10`).
+3. Risk-adjusted alignment band: `47.5%-57.5%` (neutral midpoint `52.5%`).
 
 ## Recommended Reconciliation Actions
 
-1. Re-open P01, P06, P07, and P08 for immediate re-audit against the extracted external proofs.
-2. Reclassify P03 and P04 as "partial vs external full proof" until generalized closure is reconciled.
-3. Perform theorem-by-theorem statement matching on P02, P05, P09, P10 before treating them as fully aligned.
-4. Add this report to main docs navigation if desired.
-
+1. Re-open P01, P07, and P08 for immediate re-audit against the extracted external proofs.
+2. Run formal quantifier adjudication for P06 (`DISPUTED_QUANTIFIER_FORM`).
+3. Reclassify P03 and P04 as "partial vs external full proof" until generalized closure is reconciled.
+4. Perform theorem-by-theorem statement matching on P02, P05, P09, P10 before treating them as fully aligned.
+5. Add this report to main docs navigation if desired.

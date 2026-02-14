@@ -32,22 +32,57 @@ continue while a cycle yields measurable progress (new bridge lemma, closed
 subcase, sharper blocker with reproducible evidence). Stop only when bounded
 cycles stop producing new pathway signal.
 
-## Results
+## Final Results (External Adjudication View)
 
-| Problem | Domain | Status | Confidence | Budget used |
-|---------|--------|--------|------------|-------------|
-| P01 | Stochastic analysis | ✅ Submitted | HIGH (YES, quasi-invariance proved; **R1 CITE_PLUS: BG proof chain verified + Hairer-Steele independent path; all gaps closed**) | ~20/80 msgs |
-| P02 | Representation theory | ✅ Submitted | HIGH (YES, Kirillov + Gauss sums + JPSS + multiplicity-one) | ~12/80 msgs |
-| P03 | Algebraic combinatorics | 🟡 Candidate | HIGH (YES, Mallows/ASEP; **n=2,3,4 proved**; n≥5 unresolved in sprint window: single-thread path infeasible, branching fails (EXP-20: 4 obstructions), AS reduction partial; L5 barrier; **R1-DIV: q→1 convergence confirmed, E*_μ≠E_μ identified, informative not closure**. Compute resources were available; blocker was late-start/shared-time allocation across lanes.) | ~83/200 msgs |
-| P04 | Finite free convolution | ✅ Submitted | HIGH (YES; n=2,3 proved; **n=4 b=0 PROVED (CE-16)**; **n=4 c'=0 PROVED (CE-26)**; **n=4 general: SOS-CERTIFIED (CE-44, 20/20 w-slices, Putinar/CLARABEL)**; 495K+ exact tests ALL PASS; n≥5 conjectured) | ~142/300 msgs |
-| P05 | Equivariant homotopy | ✅ Submitted | HIGH (**11 theorems; FULL BICONDITIONAL PROVED**; Thms 1-10: obstruction, positive scope, corrected "only if", dim-uniform, Class Ia, Z/4, V4, **general "if" for ALL G and ALL O (Thm 10, iterated isotropy separation)**; 825 systems verified) | ~57/80 msgs |
-| P06 | Spectral graph theory | ✅ Submitted | HIGH (NO, K_n counterexample) | ~14/300 msgs |
-| P07 | Lattices in Lie groups | ✅ Submitted | HIGH (YES, Q-PD + surgery realization proved) | ~6/80 msgs |
-| P08 | Symplectic geometry | ✅ Submitted | HIGH (NO, Lagrangian octahedron + Gromov) | ~10/80 msgs |
-| P09 | Tensor polynomial map | ✅ Submitted | HIGH (YES, D≤6; **all gaps closed ALL n≥5**: n≥6 via subset isomorphism; **n=5 kernel=15 proved exactly** via modular rank at 2 primes) | ~58/200 msgs |
-| P10 | RKHS CP-ALS | ✅ Submitted | HIGH | ~12/120 msgs |
+| Problem | Domain | External expected | Repo claim | Final status |
+|---|---|---|---|---|
+| P01 | Stochastic analysis | NO | YES | Conflict |
+| P02 | Representation theory | YES | YES | Aligned |
+| P03 | Algebraic combinatorics | YES (full theorem) | Partial (`n<=4`) | Partial mismatch |
+| P04 | Finite free convolution | YES (general `n`) | Partial (`n<=4`) | Partial mismatch |
+| P05 | Equivariant homotopy | YES (characterization) | YES | Directionally aligned (documentation inconsistency) |
+| P06 | Spectral graph theory | YES vs NO (quantifier-form ambiguity) | NO | **Disputed quantifier form** |
+| P07 | Lattices in Lie groups | NO | YES | Conflict |
+| P08 | Symplectic geometry | YES | NO | Conflict |
+| P09 | Tensor polynomial map | YES | YES | Aligned |
+| P10 | RKHS CP-ALS | YES | YES | Aligned |
 
-Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | ❌ Parked
+## Internal Run Outcomes (Pre-Adjudication)
+
+| Problem | Status | Internal sprint outcome |
+|---|---|---|
+| P01 | ✅ Submitted | YES (quasi-invariance route accepted during sprint) |
+| P02 | ✅ Submitted | YES |
+| P03 | 🟡 Candidate | YES route, proved for `n<=4`; `n>=5` unresolved in sprint |
+| P04 | ✅ Submitted | YES route, proved/certified for `n<=4`; `n>=5` conjectured |
+| P05 | ✅ Submitted | YES route, full biconditional claimed |
+| P06 | ✅ Submitted | NO route via `K_n` counterexample |
+| P07 | ✅ Submitted | YES route |
+| P08 | ✅ Submitted | NO route via octahedron + Gromov |
+| P09 | ✅ Submitted | YES |
+| P10 | ✅ Submitted | YES |
+
+## External Comparison Snapshot (2026-02-14)
+
+The table under **Final Results (External Adjudication View)** is the canonical expected-vs-actual table.
+This section provides score bands and source links.
+
+Adjudication score bands (depending on `P06` ruling):
+
+1. Strict theorem-level alignment: `30%-40%` (`3/10` to `4/10`).
+2. Directional alignment: `60%-70%` (`6/10` to `7/10`).
+3. Risk-adjusted score: `47.5%-57.5%` (neutral midpoint `52.5%`).
+
+Primary source documents:
+
+- `docs/results/solution_comparison_2026-02-14.md`
+- `docs/results/solution_comparison_full_audit_2026-02-14.md`
+- `docs/results/post_mortem_2026-02-14.md`
+
+Precedence note:
+
+- The **Final Results (External Adjudication View)** table above is the canonical expected-vs-actual record.
+- Remaining sections in this README are primarily internal run telemetry (methods, costs, escalation history, and artifact provenance).
 
 ## Sprint summary
 

@@ -1,0 +1,327 @@
+
+
+===== PAGE 1 =====
+
+THE FINITE FREE STAM INEQUALITY
+JORGE GARZA V ARGAS, NIKHIL SRIV ASTA V A, AND ZACK STIER
+Let⊞ n and Φ n(·) be defined as in the problem statement. In this note we prove the
+following result, which was conjectured by D. Shlyakhtenko.
+Theorem 0.1.Letp(x)andq(x)be any two monic real-rooted polynomials of degreen.
+Then 1
+Φn(p⊞ n q) ≥ 1
+Φn(p) + 1
+Φn(q) .
+1.Notation and preliminaries
+1.1.Polynomials and the finite free convolution.Given a polynomialp(x) of degree
+nwe say thatα= (α 1, . . . , αn) is a vector of roots forp(x) if theα i are the roots ofp(x).
+We will say thatαis ordered ifα 1 ≥ · · · ≥α n. Recall that for monic polynomialsp(x) and
+q(x),p(x)⊞ n q(x) may be expressed as:
+(1.1)p(x)⊞ n q(x) =
+X
+π∈Sn
+nY
+i=1
+(x−α i −β π(i)),
+whereαandβare vectors of roots forp(x) andq(x), respectively, andS n is the symmetric
+group onnelements (see Theorem 2.11 of [MSS22] for a proof). Walsh [Wal22] proved that
+ifp(x) andq(x) are real-rooted, then so isp(x)⊞ n q(x). Therefore, the finite free convolution
+induces a map
+Ω⊞n :R n ×R n →R n,
+where ifαandβare vectors of roots forp(x) andq(x), then Ω ⊞n(α, β) is defined to be the
+ordered vector of roots forp(x)⊞ n q(x).
+Other than the fact that⊞ n preserves real-rootedness, our proof will crucially exploit each
+of the following well-known properties of the finite free convolution. It was shown to us by
+D. Shlakyhenko. In what follows we will use1 n to denote the all-ones vector of dimension
+n. We will use the notation
+mk(α) := 1
+n
+nX
+i=1
+αk
+i and Var(α) :=m 2(α)−m 1(α)2.
+Proposition 1.1(Properties of⊞ n).Ifα, β∈R n andγ= Ω ⊞n(α, β), then:
+i) (Additivity)m 1(γ) =m 1(α) +m 1(β)andVar(γ) = Var(α) + Var(β).
+ii) (Commutation with translation) For allt∈R,Ω ⊞n(α+t1 n, β) =γ+t1 n andΩ ⊞n(α, β+
+t1 n) =γ+t1 n.
+Date: February 4, 2026.
+1
+
+===== PAGE 2 =====
+
+Proof.(i) Follows from the definition ofp⊞ n qin terms of the coefficients ofpandqand the
+Newton identities. (ii) Follows from (1.1).□
+1.2.The heat flow and the finite free Fisher information.Given a vector of roots
+α∈R n we will define the its finite free score vectorJ n(α)∈(R∪ {∞}) n as
+Jn(α) :=
+ X
+j:j̸=i
+1
+αi −α j
+!n
+i=1
+.
+Given a real-rooted polynomialp(x) with vector of rootsα, define its finite free Fisher
+information as
+Φn(p) :=∥J n(α)∥2.
+The following fact will allow us to write the finite free Fisher information of the polynomial
+p(x) in terms of the dynamics of its roots under the reverse heat flow.
+Lemma 1.1(Score vectors as derivatives).Assumep(x)has simple roots. Letp t(x) :=
+exp
+
+− t
+2 ∂2
+x
+
+p(x)and letα(t) = (α 1(t), . . . , αn(t))be the ordered vector of roots ofp t(x).
+Then
+α′
+i(0) =
+X
+j:j̸=i
+1
+αi −α j
+,
+and in particularα ′(0) =J n(α).
+Proof.Since theα i(t) are continuous int, the roots remain simple in a neighborhood of
+t= 0. Implicitly differentiating the expression
+p(αi(t))−tp ′′(αi(t))/2 +t 2R(αi(t), t) = 0
+(whereR(x, t) is a polynomial) att= 0 one obtains
+α′
+i(0) = 1
+2
+p′′(αi)
+p′(αi) ,
+which is equal to the advertised expression.□
+2.Proof of Stam’s inequality
+We now prove Theorem 0.1. The following Lemma allows us to restrict attention to the
+case whenp, q, andp⊞ n qall have simple roots.
+Lemma 2.1(Approximation by Simple Rooted Polynomials).Letϵ >0and define the
+differential operatorT ϵ := (1−ϵ·d/dx) n. Ifp(x)is a monic real-rooted polynomial of degree
+n, then
+i)(T ϵp)(x)is monic and real-rooted of degreenwith simple roots.
+ii)Φ n(Tϵp)→Φ n(p)asϵ→0.
+iii)(T ϵp)⊞ n (Tϵq) =T 2
+ϵ (p⊞ n q).
+Proof.(i) was shown in [Nui68]. (ii) is because Φ n is continuous in the roots ofp, which
+are continuous inϵ. (iii) follows because⊞ n commutes with differential operators (see e.g.
+[MSS22].) □
+2
+
+===== PAGE 3 =====
+
+Thus, establishing Theorem 0.1 for the simple case implies the general case by using (iii)
+above and takingϵ→0. In what follows,p(x) andq(x) are monic real-rooted polynomials,
+αandβare vectors of roots forp(x) andq(x),γ:= Ω ⊞n(α, β), andα, β, γall have distinct
+entries, implying that they are smooth functions of the coefficients of the corresponding
+polynomials. LetJ ⊞n denote the Jacobian of Ω ⊞n at the point (α, β).
+Our proof can be separated into three steps. The second step is the most substantial one
+and we will defer its detailed discussion to Section 2.1.
+Step 1 (Jacobians and score vectors).We first note that the following relation
+between score vectors holds.
+Observation 2.1(Relating score vectors).Using the above notation, for anya, b≥0
+J⊞n(aJn(α), bJn(β)) = (a+b)J n(γ).
+Proof.For everyt≥0 letp t(x) = exp(− t
+2 ∂2
+x)p(x), letα(t) be the ordered vector of roots
+ofp t, and defineq t, rt andβ(t), γ(t) in an analogous way. Since the finite free convolution
+commutes with any differential operator, it follows that
+r(a+b)t =p at ⊞n qbt.
+Henceγ((a+b)t) = Ω ⊞n(αat, βbt) for everyt. So, if we differentiate this relation with respect
+tot, using the chain rule for the right-hand side, we get
+(a+b)γ ′(0) =J ⊞n
+
+a·α ′(0)
+b·β ′(0)
+
+.
+A direct application of Lemma 1.1 concludes the proof.□
+Step 2 (Understanding the Jacobian).The substance of our proof lies in understand-
+ingJ ⊞n. In particular, we will show the following.
+Proposition 2.1.Ifu, v∈R n are orthogonal to1 n then
+∥J⊞n(u, v)∥2 ≤ ∥u∥2 +∥v∥ 2.
+This proposition will be proven in Section 2.1, for now we show how it is used.
+Step 3 (Proof of Theorem 0.1 ` a la Blachman).With Observation 2.1 and Proposition
+2.1 in hand we can conclude the proof using the same argument that Blachman used in
+[Bla65].
+Proof of Theorem 0.1.First note that
+nX
+i=1
+X
+j:j̸=i
+1
+αi −α j
+= 0,
+since each term in the sum appears once with a plus and once with a minus. ThereforeJn(α)
+is orthogonal to1 n and, arguing analogously,J n(β) is orthogonal to1 n. So, Proposition
+2.1 implies
+∥J⊞n(aJn(α), bJn(β))∥2 ≤a 2∥Jn(α)∥2 +b 2∥Jn(β)∥2.
+3
+
+===== PAGE 4 =====
+
+Combining this with Observation 2.1 yields
+(a+b) 2∥Jn(γ)∥2 ≤a 2∥Jn(α)∥2 +b 2∥Jn(β)∥2.
+Now, by choosinga= 1
+∥Jn(α)∥2 andb= 1
+∥Jn(β)∥2 , the above inequality turns into
+ 1
+∥Jn(α)∥2 + 1
+∥Jn(β)∥2
+2
+∥Jn(γ)∥2 ≤ 1
+∥Jn(α)∥2 + 1
+∥Jn(β)∥2 ,
+which after simple algebraic manipulations can be turned into the inequality claimed in
+Theorem 0.1.□
+2.1.UnderstandingJ ⊞n.Let (Ω ⊞n,1, . . . ,Ω⊞n,n) be the coordinate functions of Ω ⊞n, that
+isγ i = Ω ⊞n,i(α, β). The starting point of our approach to proving Proposition 2.1 is the
+observation that the matrixJ ⊞nJ ∗
+⊞n is related to the Hessians of the functions Ω ⊞n,i. It will
+be helpful to introduce the notation
+H(i)
+⊞n := HessΩ⊞n,i.
+For this discussion it will prove useful to define the (2n−2)-dimensional subspace
+V={(u, v)∈R n ×R n :u ∗1 n =v ∗1 n = 0}.
+And, givenw∈R n ×R n andf:R n ×R n →R n we will useD wfto denote the directional
+derivative offin the direction ofw, that isD w =P
+i wi∂i.
+Lemma 2.2(The Hessian of Ω ⊞n).Using the above notation
+(2.1)w ∗J⊞nJ ∗
+⊞nw=w ∗
+
+In ⊕I n −
+nX
+i=1
+γiH(i)
+⊞n
+
+w,∀w∈ V.
+Proof.Fixw= (u, v)∈ Vand define
+α(t) :=α+tu, β(t) :=β+tv,andγ(t) := Ω ⊞n(α(t), β(t)),
+and note that the variance additivity from Proposition 1.1 i) implies that
+m2(γ(t))−m 1(γ(t))2 =m 2(α(t)) +m 2(β(t))−(m 1(α(t))2 +m 1(β(t))2).
+Now, the fact that (u, v)∈ Vimplies that the meansm 1(α(t)) andm 1(β(t)) are a constant
+function oftand therefore, again by Proposition 1.1 i), the meanm 1(γ(t)) is also a constant
+function oft. So, differentiating the above equation twice with respect totwe get
+(2.2)∂ 2
+t m2(γ(t))
+
+t=0 =∂ 2
+t
+
+m2(α(t)) +m 2(β(t))
+
+t=0 .
+Now we inspect both sides of the above equation. First
+n ∂2
+t m2(γ(t))
+
+t=0 =
+nX
+i=1
+D2
+w(γ2
+i )
+= 2
+nX
+i=1
+
+(Dwγi)2 +γ iD2
+wγi
+
+4
+
+===== PAGE 5 =====
+
+= 2
+ 
+w∗J⊞nJ ∗
+⊞nw+
+nX
+i=1
+γiw∗H(i)
+⊞nw
+!
+.(2.3)
+Second
+n ∂2
+t (m2(α(t)) +m 2(β(t))) =∂ 2
+t ((α+tu) ∗(α+tu) + (β+tv) ∗(β+tv))
+= 2(u∗u+v ∗v)
+= 2w∗w.(2.4)
+Finally, plugging (2.3) and (2.4) back into (2.2) yields
+w∗J⊞nJ ∗
+⊞nw+
+nX
+i=1
+γiw∗H(i)
+⊞nw=w ∗w,
+which is equivalent to the advertised result.□
+We now apply a result of Bauschke et al. [BGLS01, Corollary 3.3].
+Theorem 2.2(Bauschke et al.).Letf∈R[x 1, . . . , xm]be a hyperbolic polynomial in the
+directionw∈R m and for everya∈R m letλ 1(a)≥ · · · ≥λ m(a)be the roots ofg a(t) :=
+f(a+tw). Then, for everyk= 1, . . . , m, the functionσ k(a) :=Pk
+i=1 λi(a)is convex ina.
+In our context this implies the following.
+Corollary 2.1.For any real numbersc 1 ≥ · · · ≥c n, the matrix Pn
+i=1 ciH(i)
+⊞n is PSD.
+Proof.Define the multivariate polynomial
+f(x, a1, . . . , an, b1, . . . , bn) :=
+X
+π∈Sn
+nY
+i=1
+(x−a i −b π(i)).
+Since the above polynomial is homogeneous and the finite free convolution preserves real
+rootedness,fis hyperbolic in the directione 1 = (1,0· · ·,0). Now, by Theorem 2.2 the
+functions
+σk(x, a, b) =
+kX
+i=1
+λi(x, a, b)
+are convex, whereλ 1(x, a, b)≥ · · · ≥λ n(x, a, b) denote the roots off((x, a, b) +te 1). And,
+because thec i are ordered we moreover have that the function
+L(x, a, b) :=
+nX
+i=1
+ciλi(x, a, b)
+is convex, as it can be written as a positive linear combination of theσ k. It follows that
+HessL =Pn
+i=1 ciHessλi at any (x, a, b) is PSD. But, on the other hand, whenx= 0,a=α
+andb=β, we have that Hess λi =H (i)
+⊞n, which in turn gives that Pn
+i=1 ciH(i)
+⊞n is PSD.□
+We can now complete the proof of Proposition 2.1.
+5
+
+===== PAGE 6 =====
+
+Proof of Proposition 2.1.Let (u, v)∈ V. Then
+∥J⊞n(u, v)∥2 = (u, v)∗J⊞nJ ∗
+⊞n(u, v) =∥u∥ 2 +∥v∥ 2 −
+nX
+i=1
+γi(u, v)∗H(i)
+⊞n(u, v),
+where the last equality follows from Lemma 2.2. Now, applying Corollary 2.1 withc i =γ i
+gives thatPn
+i=1 γiH(i)
+⊞n is PSD, and hence
+nX
+i=1
+γi(u, v)∗H(i)
+⊞n(u, v)≥0.
+The proof follows from putting the two expressions together.□
+References
+[BGLS01] Heinz H Bauschke, Osman G¨ uler, Adrian S Lewis, and Hristo S Sendov. Hyperbolic polynomials
+and convex analysis.Canadian Journal of Mathematics, 53(3):470–488, 2001.
+[Bla65] Nelson Blachman. The convolution inequality for entropy powers.IEEE Transactions on Infor-
+mation theory, 11(2):267–271, 1965.
+[MSS22] Adam W Marcus, Daniel A Spielman, and Nikhil Srivastava. Finite free convolutions of polyno-
+mials.Probability Theory and Related Fields, 182(3):807–848, 2022.
+[Nui68] Wim Nuij. A note on hyperbolic polynomials.Mathematica Scandinavica, 23(1):69–72, 1968.
+[Wal22] Joseph L Walsh. On the location of the roots of certain types of polynomials.Transactions of the
+American Mathematical Society, 24(3):163–180, 1922.
+6

@@ -40,10 +40,11 @@ For each lane, causes are decomposed across:
 
 Using the full-audit scorecard:
 
-- Strict theorem-level alignment: `3/10` (`30%`)
-- Directional alignment (same YES/NO sign): `6/10` (`60%`)
-- Risk-adjusted alignment: `47.5%`
-- Critical sign conflicts: `4/10` (`P01`, `P06`, `P07`, `P08`)
+- Strict theorem-level alignment: `3/10` to `4/10` (`30%-40%`, pending `P06`)
+- Directional alignment (same YES/NO sign): `6/10` to `7/10` (`60%-70%`, pending `P06`)
+- Risk-adjusted alignment: `47.5%-57.5%` (neutral midpoint `52.5%`)
+- Confirmed sign conflicts: `3/10` (`P01`, `P07`, `P08`)
+- Disputed quantifier-form lane: `P06`
 - Partial-closure mismatches: `2/10` (`P03`, `P04`)
 
 Interpretation:
@@ -185,11 +186,11 @@ Narrative accumulation without strict "final-form normalization" produced contra
 
 ### Root cause
 
-This lane likely solved the wrong problem specification (constant independent of `alpha`), making the counterexample irrelevant to the original claim family.
+This lane is best treated as a quantifier-form adjudication failure: the external packet presents an alpha-scaled lower bound, while the repo disproves a universal constant independent of `alpha`. Until the official quantifier form is frozen, this should remain `DISPUTED_QUANTIFIER_FORM` rather than a settled mismatch.
 
 ### Fault attribution (lane-local)
 
-- Workflow 45%, Agent 25%, Orchestration 20%, Model 10%
+- Workflow 40%, Agent 25%, Orchestration 20%, Model 10%, Adjudication ambiguity 5%
 
 ---
 
@@ -342,8 +343,8 @@ No evidence supports assigning primary fault to a single individual. The largest
 
 If the question is "Was this a 40% outcome?":
 
-- Strict theorem-level alignment is `30%`.
-- Risk-adjusted alignment is `47.5%`.
-- Directional sign alignment is `60%`.
+- Strict theorem-level alignment band is `30%-40%` (`3/10` to `4/10`, pending `P06` adjudication).
+- Risk-adjusted alignment band is `47.5%-57.5%` (neutral midpoint `52.5%`).
+- Directional sign alignment band is `60%-70%` (`6/10` to `7/10`, pending `P06` adjudication).
 
 The principal deviation came from specification/control failures and validation design gaps, not from lack of effort or lack of tooling effort. The post-mortem indicates the fastest path to improvement is stronger statement discipline and contradiction-hardening, then earlier compute/tool provisioning on heavy lanes.

@@ -1,0 +1,354 @@
+
+
+===== PAGE 1 =====
+
+1.Statement
+LetFbe a non-archimedean local field with ring of integerso. Letψ:F→C ×
+be a nontrivial additive character of conductoro. We write
+Gr := GLr(F),
+and letN r < G r denote the subgroup of upper-triangular unipotent elements. We
+embedG n ,→G n+1 as the upper-left block. We writeE ij for the matrix with a 1
+in the (i, j)-entry and 0 elsewhere.
+A more precise form of the following “lemma” will appear in forthcoming joint
+work with Subhajit Jana. It says informally that pure unipotent translates of
+fixed vectors in the Whittaker model of a representation ofG n+1 may serve as test
+vectors for Rankin–Selberg integrals against all representations ofG n with a given
+conductor.
+Theorem 1.LetΠbe a generic irreducible admissible representation ofG n+1,
+realized in itsψ −1-Whittaker modelW(Π, ψ −1). Then there existsW∈ W(Π, ψ −1)
+with the following property. Letπbe a generic irreducible admissible representation
+ofG n, realized in itsψ-Whittaker modelW(π, ψ). Letqdenote the conductor ideal
+ofπ, letQ∈F × be a generator ofq −1, and set
+uQ :=I n+1 +Q E n,n+1 ∈G n+1.
+There existsV∈ W(π, ψ)so that the local Rankin–Selberg integral
+Z
+Nn\Gn
+W(diag(g,1)u Q)V(g)|detg| s− 1
+2 dg
+is finite and nonzero for alls∈C.
+2.Context
+Rankin–Selberg local zeta integrals arise as proportionality factors relating global
+Rankin–Selberg integrals andL-functions. The above result provides test vectors,
+obtained via pure translates of fixed vectors, that work simultaneously for all rep-
+resentations of the smaller group having some given conductor. Such results are
+sometimes useful in global applications because they relate problems concerning
+L-functions (subconvexity, moment asymptotics, ...) to problems concerning au-
+tomorphic forms (quantitative equidistribution, ...). Then= 1 case follows from
+standard properties of Gauss sums and stationary phase analysis in one variable;
+it has been applied in, e.g., [7, 6]. For generaln, [2] contains a similar result, but
+with an average over many unipotent translates rather than just one.
+3.Proof
+We first sketch the argument. The basic idea is to apply the Godement–Jacquet
+functional to the Whittaker function on the smaller group. This is readily seen
+to relate the unipotent-shifted Rankin–Selberg integral to an integral involving
+a translate of the standard congruence subgroupK 1(q)≤GL n(o), consisting of
+matrices whose last row is congruent to (0, . . . ,0,1) moduloq. We then conclude
+via newvector theory.
+Turning to details, we recall thatFis a non-archimedean local field, with ring of
+integerso. We denote bypthe maximal ideal andqthe residue field cardinality. We
+setK r := GLr(o) and equipG r andN r with the Haar measures assigning volume
+1
+
+===== PAGE 2 =====
+
+2
+one toK r andN r ∩K r, respectively. As in the theorem statement, we write Π
+(resp.π) for a generic irreducible representation ofG n+1 (resp.G n).
+We continue to denote byqthe conductor ideal ofπ, defined to be the smallest
+ideal for whichπhas a nonzero vector fixed byK 1(q). We choose a generatorQ
+forq −1, so that|Q|= [o:q]. We recall (see [4, 5]) that|Q|(and henceq) may also
+be characterized in terms of the localε-factor ofπ:
+ε( 1
+2 +s, π, ψ) =|Q| −sε( 1
+2 , π, ψ).(1)
+We recall the functional equation of Godement–Jacquet [3, Theorem 3.3].
+Lemma 2.Letfbe a matrix coefficient ofπ, and letϕ∈ S(M n(F)). Fors∈C,
+the local zeta integral
+Z(ϕ, f, s) :=
+Z
+Gn
+ϕ(g)f(g)|detg|
+n−1
+2 +s dg,(2)
+converges absolutely forℜ(s)sufficiently large. It extends to a meromorphic func-
+tion on the complex plane for which the ratio
+Z(ϕ, f, s)
+L(s, π)
+is holomorphic. It satisfies the local functional equation
+γ(s, π, ψ)Z(ϕ, f, s) =Z(ϕ ∧, f ∨,1−s),(3)
+where
+γ(s, π, ψ) =ε(s, π, ψ) L(1−s,˜π)
+L(s, π) ,
+with˜πthe contragredient ofπ, and where the Fourier transform is defined by
+f ∨(g) :=f(g −1),
+ϕ∧(x) :=
+Z
+Mn(F)
+ϕ(y)ψ(trace(xy))dy,
+withM n the space ofn×nmatrices and the Haar measure normalized to be self-dual
+with respect toψ. Moreover, both of the zeta integrals in(3)converge absolutely
+provided that, e.g.,πis unitary and generic andℜ(s) = 1/2.
+We recall that a matrix coefficient ofπis a linear combination of functions of
+the formf(g) =ℓ(gv), wherev∈πandℓlies in the contragredient ofπ(i.e.,
+the admissible dual). The conclusions of Lemma 2 remain valid for more general
+coefficients ofπ. For instance, suppose more generally thatfis of the same form,
+but withℓallowed to be any linear functional onπ(not necessarily in the admissible
+dual). Givenϕas above, we may choose a compact open subgroupUofG n under
+whichϕis bi-invariant. The integrals in question do not change if we then replace
+fby its two-sided average with respect toU, which has the effect of replacingvby
+its averagev U ∈π U andℓwith its projectionℓ U to the dual ofπ U, extended by
+zero on the kernel of the averaging operatorπ→π U. In particular, by specializing
+to the case thatℓis a Whittaker functional onπ, we see that such identities remain
+valid whenfis a Whittaker function forπ.
+We denote byS e(F ×) the space of all Schwartz–Bruhat functionsβ∈ S(F ×)
+such thatβ(xy) =β(x) whenever|y|= 1, or equivalently, for whichβ(x) depends
+
+===== PAGE 3 =====
+
+3
+only upon|x|. We note that eachβ∈ S e(F ×) satisfies the Mellin inversion formula
+β(y) =
+Z
+(σ)
+˜β(s)|y| s ds, ˜β(s) :=
+Z
+F ×
+β(y)|y| −s d×y.(4)
+Forβ∈ S e(F ×), we define the transformβ ♯ :=β ♯,π ofβby
+β♯(y) :=
+Z
+(σ)
+˜β(s)|y| −s ds
+γ( 1
+2 +s, π, ψ) ,
+initially forσlarge enough.
+Lemma 3.Defineβvia Mellin inversion(4)by
+˜β(s) := ε( 1
+2 +s, π, ψ)
+L( 1
+2 +s, π) .
+Then:
+(1)βis supported on{y:|Q| ≤ |y| ≤ |Q|q n}and takes the valueε( 1
+2 , π, ψ)on
+{y:|y|=|Q|}.
+(2)β ♯ is supported on{y: 1≤ |y| ≤q n}and takes the value1on{y:|y|=
+1}=o ×.
+Proof.We appeal to the characterization (1) of|Q|. We note first thatβ ♯ has
+Mellin transform
+eβ♯(s) = 1
+L( 1
+2 +s,˜π).
+Since the inverseL-values appearing above are monic polynomials inq −s of degree
+at mostn, we see by Mellin inversion thatβandβ ♯ have the claimed properties.□
+Lemma 4.Assume thatπis unitary and generic. We then have the identity of
+absolutely convergent integrals
+Z
+Gn
+ϕ(g)f(g)β(detg)|detg|
+n
+2 dg=
+Z
+Gn
+ϕ∧(g)f ∨(g)β ♯(detg)|detg|
+n
+2 dg.(5)
+Proof.Starting with the left hand side, we insert the Mellin expansion ofβ, with
+σ= 0. The resulting double integral overgandsconverges absolutely, so we
+may swap the order. We recognize the result as the integral
+R
+(0)
+˜β(s)Z(ϕ, f, 1
+2 +
+s)dsinvolving the Godement–Jacquet zeta integral (2). We now apply the local
+functional equation and expand the result as
+Z
+(0)
+˜β(s)
+γ( 1
+2 +s, π, ψ)
+Z
+Gn
+ϕ∧(g)f ∨(g)|detg|
+n
+2 −s dg
+
+ds.
+This double integral again converges absolutely, so we may rearrange it to obtain
+the stated identity.□
+For the same reasons as indicated following the statement of Lemma 2, such iden-
+tities persist for more general coefficients than matrix coefficients, and in particular,
+whenfis a Whittaker function.
+Recall that we embedG n ,→G n+1 as the upper-left block. We set
+W0(g) :=
+Z
+Nn
+1Kn(xg)ψ(x)dx,(6)
+
+===== PAGE 4 =====
+
+4
+which defines a Whittaker function onG n and extends, by the theory of the Kirillov
+model [1], to an element ofW(Π, ψ −1) onG n+1.
+Forx∈Fandy∈F ×, we set
+dy := diag(1, . . . ,1, y)∈G n ,→G n+1, u x :=I n+1 +xE n,n+1 ∈N n+1.
+We then define
+tQ :=d −1
+Q uQ =u 1d−1
+Q .
+Lemma 5.There existβ∈ S e(F ×)andϕ∈ S(M n(F))so that for allg∈G n, we
+have Z
+Nn
+β(detxg)ϕ(xg)ψ(x)dx=ε( 1
+2 , π, ψ)W0(gtQ) (7)
+and
+β♯(detg)ϕ ∧(g) =|Q| n1K1(q)(g).(8)
+Proof.We set
+ϕ0 := 1Mn(o),
+ϕ(x) :=ψ(−x nn)ϕ0(xd−1
+Q ).(9)
+and takeβas in Lemma 3, so that in particular,
+β|Qo =ε( 1
+2 , π, ψ)1Qo× (10)
+and
+β♯|o = 1o× .(11)
+We must verify the relations (7) and (8).
+We start with (7). Recall from (6) thatW 0 is theψ −1-Whittaker function
+W0(g) =
+R
+Nn
+1Kn(xg)ψ(x)dx. In particular,
+W0(gtQ) =W 0(gu1d−1
+Q ) =ψ(−g nn)W0(gd−1
+Q ).(12)
+Using this identity, we may rewrite the desired relation (7) as
+Z
+Nn
+β(det(xg))ϕ(xg)ψ(x)dx=ε( 1
+2 , π, ψ)ψ(−gnn)W0(gd−1
+Q ).(13)
+We verify this as follows. First, we see from the definition (9) and the identity
+(xg)nn =g nn that forx∈N n andg∈G n, we have
+ϕ(xg) =ψ(−g nn)ϕ0(xgd−1
+Q ).(14)
+Next, we have
+β(detg)ϕ 0(gd−1
+Q ) =ε( 1
+2 , π, ψ)1Qo×(detg)ϕ 0(gd−1
+Q )
+=ε( 1
+2 , π, ψ)1Kn(gd−1
+Q ).
+(In the first step, we use thatϕ 0(gd−1
+Q ) is nonzero only if det(g)∈Qoand apply
+(10). In the second step, we use that 1 Kn(g) = 1 o×(detg)ϕ 0(g) and det(d Q) =Q,
+which gives 1 Qo×(detg)ϕ 0(gd−1
+Q ) = 1 Kn(gd−1
+Q ).) Combining the above identities,
+we obtain
+β(det(xg))ϕ(xg) =ε( 1
+2 , π, ψ)ψ(−gnn)1Kn(xgd−1
+Q ).
+Integrating both sides againstψ(x)dxgives (13), as required.
+
+===== PAGE 5 =====
+
+5
+We verify (8) as follows (hereE ij denotes the elementary matrix):
+β♯(detg)ϕ ∧(g) = 1o×(detg)ϕ ∧(g)
+= 1o×(detg)|Q| nϕ∧
+0 (dQ(g−E nn))
+=|Q| n1o×(detg)1 Mn(o)(dQ(g−E nn))
+=|Q| n1K1(q)(g).
+Here, for the first step, we observed thatϕ ∧(x) is nonzero only ifx∈E nn +
+d−1
+Q Mn(o)⊆M n(o), so that, in particular, detx∈o; we then applied (11). For the
+second step, we applied the general Fourier analytic calculation
+ϕ∧(x) =|Q| nϕ∧
+0 (dQ(x−E nn)).(15)
+For the third, we applied the Fourier self-dualityϕ ∧
+0 =ϕ 0 = 1Mn(o). For the final
+step, we use thatK 1(q) consists of allx∈M n(F) for whichd Q(x−E nn)∈M n(o)
+and detx∈o ×.□
+ForW∈ W(Π, ψ −1),V∈ W(π, ψ), ands∈C, we define the Rankin–Selberg
+integral
+ℓRS(s, W, V) :=
+Z
+Nn\Gn
+W(diag(g,1))V(g)|detg| s− 1
+2 dg.(16)
+The following result verifies Theorem 1 in a more precise form.
+Proposition 6.LetW 0 ∈ W(Π, ψ −1)be such that for allg∈G n, we have
+W0(g) =
+Z
+Nn
+1Kn(xg)ψ(x)dx.
+LetV∈ W(π, ψ)denote the normalized newvector (i.e., the uniqueK 1(q)-invariant
+vector for whichV(1) = 1, see[4, 5]). Then for alls∈C, we have
+ℓRS(s, uQW0, dQV) =c|Q| − n
+2 ,(17)
+where
+c:=ε( 1
+2 , π, ψ)−1|Q|n vol(K1(q))≍1.(18)
+Proof.We note first that, by a change of variables, we have the homogeneity prop-
+erty
+ℓRS(s, uQW0, dQV) =|Q| −(s− 1
+2)ℓRS(s, tQW0, V).(19)
+In view of this, the desired identity (17) is equivalent to
+ℓRS(s, tQW0, V) =c|Q| s− n+1
+2 .(20)
+Next, sinceW 0 is supported on det −1(o×), we see that the translatet QW0 is sup-
+ported on det −1(Qo×), so the left hand side of (20) is a constant multiple of|Q| s.
+For this reason, it suffices to verify (20) for (say)s= n+1
+2 , where our task is to
+check thatℓ RS( n+1
+2 , tQW0, V) =c. Inserting definitions and unfolding, we obtain,
+
+===== PAGE 6 =====
+
+6
+withf(g) :=V(g),
+ε( 1
+2 , π, ψ)ℓRS( n+1
+2 , tQW0, V)
+(16)
+=ε( 1
+2 , π, ψ)
+Z
+Nn\Gn
+W0(gtQ)V(g)|det(g)|
+n
+2 dg
+(7)
+=
+Z
+Gn
+ϕ(g)f(g)β(detg)|detg| n/2 dg
+(5)
+=
+Z
+Gn
+ϕ∧(g)f ∨(g)β ♯(detg)|detg| n/2 dg
+(8)
+=|Q| n
+Z
+K1(q)
+V(g −1)|detg| n/2 dg
+=|Q| n vol(K1(q)),
+where in the final step, we use theK 1(q)-invariance ofV, the normalizationV(1) =
+1, and the fact that|detg|= 1 onK 1(q). Thus (20) holds.□
+References
+[1] Joseph N. Bernstein.P-invariant distributions on GL(N) and the classification of unitary
+representations of GL(N) (non-Archimedean case). InLie group representations, II (College
+Park, Md., 1982/1983), volume 1041 ofLecture Notes in Math., pages 50–102. Springer,
+Berlin, 1984.
+[2] Andrew R. Booker, M. Krishnamurthy, and Min Lee. Test vectors for Rankin-SelbergL-
+functions.J. Number Theory, 209:37–48, 2020.
+[3] Roger Godement and Herv´ e Jacquet.Zeta functions of simple algebras. Lecture Notes in
+Mathematics, Vol. 260. Springer-Verlag, Berlin, 1972.
+[4] H. Jacquet, I. I. Piatetski-Shapiro, and J. Shalika. Conducteur des repr´ esentations du groupe
+lin´ eaire.Math. Ann., 256(2):199–214, 1981.
+[5] Nadir Matringe. Essential Whittaker functions forGL(n).Doc. Math., 18:1191–1214, 2013.
+[6] Philippe Michel and Akshay Venkatesh. The subconvexity problem for GL 2.Publ. Math. Inst.
+Hautes ´Etudes Sci., (111):171–271, 2010.
+[7] Peter Sarnak. Fourth moments of Gr¨ ossencharakteren zeta functions.Comm. Pure Appl.
+Math., 38(2):167–178, 1985.

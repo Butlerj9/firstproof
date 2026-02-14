@@ -1,0 +1,516 @@
+
+
+===== PAGE 1 =====
+
+A PROBABILISTIC INTERPRETATION FOR
+INTERPOLATION MACDONALD POLYNOMIALS
+HOUCINE BEN DALI AND LAUREN KIYOMI WILLIAMS
+1.The problem
+Letλ“ pλ 1 ą ¨ ¨ ¨ ąλ n ě0qbe a partition with distinct parts. Assume moreover that
+λisrestricted, in the sense that it has a unique part of size0and no part of size1. Does
+there exist a nontrivial Markov chain onSnpλqwhose stationary distribution is given by
+F ˚
+µ px1, . . . , xn;q“1, tq
+P ˚
+λ px1, . . . , xn;q“1, tq forµPS npλq
+whereF ˚
+µ px1, . . . , xn;q, tqandP ˚
+λ px1, . . . , xn;q, tqare the interpolation ASEP polynomial
+and interpolation Macdonald polynomial, respectively? If so, prove that the Markov chain
+you construct has the desired stationary distribution. By “nontrivial” we mean that the
+transition probabilities of the Markov chain should not be described using the polynomials
+F ˚
+µ px1, . . . , xn;q, tq.
+Date: January 30, 2026.
+1
+
+===== PAGE 2 =====
+
+2 HOUCINE BEN DALI AND LAUREN KIYOMI WILLIAMS
+2.The solution
+The answer to the question is yes, as we explain below. For1ďkďn, we define
+(1)p k :“ t´n`1p1´tq
+xk ´t ´n`2 PQpt, x 1, . . . , xnqandq k :“ p1´tqx k
+xk ´t ´n`2 PQpt, x 1, . . . , xnq.
+If0ătă1andx i ąt ´n`1 for1ďiďn, thenp k andq k are probabilities.
+Definition 2.1.Fix a partitionλ“ pλ 1 ě ¨ ¨ ¨ ěλ nqwithλ n “0. Theinterpolation
+t-Push TASEPwithcontentλis a Markov chain onS npλq; we think of its states as
+configurations of particles on a ring labeled byλ1, . . . , λn, where stateηcorresponds to
+having a particle labeledη j at positionj. Moreover, there is abellattached to each
+particle. The transitions fromηPS npλqare as follows.
+(Step 0) The bell at positionjrings with probability
+Pj “
+ś
+kăj
+`
+xk ´ 1
+tn´2
+˘ ś
+kąj
+`
+xk ´ 1
+tn´1
+˘
+e˚
+n´1px;tq ,
+wheree ˚
+n´1px;tq “ řn
+j“1
+ś
+kăj
+`
+xk ´ 1
+tn´2
+˘ ś
+kąj
+`
+xk ´ 1
+tn´1
+˘
+.
+(Step 1) The particle at positionj, say with labela, is activated, and starts traveling
+clockwise according to the rules of thet-Push TASEP. That is, suppose there
+arem“weaker” particles in the system, i.e. particles whose labels are less thana,
+including vacancies (label0). Then with probabilitytk´1
+rmst
+the activated particle will
+move to the location of thekth of these weaker particles. If this location contains
+a particle with positive label, then that particle becomes active, and chooses a
+weaker particle to displace in the same way. The procedure continues until the
+active particle arrives at a vacancy. At the end of this step, positionjis vacant,
+and we regard this vacancy as a particle labeleda:“0.
+(Step 2) The particle labeleda:“0now goes to position1and starts traveling clockwise.
+When it gets to sitekfor1ďkďj´1containing a particle with labelbě0, it
+skips over that site with probability1´pk ifběa, and1´q k ifbăa; otherwise
+it settles at that site, activating/ displacing the site’s particle. Once it activates a
+new particle, the old particle settles at sitekand the new active particle continues
+to travel clockwise towards positionj, activating a new particle according to the
+rule above. The active particle stops once it displaces/activates another particle
+or arrives at positionj, in which case it settles in positionj.
+We denote the resulting configuration byνand the transition probability byPpη, νq.
+Moreover, we letPp1q
+λ,j “P p1q
+j andP p2q
+λ,j “P p2q
+j denote the transition probabilities associ-
+ated with (Step 1) and (Step 2), respectively. We then have, forµ, νPSnpλq,
+Ppµ, νq “
+ÿ
+1ďjďn
+Pj
+ÿ
+ρPSnpλq:ρj “0
+Pp1q
+j pµ, ρqPp2q
+j pρ, νq.
+Theorem 2.2.In the interpolationt-Push TASEP with contentλ“ pλ 1, . . . , λnqand
+parametersx“ px 1, . . . , xnqandt, the stationary probability ofµPS npλqis given by
+π˚
+λpµq “ F ˚
+µ px; 1, tq
+P ˚
+λ px; 1, tq.
+
+===== PAGE 3 =====
+
+A PROBABILISTIC INTERPRETATION FOR INTERPOLATION MACDONALD POLYNOMIALS 3
+3.The proof
+Recall the notion of classical two-line queues from [CMW22] and signed two-line queues
+from [BDW25] together with their weight functions. (Here we specializeq“1.)
+LetQ η
+κ denote the set of classical two-line queues with top rowη“ pη1, . . . , ηnqand
+bottom rowκ“ pκ 1, . . . , κnq, and letaη
+κ denote the weight generating function ofQη
+κ.
+(2)a η
+κ “a η
+κptq:“
+ÿ
+QPQη
+κ
+wtpairpQq.
+LetG α
+µ denote the set of signed two-line queues with top rowα“ pα 1, . . . , αnqand
+bottom rowµ“ pµ 1, . . . , µnq, and letbα
+µ denote the weight generating function ofGα
+µ.
+(3)b α
+µ “b α
+µptq:“
+ÿ
+QPGαµ
+wtpairpQq.
+LetwtpQq:“wt pairpQqwt ballpQqbe the product of the pair weight andthe ball weight.
+We obtain
+(4)wt α bα
+µ “
+ÿ
+QPGαµ
+wtpQq,wherewt α :“
+ź
+k:α ką0
+xk
+ź
+k:α kă0
+´1
+tn´1 .
+Definition 3.1.Given a signed two-line queueQPG α
+µ, we associate to it anunsigned
+version sQobtained by forgetting the signs of the balls in the top row. The composition
+we read in the bottom row (respectively the top row) ofsQisµ(respectively∥α∥q, where
+∥α∥“ p|α 1|, . . . ,|αn|q.
+We then define sGκ
+µ as the set of paired ball systems obtained by applying this operation
+onQPG α
+µ, whereαPZ n satisfying∥α∥“κ.
+This leads us to define the following weights. FixsQP sGκ
+µ:
+‚A nontrivial pairingpin sQhas the weight
+(5)wtppq “ p1´tqt skipppq.
+‚LetBbe a ball labeledaą0in columnkand such that the ball below is labeled
+b(IfBhas a vacancy below it, we takeb“0.) We define the weight ofBby:
+(6)wtpBq:“
+$
+’&
+’%
+xk ´ 1
+tn´1 ifb“a,
+xk ifbąa,
+1
+tn´1 ifbăa.
+The weight of sQis defined by
+wtp sQq:“
+ź
+Bin the top row
+wtpBq
+ź
+pnontrivial pairing
+wtppq.
+We then have the following lemma.
+
+===== PAGE 4 =====
+
+4 HOUCINE BEN DALI AND LAUREN KIYOMI WILLIAMS
+Lemma 3.2.Fix a partitionλwith distinct parts and two compositionsκ, µPS npλq. Let
+sQP sGκ
+µ. Then
+wtp sQq “
+ÿ
+Q
+wtpQq,
+where the sum is taken over all signed two-line queuesQfrom which sQis obtained by
+forgetting signs.
+Proof.We consider all the possible ways of “adding signs” to the balls in the top row of
+sQto obtain a signed two-line queue. Fix such a ballBlabeledaą0:
+‚ifBhas below it a vacancy or a ball labeledbăa, then we must assign a´sign
+toB.
+‚ifBhas a ball labeledbąabelow it, then we must assign a`sign toB.
+‚ifBhas a ball labeledb“abelow it, then we can giveBa`or´sign.
+We then check that the possible signs for each ballBis consistent with the choice of
+weights in Equation (6). In particular, one notices that when a ballBis given a´sign,
+the ball weight should be multiplied by´1when we go fromsQtoQ, but the weight of
+the pairing connected toBis also multiplied by´1.□
+GivenκPS npνq, we definecκ
+ν by
+(7)c κ
+ν :“
+ÿ
+α:∥α∥“κ
+wtα bα
+ν .
+We get the following corollary obtained by combining Equation (4) and Lemma 3.2.
+Lemma 3.3.Fixλa partition with distinct parts, andκ, µPS npλq. Then
+cκ
+µ “
+ÿ
+sQP sGκµ
+wtp sQq.
+Sinceλhas distinct parts, sGκ
+ν is either empty or contains exactly one element.
+Fix a weakly order-preserving functionϕ:NÑN. Fix two partitionsλandκsuch
+thatϕpλq “κ. ForηPS npκq, define
+G˚
+ηpx;tq:“
+ÿ
+ρPSnpλq:ϕpρq“η
+F ˚
+ρ px; 1, tq.
+LetG η be the top homogeneous part ofG˚
+η.
+The following is an analogue of [AMW25, Theorem 4.18], and can be proved in essen-
+tially the same way, using interpolation analogues of results from [AS19].
+Theorem 3.4.Fixλandκas above. For allηPS npκq, we have atq“1that
+G˚
+ηpx;tq
+P ˚
+λ px; 1, tq “ F ˚
+η px; 1, tq
+P ˚
+κ px; 1, tq.
+Given a compositionρ, letρ ´ :“ pρ ´
+1 , . . . , ρ´
+n q, whereρ ´
+i “maxpρ i ´1,0q.
+Corollary 3.5.Consider a compositionρwithρ i ‰1for any1ďiďn. Letkbe the
+number of non-zero parts ofρ. Setη“ρ ´. We then have atq“1,
+F ˚
+ρ px; 1, tq “F ˚
+η px; 1, tq ¨e ˚
+kpx;tq.
+
+===== PAGE 5 =====
+
+A PROBABILISTIC INTERPRETATION FOR INTERPOLATION MACDONALD POLYNOMIALS 5
+Proof.Letλandκbe the two partitions obtained by reorderingρandη, respectively.
+Consider the weakly order-preserving functionϕ:iÞÑmaxpi´1,0q. We then have
+ϕpρq “η. Sinceλdoes not have parts of size 1, andϕis bijective fromt0,2,3, . . .uto
+t0,1,2, . . .u, thenρis the unique composition inS npλqsuch thatϕpρq “ηand we have
+G˚
+η “F ˚
+ρ. It follows then from Theorem 3.4 that
+F ˚
+ρ px; 1, tq
+P ˚
+λ px; 1, tq “ F ˚
+η px; 1, tq
+P ˚
+κ px; 1, tq.
+We now recall that atq“1, we have from [Doł17, BDW25] that
+(8)P ˚
+λ px1, . . . , xn; 1, tq “
+ź
+1ďiďλ1
+P ˚
+λ1
+i
+px1, . . . , xn; 1, tq “
+ź
+1ďiďλ1
+e˚
+λ1
+i
+px1, . . . , xn;tq,
+whereλ 1 is the partition conjugate toλ. Using this plus the fact thatκis obtained from
+λby removing the largest column (of sizek), we get that
+P ˚
+λ px; 1, tq
+P ˚
+κ px; 1, tq “e ˚
+kpx;tq,
+which implies thatF ˚
+ρ px; 1, tq “F ˚
+η px; 1, tq ¨e ˚
+kpx;tq.□
+Proposition 3.6.Fixρ, νPS npλq, and letjbe the index such thatρ j “0. We have
+Pp2q
+j pρ, νq “ cρ
+νś
+kăj
+`
+xk ´ 1
+tn´2
+˘ ś
+kąj
+`
+xk ´ 1
+tn´1
+˘ ,
+or equivalently,
+Pj¨P p2q
+j pρ, νq “ cρ
+ν
+e˚
+n´1
+,
+wherec ρ
+ν is the coefficient from Equation(7), i.e. the generating function for the setsGρ
+ν.
+The idea of the proof below is that a signed two-line queue encodes Step 2 of the
+interpolationt-Push TASEP.
+Proof.Note that (Step 2) of Definition 2.1 is encoded by an element of a setsGρ
+ν (see Defi-
+nition 3.1). Indeed, the transition in (Step 2) from the configurationρto the configuration
+νis possible if and only there is an elementsQin sGρ
+ν (recall that this set contains at most
+one element). More precisely, a particle labeledaą0which moved from positionkPJnK
+to a positionk 1, corresponds to a non trivial pairing insQconnecting a ball labeledain
+columnkof the top row to a ball labeledain columnk 1 of the bottom row. Particles
+which do not move correspond to trivial pairings.
+We now claim thatwtp sQqdivided byD:“ ś
+kăj
+`
+xk ´ 1
+tn´2
+˘ ś
+kąj
+`
+xk ´ 1
+tn´1
+˘
+gives
+Pp2q
+j pρ, νq. We will prove the claim below by showing that each ball or pairing weight
+inwtp sQq, divided by one of the factors inD, equals one of the skipping/ displacement
+probabilities from Item (Step 2) (whose product isPp2q
+j pρ, νq). Note that in what follows,
+instead of associating the weightp1´tqtskipppq to each nontrivial pairing, we will associate
+p1´tqto the top ball in each nontrivial pairing, and a factor oftto each skipped ball.
+
+===== PAGE 6 =====
+
+6 HOUCINE BEN DALI AND LAUREN KIYOMI WILLIAMS
+‚Each ball in columnkąjof sQis necessarily trivially paired, since no ball in
+positionkąjget skipped or displaced in (Step 2). In sQthis ball gets weight
+xk ´ 1
+tn´1; when we divide this weight by thekth factor ofD, we get1, which
+corresponds to the fact that balls in positionkąjdo not contribute toPp2q
+j pρ, νq.
+‚A ball in sQlabeledbin columnkăjwhich is trivially paired, and which is not
+skipped by a ballaąb, also has weightxk ´ 1
+tn´1. When we divide this weight by
+thekth factor ofD, we get1´p k (see (1)). This is what we desired, because such
+a trivial pairing insQcorresponds to a particle labeledbwhich is skipped over by
+a particle with a smaller label, and hence contributes1´pk toP p2q
+j pρ, νq.
+‚A ball in sQlabeledbin columnkăjwhich is trivially paired, and which is
+skipped by a ballaąb, gets a weighttpx k ´ 1
+tn´1 q. When we divide this weight
+by thekth factor ofD, we get1´q k (see (1)). This is what we desired, because
+such a trivial pairing corresponds to a particle labeledbskipped over by a particle
+with a larger label, and hence contributes1´qk toP p2q
+j pρ, νq.
+‚A ball labeledbin the top row of sQin columnkăjwhich has a ball labeledaăb
+below it gets a weightp1´tq1
+tn´1 (the factorp1´tqis the nontrivial pairing weight).
+When we divide this weight by thekth factor ofD, we getpk. This is what we
+desired, because this pairing corresponds to a particle labeledbbeing displaced
+by a particle with a smaller label, and hence contributingpk toP p2q
+j pρ, νq.
+‚A ball labeledbin the top row of sQin columnkăjwhich has a ball labeledaąb
+below it gets a weightp1´tqxk (the factorp1´tqis the nontrivial pairing weight).
+When we divide this weight by thekth factor ofD, we getqk. This is what we
+desired, because this pairing corresponds to a particle labeledbbeing displaced
+by a particle with a larger label, and hence contributingqk toP p2q
+j pρ, νq.□
+Proposition 3.7.Ifλis restricted, andµ, νPS npλq, then
+Ppµ, νq “
+ÿ
+ρPSnpλq
+aµ
+ρ cρ
+ν
+e˚
+n´1
+.
+Proof.Combining [AMW25, Lemma 5.4] and Proposition 3.6, we get
+Ppµ, νq “
+ÿ
+1ďjďn
+Pj
+ÿ
+ρPSnpλq:ρj “0
+Pp1q
+j pµ, ρqPp2q
+j pρ, νq
+“
+ÿ
+1ďjďn
+ÿ
+ρPSnpλq:ρj “0
+aµ
+ρ cρ
+ν
+e˚
+n´1
+“
+ÿ
+ρPSnpλq
+aµ
+ρ cρ
+ν
+e˚
+n´1
+.□
+Proof of Theorem 2.2.Fix a restricted partitionλ. LetνPS npλq. From [BDW25, Theo-
+rem 1.15 and Lemma 5.6], we have
+F ˚
+ν px; 1, tq “
+ÿ
+ηPNn
+F ˚η
+ν px;tqF ˚
+η´px; 1, tq,
+
+===== PAGE 7 =====
+
+A PROBABILISTIC INTERPRETATION FOR INTERPOLATION MACDONALD POLYNOMIALS 7
+where
+F ˚η
+ν px;tq:“
+ÿ
+αPZn
+bα
+ν wtα aη
+∥α∥ “
+ÿ
+κPNn
+aη
+κcκ
+ν .
+But we know from Corollary 3.5 that
+F ˚
+η´px; 1, tq “ F ˚
+η px; 1, tq
+e˚
+n´1px;tq ,
+we use here the fact thatηhas a unique part of size 0. Hence
+F ˚
+ν px; 1, tq “
+ÿ
+ηPNn
+F ˚
+η px; 1, tq
+ÿ
+κPNn
+aη
+κcκ
+ν
+e˚
+n´1px;tq ,
+which can be rewritten using the transition probabilities of the interpolationt-Push
+TASEP (Proposition 3.7) we get
+F ˚
+ν px; 1, tq “
+ÿ
+ηPNn
+F ˚
+η px; 1, tqPpη, νq.
+This proves thatF ˚
+µ px; 1, tqare proportional to the stationary distribution of the inter-
+polationt-Push TASEPπ ˚
+λpµq. Finally, we use the fact thatP˚
+λ “ ř
+µPSnpλq F ˚
+µ to deduce
+that
+F ˚
+µ px;1,tq
+P ˚
+λ px;1,tq “π ˚
+λpµq.□
+References
+[AMW25] Arvind Ayyer, James Martin, and Lauren Williams,The inhomogeneoust-PushTASEP and
+Macdonald polynomials atq“1, Annales de l’Institut Henri Poincaré D (2025).
+[AS19] Per Alexandersson and Mehtaab Sawhney,Properties of non-symmetric Macdonald polynomi-
+als atq“1andq“0, Ann. Comb.23(2019), no. 2, 219–239. MR 3962853
+[BDW25] Houcine Ben Dali and Lauren Williams,A combinatorial formula for Interpolation Macdonald
+polynomials, Preprint arXiv:2510.02587, 2025.
+[CMW22] Sylvie Corteel, Olya Mandelshtam, and Lauren Williams,From multiline queues to Macdonald
+polynomials via the exclusion process, Amer. J. Math.144(2022), no. 2, 395–436. MR 4401508
+[Doł17] Maciej Dołęga,Strong factorization property of Macdonald polynomials and higher-order Mac-
+donald’s positivity conjecture, J. Algebraic Combin.46(2017), no. 1, 135–163. MR 3666415
+Department of Mathematics, Har v ard University, Cambridge, MA, and Center for
+Mathematical Sciences and Applications, Har v ard University, Cambridge, MA
+Email address:bendali@math.harvard.edu
+Department of Mathematics, Har v ard University, Cambridge, MA
+Email address:williams@math.harvard.edu

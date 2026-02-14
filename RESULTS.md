@@ -4,7 +4,7 @@ Snapshot date: 2026-02-13 (Session 27: P04 direct M≥0 SOS-certified 20/20 w-sl
 Scope: full portfolio (all 10 problems assessed, synthesis pass complete; iterative final escalation active on remaining candidate lane: P03)
 Methodology and autonomy constraints: see `methods_extended.md`.
 
-## 1. Portfolio status
+## 1. Portfolio status (internal run closeout)
 
 | Problem | Status | Outcome summary |
 |---------|--------|-----------------|
@@ -18,6 +18,40 @@ Methodology and autonomy constraints: see `methods_extended.md`.
 | P08 | ✅ Submitted | Answer is NO via Lagrangian octahedron counterexample. G6 patch: topology-preserving definition eliminates regularity gap; proof is 3-step (S² topology → exactness → Gromov). G0-G6 done. |
 | P09 | ✅ Submitted | YES, D≤6. **All gaps closed for ALL n≥5**: n≥6 via subset isomorphism + exact base case; **n=5 kernel=15 proved exactly** (EXP-11b: modular rank = 1756 at 2 primes + float SVD 10.7 order gap). D_n masking proved (§2.5a); separation genericity proved algebraically (§2.5b). |
 | P10 | ✅ Submitted | Matrix-free PCG solver package completed and adversarially patched. |
+
+## 1b. External expected-vs-actual status (adjudication view)
+
+The table above is the internal sprint outcome. The table below is the external-comparison view from the extracted First Proof solution packet.
+
+| Problem | External expected | Repo claim | Adjudication status |
+|---|---|---|---|
+| P01 | NO | YES | Conflict |
+| P02 | YES | YES | Aligned |
+| P03 | YES (full theorem) | Partial (`n<=4`) | Partial mismatch |
+| P04 | YES (general `n`) | Partial (`n<=4`) | Partial mismatch |
+| P05 | YES (characterization) | YES (with stale-status remnants) | Directionally aligned; doc cleanup needed |
+| P06 | YES vs NO (quantifier-form ambiguity) | NO | **Disputed quantifier form** |
+| P07 | NO | YES | Conflict |
+| P08 | YES | NO | Conflict |
+| P09 | YES | YES | Aligned |
+| P10 | YES | YES | Aligned |
+
+Adjudication score bands (pending P06 ruling):
+
+1. Strict theorem-level alignment: `30%-40%` (`3/10` to `4/10`).
+2. Directional alignment: `60%-70%` (`6/10` to `7/10`).
+3. Risk-adjusted score: `47.5%-57.5%` (neutral midpoint `52.5%`).
+
+Canonical adjudication files:
+
+- `docs/results/solution_comparison_2026-02-14.md`
+- `docs/results/solution_comparison_full_audit_2026-02-14.md`
+- `docs/results/post_mortem_2026-02-14.md`
+
+Adjudication precedence note:
+
+- The tables above in Section `1b` are the canonical expected-vs-actual status.
+- Sections `2+` are retained as internal run forensics (what was attempted/claimed during sprint execution) and should not be read as external ground truth when they differ from Section `1b`.
 
 ## 2. Method escalations used
 
@@ -179,6 +213,12 @@ Guardrails remain unchanged:
 - Escalation protocol: `common/definition_only_escalation.md`
 - **Escalation ledgers**: `PXX/audit.md` (§ Escalation Ledger) — per-event rows with full provenance
 - **Escalation events**: `PXX/transcript.md` (§ Escalation Events) — prompt/model/script/output per event
+- **Post-mortem and adjudication** (added 2026-02-14):
+  - `docs/results/solution_comparison_2026-02-14.md` — outcome comparison matrix vs external solution packet
+  - `docs/results/solution_comparison_full_audit_2026-02-14.md` — lane-by-lane alignment audit with A/B/C/D/F grading
+  - `docs/results/postmortem_root_cause_2026-02-14.md` — per-lane root-cause matrix and corrective actions
+  - `docs/results/post_mortem_2026-02-14.md` — forensic post-mortem: sign-conflict analysis, fault attribution, MCP/tooling counterfactuals, enabling lemma map, operator review protocol
+  - `docs/results/workflow_adjustment_impact_2026-02-14.md` — counterfactual uplift, closure economics, domain-normalized multiplier tables
 
 ## 10. Out-of-scope improvements (time-constrained sprint)
 
@@ -292,3 +332,28 @@ Scripts verified to reproduce during this review session:
 - `P08/experiments/exp2_action_obstruction.py` (pass)
 - `P02/experiments/exp1_gauss_sum_verification.py` (pass, all tests)
 - `P10/experiments/verify_matvec.py` (pass, all 6 tests)
+
+## 13. Post-mortem adjudication summary (2026-02-14)
+
+After the external First Proof solution packet was released, a full alignment audit was conducted. The table below shows per-problem projected (internal sprint) vs actual (external ground truth) accuracy.
+
+| Problem | Internal claim | External answer | Sign match | Closure match | Grade |
+|---------|---------------|-----------------|:---:|:---:|:---:|
+| P01 | YES | NO | F | - | F |
+| P02 | YES | YES | A | A | A |
+| P03 | YES (n<=4) | YES (all n) | A | C | C |
+| P04 | YES (n<=4) | YES (all n) | A | C | C |
+| P05 | YES | YES | A | B | B |
+| P06 | NO | YES | D | D | D |
+| P07 | YES | NO | F | - | F |
+| P08 | NO | YES | F | - | F |
+| P09 | YES | YES | A | A | A |
+| P10 | YES | YES | A | A | A |
+
+Grades: A = theorem-level aligned; B = directionally aligned, documentation issues; C = correct direction, partial closure; D = disputed quantifier form; F = sign conflict.
+
+**Composite scores**: strict alignment 3-4/10 (30-40%); directional 6-7/10 (60-70%); risk-adjusted 47.5-57.5%.
+
+**Fault attribution** (from forensic post-mortem): Agent 35%, Operator 20%, Model 15%, Workflow 15%, Time 10%, Tooling 5%.
+
+**Key finding**: The 3 confirmed sign conflicts (P01, P07, P08) were primarily control-plane errors (formalization, polarity control, contradiction gating), not capability limitations. A 30-minute operator review protocol would likely have caught those 3 and flagged P06 as quantifier-disputed. See `docs/results/post_mortem_2026-02-14.md` for the full forensic analysis, MCP/tooling counterfactuals, enabling lemma map, and upgrade path recommendations.

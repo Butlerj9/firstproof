@@ -1,0 +1,619 @@
+
+
+===== PAGE 1 =====
+
+Light Sets of Vertices
+Daniel Spielman, Jan. 30, 2026
+Throughout this note, G = (V, E, w) will be a weighted graph with n vertices. For an edge
+(s, t) ∈ E, we let w(s, t) be its weight. For two vertex sets, S and T , the subgraph GS,T of G
+has vertex set V , but only the edges going between vertices in S and T . We write GS for the
+graph that only contains the edges between vertices in S.
+The matrix L is the Laplacian of G, which we recall may be defined by
+L =
+X
+(s,t)∈E
+w(s, t)(δs − δt)(δs − δt)T ,
+where δs is the elementary unit vector with a 1 in position s. We let LS denote the Laplacian
+of GS. As GS and G have been defined to have the same vertex set, LS has the same dimension
+as L.
+Lemma 0.1. For every weighted graph G = (V, E, w) with n vertices, and for every 0 < ϵ < 1,
+there is an S ⊆ V of size at least ϵn/42 so that
+ϵL ≽ LS.
+We call such a set of verticesS an ϵ-light set. A set S is 0-light if and only if it is independent,
+and we could view lightness as a qualitative measure of independence. We might have called it
+“spectral independence,” if that term were not already in use.
+This lemma was proved by Daniel Spielman while working on the paper “Sparsified Cholesky
+Solvers for SDD linear systems”, written with Richard Peng and Yin-Tat Lee [LPS15]. We de-
+cided not to include the lemma in that paper because, while it could be used to obtain interesting
+variants of some results, it was not necessary for the main results in that paper. That paper
+evolved into the paper “Sparsified Cholesky and Multigrid Solvers for Connection Laplacians,”
+written with Rasmus Kyng, Yin Tat Lee, Richard Peng and Sushant Sachdeva [KLP +16].
+1 Proof Strategy
+We define LS,T to be the Laplacian of GS,T . For a vertex t and a subset of vertices S, we define
+LS,t to be the Laplacian of GS,{t}.
+For a matrix L, we write its pseudo-inverse as L†. We write L†/2 for the square root of the
+pseudo-inverse. We will prove the following statement that is equivalent to Lemma 0.1
+
+
+
+L†/2LSL†/2
+
+
+
+ ≤ ϵ.
+We will find it convenient to multiply all Laplacian matrices on the left and right by L†/2.
+So, we define
+eLS = L†/2LSL†/2, eLS,T = L†/2LS,T L†/2, eLS,t = L†/2LS,tL†/2,
+and recall that L†/2LL†/2 def= Π is a symmetric projection matrix.
+1
+
+===== PAGE 2 =====
+
+We are going to build up S in a greedy fashion. We will begin with a singleton set, and
+then add one vertex at a time. As we add vertices to S, we will need to maintain bounds on
+two quantities: a modification of the upper barrier function from [BSS12] and the sum of the
+leverage scores of edges between S and V \ S.
+The leverage score of an edge ( s, t) is defined to be w(s, t) times the effective resistance
+between s and t:
+ℓ(s, t) = w(s, t)(δs − δt)T L†(δs − δt) = Tr
+
+w(s, t)(δs − δt)(δs − δt)T L†
+
+= Tr
+
+L{s},{t}L†
+
+.
+For vertices s and t for which ( s, t) is not an edge, we define ℓ(s, t) = 0. For subsets of vertices
+S and T , we define
+ℓ(S, T) def=
+X
+s∈S
+X
+t∈T
+ℓ(s, t) =
+X
+s∈S
+X
+t∈T :(s,t)∈E
+ℓ(s, t),
+and
+ℓ(S) def= ℓ(S, V − S).
+Claim 1.1. For S and T subsets of vertices, ℓ(S, T) = Tr
+
+eLS,T
+
+.
+Proof. From the definition of the Laplacian of a graph, we have LS,T =P
+s∈S
+P
+t∈T L{s},{t}. So,
+Tr
+
+eLS,T
+
+= Tr
+
+L†/2LS,T L†/2
+
+= Tr
+
+LS,T L†
+
+=
+X
+s∈S
+X
+t∈T
+Tr
+
+L{s},{t}L†
+
+=
+X
+s∈S
+X
+t∈T
+ℓ(s, t) = ℓ(S, T).
+We modify the BSS barrier function to make it better suited to matrices of rank at most σ
+by only incorporating the largest σ eigenvalues of the matrix. For a matrix A with eigenvalues
+λ1 ≥ λ2 ≥ · · · ≥ λn, and a u > λ 1, we define
+Φu
+σ(A) def=
+σX
+i=1
+1
+u − λi
+.
+If u ≤ λ1, we define Φ u
+σ(A) = ∞. We overload the definition of Φ by setting
+Φu
+σ(S) def= Φ u
+σ(eLS).
+Our objective is to find a set S of size σ so that Φ ϵ
+σ(S) < ∞.
+We deal with this barrier function by considering a modified trace of a matrix that only sums
+the largest σ eigenvalues of its argument:
+Trσ (A) def=
+σX
+i=1
+λi,
+where the eigenvalues of A are λ1 ≥ λ2 ≥ · · · ≥ λn. We then have Φ u
+σ(A) = Trσ
+
+(uI − A)−1
+
+.
+In all cases we consider, the argument of Tr σ is a diagonalizable matrix with real eigenvalues.
+2
+
+===== PAGE 3 =====
+
+For the rest of this note, define
+δ def= 21
+n , ϕ def= n
+21 , and σ def= ⌊ϵn/42⌋ .
+We will prove Lemma 0.1 by iteratively applying the following lemma.
+Lemma 1.2. If |S| ≤ σ, ℓ(S) ≤ 4 |S|, and Φu
+σ(S) ≤ ϕ, then there is a t ̸∈ S so that
+Φu+δ
+σ (S ∪ {t}) ≤ ϕ and ℓ(S ∪ {t}) ≤ ℓ(S) + 4.
+Proof. Lemma 2.1 says that for more than half the t ̸∈ S, ℓ(S ∪ {t}) ≤ ℓ(S) + 4. And, under the
+conditions of the lemma, Lemma 2.5 says that for at least half the t ̸∈ S, Φu
+σ(S ∪ {t}) ≤ ϕ. So,
+there is a t ̸∈ S that satisfies both conditions.
+Proof of Lemma 0.1. Set u0 = ϵ/2 and let S0 = {v0} an arbitrary v0 ∈ V . As GS0 has no edges,
+Φu0
+σ (S0) = σ/u0 ≤ n
+21 = ϕ.
+By applying Lemma 1.2 σ times, we inductively construct a set S of σ + 1 vertices so that
+ℓ(S) ≤ 4σ and Φu0+σδ
+σ (S) ≤ ϕ. This implies that all of the eigenvalues of eLS are at most
+u0 + σδ = ϵ
+2 + σ 21
+n ≤ ϵ.
+2 Proofs
+Lemma 2.1. Let S ⊂ V . Then, for more than half the t not in S,
+ℓ(S ∪ {t}) ≤ ℓ(S) + 4.
+Proof. Recall ℓ(S ∪ {t}) = ℓ(S ∪ {t} , V − (S ∪ {t})). For t ̸∈ S, we use the inequality
+ℓ(S ∪ {t} , V − (S ∪ {t})) ≤ ℓ(S ∪ {t} , V − S) = ℓ(S) + ℓ(t, V − S).
+So, it suffices to show that for more than half the t ̸∈ S, ℓ(t, V − S) ≤ 4. This follows from the
+non-negativity of ℓ and Claim 2.2 which shows that
+X
+t∈V −S
+ℓ(t, V − S) < 2 |V − S| .
+Claim 2.2. For every T ⊂ V , X
+t∈T
+ℓ(t, T) ≤ 2(|T | − 1).
+3
+
+===== PAGE 4 =====
+
+Proof.
+X
+t∈T
+ℓ(t, T) =
+X
+t∈T
+Tr
+
+L{t},T L†
+
+= 2Tr
+
+LT L†
+
+.
+To show that Tr
+
+LT L†
+< |T |, observe that LT ≼ L, so all the eigenvalues of LT L† are between
+0 and 1. Because LT has rank at most |T | −1, at most |T | −1 eigenvalues of LT L† are non-zero.
+For convenience, we now state a few key properties of the function Trσ of a matrix. We begin
+with its defect: it is not additive. But, Ky Fan’s eigenvalue inequality (see Theorem 4.3.47a of
+[HJ12]) tells us that it is subadditive:
+Trσ (A + B) ≤ Trσ (A) + Trσ (B) . (1)
+Most of the properties of Tr σ that we find helpful follow from the fact that, for matrices A
+and B, AB has the same non-zero eigenvalues as BA, counted with multiplicity.
+Proposition 2.3. For symmetric matrices A and B,
+a. Trσ (A) = maxU Tr
+
+U AUT
+, where the maximum is taken over all orthogonal matrices of
+rank σ.
+b. If A is positive semidefinite, then Trσ (AB) = Trσ (BA).
+c. If A and B are positive semidefinite, then Trσ (AB) ≥ 0.
+d. If A ≼ B, then Trσ (A) ≤ Trσ (B).
+e. If C is positive semidefinite and A ≼ B, then Trσ (AC) ≤ Trσ (BC).
+Proof. Part a is Ky Fan’s maximum principle, proved in [Fan49]. Part b is a direct consequence
+of the facts that AB has n real eigenvalues if A is positive semidefinite, and AB and BA
+have the same non-zero eigenvalues. Part c follows from the fact that all eigenvalues of the
+product of positive semidefinite matrices are non-negative. Part d follows from using (1) to show
+Trσ (A) ≤ Trσ (B) + Trσ (A − B) ≤ Trσ (B) , using the fact that A − B is negative semidefinite
+and so Tr σ (A − B) ≤ 0. To derive part e from part d, let V be a matrix so that V T V = C,
+and apply b to show the conclusion is equivalent to Tr σ
+
+V AV T
+≤ Trσ
+
+V BV T
+, which follows
+from V AV T ≼ V BV T .
+Note that eLS∪{t} = eLS +eLS,t. To show that we can choose a t ̸∈ S that does not increase
+the barrier function, we employ the following adaptation of Lemma 19 of [SHS15], which in turn
+is an adaptation of Lemma 3.3 from [BSS12]. We include a proof for completeness.
+Lemma 2.4. Let A and B be positive semidefinite matrices, δ > 0, and let M = (u + δ)I − A.
+If Φu
+σ(A) < ∞ and
+Trσ
+
+M −2B
+
+Φuσ(A) − Φu+δσ (A)
++ Trσ
+
+M −1B
+
+< 1, (2)
+then Φu+δ
+σ (A + B) ≤ Φu
+σ(A).
+4
+
+===== PAGE 5 =====
+
+Proof. Our assumption that Φu
+σ(A) < ∞ implies that M, M −1, and M −2 are all positive definite.
+Thus, Proposition 2.3c implies that both terms in (2) are non-negative. Let C be a matrix for
+which B = CC T , and so by Proposition 2.3b Tr σ
+
+M −1B
+
+= Trσ
+
+CT M −1C
+
+< 1.
+Recall Φu+δ
+σ (A + B) = Trσ
+
+(M − CC T )−1
+. By the Sherman-Morrison-Woodbury formula,
+(M − CC T )−1 = M −1 + M −1C(I − CT M −1C)−1CT M −1.
+As
+
+
+CT M −1C
+
+
+ ≤ Trσ
+
+CT M −1C
+
+< 1, we know that right-hand term is positive definite, and
+thus all eigenvalues of A + B are less than u + δ. Now, (1) implies
+Φu+δ
+σ (A + B) ≤ Trσ
+
+M −1
++ Trσ
+
+M −1C(I − CT M −1C)−1CT M −1
+.
+By Propositon 2.3b,
+Trσ
+
+M −1C(I − CT M −1C)−1CT M −1
+= Trσ
+
+(I − CT M −1C)−1CT M −2C
+
+As
+
+
+CT M −1C
+
+
+ ≤ Trσ
+
+CT M −1C
+
+< 1, (I − CT M −1C)−1 ≼ (1 − Trσ
+
+CT M −1C
+
+)−1I, and by
+Proposition 2.3d,
+Trσ
+
+(I − CT M −1C)−1CT M −2C
+
+≤ Trσ
+
+CT M −2C
+
+1 − Trσ (CT M −1C) .
+Writing Trσ
+
+M −1
+= Φu
+σ(A) − (Φu
+σ(A) − Φu+δ
+σ (A)), we obtain
+Φu+δ
+σ (A + B) ≤ Φu
+σ(A) − (Φu
+σ(A) − Φu+δ
+σ (A)) + Trσ
+
+CT M −2C
+
+1 − Trσ (CT M −1C) ,
+which (2) and Proposition 2.3b imply is at most Φ u
+σ(A).
+We will apply this result with A = eLS and B = eLS,t. When these terms, along with u and
+δ are given, it will be convenient to write
+U(S, t) def=
+Trσ
+
+M −2eLS,t
+
+Φuσ(S) − Φu+δσ (S)
++ Trσ
+
+M −1eLS,t
+
+.
+Lemma 2.5. If |S| ≤ σ, Φu
+σ(S) ≤ ϕ, and ℓ(S) ≤ 4 |S|, then for at least half the t ̸∈ S,
+U(S, t) < 1
+Proof. We will prove that X
+t̸∈S
+U(S, t) ≤ 5
+δ + 5ϕ.
+As U(S, t) is non-negative, this implies that for at least half the t ̸∈ S,
+U(S, t) ≤ 2
+n − |S|
+5
+δ + 5ϕ
+
+≤ 2
+n
+42
+41
+5n
+21 + 5n
+21
+
+< 1.
+5
+
+===== PAGE 6 =====
+
+We need to upper bound the terms Tr σ
+
+M peLS,t
+
+for p ∈ {−1, −2}. We do this by breaking
+each term into two parts. Let Π S be the symmetric projection onto the span of eLS and let
+ΠT = I − ΠS. As M = (u + δ)(ΠS + ΠT ) −eLS, ΠT ΠS = ΠTeLS = 0, and Π p
+S = ΠS,
+M p = (u + δ)pΠT +
+
+(u + δ)ΠS −eLS
+p
+.
+By the subadditivity of Tr σ we conclude
+Trσ
+
+M peLS,t
+
+≤ Trσ
+
+(u + δ)pΠTeLS,t
+
++ Trσ
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+.
+The term invovling Π S is addressed by Claim 2.6, which says
+X
+t̸∈S
+Trσ
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+≤ Trσ (M p) .
+For the other term, we recall that ΠT andeLS,t are positive semidefinite and so their product
+has only non-negative eigenvalues to show
+Trσ
+
+(u + δ)pΠTeLS,t
+
+≤ Tr
+
+(u + δ)pΠTeLS,t
+
+= (u + δ)pTr
+
+ΠTeLS,t
+
+≤ (u + δ)pTr
+
+eLS,t
+
+.
+Claim 1.1 tells us that this equals ( u + δ)pℓ(S, t), giving
+X
+t̸∈S
+Trσ
+
+(u + δ)pΠTeLS,t
+
+≤ (u + δ)pX
+t̸∈S
+ℓ(S, t) = (u + δ)pℓ(S) ≤ (u + δ)p4 |S| .
+To combine these terms, note that all the eigenvalues of M are at most (u + δ), and thus for
+p < 0 all the eigenvalues of M p are at least ( u + δ)p. This tells us that Tr σ (M p) ≥ σ(u + δ)p ≥
+|S| (u + δ)p. We conclude that
+X
+t̸∈S
+Trσ
+
+M peLS,t
+
+≤ 5Trσ (M p) .
+To finish, we return to
+X
+t̸∈S
+U(S, t) =
+X
+t̸∈S
+Trσ
+
+M −2eLS,t
+
+Φuσ(S) − Φu+δσ (S)
++
+X
+t̸∈S
+Trσ
+
+M −1eLS,t
+
+≤ 5Trσ
+
+M −2
+Φuσ(S) − Φu+δσ (S)
++ 5Trσ
+
+M −1
+.
+The right-hand term is at most 5Φ u+δ
+σ (S), and Claim 2.7 shows that the left-hand term is at
+most 5
+δ . Summing these together gives the result.
+Claim 2.6. Assume that |S| ≤ σ. For M = (u + δ)I −eLS, and nonzero real p,
+X
+t̸∈S
+Trσ
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+≤ Trσ (M p) .
+6
+
+===== PAGE 7 =====
+
+Proof. Because both eLS,t and
+
+(u + δ)ΠS −eLS
+p
+are positive semidefinite, the eigenvalues of
+their product are nonnegative, and so
+Trσ
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+≤ Tr
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+.
+AsP
+t̸∈SeLS,t =eLS,T ≼ I, Proposition 2.3d implies
+X
+t̸∈S
+Tr
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+= Tr
+
+(u + δ)ΠS −eLS
+p
+eLS,T
+
+≤ Tr
+
+(u + δ)ΠS −eLS
+p
+= Tr
+
+ΠS
+
+(u + δ)I −eLS
+p
+ΠS
+
+= Tr (ΠSM pΠS) .
+By Ky Fan’s maximum principle (Proposition 2.3a) this latter term is at most Tr σ (M p).
+Claim 2.7.
+Φu
+σ(S) − Φu+δ
+σ (S) ≥ δTrσ
+
+M −2
+.
+Proof. Let λ1, . . . , λσ be the largest σ eigenvalues of eLS. Then,
+Φu
+σ(S) − Φu+δ
+σ (S) =
+σX
+i=1
+1
+u − λi
+−
+σX
+i=1
+1
+u + δ − λi
+=
+σX
+i=1
+δ
+(u − λi)(u + δ − λi)
+≥
+σX
+i=1
+δ
+(u + δ − λi)2 .
+= δTrσ
+
+M −2
+.
+References
+[BSS12] Joshua Batson, Daniel A Spielman, and Nikhil Srivastava. Twice-Ramanujan spar-
+sifiers. SIAM Journal on Computing , 41(6):1704–1721, 2012.
+[Fan49] Ky Fan. On a theorem of Weyl concerning eigenvalues of linear transformations I.
+Proceedings of the National Academy of Sciences of the United States of America ,
+35(11):652, 1949.
+[HJ12] Roger A Horn and Charles R Johnson. Matrix analysis. Cambridge university press,
+2012.
+[KLP+16] Rasmus Kyng, Yin Tat Lee, Richard Peng, Sushant Sachdeva, and Daniel A Spielman.
+Sparsified Cholesky and multigrid solvers for connection Laplacians. In Proceedings
+of the forty-eighth annual ACM symposium on Theory of Computing , pages 842–850.
+ACM, 2016.
+7
+
+===== PAGE 8 =====
+
+[LPS15] Yin Tat Lee, Richard Peng, and Daniel A. Spielman. Sparsified Cholesky solvers for
+SDD linear systems. CoRR, abs/1506.08204, 2015.
+[SHS15] Marcel K De Carli Silva, Nicholas JA Harvey, and Cristiane M Sato. Sparse sums of
+positive semidefinite matrices. ACM Transactions on Algorithms (TALG) , 12(1):1–
+17, 2015.
+8

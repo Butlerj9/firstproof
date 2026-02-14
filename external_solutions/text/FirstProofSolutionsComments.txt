@@ -1,0 +1,3788 @@
+
+
+===== PAGE 1 =====
+
+First Proof solutions and comments
+Mohammed Abouzaid∗
+Stanford University
+Andrew J. Blumberg
+Columbia University
+Martin Hairer
+EPFL and Imperial
+Joe Kileel
+University of Texas at Austin
+Tamara G. Kolda
+MathSci.ai
+Paul D. Nelson
+Aarhus University
+Daniel Spielman
+Yale University
+Nikhil Srivastava†
+University of California, Berkeley
+Rachel Ward‡
+University of Texas at Austin
+Shmuel Weinberger
+University of Chicago
+Lauren Williams§
+Harvard University
+February 14, 2026
+Abstract
+Here we provide our solutions to the First Proof questions. We also discuss the
+best responses from publicly available AI systems that we were able to obtain in our
+experiments prior to the release of the problems on February 5, 2025. We hope this
+discussion will help readers with the relevant domain expertise to assess such responses.
+∗BCorresponding author, Email: abouzaid@stanford.edu
+†BCorresponding author, Email: nikhil@math.berkeley.edu
+‡BCorresponding author, Email: rward@math.utexas.edu
+§BCorresponding author, Email: williams@math.harvard.edu
+1
+
+===== PAGE 2 =====
+
+1 Introduction
+This document contains the following:
+• An announcement of a “second batch” of problems, that is, First Proof Batch 2, in
+Section 2.
+•The statements of the questions in Section 3 for convenience.
+•Mathematical commentary on the AI-generated solutions we produced (Section 4).
+•Our human-generated solutions to the ten problems (Section A).
+The logs of AI-generated solutions which we produced while testing the problems before
+February 5, 2026 can be found in the folderhttps://codeberg.org/tgkolda/1stproof/
+src/branch/main/2026-02-batch. As mentioned in our FAQ, we will not be providing any
+formal assessment of submitted solutions to the First Proof questions.
+Discussion Period.We are thrilled about the excitement this project has generated, and
+we are grateful to the community for engaging with us. ICARM has generously agreed to
+host a web-public Zulip channel in which discussions of the solutions will be hosted. Some
+questions to seed the discussion are the following. How do various prompting strategies
+compare for each question? Are there harnessing strategies that succeed in improving model
+outputs? Does the success of such methods depend on the mathematical area? How do
+we define an autonomously produced solution, and how do we guarantee it? How should
+solutions be graded?
+One issue which has already arisen in experimentation this week is thatit is difficult
+for non-experts to judge whether a given solution is mathematically correct or not. To
+potentially aid this process, we have included brief mathematical commentary on the AI
+generated solutions we encountered indicating common errors. (This has no pretense of being
+an exhaustive list of failure scenarios.)
+2 Second Batch
+For the next batch, we will implement a benchmarking phase prior to the community release.
+The benchmark phase will be designed to ensure the following features:
+•Verification that the solutions are produced autonomously.
+•A formal grading scheme and refereeing, modeled on the journal review system.
+• An explicit description of the problem selection process, including advance internal
+testing on systems which have a zero data retention policy.
+If you are interested in an assessment of your solutions to the next round of questions, email
+contact@firstproof.com. We will provide details about the design of the next round in one
+month, onMarch 14, 2026.
+2
+
+===== PAGE 3 =====
+
+After the formal phase of the second batch of problems, we will include another informal
+community experimentation phase to generate further discussion. We hope to inform the
+design of this phase based on the feedback we receive from the community.
+3 The questions
+1. Let T3 be the three dimensional unit size torus and letµbe theΦ 4
+3 measure on the space
+of distributionsD′(T3). Letψ: T3→Rbe a smooth function that is not identically
+zero and letTψ:D′(T3)→D′(T3)be the shift map given byTψ(u) =u+ψ(with the
+usual identification of smooth functions as distributions). Are the measuresµand T∗
+ψµ
+equivalent? Here, equivalence of measures is in the sense of having the same null sets
+andT ∗
+ψdenotes the pushforward underTψ.
+2. Let F be a non-archimedean local field with ring of integerso. Let Nr denote the
+subgroup ofGLr(F )consisting of upper-triangular unipotent elements. Letψ:F→C×
+be a nontrivial additive character of conductoro, identified in the standard way with
+a generic character ofNr. LetΠbe a generic irreducible admissible representation
+of GLn+1(F), realized in itsψ−1-Whittaker modelW(Π,ψ−1). Must there existW∈
+W(Π,ψ−1)with the following property?
+Let πbe a generic irreducible admissible representation ofGLn(F ), realized in its
+ψ-Whittaker modelW(π,ψ). Let q denote the conductor ideal ofπ, letQ∈F×be a
+generator ofq−1, and set
+uQ :=I n+1 +QE n,n+1∈GLn+1(F),
+where Ei,j is the matrix with a1in the( i,j )-entry and0elsewhere. For some
+V∈W(π,ψ), the local Rankin–Selberg integral
+∫
+Nn\GLn(F)
+W(diag(g,1)u Q)V(g)|detg|s−1
+2dg
+is finite and nonzero for alls∈C.
+3. Let λ= (λ1 >···>λn≥0)be a partition with distinct parts. Assume moreover that
+λisrestricted, in the sense that it has a unique part of size0and no part of size1.
+Does there exist a nontrivial Markov chain onSn(λ)whose stationary distribution is
+given by
+F∗
+µ(x1,...,xn;q= 1,t)
+P∗
+λ(x1,...,xn;q= 1,t) forµ∈Sn(λ)
+whereF∗
+µ(x1,...,xn;q,t )and P∗
+λ(x1,...,xn;q,t )are the interpolation ASEP polynomial
+and interpolation Macdonald polynomial, respectively? If so, prove that the Markov
+chain you construct has the desired stationary distribution. By “nontrivial” we mean
+that the transition probabilities of the Markov chain should not be described using the
+polynomialsF ∗
+µ(x1,...,xn;q,t).
+3
+
+===== PAGE 4 =====
+
+4. Letp(x)andq(x)be two monic polynomials of degreen:
+p(x) =
+n∑
+k=0
+akxn−kandq(x) =
+n∑
+k=0
+bkxn−k
+wherea 0 =b 0 = 1. Definep⊞ nq(x)to be the polynomial
+(p⊞nq)(x) =
+n∑
+k=0
+ckxn−k
+where the coefficientsck are given by the formula:
+ck =
+∑
+i+j=k
+(n−i)!(n−j)!
+n!(n−k)! aibj
+fork= 0,1,...,n. For a monic polynomialp(x) = ∏
+i≤n(x−λi), define
+Φn(p) :=
+∑
+i≤n
+(
+∑
+j̸=i
+1
+λi−λj
+)2
+andΦ n(p) :=∞if p has a multiple root. Is it true that ifp(x)and q(x)are monic
+real-rooted polynomials of degreen, then
+1
+Φn(p⊞nq)≥1
+Φn(p) + 1
+Φn(q)?
+5. Fix a finite groupG. Let O denote an incomplete transfer system associated to an
+N∞operad. Define the slice filtration on theG-equivariant stable category adapted to
+O and state and prove a characterization of theO-slice connectivity of a connective
+G-spectrum in terms of the geometric fixed points.
+6. For a graphG = (V,E ), letGS = (V,E (S,S ))denote the graph with the same vertex
+set, but only the edges between vertices inS. LetL be the Laplacian matrix ofG and
+let LS be the Laplacian ofGS. I say that a set of verticesS is ϵ-light if the matrix
+ϵL−LS is positive semidefinite. Does there exist a constantc >0so that for every
+graph G and everyϵbetween0and1, V contains anϵ-light subsetS of size at least
+cϵ|V|?
+7. Suppose thatΓis a uniform lattice in a real semi-simple group, and thatΓcontains
+some 2-torsion. Is it possible forΓto be the fundamental group of a compact manifold
+without boundary whose universal cover is acyclic over the rational numbersQ?
+8. A polyhedral Lagrangian surfaceK in R4 is a finite polyhedral complex all of whose
+faces are Lagrangians, and which is a topological submanifold ofR4. A Lagrangian
+smoothing of K is a Hamiltonian isotopyKt of smooth Lagrangian submanifolds,
+parameterised by(0, 1], extending to a topological isotopy, parametrised by[0, 1], with
+endpointK 0 =K.
+Let K be a polyhedral Lagrangian surface with the property that exactly4faces meet
+at every vertex. DoesKnecessarily have a Lagrangian smoothing?
+4
+
+===== PAGE 5 =====
+
+9. Let n≥5. LetA(1),...,A (n)∈R3×4be Zariski-generic. Forα,β,γ,δ∈[n], construct
+Q(αβγδ)∈R3×3×3×3so that its(i,j,k,ℓ)entry for1 ≤i,j,k,ℓ≤3is given byQ(αβγδ)
+ijkℓ =
+det[A(α)(i, :);A(β)(j, :);A(γ)(k, :);A(δ)(ℓ,:)]. HereA(i, :)denotes the ith row of a matrix
+A, and semicolon denotes vertical concatenation. We are interested in algebraic relations
+on the set of tensors{Q(αβγδ):α,β,γ,δ∈[n]}.
+More precisely, does there exist a polynomial mapF:R81n4
+→RN that satisfies the
+following three properties?
+•The mapFdoes not depend onA (1),...A(n).
+•The degrees of the coordinate functions ofFdo not depend onn.
+• Let λ∈Rn×n×n×nsatisfy λαβγδ̸= 0for precisely α,β,γ,δ∈[n]that are not
+identical. ThenF( λαβγδQ(αβγδ): α,β,γ,δ∈[n]) = 0holds if and only if there
+exist u,v,w,x∈(R∗)n such thatλαβγδ=uαvβwγxδfor allα,β,γ,δ∈[n]that are
+not identical.
+10. Given a d-way tensorT ∈Rn1×n2×···×nd such that the data is unaligned (meaning
+the tensorT has missing entries), we consider the problem of computing a CP de-
+composition of rankr where some modes are infinite-dimensional and constrained to
+be in a Reproducing Kernel Hilbert Space (RKHS). We want to solve this using an
+alternating optimization approach, and our question is focused on the mode-k subprob-
+lem for an infinite-dimensional mode. For the subproblem, then CP factor matrices
+A1,...,Ak−1,Ak+1,...,Ad are fixed, and we are solving forAk.
+Our notation is as follows. LetN = ∏
+ini denote the product of all sizes. Letn≡nk
+be the size of modek, letM =
+∏
+i̸=kni be the product of all dimensions exceptk,
+and assumen≪M. Since the data are unaligned, this means only a subset ofT ’s
+entries are observed, and we letq≪Ndenote the number of observed entries. We let
+T∈Rn×Mdenote the mode-k unfolding of the tensorT with all missing entries set to
+zero. The vec operations creates a vector from a matrix by stacking its columns, and
+we letS∈RN×qdenote the selection matrix (a subset of theN×Nidentity matrix)
+such thatST vec(T )selects the q known entries of the tensorT from the vectorization
+of its mode-k unfolding. We letZ =Ad⊙···⊙Ak+1⊙Ak−1⊙···⊙A1∈RM×rbe the
+Khatri-Rao product of the factor matrices corresponding to all modes except modek.
+We letB=TZdenote the MTTKRP of the tensorTand Khatri-Rao productZ.
+We assumeAk =KW where K∈Rn×ndenotes the psd RKHS kernel matrix for mode
+k. The matrixW of sizen×ris the unknown for which we must solve. The system to
+be solved is
+[
+(Z⊗K)TSST (Z⊗K) +λ(Ir⊗K)
+]
+vec(W) = (Ir⊗K) vec(B).
+Here, Ir denotes ther×ridentity matrix. This is a system of sizenr×nrUsing a
+standard linear solver costsO(n3r3), and explicitly forming the matrix is an additional
+expense.
+5
+
+===== PAGE 6 =====
+
+Explain how an iterative preconditioned conjugate gradient linear solver can be used to
+solve this problem more efficiently. Explain the method and choice of preconditioner.
+Explain in detail how the matrix-vector products are computed and why this works.
+Provide complexity analysis. We assumen,r < q≪N. Avoid any computation of
+orderN.
+4 Comments on solutions
+On February4and5, 2026, we tested the questions on Gemini 3.0 Deep Think and ChatGPT
+5.2 Pro with the following prompts.
+Prompt 1.The following is a research-level math question. The question has
+an answer, but it might not appear on the internet. Please make a best effort to
+provide a rigorous and complete answer to the question. Write the output as a
+compilable LaTeX document using the standards of rigor and scholarship that
+prevail in the mathematical literature.
+Prompt 2 (Internet Discouraged).The following is a research-level math
+question. The question has an answer. Please make a best effort to provide a
+rigorous and complete answer to the question. Write the output as a compilable
+LaTeX document using the standards of rigor and scholarship that prevail in
+the mathematical literature. Do not use web search, but instead try to reason
+through the answer.
+This produced 39 files; there is a missing file for Problem 1, using Deep Think, as the use
+of Deep Think is limited to 10 questions a day, and we failed to obtain a usable response
+on this trial. The logs posted athttps://codeberg.org/tgkolda/1stproof/src/branch/
+main/2026-02-batchalso include one response to Problem 2 which was generated by Paul
+Nelson before the testing period, and which we judged to be significantly better than the
+ones produced prior to release.
+In the following subsections, we comment briefly on the best LLM solutions that we
+obtained in these internal tests.
+4.1 Question 1: Martin Hairer
+In this case, a note with a very short sketch of proof (far short of the level of detail one
+would expect for a published article) was posted on the author’s homepage some time ago.
+The answer given by GPT-Pro simply quotes that note, claiming that it contains a detailed
+proof of the result. This is incorrect and it is despite the LLM being specifically instructed to
+comply with “mathematics publication” levels of scholarship. (Taking for granted a result that
+is merely stated in an unpublished note with a very rough sketch of proof is not considered
+acceptable in the mathematics literature.)
+Another behaviour we observed was that the LLM would take as a premise the (wrong!)
+statement that theΦ 4
+3 measure is equivalent to the free field measure, from which it then
+6
+
+===== PAGE 7 =====
+
+correctly deduces the (incorrect) claim that theΦ4
+3 measure is quasi-invariant under smooth
+shifts.
+4.2 Question 2: Paul Nelson
+In some attempts, the LLM constructedW depending onπ, but the problem asks for a single
+W that works for allπ. This is a critical condition; without it, the problem is much easier
+and the solution is well-known. In some (but not all) cases, the LLM noted that it had solved
+a weaker problem.
+In the best attempt in our trial runs, ChatGPT 5.2 Pro identified a suitable choice ofW and
+reduced (as in our solution) to exhibitingVfor which the integral
+∫
+GLn(o)V(g)ψ(−Qgnn)dg
+does not vanish. This nonvanishing is the key point.
+ChatGPT then attempted to chooseV so that the integrand is constant on its support,
+which, if possible, would make the nonvanishing clear. This strategy is unviable. For instance,
+when n = 1, V must be (a nonzero multiple of) a character ofF×and the integral is a
+normalized Gauss sum; in particular, the integrand is typically non-constant. For largern,
+the unviability follows similarly by considering the action of the center.
+To identify the specific error in the attempted solution, we look for the first place asserting
+stronger support properties ofV than are generally true. The culprit is the support condition
+claimed in the “standard Howe-vector existence result,” which never holds: it contradicts the
+fact thatVhas a central character.
+4.3 Question 3: Lauren Williams
+The best solution that LLM’s produced for Question 3 in our internal experiments was to use
+the Metropolis-Hastings algorithm to produce a Markov chain whose stationary distribution
+had the desired formula. However, by design, the Metropolis-Hastings algorithm uses the
+desired formula to define its transition rates. This algorithm can be used to cook up a
+Markov chain withany desired distribution. Hence this is considered a “trivial” solution to
+the problem (which specifically asked that the transition probabilities not be described in
+terms of the interpolation polynomials). Sometimes the LLM’s would give a slight variant
+of the above trivial solution where they would replace the interpolation polynomials by an
+equivalent formula for them (the signed multiline queue formula of Ben Dali–Williams).
+Another common response given by LLM’s was to change the problem to a related but
+different, and already-solved problem, namely, to replace interpolation ASEP and interpolation
+Macdonald polynomials by ASEP and Macdonald polynomials. In this case the solution to
+this problem is thet-Push TASEP and was given in a paper by Ayyer, Martin, and Williams.
+4.4 Question 4: Nikhil Srivastava
+The only attempt at the generaln≥4case of this question was made by ChatGPT Pro
+5.2 with the no internet prompt. After collecting some standard facts in the first three
+pages, its plan was to execute Blachman’s approach to the classical Stam inequality (Section
+7
+
+===== PAGE 8 =====
+
+4). In this approach the key step is to identify the score function of a sum of independent
+random variablesX +Y as a conditional expectation of the score function ofX conditioned
+on X +Y, in the appropriate joint probability space, after which the inequality reduces to
+Cauchy-Schwartz. The main difficulty is finding an analogue of this joint probability space in
+the finite free setting.
+The LLM attempted to find a probability space in which a score function could live by
+considering the random matrix model for the finite free convolutionr(x) = p⊞ nq(x) =
+Edet(xI−A−UBUT ). It gathered some facts aboutr(x)for large real x away from the
+roots, asserted wrongly thatΦn(r)can be read off from residues of(r′(x)/r(x))′at the roots
+of r(x), and then asserted that the proof can be finished via the residue calculus without
+giving details. This sequence of steps did not make sense to me.
+At a conceptual level, this proof strategy cannot succeed because only the score function
+of r(x)is considered, and the score functions ofp(x),q (x)are never mentioned. It also does
+not exploit the fact that⊞n preserves real roots, which must be used since the inequality is
+not true for arbitrary polynomials.
+4.5 Question 5: Andrew J. Blumberg
+The best solutions by Gemini and ChatGPT 5.2 Pro contained an essentially correct statement
+of the definition of theO-slice filtration and the connectivity characterization. The proofs
+offered, like the proof from the work with Michael A. Hill and Tyler Lawson which generated
+this question, closely follow the basic outline of a previous paper by Hill-Yarnall. However,
+in each case, some of the details were either sketched or slightly garbled. For example, the
+ChatGPT solution claims to be working in theO-stable category, but is breezy about what
+is required (and subsequent statements it makes are then missing hypotheses). Section 4
+introduces and uses the notion of “geometric objects” from Hill-Yarnall without defining
+them. The Gemini solution outline an argument for sufficiency of the condition which is more
+of a sketch than an argument.
+A number of LLM runs produced serious hallucinations, citing lemmas that did not exist
+from Hill-Hopkins-Ravenel or in one case confabulating an entire paper and attributing the
+result to this putative source. Some also contained seriously false statements, for example
+about the spectra to which the tom Dieck splitting applies.
+4.6 Question 6: Daniel Spielman
+Gemini asserted that it presented a proof of the existence of a constant that satisfied Question
+6. But, after some correct statements, it presented a very vague explanation of how the proof
+could be finished. To me, it seems unlikely that the approach can be turned into a correct
+proof.
+ChatGPT 5.2 Pro asserted that it could not answer the question. So, it instead offered a
+correct upper bound of1/2on the constant, if it exists.
+8
+
+===== PAGE 9 =====
+
+4.7 Question 7: Shmuel Weinberger
+In the no internet version, Theorem 4 and in the internet version it is Lemma 5, are false
+(they are the same statement). The counterexample isR1 and f is a translation. It has no
+fixed points, but its Lefschetz number in their sense is−1.
+All proofs by AI’s I’ve seen only use finite complex and Poincaré duality. However, Fowler’s
+paper shows that ifΓis a lattice in a linear semisimple groupG, then taking a homomorphism
+fromΓto a finite group∆, with kernelΓ 0 torsion free, the productM 3×(K\G/Γ 0×E∆)/∆,
+where E∆is a contractible space with free∆action, and M 3 is any closed hyperbolic
+3-manifold, has the rational type of a finite complex, and satisfies Rational Poincaré duality.
+It has fundamental groupπ1(M 3)×Γwhich is a lattice inSO(3, 1)×G. This shows that all
+such proofs must fail.
+Some proofs try to use “multiplicativity of Euler characteristic in finite covers”. This is
+false for infinite complexes with finitely generated homology overQ. The simplest example
+I know is the following: Consider the universal cover ofRP 2 wedge an infinite number of
+S2’s. It has an involution, andπ2 is Z[−1] +Z[Z/2]∞. (Z[−1]is Z acted on by the involution
+by multiplication by−1.) This module is, after tensoring withZ[1/2]a free Z[1/2][Z/2]
+module, so one can use a free basis to equivariantly attachD3×Z/2’s to kill the homology
+(=homotopy). The new space will be rationally acyclic, and both it and its quotient under
+Z/2will be, and will have rational Euler characteristic= 1.
+4.8 Question 8: Mohammed Abouzaid
+The best two solutions produced during testing both correctly identified the existence of a
+local smoothing near every vertex; the proof uses essentially the same basic linear algebra
+argument that appears in the human solution. The proof then proceeds to perform a local-
+to-global gluing argument. It was a priori clear that there must be a gap in this argument
+because the LLM solution refers to the existence of a linear symplectic transformation that
+brings a neighbourhood of each vertex and each edge into a standard position, but fails to
+discuss the compatibility between these choices. In the case of the solution produced by the
+model which was not discouraged to use the internet, the error was finally identified, after
+a careful reading, in Step 3 of the Proof of Theorem 1: the LLM system asserted that one
+can choose disjoint neighbourhoods of the edges and of the vertices. In the other case, the
+error is in Step 2: the model performs a local move near vertices, which changes the local
+geometry near the edges, invalidating the application of the edge move.
+The errors in these solutions can be repaired at the cost of significant computations of
+changes of coordinates, which would become extremely burdensome in any generalisation.
+The point of the solution we provide is to obtain a proof which avoids (most of) the hard work,
+and which experts can readily generalise to other symplectic manifolds (in any dimension).
+9
+
+===== PAGE 10 =====
+
+4.9 Question 9: Joe Kileel
+The best LLM answer found during testing was NoInternet-040226. This is an essentially
+correct answer. It constructs the same algebraic relations as in my own answer, namely
+the various5×5minors of the four3 n×27n3 flattenings of the block tensor assembling
+together the Q(αβγδ). The proof by the LLM that the algebraic relations satisfy the de-
+sired properties differs from my own argument. The LLM considers a torus action on an
+appropriate Grassmannian, argues the stabilizer of a generic point is 1-dimensional, and
+uses this to show separability ofλin a somewhat fidgety way. By contrast, I directly
+constrain λby considering certain selected algebraic relations. Some other LLM answers
+produced during testing were incorrect, and claimed that no algebraic relations exist that
+satisfy the desired properties. Those answers seemed to get confused about the question
+setup midway through. My question is closely related to a work I published with Miao
+and Lerman in 2024 (https://proceedings.neurips.cc/paper_files/paper/2024/hash/
+80cddcdd52c84d19b8b4a27a8e8c17d8-Abstract-Conference.html). Indeed, it is a fourth-
+order variant of Theorem 2 in that paper which concerns the third-order case. Therefore, if
+LLMs locate and understand that paper they would have a warm-start for this question.
+4.10 Question 10: Tammy Kolda
+The best LLM solution was correct and better than the solution I provided in that it lowered
+the computational complexity. Most importantly, it had an insight that was obvious in
+hindsight but that I had not seen yet myself. Since LLMs are well known to surface existing
+solutions, I tried search on “subsampled kronecker product matvec” and found that the main
+idea in the solution exists inhttps://arxiv.org/pdf/1601.01507. (I am not sure if this is
+the only source of the solution, but it is at least one such solution.)
+The LLM solution did not meet the standards of including appropriate citations, but it
+was otherwise a good solution. The solution I had provided included a transformation of
+the problem that the LLM did not do, but the problem was open-ended and this was not
+necessary. I am planning to borrow aspects of the LLM solution, although I hope to do a
+better job at attribution of the ideas.
+A The human-generated solutions to our problems
+Our solutions appear below. They are identical to the solutions in the archivehttps://
+codeberg.org/tgkolda/1stproof/src/branch/main/2026-02-batch/encrypted_archive.
+7z, which may be decrypted using the key inhttps://codeberg.org/tgkolda/1stproof/
+src/branch/main/2026-02-batch/archive_password.txt.
+10
+
+===== PAGE 11 =====
+
+(Lack of) quasi-shift invariance of theΦ 4
+3 measure
+Martin Hairer
+1 Question
+Let T3 be the three dimensional unit size torus and letµ be the Φ4
+3 measure on the space
+of distributions D′(T3). Let ψ:T 3 →R be a smooth function that is not identically
+zero and let Tψ :D ′(T3)→ D ′(T3) be the shift map given by Tψ(u)=u+ψ (with
+the usual identification of smooth functions as distributions). Prove or disprove the
+statement “the measures µ and T ∗
+ψµ are equivalent”. Here, equivalence of measures is
+in the sense of having the same null sets andT ∗
+ψ denotes the pushforward underT ψ.
+2 Some Context
+One of the very few interacting quantum field theories that can be rigorously constructed
+is the so-called (bosonic)Φ4 theory in (space-time) dimensions2 and 3. It has long been
+known that in dimension2 and finite volume there is a natural identification between the
+Hilbert space of the interacting theory and that of the corresponding free theory. On the
+other hand, Glimm [Gli68] observed that this is no longer the case in dimension 3. At
+the level of the corresponding Euclidean theories (which are represented by probability
+measures on the space of Schwartz distributions on the corresponding space-time), this
+translates into the fact that the Φ4 measure µ and the corresponding free field measure
+νare equivalent in dimension2but mutually singular in dimension3. In fact, there is
+a sense in which the dimension that delimits between the two behaviors is 8/3. It is
+then natural to ask in which dimensions µ has the weaker property that µ and T ∗
+ψµ are
+equivalent for smooth ψ. Here it turns out that the borderline dimension is 3, and the
+question probes on which side it falls.
+2.1 An incorrect heuristic
+Regarding the proof, a tempting heuristic is to use the fact that one should think of µ as
+having the density with respect to “Lebesgue measure on D′” (which of course doesn’t
+exist) proportional to
+exp
+
+−
+Z
+T3
+1
+2 |∇Φ(x)|2 + 1
+4 |Φ(x)|4 − C
+2 |Φ(x)|2
+
+dx
+
+,
+
+===== PAGE 12 =====
+
+Notations2
+where C is a (diverging) constant of the formC= 3c 1 −9c 2, where c1 is the expectation
+of |Φ(x)|2 under the free field measure ν (which is of course infinite) and c2 is an
+additional logarithmically divergent constant. The density of T ∗
+ψµ with respect to µ is
+then formally given by
+exp
+
+−
+Z
+T3
+1
+2 |∇ψ(x)|2 + 1
+4 |ψ(x)|4 + Φ(x)∆ψ(x)−Φ(x)ψ 3(x)
+−ψ(x)(Φ 3(x)−CΦ(x)) + ψ2(x)
+2 (3Φ2(x)−C)
+
+dx
+
+,
+Since the terms on the first line are well-defined for smoothψ and one expectsΦ3 −3c 1Φ
+and Φ2 −c 1 to be quite well-behaved, the additional logarithmically divergent terms
+proportional to c2 cause this “density” to diverge, suggesting (correctly) thatµ and T ∗
+ψµ
+are mutually singular.
+There are at least two problems with such an approach. First,Φ3 −3c1Φ does actually
+notdefine a random distribution, whether Ψ is distributed according to µ or to the free
+field ν (which guides the heuristic). This is because if it were, it would have a covariance
+behaving like |x−y| −3 around the diagonal, which is not integrable in dimension 3.
+The second problem is that such an argument suggests that, if µn = exp(−fn)ν for
+some “nice” probability measure ν and functions fn that fail to converge to a “nice”
+limit, then µn fails to converge to a limit µ. This of course is not true: for a suitable
+(diverging) sequence of constants cn, the sequence fn(x)=c n +ncos(nx) is such that
+if ν is Lebesgue measure on [0,1] , then µn converges weakly to Lebesgue measure
+even though the log-densities fn fail to converge. Any proof needs to be based on a
+different approach or to satisfactorily address these problems.
+Acknowledgement
+The proof presented below is a simplified version of an argument that will appear as part of a
+joint publication with Jacopo Peroni. This in turn is based on the article [HKN24].
+3 Notations
+We fix a space-time white noise ξ on R×T 3. We define as the stationary solution to
+the linear equation
+(∂t + 1−∆) =ξ,onR×T 3 .
+(We use the convention that symbols represent random space-time distributions rather
+than elements of a regularity structure.) Starting from this process, we define and
+as its Wick square and cube respectively, which are given by
+= lim
+N→∞
+H2( N , cN ), = lim
+N→∞
+H3( N , cN ),
+where N =P N and cN =E 2
+N (which is constant in space and time). Here, PN
+denotes the projection onto Fourier modes with |k| ≤N and Hn denotes the nth
+
+===== PAGE 13 =====
+
+Solution and Proof3
+Hermite polynomial normalised such that H0 ≡1 , H ′
+n =nH n−1, and EHn(Z,1)= 0
+for a normal random variable Z. The first convergence takes place in the space of
+continuous functions of time with values inC−1−2κ, while the second convergence takes
+place in the space-time parabolic spaceC − 3
+2 −3κ.
+With these notations in place, we define as the stationary solution to
+(∂t + 1−∆) = ,
+and similarly for . For a more comprehensive and pedagogical introduction to the
+general tree-like notation, we refer the reader to [ MWX17]. We also write “ ≺” for
+Bony’s paraproduct (in space) as defined for example in [GIP15, Sec. 2.1] and, given
+a random N-dependent process w, we will sometimes use the physicists shorthand
+notation:w k:instead ofH k(w, cN ).
+4 Solution and Proof
+The statement isfalse. In particular, for any smooth function ψ̸≡0 and any choice of
+the parameters involved in the definition ofµ (mass and coupling constant, provided
+that the latter is non-zero), the measuresµandT ∗
+ψµare mutually singular.
+For notational simplicity, we fix the mass and the coupling constant to1, but this
+has no incidence on the proof. Our main starting point is the following statement, a
+proof of which can be found for example in [ HM18] and [EW24, Lemma 4.19] for
+(4.1), combined with [CC18] for (4.2) (see Ansatz 2.11 there). Throughout this proof,
+κ >0is chosen small enough (κ= 1/100is certainly sufficient).
+Proposition 4.1.There exists a stationary process v that is almost surely continuous in
+time with values inC 1−2κ(Td)and such that the process
+u= − +v ,(4.1)
+is stationary with fixed time distribution equal to µ. Furthermore, the process v is such
+that
+v=−3((v− )≺ ) +v ♯ ,(4.2)
+wherev ♯ is continuous with values inC 1+4κ(Td).
+It was furthermore shown in [HKN24, Lemmas 3.1 & 3.4] (but see [Hai14] for a
+similar result using a slightly different regularisation) that the processes and are
+almost surely continuous in time with values inC − 1
+2 −κ andC
+1
+2 −3κ respectively.
+Before we proceed, we remind some notations and preliminary results. First of all,
+we define the additional diverging constant
+cN,2 :=E[ N N],(4.3)
+
+===== PAGE 14 =====
+
+Solution and Proof4
+where N :=P N and N :=P N . The main ingredient of our proof is the event
+Bγ :=
+n
+u∈ D ′ : lim
+N→∞
+
+(logN) −γ (H3 (PN u;c N) + 9cN,2PN u), ψ
+
+T3 = 0
+o
+,
+which will be used to distinguish between the shifted and the non-shifted measures.
+We will also use the following two technical lemmas whose proofs can be found in
+Section 4.1. These are very similar to [HKN24, Lemma 3.11 and Lemma 3.12].
+Lemma 4.2.Letγ > 1
+2. Then, for any fixedt >0,
+lim
+N→∞
+(logN) −γ:( N)3:(t)= 0
+almost surely inC − 3
+2 (T3)and inL p(Ω;C − 3
+2 (T3))for anyp >0.
+Lemma 4.3.ForNlarge, one hasc N,2 ≳logN.
+The following results are essentially standard, but we recall their statements for
+later reference.
+Lemma 4.4.For any polynomial P , the expression N P( N ) converges almost surely
+to some finite limit inC − 1
+2 −κ.
+Proof. By paralinearisation and standard commutator estimates (see [GIP15, Lems 2.4
+& 2.6]) it suffices to consider the case P(x)=x . This is by now standard, see for
+example [CC18, Sec. 4.4].
+Lemma 4.5.Let v be a process satisfying the decomposition(4.2). Then, the expressions
+: 2
+N: N −3c N,2 N and : 2
+N:vN + 3cN,2(vN − N ) both converge almost surely to finite
+limits inC −1−2κ asN→ ∞.
+Proof. Regarding the first expression, its convergence was essentially for example in
+[CC18, Sec. 4.6]. (The approximation used there is slightly different, but the differences
+are unimportant.) Regarding the second expression, the claim follows from [ CC18,
+Sec. 4.5] (modulo again unimportant changes in the approximation scheme), combined
+with the commutator estimate [GIP15, Lem. 2.4].
+We now turn to the proof of the main claim. For this, we first claim that if u is as in
+(4.1), then, for any fixedt, one has u(t)∈B γ. Indeed, writing uN as a shorthand for
+
+===== PAGE 15 =====
+
+Solution and Proof5
+PN uand expanding the Wick power, we have
+(logN) −γH3 (uN;c N) =(logN) −γH3 (( N − N +v N) ;cN)
+=(logN) −γ
+3X
+i=0
+3
+i
+
+:( N)i: (− N +v N)3−i
+=(logN) −γ
+3X
+i=0
+3−iX
+j=0
+3
+i
+3−i
+j
+
+:( N)i: (− N)j (vN)3−i−j
+=(logN) −γ: 3
+N:−3(logN) −γ: 2
+N: N + 3(logN) −γ: 2
+N:v N
++(logN) −γ
+X
+0≤i+j≤3
+(i,j)̸=(3,0),(2,1),(2,0)
+3
+i
+3−i
+j
+
+:( N)i: (− N)j (vN)3−i−j .
+The first term (logN) −γ: 3
+N: and the terms present in the last sum all converge to 0 by
+Lemma 4.2 (given that γ > 1
+2), standard product estimates (e.g. [Bon81, Theorem 2.5]
+or [MWX17, Proposition 2.3]) and Lemma 4.4.
+It therefore remains to show that −: 2
+N: N + : 2
+N:vN + 3cN,2uN also converges to
+zero almost surely in the sense of distributions. We rewrite this term as
+: 2
+N:vN + 3cN,2(vN − N )−(: 2
+N: N −3c N,2 N).
+By Lemma 4.5 we know that this expression converges to an element ofC−1−2κ(Td),
+whence we conclude that
+⟨(logN) −γ 
+−: 2
+N: N + : 2
+N:vN + 3cN,2uN
+
+, ψ⟩
+N→∞
+− − − →0
+almost surely, thus proving thatµ(B γ)= 1.
+In order to conclude the proof, it suffices to show that u+ψ̸∈B γ. For this, we
+expand similarly to before the expression appearing in this event as
+(logN) −γH3 ((uN +ψ N) ;cN) +(logN) −γ9cN,2 (uN +ψ N)
+=(logN) −γ
+3X
+i=0
+3
+i
+
+:(uN)i: (ψN)3−i +(logN) −γ9cN,2 (uN +ψ N)
+=(logN) −γ:(uN)3: +(logN) −γ9cN,2uN
++ 3(logN) −γ:(uN)2: (ψN) + 3(logN) −γ (uN) (ψN)2
++(logN) −γ (ψN)3 +(logN) −γ9cN,2ψN .
+The sum of the first two terms was just shown to converge to 0 almost surely in
+C− 3
+2 −3κ(Td)forN→ ∞.
+Since :u2
+N: and uN both converge to finite distributional limits almost surely by
+Lemma 4.4, the next three terms also converge to0almost surely.
+
+===== PAGE 16 =====
+
+Solution and Proof6
+Concerning the last element however, we know from Lemma 4.3 that
+(logN) −γ cN,2 ≳(logN) −γ+1 .
+Since the contribution of this term to the expression in the eventB γ is given by
+9 (logN) −γ cN,2⟨ψN , ψ⟩,
+and since ⟨ψN , ψ⟩ → ∥ψ∥ 2 >0 , this diverges, whence we conclude that u+ψ̸∈B γ
+and therefore(T ∗
+ψµ)(Bγ)= 0, so thatT ∗
+ψµandµare mutually singular.
+4.1 Proof of the lemmas
+Proof of Lemma 4.2. We use the embedding W β,2p ,→W β− d
+2p ,∞ ,→ C β− d
+2p , with
+β=− d
+2. Using the definition of W β,2p norm and the equivalence of moments for
+Gaussian polynomials, one has
+E
+
+
+
+(logN) −γ:( N)J:
+
+
+
+
+2p
+W − 3
+2 ,2p
+
+≲
+Z
+Td
+E
+
+(logN) −2γ
+⟨∇⟩− 3
+2 :( N)3:
+
+2p
+dx .
+Since one has
+E
+
+(logN) −2γ
+⟨∇⟩− 3
+2 :( N)3:
+
+2
+≲(logN) −2γ
+X
+|ωi|≤N
+⟨ω1 +· · ·+ω 3⟩−3
+3Y
+i=1
+⟨ωi⟩−2
+≲(logN) −2γ
+NX
+r1=0
+r2
+1
+(1 +r 2
+1)
+5
+2
+r2
+1 ≲(logN) −2γ+1 ,
+the desired result follows from a standard Borel–Cantelli argument.
+Next, we prove Lemma 4.3, which provides a lower bound on the parameterγ. This
+bound ensures that the event Aγ (or Bγ) is distinguishable under the shifted measure
+when compared to the non-shifted one.
+Proof of Lemma 4.3.Expanding the definition ofc N,2 :=E[ N N], we get
+cN,2 = 2
+X
+ω1+ω2=ω3
+|ωi|≤N
+Z
+R
+ˆPt−u(ω3)
+Z
+R
+ˆPt−u1(ω1) ˆPu−u1(−ω1)du1
+×
+Z
+R
+ˆPt−u2(ω2) ˆPu−u2(−ω2)du2du
+≃
+X
+ω1+ω2=ω3
+|ωi|≤N
+Z
+R
+e−|t−u|⟨ω3⟩2 e−|t−u|⟨ω1⟩2
+⟨ω1⟩2
+e−|t−u|⟨ω2⟩2
+⟨ω2⟩2 du
+≳
+X
+|ωi|≤N
+1
+⟨ω1⟩2
+1
+⟨ω2⟩2
+1
+⟨ω1⟩2 +⟨ω 2⟩2 +⟨ω 1 +ω 2⟩2
+
+===== PAGE 17 =====
+
+Solution and Proof7
+≳
+X
+|ωi|≤N
+1
+1 +|ω 1|2
+1
+1 +|ω 2|2
+1
+1 +|ω 1|2 ∨ |ω2|2
+≳
+X
+|ω1|≤|ω2|≤N
+1
+1 +|ω 1|2
+1
+1 +|ω 2|4 .
+Bounding the sum by an integral, we finally conclude that this expression is bounded
+from below by a multiple of
+Z N
+0
+r2
+1 +r 2
+Z ∞
+r
+s2
+1 +s 4 ds dr≳
+Z N
+0
+1
+1 +r 2 dr≃logN ,
+as claimed.
+References
+[Bon81] Jean-Michel Bony. Calcul symbolique et propagation des singularit ´es pour les
+´equations aux d ´eriv´ees partielles non lin ´eaires.Ann. Sci. ´Ecole Norm. Sup. (4),
+14(2):209–246, 1981.
+[CC18] R´emi Catellier and Khalil Chouk. Paracontrolled distributions and the 3-dimensional
+stochastic quantization equation.Ann. Probab., 46(5):2621–2679, 2018.
+[EW24] Salvador Esquivel and Hendrik Weber. A priori bounds for the dynamic fractional
+ϕ4 model onT 3 in the full subcritical regime.arXiv preprint, 2024.
+[GIP15] Massimiliano Gubinelli, Peter Imkeller, and Nicolas Perkowski. Paracontrolled
+distributions and singular PDEs.Forum Math. Pi, 3:e6, 75pp, 2015.
+[Gli68] James Glimm. Boson fields with the :Φ4: interaction in three dimensions.Comm.
+Math. Phys., 10(1):1–47, 1968.
+[Hai14] Martin Hairer. A theory of regularity structures.Invent. Math., 198(2):269–504,
+2014.
+[HKN24] Martin Hairer, Seiichiro Kusuoka, and Hirotatsu Nagoji. Singularity of solutions to
+singular SPDEs.arXiv preprint, 2024.
+[HM18] Martin Hairer and Konstantin Matetski. Discretisations of rough stochastic PDEs.
+Ann. Probab., 46(3):1651–1709, 2018.
+[MWX17] Jean-Christophe Mourrat, Hendrik Weber, and Weijun Xu. Construction of Φ4
+3
+diagrams for pedestrians. InFrom particle systems to partial differential equations,
+volume 209 ofSpringer Proc. Math. Stat., pages 1–46. Springer, Cham, 2017.
+
+===== PAGE 18 =====
+
+1.Statement
+LetFbe a non-archimedean local field with ring of integerso. Letψ:F→C ×
+be a nontrivial additive character of conductoro. We write
+Gr := GLr(F),
+and letN r < G r denote the subgroup of upper-triangular unipotent elements. We
+embedG n ,→G n+1 as the upper-left block. We writeE ij for the matrix with a 1
+in the (i, j)-entry and 0 elsewhere.
+A more precise form of the following “lemma” will appear in forthcoming joint
+work with Subhajit Jana. It says informally that pure unipotent translates of
+fixed vectors in the Whittaker model of a representation ofG n+1 may serve as test
+vectors for Rankin–Selberg integrals against all representations ofG n with a given
+conductor.
+Theorem 1.LetΠbe a generic irreducible admissible representation ofG n+1,
+realized in itsψ −1-Whittaker modelW(Π, ψ −1). Then there existsW∈ W(Π, ψ −1)
+with the following property. Letπbe a generic irreducible admissible representation
+ofG n, realized in itsψ-Whittaker modelW(π, ψ). Letqdenote the conductor ideal
+ofπ, letQ∈F × be a generator ofq −1, and set
+uQ :=I n+1 +Q E n,n+1 ∈G n+1.
+There existsV∈ W(π, ψ)so that the local Rankin–Selberg integral
+Z
+Nn\Gn
+W(diag(g,1)u Q)V(g)|detg| s− 1
+2 dg
+is finite and nonzero for alls∈C.
+2.Context
+Rankin–Selberg local zeta integrals arise as proportionality factors relating global
+Rankin–Selberg integrals andL-functions. The above result provides test vectors,
+obtained via pure translates of fixed vectors, that work simultaneously for all rep-
+resentations of the smaller group having some given conductor. Such results are
+sometimes useful in global applications because they relate problems concerning
+L-functions (subconvexity, moment asymptotics, ...) to problems concerning au-
+tomorphic forms (quantitative equidistribution, ...). Then= 1 case follows from
+standard properties of Gauss sums and stationary phase analysis in one variable;
+it has been applied in, e.g., [7, 6]. For generaln, [2] contains a similar result, but
+with an average over many unipotent translates rather than just one.
+3.Proof
+We first sketch the argument. The basic idea is to apply the Godement–Jacquet
+functional to the Whittaker function on the smaller group. This is readily seen
+to relate the unipotent-shifted Rankin–Selberg integral to an integral involving
+a translate of the standard congruence subgroupK 1(q)≤GL n(o), consisting of
+matrices whose last row is congruent to (0, . . . ,0,1) moduloq. We then conclude
+via newvector theory.
+Turning to details, we recall thatFis a non-archimedean local field, with ring of
+integerso. We denote bypthe maximal ideal andqthe residue field cardinality. We
+setK r := GLr(o) and equipG r andN r with the Haar measures assigning volume
+1
+
+===== PAGE 19 =====
+
+2
+one toK r andN r ∩K r, respectively. As in the theorem statement, we write Π
+(resp.π) for a generic irreducible representation ofG n+1 (resp.G n).
+We continue to denote byqthe conductor ideal ofπ, defined to be the smallest
+ideal for whichπhas a nonzero vector fixed byK 1(q). We choose a generatorQ
+forq −1, so that|Q|= [o:q]. We recall (see [4, 5]) that|Q|(and henceq) may also
+be characterized in terms of the localε-factor ofπ:
+ε( 1
+2 +s, π, ψ) =|Q| −sε( 1
+2 , π, ψ).(1)
+We recall the functional equation of Godement–Jacquet [3, Theorem 3.3].
+Lemma 2.Letfbe a matrix coefficient ofπ, and letϕ∈ S(M n(F)). Fors∈C,
+the local zeta integral
+Z(ϕ, f, s) :=
+Z
+Gn
+ϕ(g)f(g)|detg|
+n−1
+2 +s dg,(2)
+converges absolutely forℜ(s)sufficiently large. It extends to a meromorphic func-
+tion on the complex plane for which the ratio
+Z(ϕ, f, s)
+L(s, π)
+is holomorphic. It satisfies the local functional equation
+γ(s, π, ψ)Z(ϕ, f, s) =Z(ϕ ∧, f ∨,1−s),(3)
+where
+γ(s, π, ψ) =ε(s, π, ψ) L(1−s,˜π)
+L(s, π) ,
+with˜πthe contragredient ofπ, and where the Fourier transform is defined by
+f ∨(g) :=f(g −1),
+ϕ∧(x) :=
+Z
+Mn(F)
+ϕ(y)ψ(trace(xy))dy,
+withM n the space ofn×nmatrices and the Haar measure normalized to be self-dual
+with respect toψ. Moreover, both of the zeta integrals in(3)converge absolutely
+provided that, e.g.,πis unitary and generic andℜ(s) = 1/2.
+We recall that a matrix coefficient ofπis a linear combination of functions of
+the formf(g) =ℓ(gv), wherev∈πandℓlies in the contragredient ofπ(i.e.,
+the admissible dual). The conclusions of Lemma 2 remain valid for more general
+coefficients ofπ. For instance, suppose more generally thatfis of the same form,
+but withℓallowed to be any linear functional onπ(not necessarily in the admissible
+dual). Givenϕas above, we may choose a compact open subgroupUofG n under
+whichϕis bi-invariant. The integrals in question do not change if we then replace
+fby its two-sided average with respect toU, which has the effect of replacingvby
+its averagev U ∈π U andℓwith its projectionℓ U to the dual ofπ U, extended by
+zero on the kernel of the averaging operatorπ→π U. In particular, by specializing
+to the case thatℓis a Whittaker functional onπ, we see that such identities remain
+valid whenfis a Whittaker function forπ.
+We denote byS e(F ×) the space of all Schwartz–Bruhat functionsβ∈ S(F ×)
+such thatβ(xy) =β(x) whenever|y|= 1, or equivalently, for whichβ(x) depends
+
+===== PAGE 20 =====
+
+3
+only upon|x|. We note that eachβ∈ S e(F ×) satisfies the Mellin inversion formula
+β(y) =
+Z
+(σ)
+˜β(s)|y| s ds, ˜β(s) :=
+Z
+F ×
+β(y)|y| −s d×y.(4)
+Forβ∈ S e(F ×), we define the transformβ ♯ :=β ♯,π ofβby
+β♯(y) :=
+Z
+(σ)
+˜β(s)|y| −s ds
+γ( 1
+2 +s, π, ψ) ,
+initially forσlarge enough.
+Lemma 3.Defineβvia Mellin inversion(4)by
+˜β(s) := ε( 1
+2 +s, π, ψ)
+L( 1
+2 +s, π) .
+Then:
+(1)βis supported on{y:|Q| ≤ |y| ≤ |Q|q n}and takes the valueε( 1
+2 , π, ψ)on
+{y:|y|=|Q|}.
+(2)β ♯ is supported on{y: 1≤ |y| ≤q n}and takes the value1on{y:|y|=
+1}=o ×.
+Proof.We appeal to the characterization (1) of|Q|. We note first thatβ ♯ has
+Mellin transform
+eβ♯(s) = 1
+L( 1
+2 +s,˜π).
+Since the inverseL-values appearing above are monic polynomials inq −s of degree
+at mostn, we see by Mellin inversion thatβandβ ♯ have the claimed properties.□
+Lemma 4.Assume thatπis unitary and generic. We then have the identity of
+absolutely convergent integrals
+Z
+Gn
+ϕ(g)f(g)β(detg)|detg|
+n
+2 dg=
+Z
+Gn
+ϕ∧(g)f ∨(g)β ♯(detg)|detg|
+n
+2 dg.(5)
+Proof.Starting with the left hand side, we insert the Mellin expansion ofβ, with
+σ= 0. The resulting double integral overgandsconverges absolutely, so we
+may swap the order. We recognize the result as the integral
+R
+(0)
+˜β(s)Z(ϕ, f, 1
+2 +
+s)dsinvolving the Godement–Jacquet zeta integral (2). We now apply the local
+functional equation and expand the result as
+Z
+(0)
+˜β(s)
+γ( 1
+2 +s, π, ψ)
+Z
+Gn
+ϕ∧(g)f ∨(g)|detg|
+n
+2 −s dg
+
+ds.
+This double integral again converges absolutely, so we may rearrange it to obtain
+the stated identity.□
+For the same reasons as indicated following the statement of Lemma 2, such iden-
+tities persist for more general coefficients than matrix coefficients, and in particular,
+whenfis a Whittaker function.
+Recall that we embedG n ,→G n+1 as the upper-left block. We set
+W0(g) :=
+Z
+Nn
+1Kn(xg)ψ(x)dx,(6)
+
+===== PAGE 21 =====
+
+4
+which defines a Whittaker function onG n and extends, by the theory of the Kirillov
+model [1], to an element ofW(Π, ψ −1) onG n+1.
+Forx∈Fandy∈F ×, we set
+dy := diag(1, . . . ,1, y)∈G n ,→G n+1, u x :=I n+1 +xE n,n+1 ∈N n+1.
+We then define
+tQ :=d −1
+Q uQ =u 1d−1
+Q .
+Lemma 5.There existβ∈ S e(F ×)andϕ∈ S(M n(F))so that for allg∈G n, we
+have Z
+Nn
+β(detxg)ϕ(xg)ψ(x)dx=ε( 1
+2 , π, ψ)W0(gtQ) (7)
+and
+β♯(detg)ϕ ∧(g) =|Q| n1K1(q)(g).(8)
+Proof.We set
+ϕ0 := 1Mn(o),
+ϕ(x) :=ψ(−x nn)ϕ0(xd−1
+Q ).(9)
+and takeβas in Lemma 3, so that in particular,
+β|Qo =ε( 1
+2 , π, ψ)1Qo× (10)
+and
+β♯|o = 1o× .(11)
+We must verify the relations (7) and (8).
+We start with (7). Recall from (6) thatW 0 is theψ −1-Whittaker function
+W0(g) =
+R
+Nn
+1Kn(xg)ψ(x)dx. In particular,
+W0(gtQ) =W 0(gu1d−1
+Q ) =ψ(−g nn)W0(gd−1
+Q ).(12)
+Using this identity, we may rewrite the desired relation (7) as
+Z
+Nn
+β(det(xg))ϕ(xg)ψ(x)dx=ε( 1
+2 , π, ψ)ψ(−gnn)W0(gd−1
+Q ).(13)
+We verify this as follows. First, we see from the definition (9) and the identity
+(xg)nn =g nn that forx∈N n andg∈G n, we have
+ϕ(xg) =ψ(−g nn)ϕ0(xgd−1
+Q ).(14)
+Next, we have
+β(detg)ϕ 0(gd−1
+Q ) =ε( 1
+2 , π, ψ)1Qo×(detg)ϕ 0(gd−1
+Q )
+=ε( 1
+2 , π, ψ)1Kn(gd−1
+Q ).
+(In the first step, we use thatϕ 0(gd−1
+Q ) is nonzero only if det(g)∈Qoand apply
+(10). In the second step, we use that 1 Kn(g) = 1 o×(detg)ϕ 0(g) and det(d Q) =Q,
+which gives 1 Qo×(detg)ϕ 0(gd−1
+Q ) = 1 Kn(gd−1
+Q ).) Combining the above identities,
+we obtain
+β(det(xg))ϕ(xg) =ε( 1
+2 , π, ψ)ψ(−gnn)1Kn(xgd−1
+Q ).
+Integrating both sides againstψ(x)dxgives (13), as required.
+
+===== PAGE 22 =====
+
+5
+We verify (8) as follows (hereE ij denotes the elementary matrix):
+β♯(detg)ϕ ∧(g) = 1o×(detg)ϕ ∧(g)
+= 1o×(detg)|Q| nϕ∧
+0 (dQ(g−E nn))
+=|Q| n1o×(detg)1 Mn(o)(dQ(g−E nn))
+=|Q| n1K1(q)(g).
+Here, for the first step, we observed thatϕ ∧(x) is nonzero only ifx∈E nn +
+d−1
+Q Mn(o)⊆M n(o), so that, in particular, detx∈o; we then applied (11). For the
+second step, we applied the general Fourier analytic calculation
+ϕ∧(x) =|Q| nϕ∧
+0 (dQ(x−E nn)).(15)
+For the third, we applied the Fourier self-dualityϕ ∧
+0 =ϕ 0 = 1Mn(o). For the final
+step, we use thatK 1(q) consists of allx∈M n(F) for whichd Q(x−E nn)∈M n(o)
+and detx∈o ×.□
+ForW∈ W(Π, ψ −1),V∈ W(π, ψ), ands∈C, we define the Rankin–Selberg
+integral
+ℓRS(s, W, V) :=
+Z
+Nn\Gn
+W(diag(g,1))V(g)|detg| s− 1
+2 dg.(16)
+The following result verifies Theorem 1 in a more precise form.
+Proposition 6.LetW 0 ∈ W(Π, ψ −1)be such that for allg∈G n, we have
+W0(g) =
+Z
+Nn
+1Kn(xg)ψ(x)dx.
+LetV∈ W(π, ψ)denote the normalized newvector (i.e., the uniqueK 1(q)-invariant
+vector for whichV(1) = 1, see[4, 5]). Then for alls∈C, we have
+ℓRS(s, uQW0, dQV) =c|Q| − n
+2 ,(17)
+where
+c:=ε( 1
+2 , π, ψ)−1|Q|n vol(K1(q))≍1.(18)
+Proof.We note first that, by a change of variables, we have the homogeneity prop-
+erty
+ℓRS(s, uQW0, dQV) =|Q| −(s− 1
+2)ℓRS(s, tQW0, V).(19)
+In view of this, the desired identity (17) is equivalent to
+ℓRS(s, tQW0, V) =c|Q| s− n+1
+2 .(20)
+Next, sinceW 0 is supported on det −1(o×), we see that the translatet QW0 is sup-
+ported on det −1(Qo×), so the left hand side of (20) is a constant multiple of|Q| s.
+For this reason, it suffices to verify (20) for (say)s= n+1
+2 , where our task is to
+check thatℓ RS( n+1
+2 , tQW0, V) =c. Inserting definitions and unfolding, we obtain,
+
+===== PAGE 23 =====
+
+6
+withf(g) :=V(g),
+ε( 1
+2 , π, ψ)ℓRS( n+1
+2 , tQW0, V)
+(16)
+=ε( 1
+2 , π, ψ)
+Z
+Nn\Gn
+W0(gtQ)V(g)|det(g)|
+n
+2 dg
+(7)
+=
+Z
+Gn
+ϕ(g)f(g)β(detg)|detg| n/2 dg
+(5)
+=
+Z
+Gn
+ϕ∧(g)f ∨(g)β ♯(detg)|detg| n/2 dg
+(8)
+=|Q| n
+Z
+K1(q)
+V(g −1)|detg| n/2 dg
+=|Q| n vol(K1(q)),
+where in the final step, we use theK 1(q)-invariance ofV, the normalizationV(1) =
+1, and the fact that|detg|= 1 onK 1(q). Thus (20) holds.□
+References
+[1] Joseph N. Bernstein.P-invariant distributions on GL(N) and the classification of unitary
+representations of GL(N) (non-Archimedean case). InLie group representations, II (College
+Park, Md., 1982/1983), volume 1041 ofLecture Notes in Math., pages 50–102. Springer,
+Berlin, 1984.
+[2] Andrew R. Booker, M. Krishnamurthy, and Min Lee. Test vectors for Rankin-SelbergL-
+functions.J. Number Theory, 209:37–48, 2020.
+[3] Roger Godement and Herv´ e Jacquet.Zeta functions of simple algebras. Lecture Notes in
+Mathematics, Vol. 260. Springer-Verlag, Berlin, 1972.
+[4] H. Jacquet, I. I. Piatetski-Shapiro, and J. Shalika. Conducteur des repr´ esentations du groupe
+lin´ eaire.Math. Ann., 256(2):199–214, 1981.
+[5] Nadir Matringe. Essential Whittaker functions forGL(n).Doc. Math., 18:1191–1214, 2013.
+[6] Philippe Michel and Akshay Venkatesh. The subconvexity problem for GL 2.Publ. Math. Inst.
+Hautes ´Etudes Sci., (111):171–271, 2010.
+[7] Peter Sarnak. Fourth moments of Gr¨ ossencharakteren zeta functions.Comm. Pure Appl.
+Math., 38(2):167–178, 1985.
+
+===== PAGE 24 =====
+
+A PROBABILISTIC INTERPRETATION FOR
+INTERPOLATION MACDONALD POLYNOMIALS
+HOUCINE BEN DALI AND LAUREN KIYOMI WILLIAMS
+1.The problem
+Letλ“ pλ 1 ą ¨ ¨ ¨ ąλ n ě0qbe a partition with distinct parts. Assume moreover that
+λisrestricted, in the sense that it has a unique part of size0and no part of size1. Does
+there exist a nontrivial Markov chain onSnpλqwhose stationary distribution is given by
+F ˚
+µ px1, . . . , xn;q“1, tq
+P ˚
+λ px1, . . . , xn;q“1, tq forµPS npλq
+whereF ˚
+µ px1, . . . , xn;q, tqandP ˚
+λ px1, . . . , xn;q, tqare the interpolation ASEP polynomial
+and interpolation Macdonald polynomial, respectively? If so, prove that the Markov chain
+you construct has the desired stationary distribution. By “nontrivial” we mean that the
+transition probabilities of the Markov chain should not be described using the polynomials
+F ˚
+µ px1, . . . , xn;q, tq.
+Date: January 30, 2026.
+1
+
+===== PAGE 25 =====
+
+2 HOUCINE BEN DALI AND LAUREN KIYOMI WILLIAMS
+2.The solution
+The answer to the question is yes, as we explain below. For1ďkďn, we define
+(1)p k :“ t´n`1p1´tq
+xk ´t ´n`2 PQpt, x 1, . . . , xnqandq k :“ p1´tqx k
+xk ´t ´n`2 PQpt, x 1, . . . , xnq.
+If0ătă1andx i ąt ´n`1 for1ďiďn, thenp k andq k are probabilities.
+Definition 2.1.Fix a partitionλ“ pλ 1 ě ¨ ¨ ¨ ěλ nqwithλ n “0. Theinterpolation
+t-Push TASEPwithcontentλis a Markov chain onS npλq; we think of its states as
+configurations of particles on a ring labeled byλ1, . . . , λn, where stateηcorresponds to
+having a particle labeledη j at positionj. Moreover, there is abellattached to each
+particle. The transitions fromηPS npλqare as follows.
+(Step 0) The bell at positionjrings with probability
+Pj “
+ś
+kăj
+`
+xk ´ 1
+tn´2
+˘ ś
+kąj
+`
+xk ´ 1
+tn´1
+˘
+e˚
+n´1px;tq ,
+wheree ˚
+n´1px;tq “ řn
+j“1
+ś
+kăj
+`
+xk ´ 1
+tn´2
+˘ ś
+kąj
+`
+xk ´ 1
+tn´1
+˘
+.
+(Step 1) The particle at positionj, say with labela, is activated, and starts traveling
+clockwise according to the rules of thet-Push TASEP. That is, suppose there
+arem“weaker” particles in the system, i.e. particles whose labels are less thana,
+including vacancies (label0). Then with probabilitytk´1
+rmst
+the activated particle will
+move to the location of thekth of these weaker particles. If this location contains
+a particle with positive label, then that particle becomes active, and chooses a
+weaker particle to displace in the same way. The procedure continues until the
+active particle arrives at a vacancy. At the end of this step, positionjis vacant,
+and we regard this vacancy as a particle labeleda:“0.
+(Step 2) The particle labeleda:“0now goes to position1and starts traveling clockwise.
+When it gets to sitekfor1ďkďj´1containing a particle with labelbě0, it
+skips over that site with probability1´pk ifběa, and1´q k ifbăa; otherwise
+it settles at that site, activating/ displacing the site’s particle. Once it activates a
+new particle, the old particle settles at sitekand the new active particle continues
+to travel clockwise towards positionj, activating a new particle according to the
+rule above. The active particle stops once it displaces/activates another particle
+or arrives at positionj, in which case it settles in positionj.
+We denote the resulting configuration byνand the transition probability byPpη, νq.
+Moreover, we letPp1q
+λ,j “P p1q
+j andP p2q
+λ,j “P p2q
+j denote the transition probabilities associ-
+ated with (Step 1) and (Step 2), respectively. We then have, forµ, νPSnpλq,
+Ppµ, νq “
+ÿ
+1ďjďn
+Pj
+ÿ
+ρPSnpλq:ρj “0
+Pp1q
+j pµ, ρqPp2q
+j pρ, νq.
+Theorem 2.2.In the interpolationt-Push TASEP with contentλ“ pλ 1, . . . , λnqand
+parametersx“ px 1, . . . , xnqandt, the stationary probability ofµPS npλqis given by
+π˚
+λpµq “ F ˚
+µ px; 1, tq
+P ˚
+λ px; 1, tq.
+
+===== PAGE 26 =====
+
+A PROBABILISTIC INTERPRETATION FOR INTERPOLATION MACDONALD POLYNOMIALS 3
+3.The proof
+Recall the notion of classical two-line queues from [CMW22] and signed two-line queues
+from [BDW25] together with their weight functions. (Here we specializeq“1.)
+LetQ η
+κ denote the set of classical two-line queues with top rowη“ pη1, . . . , ηnqand
+bottom rowκ“ pκ 1, . . . , κnq, and letaη
+κ denote the weight generating function ofQη
+κ.
+(2)a η
+κ “a η
+κptq:“
+ÿ
+QPQη
+κ
+wtpairpQq.
+LetG α
+µ denote the set of signed two-line queues with top rowα“ pα 1, . . . , αnqand
+bottom rowµ“ pµ 1, . . . , µnq, and letbα
+µ denote the weight generating function ofGα
+µ.
+(3)b α
+µ “b α
+µptq:“
+ÿ
+QPGαµ
+wtpairpQq.
+LetwtpQq:“wt pairpQqwt ballpQqbe the product of the pair weight andthe ball weight.
+We obtain
+(4)wt α bα
+µ “
+ÿ
+QPGαµ
+wtpQq,wherewt α :“
+ź
+k:α ką0
+xk
+ź
+k:α kă0
+´1
+tn´1 .
+Definition 3.1.Given a signed two-line queueQPG α
+µ, we associate to it anunsigned
+version sQobtained by forgetting the signs of the balls in the top row. The composition
+we read in the bottom row (respectively the top row) ofsQisµ(respectively∥α∥q, where
+∥α∥“ p|α 1|, . . . ,|αn|q.
+We then define sGκ
+µ as the set of paired ball systems obtained by applying this operation
+onQPG α
+µ, whereαPZ n satisfying∥α∥“κ.
+This leads us to define the following weights. FixsQP sGκ
+µ:
+‚A nontrivial pairingpin sQhas the weight
+(5)wtppq “ p1´tqt skipppq.
+‚LetBbe a ball labeledaą0in columnkand such that the ball below is labeled
+b(IfBhas a vacancy below it, we takeb“0.) We define the weight ofBby:
+(6)wtpBq:“
+$
+’&
+’%
+xk ´ 1
+tn´1 ifb“a,
+xk ifbąa,
+1
+tn´1 ifbăa.
+The weight of sQis defined by
+wtp sQq:“
+ź
+Bin the top row
+wtpBq
+ź
+pnontrivial pairing
+wtppq.
+We then have the following lemma.
+
+===== PAGE 27 =====
+
+4 HOUCINE BEN DALI AND LAUREN KIYOMI WILLIAMS
+Lemma 3.2.Fix a partitionλwith distinct parts and two compositionsκ, µPS npλq. Let
+sQP sGκ
+µ. Then
+wtp sQq “
+ÿ
+Q
+wtpQq,
+where the sum is taken over all signed two-line queuesQfrom which sQis obtained by
+forgetting signs.
+Proof.We consider all the possible ways of “adding signs” to the balls in the top row of
+sQto obtain a signed two-line queue. Fix such a ballBlabeledaą0:
+‚ifBhas below it a vacancy or a ball labeledbăa, then we must assign a´sign
+toB.
+‚ifBhas a ball labeledbąabelow it, then we must assign a`sign toB.
+‚ifBhas a ball labeledb“abelow it, then we can giveBa`or´sign.
+We then check that the possible signs for each ballBis consistent with the choice of
+weights in Equation (6). In particular, one notices that when a ballBis given a´sign,
+the ball weight should be multiplied by´1when we go fromsQtoQ, but the weight of
+the pairing connected toBis also multiplied by´1.□
+GivenκPS npνq, we definecκ
+ν by
+(7)c κ
+ν :“
+ÿ
+α:∥α∥“κ
+wtα bα
+ν .
+We get the following corollary obtained by combining Equation (4) and Lemma 3.2.
+Lemma 3.3.Fixλa partition with distinct parts, andκ, µPS npλq. Then
+cκ
+µ “
+ÿ
+sQP sGκµ
+wtp sQq.
+Sinceλhas distinct parts, sGκ
+ν is either empty or contains exactly one element.
+Fix a weakly order-preserving functionϕ:NÑN. Fix two partitionsλandκsuch
+thatϕpλq “κ. ForηPS npκq, define
+G˚
+ηpx;tq:“
+ÿ
+ρPSnpλq:ϕpρq“η
+F ˚
+ρ px; 1, tq.
+LetG η be the top homogeneous part ofG˚
+η.
+The following is an analogue of [AMW25, Theorem 4.18], and can be proved in essen-
+tially the same way, using interpolation analogues of results from [AS19].
+Theorem 3.4.Fixλandκas above. For allηPS npκq, we have atq“1that
+G˚
+ηpx;tq
+P ˚
+λ px; 1, tq “ F ˚
+η px; 1, tq
+P ˚
+κ px; 1, tq.
+Given a compositionρ, letρ ´ :“ pρ ´
+1 , . . . , ρ´
+n q, whereρ ´
+i “maxpρ i ´1,0q.
+Corollary 3.5.Consider a compositionρwithρ i ‰1for any1ďiďn. Letkbe the
+number of non-zero parts ofρ. Setη“ρ ´. We then have atq“1,
+F ˚
+ρ px; 1, tq “F ˚
+η px; 1, tq ¨e ˚
+kpx;tq.
+
+===== PAGE 28 =====
+
+A PROBABILISTIC INTERPRETATION FOR INTERPOLATION MACDONALD POLYNOMIALS 5
+Proof.Letλandκbe the two partitions obtained by reorderingρandη, respectively.
+Consider the weakly order-preserving functionϕ:iÞÑmaxpi´1,0q. We then have
+ϕpρq “η. Sinceλdoes not have parts of size 1, andϕis bijective fromt0,2,3, . . .uto
+t0,1,2, . . .u, thenρis the unique composition inS npλqsuch thatϕpρq “ηand we have
+G˚
+η “F ˚
+ρ. It follows then from Theorem 3.4 that
+F ˚
+ρ px; 1, tq
+P ˚
+λ px; 1, tq “ F ˚
+η px; 1, tq
+P ˚
+κ px; 1, tq.
+We now recall that atq“1, we have from [Doł17, BDW25] that
+(8)P ˚
+λ px1, . . . , xn; 1, tq “
+ź
+1ďiďλ1
+P ˚
+λ1
+i
+px1, . . . , xn; 1, tq “
+ź
+1ďiďλ1
+e˚
+λ1
+i
+px1, . . . , xn;tq,
+whereλ 1 is the partition conjugate toλ. Using this plus the fact thatκis obtained from
+λby removing the largest column (of sizek), we get that
+P ˚
+λ px; 1, tq
+P ˚
+κ px; 1, tq “e ˚
+kpx;tq,
+which implies thatF ˚
+ρ px; 1, tq “F ˚
+η px; 1, tq ¨e ˚
+kpx;tq.□
+Proposition 3.6.Fixρ, νPS npλq, and letjbe the index such thatρ j “0. We have
+Pp2q
+j pρ, νq “ cρ
+νś
+kăj
+`
+xk ´ 1
+tn´2
+˘ ś
+kąj
+`
+xk ´ 1
+tn´1
+˘ ,
+or equivalently,
+Pj¨P p2q
+j pρ, νq “ cρ
+ν
+e˚
+n´1
+,
+wherec ρ
+ν is the coefficient from Equation(7), i.e. the generating function for the setsGρ
+ν.
+The idea of the proof below is that a signed two-line queue encodes Step 2 of the
+interpolationt-Push TASEP.
+Proof.Note that (Step 2) of Definition 2.1 is encoded by an element of a setsGρ
+ν (see Defi-
+nition 3.1). Indeed, the transition in (Step 2) from the configurationρto the configuration
+νis possible if and only there is an elementsQin sGρ
+ν (recall that this set contains at most
+one element). More precisely, a particle labeledaą0which moved from positionkPJnK
+to a positionk 1, corresponds to a non trivial pairing insQconnecting a ball labeledain
+columnkof the top row to a ball labeledain columnk 1 of the bottom row. Particles
+which do not move correspond to trivial pairings.
+We now claim thatwtp sQqdivided byD:“ ś
+kăj
+`
+xk ´ 1
+tn´2
+˘ ś
+kąj
+`
+xk ´ 1
+tn´1
+˘
+gives
+Pp2q
+j pρ, νq. We will prove the claim below by showing that each ball or pairing weight
+inwtp sQq, divided by one of the factors inD, equals one of the skipping/ displacement
+probabilities from Item (Step 2) (whose product isPp2q
+j pρ, νq). Note that in what follows,
+instead of associating the weightp1´tqtskipppq to each nontrivial pairing, we will associate
+p1´tqto the top ball in each nontrivial pairing, and a factor oftto each skipped ball.
+
+===== PAGE 29 =====
+
+6 HOUCINE BEN DALI AND LAUREN KIYOMI WILLIAMS
+‚Each ball in columnkąjof sQis necessarily trivially paired, since no ball in
+positionkąjget skipped or displaced in (Step 2). In sQthis ball gets weight
+xk ´ 1
+tn´1; when we divide this weight by thekth factor ofD, we get1, which
+corresponds to the fact that balls in positionkąjdo not contribute toPp2q
+j pρ, νq.
+‚A ball in sQlabeledbin columnkăjwhich is trivially paired, and which is not
+skipped by a ballaąb, also has weightxk ´ 1
+tn´1. When we divide this weight by
+thekth factor ofD, we get1´p k (see (1)). This is what we desired, because such
+a trivial pairing insQcorresponds to a particle labeledbwhich is skipped over by
+a particle with a smaller label, and hence contributes1´pk toP p2q
+j pρ, νq.
+‚A ball in sQlabeledbin columnkăjwhich is trivially paired, and which is
+skipped by a ballaąb, gets a weighttpx k ´ 1
+tn´1 q. When we divide this weight
+by thekth factor ofD, we get1´q k (see (1)). This is what we desired, because
+such a trivial pairing corresponds to a particle labeledbskipped over by a particle
+with a larger label, and hence contributes1´qk toP p2q
+j pρ, νq.
+‚A ball labeledbin the top row of sQin columnkăjwhich has a ball labeledaăb
+below it gets a weightp1´tq1
+tn´1 (the factorp1´tqis the nontrivial pairing weight).
+When we divide this weight by thekth factor ofD, we getpk. This is what we
+desired, because this pairing corresponds to a particle labeledbbeing displaced
+by a particle with a smaller label, and hence contributingpk toP p2q
+j pρ, νq.
+‚A ball labeledbin the top row of sQin columnkăjwhich has a ball labeledaąb
+below it gets a weightp1´tqxk (the factorp1´tqis the nontrivial pairing weight).
+When we divide this weight by thekth factor ofD, we getqk. This is what we
+desired, because this pairing corresponds to a particle labeledbbeing displaced
+by a particle with a larger label, and hence contributingqk toP p2q
+j pρ, νq.□
+Proposition 3.7.Ifλis restricted, andµ, νPS npλq, then
+Ppµ, νq “
+ÿ
+ρPSnpλq
+aµ
+ρ cρ
+ν
+e˚
+n´1
+.
+Proof.Combining [AMW25, Lemma 5.4] and Proposition 3.6, we get
+Ppµ, νq “
+ÿ
+1ďjďn
+Pj
+ÿ
+ρPSnpλq:ρj “0
+Pp1q
+j pµ, ρqPp2q
+j pρ, νq
+“
+ÿ
+1ďjďn
+ÿ
+ρPSnpλq:ρj “0
+aµ
+ρ cρ
+ν
+e˚
+n´1
+“
+ÿ
+ρPSnpλq
+aµ
+ρ cρ
+ν
+e˚
+n´1
+.□
+Proof of Theorem 2.2.Fix a restricted partitionλ. LetνPS npλq. From [BDW25, Theo-
+rem 1.15 and Lemma 5.6], we have
+F ˚
+ν px; 1, tq “
+ÿ
+ηPNn
+F ˚η
+ν px;tqF ˚
+η´px; 1, tq,
+
+===== PAGE 30 =====
+
+A PROBABILISTIC INTERPRETATION FOR INTERPOLATION MACDONALD POLYNOMIALS 7
+where
+F ˚η
+ν px;tq:“
+ÿ
+αPZn
+bα
+ν wtα aη
+∥α∥ “
+ÿ
+κPNn
+aη
+κcκ
+ν .
+But we know from Corollary 3.5 that
+F ˚
+η´px; 1, tq “ F ˚
+η px; 1, tq
+e˚
+n´1px;tq ,
+we use here the fact thatηhas a unique part of size 0. Hence
+F ˚
+ν px; 1, tq “
+ÿ
+ηPNn
+F ˚
+η px; 1, tq
+ÿ
+κPNn
+aη
+κcκ
+ν
+e˚
+n´1px;tq ,
+which can be rewritten using the transition probabilities of the interpolationt-Push
+TASEP (Proposition 3.7) we get
+F ˚
+ν px; 1, tq “
+ÿ
+ηPNn
+F ˚
+η px; 1, tqPpη, νq.
+This proves thatF ˚
+µ px; 1, tqare proportional to the stationary distribution of the inter-
+polationt-Push TASEPπ ˚
+λpµq. Finally, we use the fact thatP˚
+λ “ ř
+µPSnpλq F ˚
+µ to deduce
+that
+F ˚
+µ px;1,tq
+P ˚
+λ px;1,tq “π ˚
+λpµq.□
+References
+[AMW25] Arvind Ayyer, James Martin, and Lauren Williams,The inhomogeneoust-PushTASEP and
+Macdonald polynomials atq“1, Annales de l’Institut Henri Poincaré D (2025).
+[AS19] Per Alexandersson and Mehtaab Sawhney,Properties of non-symmetric Macdonald polynomi-
+als atq“1andq“0, Ann. Comb.23(2019), no. 2, 219–239. MR 3962853
+[BDW25] Houcine Ben Dali and Lauren Williams,A combinatorial formula for Interpolation Macdonald
+polynomials, Preprint arXiv:2510.02587, 2025.
+[CMW22] Sylvie Corteel, Olya Mandelshtam, and Lauren Williams,From multiline queues to Macdonald
+polynomials via the exclusion process, Amer. J. Math.144(2022), no. 2, 395–436. MR 4401508
+[Doł17] Maciej Dołęga,Strong factorization property of Macdonald polynomials and higher-order Mac-
+donald’s positivity conjecture, J. Algebraic Combin.46(2017), no. 1, 135–163. MR 3666415
+Department of Mathematics, Har v ard University, Cambridge, MA, and Center for
+Mathematical Sciences and Applications, Har v ard University, Cambridge, MA
+Email address:bendali@math.harvard.edu
+Department of Mathematics, Har v ard University, Cambridge, MA
+Email address:williams@math.harvard.edu
+
+===== PAGE 31 =====
+
+THE FINITE FREE STAM INEQUALITY
+JORGE GARZA V ARGAS, NIKHIL SRIV ASTA V A, AND ZACK STIER
+Let⊞ n and Φ n(·) be defined as in the problem statement. In this note we prove the
+following result, which was conjectured by D. Shlyakhtenko.
+Theorem 0.1.Letp(x)andq(x)be any two monic real-rooted polynomials of degreen.
+Then 1
+Φn(p⊞ n q) ≥ 1
+Φn(p) + 1
+Φn(q) .
+1.Notation and preliminaries
+1.1.Polynomials and the finite free convolution.Given a polynomialp(x) of degree
+nwe say thatα= (α 1, . . . , αn) is a vector of roots forp(x) if theα i are the roots ofp(x).
+We will say thatαis ordered ifα 1 ≥ · · · ≥α n. Recall that for monic polynomialsp(x) and
+q(x),p(x)⊞ n q(x) may be expressed as:
+(1.1)p(x)⊞ n q(x) =
+X
+π∈Sn
+nY
+i=1
+(x−α i −β π(i)),
+whereαandβare vectors of roots forp(x) andq(x), respectively, andS n is the symmetric
+group onnelements (see Theorem 2.11 of [MSS22] for a proof). Walsh [Wal22] proved that
+ifp(x) andq(x) are real-rooted, then so isp(x)⊞ n q(x). Therefore, the finite free convolution
+induces a map
+Ω⊞n :R n ×R n →R n,
+where ifαandβare vectors of roots forp(x) andq(x), then Ω ⊞n(α, β) is defined to be the
+ordered vector of roots forp(x)⊞ n q(x).
+Other than the fact that⊞ n preserves real-rootedness, our proof will crucially exploit each
+of the following well-known properties of the finite free convolution. It was shown to us by
+D. Shlakyhenko. In what follows we will use1 n to denote the all-ones vector of dimension
+n. We will use the notation
+mk(α) := 1
+n
+nX
+i=1
+αk
+i and Var(α) :=m 2(α)−m 1(α)2.
+Proposition 1.1(Properties of⊞ n).Ifα, β∈R n andγ= Ω ⊞n(α, β), then:
+i) (Additivity)m 1(γ) =m 1(α) +m 1(β)andVar(γ) = Var(α) + Var(β).
+ii) (Commutation with translation) For allt∈R,Ω ⊞n(α+t1 n, β) =γ+t1 n andΩ ⊞n(α, β+
+t1 n) =γ+t1 n.
+Date: February 4, 2026.
+1
+
+===== PAGE 32 =====
+
+Proof.(i) Follows from the definition ofp⊞ n qin terms of the coefficients ofpandqand the
+Newton identities. (ii) Follows from (1.1).□
+1.2.The heat flow and the finite free Fisher information.Given a vector of roots
+α∈R n we will define the its finite free score vectorJ n(α)∈(R∪ {∞}) n as
+Jn(α) :=
+ X
+j:j̸=i
+1
+αi −α j
+!n
+i=1
+.
+Given a real-rooted polynomialp(x) with vector of rootsα, define its finite free Fisher
+information as
+Φn(p) :=∥J n(α)∥2.
+The following fact will allow us to write the finite free Fisher information of the polynomial
+p(x) in terms of the dynamics of its roots under the reverse heat flow.
+Lemma 1.1(Score vectors as derivatives).Assumep(x)has simple roots. Letp t(x) :=
+exp
+ 
+− t
+2 ∂2
+x
+
+p(x)and letα(t) = (α 1(t), . . . , αn(t))be the ordered vector of roots ofp t(x).
+Then
+α′
+i(0) =
+X
+j:j̸=i
+1
+αi −α j
+,
+and in particularα ′(0) =J n(α).
+Proof.Since theα i(t) are continuous int, the roots remain simple in a neighborhood of
+t= 0. Implicitly differentiating the expression
+p(αi(t))−tp ′′(αi(t))/2 +t 2R(αi(t), t) = 0
+(whereR(x, t) is a polynomial) att= 0 one obtains
+α′
+i(0) = 1
+2
+p′′(αi)
+p′(αi) ,
+which is equal to the advertised expression.□
+2.Proof of Stam’s inequality
+We now prove Theorem 0.1. The following Lemma allows us to restrict attention to the
+case whenp, q, andp⊞ n qall have simple roots.
+Lemma 2.1(Approximation by Simple Rooted Polynomials).Letϵ >0and define the
+differential operatorT ϵ := (1−ϵ·d/dx) n. Ifp(x)is a monic real-rooted polynomial of degree
+n, then
+i)(T ϵp)(x)is monic and real-rooted of degreenwith simple roots.
+ii)Φ n(Tϵp)→Φ n(p)asϵ→0.
+iii)(T ϵp)⊞ n (Tϵq) =T 2
+ϵ (p⊞ n q).
+Proof.(i) was shown in [Nui68]. (ii) is because Φ n is continuous in the roots ofp, which
+are continuous inϵ. (iii) follows because⊞ n commutes with differential operators (see e.g.
+[MSS22].) □
+2
+
+===== PAGE 33 =====
+
+Thus, establishing Theorem 0.1 for the simple case implies the general case by using (iii)
+above and takingϵ→0. In what follows,p(x) andq(x) are monic real-rooted polynomials,
+αandβare vectors of roots forp(x) andq(x),γ:= Ω ⊞n(α, β), andα, β, γall have distinct
+entries, implying that they are smooth functions of the coefficients of the corresponding
+polynomials. LetJ ⊞n denote the Jacobian of Ω ⊞n at the point (α, β).
+Our proof can be separated into three steps. The second step is the most substantial one
+and we will defer its detailed discussion to Section 2.1.
+Step 1 (Jacobians and score vectors).We first note that the following relation
+between score vectors holds.
+Observation 2.1(Relating score vectors).Using the above notation, for anya, b≥0
+J⊞n(aJn(α), bJn(β)) = (a+b)J n(γ).
+Proof.For everyt≥0 letp t(x) = exp(− t
+2 ∂2
+x)p(x), letα(t) be the ordered vector of roots
+ofp t, and defineq t, rt andβ(t), γ(t) in an analogous way. Since the finite free convolution
+commutes with any differential operator, it follows that
+r(a+b)t =p at ⊞n qbt.
+Henceγ((a+b)t) = Ω ⊞n(αat, βbt) for everyt. So, if we differentiate this relation with respect
+tot, using the chain rule for the right-hand side, we get
+(a+b)γ ′(0) =J ⊞n
+
+a·α ′(0)
+b·β ′(0)
+
+.
+A direct application of Lemma 1.1 concludes the proof.□
+Step 2 (Understanding the Jacobian).The substance of our proof lies in understand-
+ingJ ⊞n. In particular, we will show the following.
+Proposition 2.1.Ifu, v∈R n are orthogonal to1 n then
+∥J⊞n(u, v)∥2 ≤ ∥u∥2 +∥v∥ 2.
+This proposition will be proven in Section 2.1, for now we show how it is used.
+Step 3 (Proof of Theorem 0.1 ` a la Blachman).With Observation 2.1 and Proposition
+2.1 in hand we can conclude the proof using the same argument that Blachman used in
+[Bla65].
+Proof of Theorem 0.1.First note that
+nX
+i=1
+X
+j:j̸=i
+1
+αi −α j
+= 0,
+since each term in the sum appears once with a plus and once with a minus. ThereforeJn(α)
+is orthogonal to1 n and, arguing analogously,J n(β) is orthogonal to1 n. So, Proposition
+2.1 implies
+∥J⊞n(aJn(α), bJn(β))∥2 ≤a 2∥Jn(α)∥2 +b 2∥Jn(β)∥2.
+3
+
+===== PAGE 34 =====
+
+Combining this with Observation 2.1 yields
+(a+b) 2∥Jn(γ)∥2 ≤a 2∥Jn(α)∥2 +b 2∥Jn(β)∥2.
+Now, by choosinga= 1
+∥Jn(α)∥2 andb= 1
+∥Jn(β)∥2 , the above inequality turns into
+ 1
+∥Jn(α)∥2 + 1
+∥Jn(β)∥2
+2
+∥Jn(γ)∥2 ≤ 1
+∥Jn(α)∥2 + 1
+∥Jn(β)∥2 ,
+which after simple algebraic manipulations can be turned into the inequality claimed in
+Theorem 0.1.□
+2.1.UnderstandingJ ⊞n.Let (Ω ⊞n,1, . . . ,Ω⊞n,n) be the coordinate functions of Ω ⊞n, that
+isγ i = Ω ⊞n,i(α, β). The starting point of our approach to proving Proposition 2.1 is the
+observation that the matrixJ ⊞nJ ∗
+⊞n is related to the Hessians of the functions Ω ⊞n,i. It will
+be helpful to introduce the notation
+H(i)
+⊞n := HessΩ⊞n,i.
+For this discussion it will prove useful to define the (2n−2)-dimensional subspace
+V={(u, v)∈R n ×R n :u ∗1 n =v ∗1 n = 0}.
+And, givenw∈R n ×R n andf:R n ×R n →R n we will useD wfto denote the directional
+derivative offin the direction ofw, that isD w =P
+i wi∂i.
+Lemma 2.2(The Hessian of Ω ⊞n).Using the above notation
+(2.1)w ∗J⊞nJ ∗
+⊞nw=w ∗
+
+In ⊕I n −
+nX
+i=1
+γiH(i)
+⊞n
+
+w,∀w∈ V.
+Proof.Fixw= (u, v)∈ Vand define
+α(t) :=α+tu, β(t) :=β+tv,andγ(t) := Ω ⊞n(α(t), β(t)),
+and note that the variance additivity from Proposition 1.1 i) implies that
+m2(γ(t))−m 1(γ(t))2 =m 2(α(t)) +m 2(β(t))−(m 1(α(t))2 +m 1(β(t))2).
+Now, the fact that (u, v)∈ Vimplies that the meansm 1(α(t)) andm 1(β(t)) are a constant
+function oftand therefore, again by Proposition 1.1 i), the meanm 1(γ(t)) is also a constant
+function oft. So, differentiating the above equation twice with respect totwe get
+(2.2)∂ 2
+t m2(γ(t))
+
+t=0 =∂ 2
+t
+ 
+m2(α(t)) +m 2(β(t))
+
+t=0 .
+Now we inspect both sides of the above equation. First
+n ∂2
+t m2(γ(t))
+
+t=0 =
+nX
+i=1
+D2
+w(γ2
+i )
+= 2
+nX
+i=1
+ 
+(Dwγi)2 +γ iD2
+wγi
+
+4
+
+===== PAGE 35 =====
+
+= 2
+ 
+w∗J⊞nJ ∗
+⊞nw+
+nX
+i=1
+γiw∗H(i)
+⊞nw
+!
+.(2.3)
+Second
+n ∂2
+t (m2(α(t)) +m 2(β(t))) =∂ 2
+t ((α+tu) ∗(α+tu) + (β+tv) ∗(β+tv))
+= 2(u∗u+v ∗v)
+= 2w∗w.(2.4)
+Finally, plugging (2.3) and (2.4) back into (2.2) yields
+w∗J⊞nJ ∗
+⊞nw+
+nX
+i=1
+γiw∗H(i)
+⊞nw=w ∗w,
+which is equivalent to the advertised result.□
+We now apply a result of Bauschke et al. [BGLS01, Corollary 3.3].
+Theorem 2.2(Bauschke et al.).Letf∈R[x 1, . . . , xm]be a hyperbolic polynomial in the
+directionw∈R m and for everya∈R m letλ 1(a)≥ · · · ≥λ m(a)be the roots ofg a(t) :=
+f(a+tw). Then, for everyk= 1, . . . , m, the functionσ k(a) :=Pk
+i=1 λi(a)is convex ina.
+In our context this implies the following.
+Corollary 2.1.For any real numbersc 1 ≥ · · · ≥c n, the matrix Pn
+i=1 ciH(i)
+⊞n is PSD.
+Proof.Define the multivariate polynomial
+f(x, a1, . . . , an, b1, . . . , bn) :=
+X
+π∈Sn
+nY
+i=1
+(x−a i −b π(i)).
+Since the above polynomial is homogeneous and the finite free convolution preserves real
+rootedness,fis hyperbolic in the directione 1 = (1,0· · ·,0). Now, by Theorem 2.2 the
+functions
+σk(x, a, b) =
+kX
+i=1
+λi(x, a, b)
+are convex, whereλ 1(x, a, b)≥ · · · ≥λ n(x, a, b) denote the roots off((x, a, b) +te 1). And,
+because thec i are ordered we moreover have that the function
+L(x, a, b) :=
+nX
+i=1
+ciλi(x, a, b)
+is convex, as it can be written as a positive linear combination of theσ k. It follows that
+HessL =Pn
+i=1 ciHessλi at any (x, a, b) is PSD. But, on the other hand, whenx= 0,a=α
+andb=β, we have that Hess λi =H (i)
+⊞n, which in turn gives that Pn
+i=1 ciH(i)
+⊞n is PSD.□
+We can now complete the proof of Proposition 2.1.
+5
+
+===== PAGE 36 =====
+
+Proof of Proposition 2.1.Let (u, v)∈ V. Then
+∥J⊞n(u, v)∥2 = (u, v)∗J⊞nJ ∗
+⊞n(u, v) =∥u∥ 2 +∥v∥ 2 −
+nX
+i=1
+γi(u, v)∗H(i)
+⊞n(u, v),
+where the last equality follows from Lemma 2.2. Now, applying Corollary 2.1 withc i =γ i
+gives thatPn
+i=1 γiH(i)
+⊞n is PSD, and hence
+nX
+i=1
+γi(u, v)∗H(i)
+⊞n(u, v)≥0.
+The proof follows from putting the two expressions together.□
+References
+[BGLS01] Heinz H Bauschke, Osman G¨ uler, Adrian S Lewis, and Hristo S Sendov. Hyperbolic polynomials
+and convex analysis.Canadian Journal of Mathematics, 53(3):470–488, 2001.
+[Bla65] Nelson Blachman. The convolution inequality for entropy powers.IEEE Transactions on Infor-
+mation theory, 11(2):267–271, 1965.
+[MSS22] Adam W Marcus, Daniel A Spielman, and Nikhil Srivastava. Finite free convolutions of polyno-
+mials.Probability Theory and Related Fields, 182(3):807–848, 2022.
+[Nui68] Wim Nuij. A note on hyperbolic polynomials.Mathematica Scandinavica, 23(1):69–72, 1968.
+[Wal22] Joseph L Walsh. On the location of the roots of certain types of polynomials.Transactions of the
+American Mathematical Society, 24(3):163–180, 1922.
+6
+
+===== PAGE 37 =====
+
+1.Indexed slice categories
+(Excerpt from “Generalized equivariant slice categories”, with Mike Hill and
+Tyler Lawson.)
+1.1.Transfer and indexing systems.We begin with an ahistorical but geodesic
+summary of transfer systems and indexing systems.
+Definition 1.1( [1], [5]).Atransfer systemonGis a partial order we will denote
+by→on Sub(G) satisfying three properties:
+(1) it refines subgroup inclusion: ifH→K, thenH⊆K,
+(2) it is conjugation invariant: ifH→Kandg∈G, thengHg −1 →gKg −1,
+and
+(3) it is closed under restriction: ifH→KandJ⊆K, thenH∩J→J.
+The collection of all transfer systems onGforms a poset under refinement, and
+we will use≤for the partial order here.
+Definition 1.2.LetObe a transfer system onG. A finiteH-set
+T=
+a
+i
+H/Ki
+isadmissibleforOif for alli,K i →H. The collection of admissibleH-sets forO
+will be denotedO(H). The collection of allO(H) asHvaries gives anindexing
+system.
+The admissible sets ofOare closely connected to the norms structured by anN ∞
+operad; we will usually also abusively denote the operad byO. Herei H
+∗ :Sp G →
+Sp H denotes the pullback functor along the inclusionH→GandN G
+H :Sp H → Sp G
+denotes the Hill-Hopkins-Ravenel norm [3].
+Definition 1.3.For a finiteG-setT, we define theT-norm
+N T :Sp G → Sp G
+inductively by the formulas
+(1)N G/H(E) =N G
+H i∗
+H(E), and
+(2)N T0⨿T1(E) =N T0(E)⊗N T1(E).
+1.2.O-slice filtration.We now define the slice filtration relative to an indexing
+systemO. We are going to use equivariant localization (more specifically, nullifica-
+tion) to construct the relative slice towers. Recall that in the equivariant context,
+we define local and acylic objects in terms of conditions on theG-space of maps
+rather than the non-equivariant space of maps. The acylic objects form an equi-
+variant localizing subcategory. Recall that given a set of objects inSp G, we define
+the equivariant localizing subcategory generated by these objects to be the full sub-
+category ofSp G constructed as the closure under homotopy colimits, retracts, and
+tensors with orbit spectra.
+Definition 1.4.IfOis an indexing system, then letτ O
+≥n be the equivariant local-
+izing subcategory ofSp G generated byn
+G+ ⊗
+H
+N T S1 |T∈ O(H),|T| ≥n
+o
+.
+This is the category ofO-slicen-connective spectra.
+1
+
+===== PAGE 38 =====
+
+2
+Remark1.5.Given a finiteG-setT, we have an equivariant homeomorphism
+N T S1 ∼= SR·T ,
+the representation sphere associated to the permutation representation ofT. This
+means that theO-slicen-connective spectra can be equivalently viewed as being
+generated by the representation spheres associated to the permutation representa-
+tions for admissible sets of cardinality at leastn.
+Viewing this instead as a diagram of localizing subcategories (i.e., as a categorical
+Mackey functor), we are forming the equivariant localizing subcategory generated
+atG/HbyN T S1 for all admissibleH-setsTof cardinality at leastn.
+For the next definition, recall that the nullification at a set of objects{S i}in
+Sp G is the left Bousfield localization at the set of terminal maps{S i → ∗}.
+Definition 1.6.IfOis an indexing system, then:
+•ThenthO-slice truncation is the functor
+P n
+O :Sp G
+≥0 → Sp G
+≥0
+that is the nullification killingτ O
+≥(n+1).
+•ThenthO-slice cover is the functor
+P O
+n :Sp G
+≥0 → Sp G
+≥0
+defined to be the (homotopy) fiber of the natural mapId⇒P n−1
+O .
+The truncation functors are related in the evident fashion asnvaries.
+Proposition 1.7.For eachn≥0, we have a natural transformation
+P n
+O(-)⇒P n−1
+O (-).
+These are compatible with the natural nullification functors
+Id⇒P n
+O(-).
+For a connectiveG-spectrumE, the natural map
+E→lim
+← −
+P n
+O(E)
+is always a weak equivalence.
+Proof.The inclusion of categoriesτ O
+n+2 ⊂τ O
+n+1 induces a natural transformation
+the other way of nullification functors. Since we can factor the nullification functor
+P n
+O via this inclusion, the first two statements follow.
+For the second, we note that the Postnikov connectivity ofG + ⊗
+H
+N T S1 for a
+finiteH-setTis|T /H|. Asngoes to infinity, this also does (at worst as|T|/|H|).
+In particular, the map
+E→P n
+O(E)
+has coconnectivity going to infinity.□
+For any bounded below spectrumK, the same argument shows that the natural
+map
+K⊗E→lim
+← −
+ 
+K⊗P nE
+
+is an equivalence.
+Definition 1.8.AG-spectrumEis anO-n-slice if
+
+===== PAGE 39 =====
+
+3
+(1) it is inτ O
+≥n, and
+(2) the natural map
+E→P n
+OE
+is an equivalence.
+Proposition 1.9.For any indexing systemO, the ordinary suspension yields maps
+Σ:τ O
+≥k →τ O
+≥(k+1).
+Proof.Since suspension commutes with homotopy colimits and induction, it suffices
+to show this on the generatorsN T S1 asTvaries over the admissible sets ofO. Since
+ΣN T S1 ≃N T⨿∗ S1, the result follows: ifTis admissible and of cardinality at least
+kthenT⨿ ∗is admissible and has cardinality at leastk+ 1.□
+Corollary 1.10.For anyk≥0, the∞-category ofO-k-slices is discrete.
+Proof.IfE, E ′ areO-k-slices, then they are both inτ O
+≥k. By the usual adjunctions,
+for alln≥1, the higher homotopy groupπ n of the mapping space are given by
+πn Map(E, E ′) = [ΣnE, E ′]G = 0,
+since the preceding proposition implies that Σ nE∈τ O
+≥(k+n).□
+Definition 1.11.We definen th O-sliceof a connectiveG-spectrumE, denoted
+P n
+n,O(E), to be the homotopy fiber of the natural map
+P n
+O(E)→P n−1
+O (E).
+2.Characterizing slice towers via connectivity
+2.1.Geometric fixed points and slice connectivity.We can detect slice con-
+nectivity in terms of the connectivity of the geometric fixed points [4,6]. To express
+this, it is convenient to define the following function capturing the structure of the
+indexing system.
+Definition 2.1.For any transfer systemO, we define thecharacteristic function
+ofO
+χO : Sub(G)→Sub(G)
+by the formula
+χO(H) = min{K|K→H}=
+\
+K→H
+K.
+2.1.1.The geometric fixed points ofτ O
+≥n.Stable equivalences inSp G can be de-
+tected as maps that induce non-equivariant stable equivalences on passage to geo-
+metric fixed points for all (closed) subgroups ofG. It should thus be very plausible
+that the connectivity of geometric fixed points is a central notion.
+Definition 2.2.For aG-spectrumE, let thegeometric connectivity, denoted
+gconn(E), be the function from subgroups ofGtoZ∪ {±∞}defined by
+gconn(E)(H) := conn
+ 
+ϕH(E)
+
+.
+Lemma 2.3.LetObe a transfer system. IfE∈τ O
+≥n, then for allH⊂G,
+[H:χ O(H)]·gconn (E)(H)≥n.
+
+===== PAGE 40 =====
+
+4
+Proof.By restriction, it suffices to show this forH=G. Since the geometric
+fixed points preserve homotopy colimits and extensions, it suffices to show this for
+generators. Next, since geometric fixed points applied to an inducedG-spectrum
+vanish, we are reduced to considering the case ofN T S1 forTan admissibleG-set
+of cardinality at leastn. DecomposeTas
+T=
+X
+H
+nH G/H.
+The geometric fixed points ofN T S1 areS |T /G|, and in this case, we have
+|T /G|=
+X
+H
+nH .
+We have by assumption
+|T|=
+X
+H
+nH[G:H]≥n,
+and by definition, [G:χ O(H)] is the maximal element in
+
+[G:H]|G/H∈ O(∗)
+	
+(and in fact, all others divide it). This gives inequalities
+[G:χ O(G)]·
+X
+H
+nH ≥
+X
+H
+nH[G:H]≥n,
+as desired.□
+Remark2.4.Ifχ O(G) ={e}, then we recover [4, Theorem 2.5].
+For the converse, we can again use isotropy separation, studying the cofiber
+sequence
+EF+ ⊗E→E→ ˜EF ⊗E.
+The spectrumEF + ⊗Eis built out of pieces of the formG/H + ⊗E, so this is in
+a localizing subcategory if and only if the restrictions are.
+Lemma 2.5.LetFbe a family, and letτbe an equivariant localizing subcategory.
+IfEis anyG-spectrum such that for allH∈ F,i ∗
+H E∈i ∗
+H τ, then
+(EF+ ⊗E)∈τ
+Proof.This follows by the same proof as [4, Lemma 2.4]: the spectrumEF + ⊗E
+is in the localizing category generated byG/H + ⊗EforH∈ F. By assumption,
+we have an inclusion
+G/H+ ⊗E ∼= G+ ⊗
+H
+i∗
+H E∈τ.
+□
+TheO-slices of geometric spectra.Our argument will use downward induction on
+the subgroup lattice, so we will need to understand theO-slice connectivity of
+˜EP ⊗E, wherePis the family of proper subgroups ofG. Recall that aG-spectrum
+Eis called “geometric” if the natural map
+E→ ˜EP ⊗E
+is an equivalence [2, Definition 6.10], and a Mackey functorM is geometric ifHM
+is. The proof of [2, Theorem 6.7] goes through essentially without change to show
+the following.
+
+===== PAGE 41 =====
+
+5
+Lemma 2.6.LetM be a geometric Mackey functor. For anyO,
+ΣkHM
+is ak·[G:χ OG]-O-slice.
+Proof.SinceM is geometric, we have that for any finiteG-setT, the natural map
+S|T /G| ,→N T S1
+given by the inclusion of fixed points induces an equivalence
+S|T /G| ⊗HM →N T S1 ⊗HM .
+We can bound theO-slice connectivity from below by choosing anO-admissibleT
+with|T|as large as possible so that|T /G|=kis fixed. This is again achieved by
+taking
+T=kG/χ O(G),
+sinceχ O(G) is the minimal subgroupHsuch thatH→G. This shows us that
+ΣkHM ∈τ O
+≥k[G:χO(G)].
+For the upper bound, consider an admissibleG-setTsuch that
+|T|> k[G:χ O(G)].
+Sincek[G:χ O(G)] is the largest cardinality of an admissibleG-set withk-orbits,
+we deduce that|T /G|> k. SinceM is geometric, we therefore deduce
+[N T S1,Σ kHM ]G ∼= [ΦGN T S1,Σ kHM (G/G)] ∼= [S|T /G|,Σ kHM (G/G)] = 0.
+This shows thatHM is ak[G:χ O(G)]-slice.□
+2.2.RewritingO-slice connectivity.Putting these together, we get the full
+O-slice version of [4, Theorem 2.5].
+Theorem 2.7.AG-spectrumEis inτ O
+≥n if and only if for allH⊂G,
+[H:χ O(H)]·gconn (E)(H)≥n.
+Proof.The proof is essentially that of [4, Theorem 2.5]. The forward direction is
+Lemma 2.3.
+For the other direction, letEbe a spectrum with the prescribed geometric
+connectivities. Consider the isotropy separation sequence
+EP+ ⊗E→E→ ˜EP ⊗E.
+By Lemma 2.6, theO-slice connectivity of ˜EP ⊗Eis at leastn. By induction on
+the subgroup lattice, Lemma 2.5 shows thatEP + ⊗Ealso hasO-slice connectivity
+n. Since localizing categories are closed under extensions, this implies thatEhas
+O-slice connectivityn.□
+Rewriting this slightly, we have a way to describe the slice connectivity of an
+arbitrary 0-connective spectrum.
+Corollary 2.8.IfE∈ Sp G
+≥0, then let
+n= min
+H⊆G
+
+[H:χ O(H)]·gconn (E)(H)
+	
+.
+ThenE∈τ O
+≥n.
+
+===== PAGE 42 =====
+
+6
+References
+[1] S. Balchin, D. Barnes, and C. Roitzheim. N ∞-operads and associahedra.Pacific J. Math.,
+315(2):285–304, 2021.
+[2] M. A. Hill. The equivariant slice filtration: a primer.Homology Homotopy Appl., 14(2):143–
+166, 2012.
+[3] M. A. Hill, M. J. Hopkins, and D. C. Ravenel. On the nonexistence of elements of Kervaire
+invariant one.Ann. of Math. (2), 184(1):1–262, 2016.
+[4] M. A. Hill and C. Yarnall. A new formulation of the equivariant slice filtration with applications
+toC p-slices.Proc. Amer. Math. Soc., 146(8):3605–3614, 2018.
+[5] J. Rubin. Detecting Steiner and linear isometries operads.Glasg. Math. J., 63(2):307–342,
+2021.
+[6] D. Wilson. On categories of slices. arxiv.org: 1711.03472, 2017.
+
+===== PAGE 43 =====
+
+Light Sets of Vertices
+Daniel Spielman, Jan. 30, 2026
+Throughout this note, G = (V, E, w) will be a weighted graph with n vertices. For an edge
+(s, t) ∈ E, we let w(s, t) be its weight. For two vertex sets, S and T , the subgraph GS,T of G
+has vertex set V , but only the edges going between vertices in S and T . We write GS for the
+graph that only contains the edges between vertices in S.
+The matrix L is the Laplacian of G, which we recall may be defined by
+L =
+X
+(s,t)∈E
+w(s, t)(δs − δt)(δs − δt)T ,
+where δs is the elementary unit vector with a 1 in position s. We let LS denote the Laplacian
+of GS. As GS and G have been defined to have the same vertex set, LS has the same dimension
+as L.
+Lemma 0.1. For every weighted graph G = (V, E, w) with n vertices, and for every 0 < ϵ < 1,
+there is an S ⊆ V of size at least ϵn/42 so that
+ϵL ≽ LS.
+We call such a set of verticesS an ϵ-light set. A set S is 0-light if and only if it is independent,
+and we could view lightness as a qualitative measure of independence. We might have called it
+“spectral independence,” if that term were not already in use.
+This lemma was proved by Daniel Spielman while working on the paper “Sparsified Cholesky
+Solvers for SDD linear systems”, written with Richard Peng and Yin-Tat Lee [LPS15]. We de-
+cided not to include the lemma in that paper because, while it could be used to obtain interesting
+variants of some results, it was not necessary for the main results in that paper. That paper
+evolved into the paper “Sparsified Cholesky and Multigrid Solvers for Connection Laplacians,”
+written with Rasmus Kyng, Yin Tat Lee, Richard Peng and Sushant Sachdeva [KLP +16].
+1 Proof Strategy
+We define LS,T to be the Laplacian of GS,T . For a vertex t and a subset of vertices S, we define
+LS,t to be the Laplacian of GS,{t}.
+For a matrix L, we write its pseudo-inverse as L†. We write L†/2 for the square root of the
+pseudo-inverse. We will prove the following statement that is equivalent to Lemma 0.1
+
+
+
+L†/2LSL†/2
+
+
+
+ ≤ ϵ.
+We will find it convenient to multiply all Laplacian matrices on the left and right by L†/2.
+So, we define
+eLS = L†/2LSL†/2, eLS,T = L†/2LS,T L†/2, eLS,t = L†/2LS,tL†/2,
+and recall that L†/2LL†/2 def= Π is a symmetric projection matrix.
+1
+
+===== PAGE 44 =====
+
+We are going to build up S in a greedy fashion. We will begin with a singleton set, and
+then add one vertex at a time. As we add vertices to S, we will need to maintain bounds on
+two quantities: a modification of the upper barrier function from [BSS12] and the sum of the
+leverage scores of edges between S and V \ S.
+The leverage score of an edge ( s, t) is defined to be w(s, t) times the effective resistance
+between s and t:
+ℓ(s, t) = w(s, t)(δs − δt)T L†(δs − δt) = Tr
+
+w(s, t)(δs − δt)(δs − δt)T L†
+
+= Tr
+
+L{s},{t}L†
+
+.
+For vertices s and t for which ( s, t) is not an edge, we define ℓ(s, t) = 0. For subsets of vertices
+S and T , we define
+ℓ(S, T) def=
+X
+s∈S
+X
+t∈T
+ℓ(s, t) =
+X
+s∈S
+X
+t∈T :(s,t)∈E
+ℓ(s, t),
+and
+ℓ(S) def= ℓ(S, V − S).
+Claim 1.1. For S and T subsets of vertices, ℓ(S, T) = Tr
+
+eLS,T
+
+.
+Proof. From the definition of the Laplacian of a graph, we have LS,T =P
+s∈S
+P
+t∈T L{s},{t}. So,
+Tr
+
+eLS,T
+
+= Tr
+
+L†/2LS,T L†/2
+
+= Tr
+
+LS,T L†
+
+=
+X
+s∈S
+X
+t∈T
+Tr
+
+L{s},{t}L†
+
+=
+X
+s∈S
+X
+t∈T
+ℓ(s, t) = ℓ(S, T).
+We modify the BSS barrier function to make it better suited to matrices of rank at most σ
+by only incorporating the largest σ eigenvalues of the matrix. For a matrix A with eigenvalues
+λ1 ≥ λ2 ≥ · · · ≥ λn, and a u > λ 1, we define
+Φu
+σ(A) def=
+σX
+i=1
+1
+u − λi
+.
+If u ≤ λ1, we define Φ u
+σ(A) = ∞. We overload the definition of Φ by setting
+Φu
+σ(S) def= Φ u
+σ(eLS).
+Our objective is to find a set S of size σ so that Φ ϵ
+σ(S) < ∞.
+We deal with this barrier function by considering a modified trace of a matrix that only sums
+the largest σ eigenvalues of its argument:
+Trσ (A) def=
+σX
+i=1
+λi,
+where the eigenvalues of A are λ1 ≥ λ2 ≥ · · · ≥ λn. We then have Φ u
+σ(A) = Trσ
+
+(uI − A)−1
+
+.
+In all cases we consider, the argument of Tr σ is a diagonalizable matrix with real eigenvalues.
+2
+
+===== PAGE 45 =====
+
+For the rest of this note, define
+δ def= 21
+n , ϕ def= n
+21 , and σ def= ⌊ϵn/42⌋ .
+We will prove Lemma 0.1 by iteratively applying the following lemma.
+Lemma 1.2. If |S| ≤ σ, ℓ(S) ≤ 4 |S|, and Φu
+σ(S) ≤ ϕ, then there is a t ̸∈ S so that
+Φu+δ
+σ (S ∪ {t}) ≤ ϕ and ℓ(S ∪ {t}) ≤ ℓ(S) + 4.
+Proof. Lemma 2.1 says that for more than half the t ̸∈ S, ℓ(S ∪ {t}) ≤ ℓ(S) + 4. And, under the
+conditions of the lemma, Lemma 2.5 says that for at least half the t ̸∈ S, Φu
+σ(S ∪ {t}) ≤ ϕ. So,
+there is a t ̸∈ S that satisfies both conditions.
+Proof of Lemma 0.1. Set u0 = ϵ/2 and let S0 = {v0} an arbitrary v0 ∈ V . As GS0 has no edges,
+Φu0
+σ (S0) = σ/u0 ≤ n
+21 = ϕ.
+By applying Lemma 1.2 σ times, we inductively construct a set S of σ + 1 vertices so that
+ℓ(S) ≤ 4σ and Φu0+σδ
+σ (S) ≤ ϕ. This implies that all of the eigenvalues of eLS are at most
+u0 + σδ = ϵ
+2 + σ 21
+n ≤ ϵ.
+2 Proofs
+Lemma 2.1. Let S ⊂ V . Then, for more than half the t not in S,
+ℓ(S ∪ {t}) ≤ ℓ(S) + 4.
+Proof. Recall ℓ(S ∪ {t}) = ℓ(S ∪ {t} , V − (S ∪ {t})). For t ̸∈ S, we use the inequality
+ℓ(S ∪ {t} , V − (S ∪ {t})) ≤ ℓ(S ∪ {t} , V − S) = ℓ(S) + ℓ(t, V − S).
+So, it suffices to show that for more than half the t ̸∈ S, ℓ(t, V − S) ≤ 4. This follows from the
+non-negativity of ℓ and Claim 2.2 which shows that
+X
+t∈V −S
+ℓ(t, V − S) < 2 |V − S| .
+Claim 2.2. For every T ⊂ V , X
+t∈T
+ℓ(t, T) ≤ 2(|T | − 1).
+3
+
+===== PAGE 46 =====
+
+Proof.
+X
+t∈T
+ℓ(t, T) =
+X
+t∈T
+Tr
+
+L{t},T L†
+
+= 2Tr
+
+LT L†
+
+.
+To show that Tr
+ 
+LT L†
+< |T |, observe that LT ≼ L, so all the eigenvalues of LT L† are between
+0 and 1. Because LT has rank at most |T | −1, at most |T | −1 eigenvalues of LT L† are non-zero.
+For convenience, we now state a few key properties of the function Trσ of a matrix. We begin
+with its defect: it is not additive. But, Ky Fan’s eigenvalue inequality (see Theorem 4.3.47a of
+[HJ12]) tells us that it is subadditive:
+Trσ (A + B) ≤ Trσ (A) + Trσ (B) . (1)
+Most of the properties of Tr σ that we find helpful follow from the fact that, for matrices A
+and B, AB has the same non-zero eigenvalues as BA, counted with multiplicity.
+Proposition 2.3. For symmetric matrices A and B,
+a. Trσ (A) = maxU Tr
+ 
+U AUT
+, where the maximum is taken over all orthogonal matrices of
+rank σ.
+b. If A is positive semidefinite, then Trσ (AB) = Trσ (BA).
+c. If A and B are positive semidefinite, then Trσ (AB) ≥ 0.
+d. If A ≼ B, then Trσ (A) ≤ Trσ (B).
+e. If C is positive semidefinite and A ≼ B, then Trσ (AC) ≤ Trσ (BC).
+Proof. Part a is Ky Fan’s maximum principle, proved in [Fan49]. Part b is a direct consequence
+of the facts that AB has n real eigenvalues if A is positive semidefinite, and AB and BA
+have the same non-zero eigenvalues. Part c follows from the fact that all eigenvalues of the
+product of positive semidefinite matrices are non-negative. Part d follows from using (1) to show
+Trσ (A) ≤ Trσ (B) + Trσ (A − B) ≤ Trσ (B) , using the fact that A − B is negative semidefinite
+and so Tr σ (A − B) ≤ 0. To derive part e from part d, let V be a matrix so that V T V = C,
+and apply b to show the conclusion is equivalent to Tr σ
+ 
+V AV T
+≤ Trσ
+ 
+V BV T
+, which follows
+from V AV T ≼ V BV T .
+Note that eLS∪{t} = eLS +eLS,t. To show that we can choose a t ̸∈ S that does not increase
+the barrier function, we employ the following adaptation of Lemma 19 of [SHS15], which in turn
+is an adaptation of Lemma 3.3 from [BSS12]. We include a proof for completeness.
+Lemma 2.4. Let A and B be positive semidefinite matrices, δ > 0, and let M = (u + δ)I − A.
+If Φu
+σ(A) < ∞ and
+Trσ
+ 
+M −2B
+
+Φuσ(A) − Φu+δσ (A)
++ Trσ
+ 
+M −1B
+
+< 1, (2)
+then Φu+δ
+σ (A + B) ≤ Φu
+σ(A).
+4
+
+===== PAGE 47 =====
+
+Proof. Our assumption that Φu
+σ(A) < ∞ implies that M, M −1, and M −2 are all positive definite.
+Thus, Proposition 2.3c implies that both terms in (2) are non-negative. Let C be a matrix for
+which B = CC T , and so by Proposition 2.3b Tr σ
+ 
+M −1B
+
+= Trσ
+ 
+CT M −1C
+
+< 1.
+Recall Φu+δ
+σ (A + B) = Trσ
+ 
+(M − CC T )−1
+. By the Sherman-Morrison-Woodbury formula,
+(M − CC T )−1 = M −1 + M −1C(I − CT M −1C)−1CT M −1.
+As
+
+
+CT M −1C
+
+
+ ≤ Trσ
+ 
+CT M −1C
+
+< 1, we know that right-hand term is positive definite, and
+thus all eigenvalues of A + B are less than u + δ. Now, (1) implies
+Φu+δ
+σ (A + B) ≤ Trσ
+ 
+M −1
++ Trσ
+ 
+M −1C(I − CT M −1C)−1CT M −1
+.
+By Propositon 2.3b,
+Trσ
+ 
+M −1C(I − CT M −1C)−1CT M −1
+= Trσ
+ 
+(I − CT M −1C)−1CT M −2C
+
+As
+
+
+CT M −1C
+
+
+ ≤ Trσ
+ 
+CT M −1C
+
+< 1, (I − CT M −1C)−1 ≼ (1 − Trσ
+ 
+CT M −1C
+
+)−1I, and by
+Proposition 2.3d,
+Trσ
+ 
+(I − CT M −1C)−1CT M −2C
+
+≤ Trσ
+ 
+CT M −2C
+
+1 − Trσ (CT M −1C) .
+Writing Trσ
+ 
+M −1
+= Φu
+σ(A) − (Φu
+σ(A) − Φu+δ
+σ (A)), we obtain
+Φu+δ
+σ (A + B) ≤ Φu
+σ(A) − (Φu
+σ(A) − Φu+δ
+σ (A)) + Trσ
+ 
+CT M −2C
+
+1 − Trσ (CT M −1C) ,
+which (2) and Proposition 2.3b imply is at most Φ u
+σ(A).
+We will apply this result with A = eLS and B = eLS,t. When these terms, along with u and
+δ are given, it will be convenient to write
+U(S, t) def=
+Trσ
+
+M −2eLS,t
+
+Φuσ(S) − Φu+δσ (S)
++ Trσ
+
+M −1eLS,t
+
+.
+Lemma 2.5. If |S| ≤ σ, Φu
+σ(S) ≤ ϕ, and ℓ(S) ≤ 4 |S|, then for at least half the t ̸∈ S,
+U(S, t) < 1
+Proof. We will prove that X
+t̸∈S
+U(S, t) ≤ 5
+δ + 5ϕ.
+As U(S, t) is non-negative, this implies that for at least half the t ̸∈ S,
+U(S, t) ≤ 2
+n − |S|
+5
+δ + 5ϕ
+
+≤ 2
+n
+42
+41
+5n
+21 + 5n
+21
+
+< 1.
+5
+
+===== PAGE 48 =====
+
+We need to upper bound the terms Tr σ
+
+M peLS,t
+
+for p ∈ {−1, −2}. We do this by breaking
+each term into two parts. Let Π S be the symmetric projection onto the span of eLS and let
+ΠT = I − ΠS. As M = (u + δ)(ΠS + ΠT ) −eLS, ΠT ΠS = ΠTeLS = 0, and Π p
+S = ΠS,
+M p = (u + δ)pΠT +
+
+(u + δ)ΠS −eLS
+p
+.
+By the subadditivity of Tr σ we conclude
+Trσ
+
+M peLS,t
+
+≤ Trσ
+
+(u + δ)pΠTeLS,t
+
++ Trσ
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+.
+The term invovling Π S is addressed by Claim 2.6, which says
+X
+t̸∈S
+Trσ
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+≤ Trσ (M p) .
+For the other term, we recall that ΠT andeLS,t are positive semidefinite and so their product
+has only non-negative eigenvalues to show
+Trσ
+
+(u + δ)pΠTeLS,t
+
+≤ Tr
+
+(u + δ)pΠTeLS,t
+
+= (u + δ)pTr
+
+ΠTeLS,t
+
+≤ (u + δ)pTr
+
+eLS,t
+
+.
+Claim 1.1 tells us that this equals ( u + δ)pℓ(S, t), giving
+X
+t̸∈S
+Trσ
+
+(u + δ)pΠTeLS,t
+
+≤ (u + δ)pX
+t̸∈S
+ℓ(S, t) = (u + δ)pℓ(S) ≤ (u + δ)p4 |S| .
+To combine these terms, note that all the eigenvalues of M are at most (u + δ), and thus for
+p < 0 all the eigenvalues of M p are at least ( u + δ)p. This tells us that Tr σ (M p) ≥ σ(u + δ)p ≥
+|S| (u + δ)p. We conclude that
+X
+t̸∈S
+Trσ
+
+M peLS,t
+
+≤ 5Trσ (M p) .
+To finish, we return to
+X
+t̸∈S
+U(S, t) =
+X
+t̸∈S
+Trσ
+
+M −2eLS,t
+
+Φuσ(S) − Φu+δσ (S)
++
+X
+t̸∈S
+Trσ
+
+M −1eLS,t
+
+≤ 5Trσ
+ 
+M −2
+Φuσ(S) − Φu+δσ (S)
++ 5Trσ
+ 
+M −1
+.
+The right-hand term is at most 5Φ u+δ
+σ (S), and Claim 2.7 shows that the left-hand term is at
+most 5
+δ . Summing these together gives the result.
+Claim 2.6. Assume that |S| ≤ σ. For M = (u + δ)I −eLS, and nonzero real p,
+X
+t̸∈S
+Trσ
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+≤ Trσ (M p) .
+6
+
+===== PAGE 49 =====
+
+Proof. Because both eLS,t and
+
+(u + δ)ΠS −eLS
+p
+are positive semidefinite, the eigenvalues of
+their product are nonnegative, and so
+Trσ
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+≤ Tr
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+.
+AsP
+t̸∈SeLS,t =eLS,T ≼ I, Proposition 2.3d implies
+X
+t̸∈S
+Tr
+
+(u + δ)ΠS −eLS
+p
+eLS,t
+
+= Tr
+
+(u + δ)ΠS −eLS
+p
+eLS,T
+
+≤ Tr
+
+(u + δ)ΠS −eLS
+p
+= Tr
+
+ΠS
+
+(u + δ)I −eLS
+p
+ΠS
+
+= Tr (ΠSM pΠS) .
+By Ky Fan’s maximum principle (Proposition 2.3a) this latter term is at most Tr σ (M p).
+Claim 2.7.
+Φu
+σ(S) − Φu+δ
+σ (S) ≥ δTrσ
+ 
+M −2
+.
+Proof. Let λ1, . . . , λσ be the largest σ eigenvalues of eLS. Then,
+Φu
+σ(S) − Φu+δ
+σ (S) =
+σX
+i=1
+1
+u − λi
+−
+σX
+i=1
+1
+u + δ − λi
+=
+σX
+i=1
+δ
+(u − λi)(u + δ − λi)
+≥
+σX
+i=1
+δ
+(u + δ − λi)2 .
+= δTrσ
+ 
+M −2
+.
+References
+[BSS12] Joshua Batson, Daniel A Spielman, and Nikhil Srivastava. Twice-Ramanujan spar-
+sifiers. SIAM Journal on Computing , 41(6):1704–1721, 2012.
+[Fan49] Ky Fan. On a theorem of Weyl concerning eigenvalues of linear transformations I.
+Proceedings of the National Academy of Sciences of the United States of America ,
+35(11):652, 1949.
+[HJ12] Roger A Horn and Charles R Johnson. Matrix analysis. Cambridge university press,
+2012.
+[KLP+16] Rasmus Kyng, Yin Tat Lee, Richard Peng, Sushant Sachdeva, and Daniel A Spielman.
+Sparsified Cholesky and multigrid solvers for connection Laplacians. In Proceedings
+of the forty-eighth annual ACM symposium on Theory of Computing , pages 842–850.
+ACM, 2016.
+7
+
+===== PAGE 50 =====
+
+[LPS15] Yin Tat Lee, Richard Peng, and Daniel A. Spielman. Sparsified Cholesky solvers for
+SDD linear systems. CoRR, abs/1506.08204, 2015.
+[SHS15] Marcel K De Carli Silva, Nicholas JA Harvey, and Cristiane M Sato. Sparse sums of
+positive semidefinite matrices. ACM Transactions on Algorithms (TALG) , 12(1):1–
+17, 2015.
+8
+
+===== PAGE 51 =====
+
+Fowler’s theorem for involutions. Sylvain Cappell, S.Weinberger, and M. Yan  Fowler, in his Ph.D. thesis, proved that if Γ is a uniform lattice in a real semisimple group with odd torsion in Γ then there is no compact closed manifold M whose universal cover is rationally acyclic.  A proof can be found in [W2].  We show that the same is true for Γ with 2-torsion.   Without loss of generality (by considering a normal subgroup of ﬁnite index), it suLices to prove this for the special case where Γ = π ⋊	Z2	for a torsion free group π, a lattice in G, for which there is an involution on M = K\G/π (by isometries with the locally symmetric metric) whose ﬁxed set F is not empty.  (F might be disconnected; for simplicity we will write what follows just for the connected case – there are no diLerences in the general case.) Now suppose that Xm is a manifold with fundamental group Γ, Y its 2-fold cover, and suppose that the universal cover of X (and therefore Y) are rationally acyclic.  We will consider the symmetric signatures of Y in the (symmetric = quadratic L-group) L(Rπ), where R is the real numbers.  There is an equivalence f:Y -> M which (while not degree one) gives an equivalence of symmetric signatures (because over R, all degrees have square roots, so the symmetric signature is only sensitive to the sign of the degree of the map).  Since the Novikov conjecture is true for π, the assembly map from Hm(Bπ; L(R)) -> Lm(Rπ) is injective, and this detects in the degree m piece Hm(Bπ; Z) the class that these manifolds represent in group homology.  It follows that this map is degree one.  f*[Y] = [M]. Now we use a cobordism argument from [W1].  We now consider the image of the fundamental class of any manifold Z with fundamental group π involution inducing this automorphism of π and the image of [Z] in Hm(BΓ; Ζ2 ).  It follows from standard equivariant homotopy theory that Z has an equivariant map, g, to M, and thus there is a map from its ﬁxed set ZZ2 -> F.  We claim that g*[Z] = g* [ZZ2] where we make use of the map from Z2 x π1F -> Γ (and the periodicity on the group homology of Z2 to raise the dimension from that of F to dim M). This cobordism is between Z and a projective space bundle over ZZ2  - namely the projectivized normal bundle to ZZ2.  (The fundamental class of the latter is the desired element by the Leray-Hirsch theorem.)  It is explicitly Z x [0,1] and on Z x {1} mod out in the complement of the equivariant regular neighborhood of ZZ2 the Z/2 action.   Thus for Y, this image is 0, since the action is free.  For M however, this is always nonzero.  The action by Z2 by isometries has ﬁxed set which is aspherical and indeed the Borel 
+
+===== PAGE 52 =====
+
+construction for the action on M shows that Z2xF -> Γ induces an injection on homology in dimension dim(M/Z2) (and an isomorphism in higher dimensions, see [B]).  Since the fundamental class of an aspherical manifold is always nontrivial in its group homology, we have a contradiction.	References [B]  A.Borel, A seminar on transformation groups, Princeton University Press 1960 [W1] S.Weinberger, Group actions and higher signatures II, CPAM 1987 [W2] S.Weinberger, Variations on a theorem of Borel, Cambridge University Press 2022 
+
+===== PAGE 53 =====
+
+Mohammed Abouzaid
+February 3, 2026
+Remark 1. This note is expanded from a short motivating discussion in a research paper that is
+supposed to develop a theory of polyhedral Lagrangian submanifolds for the purpose of being able
+to use computers to explore conjectures in symplectic topology. It includes some details that would
+normally be omitted (e.g. the proof of Lemma 1, which is a linear algebra exercise, and much of the
+explanation about closed 1-forms). The paper does not cite any references as the reader is assumed
+to be able to deduce all asserted results from standard references, e.g. [1, 2].
+I would like to thank Kyler Siegel and Umut Varolgunes for helpful discussions around this
+circle of ideas.
+For the purpose of this note, we equip R4 with coordinates (q1, q2, p1, p2), and with the standard
+symplectic form ω = dp1 ∧ dq1 + dp2 ∧ dq2.
+Definition 1. A polyhedral Lagrangian surface in R4 is a finite polyhedral complex all of whose
+faces are Lagrangians, and which is a topological submanifold of R4.
+Proposition 1. If K is a polyhedral Lagrangian surface with the property that exactly 4 faces
+meet at every vertex, then there is a Hamiltonian isotopy Kt of smooth Lagrangian submanifolds,
+parameterised by (0 , 1], extending to a topological isotopy, parametrised by [0 , 1], with endpoint
+K0 = K.
+In order to prove this result, we need two preliminary results: a local statement asserting trivial-
+ity near each vertex, and a global statement implying the compatibility of these local trivialisations.
+Lemma 1. For each embedding R2 → R4 which is linear on the four quadrants with Lagrangian
+image, and whose image Σ is not contained in a plane, there is a linear symplectic transformation
+of R4 which maps Σ to the product of the union of the positive coordinate axes in R2
+p1q1 and R2
+p2q2.
+Proof. Let ( v1, v2, u1, u2) denote tangent vectors at the origin to the edges of Σ, ordered so that
+cyclically adjacent vectors span the faces of Σ. The pairings ω(vi, ui) cannot vanish, for otherwise
+ω would identically vanish on a 3-dimensional linear subspace. By swapping the pair of coordinates
+(vi, ui) if necessary, we may assume that both pairings are strictly positive, and by rescaling we may
+assume that they are 1. We conclude that the vectors ( v1, v2, u1, u2) form a standard symplectic
+basis for R4, and that the mapping ∂pi → vi and ∂qi → ui is the desired linear transformation.
+In the plane R2
+pq, the symplectic pairing projects the union of the positive axes homeomorphically
+to the dual of the line p = q. Taking the product, and applying the previous Lemma, we conclude:
+Corollary 1. There exists a linear Lagrangian plane L ⊂ R4 so that the symplectic pairing
+R4 → L∨ defines a homeomorphism Σ → L∨.
+The previous corollary in particular equips Σ with a smooth structure arising from its projection
+to L∨. This smooth structure will be fixed for the remainder of the discussion.
+1
+
+===== PAGE 54 =====
+
+Given a choice of plane L, we say that a Lagrangian Λ ⊂ R4 is graphical if the symplectic pairing
+defines a diffeomorphism Λ ∼= L∨. If Σ were smooth, the standard description of Lagrangians in
+cotangent bundles would imply that such Lagrangians bijectively correspond to smooth closed 1-
+forms, which, because Σ is contractible and hence every closed form on it is exact, can be identified
+with smooth functions modulo addition of constants. We shall formulate a replacement for this
+correspondence that accounts for the singularities of Σ.
+To this end, let us choose further a Lagrangian splitting of the projection R4 → L∨; we shall
+later see that our constructions are independent of this choice. The splitting gives a direct sum
+decomposition R4 ∼= L ⊕ L∨ (polarization), with respect to which the image of each quadrant is
+graphical over L∨. Graphical (linear) Lagrangians bijectively correspond to quadratic forms, so we
+obtain quadratic forms {qij}i,j∈± on L∨ whose graphs contain the corresponding faces of Σ. The
+restriction of the quadratic forms associated to any two faces agree to first order along the images
+in L∨ of the edges of Σ. Via the identification Σ ∼= L∨ from the previous corollary, we write qΣ
+for the C1-function on Σ whose restriction to each face is given by the composition of qij with the
+projection to L∨. We use this to obtain an explicit description of the desired local smoothings,
+which will be essential in establishing the required global smoothability:
+Definition 2. The space S (Σ) of smoothing functions for Σ is the space of C1 functions f : Σ → R
+satisfying the property that the function on f + qΣ is infinitely differentiable.
+It follows immediately from the definition that S (Σ) is invariant under addition of smooth
+functions, which will be used in the next result:
+Lemma 2. The space of smoothing functions S (Σ) depends only on L (and not on the splitting
+of the projection R4 → L∨).
+Proof. A different choice of complementary subspaces correspond to adding a quadratic form q′ to
+qij, and the corresponding smooth function on Σ to qΣ.
+We shall now associate a graphical Lagrangian to each smoothing function: the construction
+relies on the fact that the union of all translates of L passing through a face of Σ is canonically
+symplectomorphic to the cotangent bundle of Σ, with the cotangent fibre at z ∈ Σ corresponding to
+the translate of L passing through z. In this way, a smoothing function f determines a Lagrangian
+Λd f ⊂ R4, piecewise as the graph of the restriction of the differential d fto each face.
+Lemma 3. The assignment f 7→ Λd f determines a bijective correspondence between graphical
+Lagrangians and smoothing functions on Σ up to addition of constants.
+Proof. In terms of the polarization from the discussion preceding Definition 2, the Lagrangian Λ d f
+corresponds to the graph of the differential of the function f + qΣ considered as a function on L∨
+via the projection map, because each face of Σ is the graph of dqij. The result now follows from
+the fact that graphical Lagrangians over L∨ are graphs of differentials of smooth functions.
+Note that while the proof uses the polarization, the construction does not. As in Lemma 2, we
+conclude that this bijection depends only on the choice of Lagrangian L.
+The above completes our local analysis near vertices. Near edges, the analysis is much simpler:
+Lemma 4. If Σ consists of a pair of linear Lagrangian half-planes in R4 meeting along a line ℓ, then
+the space of Lagrangian subspaces L, satisfying the property that the symplectic pairing Σ → L∨
+is a homeomorphism, is contractible.
+2
+
+===== PAGE 55 =====
+
+Proof. The submanifold Σ is equivalent by (affine) linear symplectic transformations to the sym-
+plectic product of the real axis in an R2 factor with the piecewise Lagrangian consisting of the
+positive axes in another. If the projection Σ → L∨ is a homeomorphism, then L must be transverse
+to both Lagrangian half-planes comprising Σ. This implies that the symplectic reduction of L along
+ℓ (i.e. the image under the quotient by ℓ of the intersection of L with the symplectic annihilator ℓ⊥)
+is a line transverse to two coordinate lines in ℓ⊥/ℓ ∼= R2, and Σ projects homeomorphically to L∨
+if and only if this reduction intersects the interior of the positive quadrant, which is a contractible
+condition. The argument is completed by noting that the space of Lagrangian lifts of a line ℓ′ in R2
+is contractible: any two lifts to ℓ⊥ differ by the graph of a map from ℓ′ to ℓ, and L is determined
+up to contractible choice by L ∩ ℓ⊥, since it must lie in the symplectic orthogonal of this line, and
+the space of planes in R3 containing a given line (in this case L ∩ ℓ⊥) and avoiding another line (in
+this case ℓ) is contractible.
+Extending Definitions 2 and 3 verbatim to the case of a pair of edges, we obtain the analogue
+of Lemma 3, using a splitting into factors as in the above proof.
+In the global setting, we cannot work with translates with a single Lagrangian, so we need
+to consider a family Lz of Lagrangian planes, passing through each point z ∈ Σ, which are not
+necessarily translates of each other. We shall require four properties of such a family, the first three
+of which are easy to state:
+1. Lz consists of translates of a single Lagrangian near the origin.
+2. Lz varies smoothly along the edges.
+3. Lz varies smoothly along the faces.
+To formulate the last property, say that σ and σ′ are faces meeting along an edge τ, and let z be
+a point on τ. The choice of Lz determines an identification
+Tzσ ∼= L∨
+z ∼= Tzσ′
+which is compatible with the inclusion of Tzτ on both sides. A matched normal field along τ is
+a choice of sections of T σ|τ and T σ′|τ which are inward pointing, and are opposite vectors under
+the above identification. For simplicity, we require this normal field, at the origin τ, to point along
+the direction of the edge of σ (or σ′) which meets τ. Because the faces of Σ are flat, this choice
+therefore determines an embedding τ × [0, ϵ) → σ, which is a collar neighbourhood (and similarly
+for σ′).
+Definition 3. A conormal fibration dual to Σ is a family Lz of (affine)-linear Lagrangian planes
+in R4, parametrised by z ∈ Σ, satisfying the above three properties and so that, in a collar of each
+edge, the Lagrangians in the normal direction are translates of the Lagrangians along the edge.
+The choice of collars in the above construction determines a smooth structure on Σ by using
+negative coordinates on one of the collars as well as the identification ( −ϵ, 0] ∪ [0, ϵ) ∼= (−ϵ, ϵ). This
+is an a priori different way of constructing a smooth structure than our earlier formulation, and the
+next result asserts the compatibility of these contructions; in this setting, we choose an affine-linear
+Lagrangian Λz passing through z, which is transverse to Lz, and consider the (locally defined) map
+from Σ to Λz which assigns to z′ ∈ Σ near z the intersection points Lz′ ∩Λz which is unique because
+Lz is close to Lz′.
+Lemma 5. The projection map to Λ z is a local diffeomorphism.
+3
+
+===== PAGE 56 =====
+
+Proof. The only case that needs to be discussed is when z lies on an edge τ. The condition that
+Lz′ be given by translates along the collar direction implies that this map may be written along
+the collar of τ in a face σ as (t, s) 7→ γ(t) +s · νσ(t), where t is the coordinate along τ and s ∈ [0, ϵ)
+is the coordinate in the normal direction. The requirement that the normal fields are matched is
+equivalent to the condition that νσ = −νσ′ if σ and σ′ are the two faces meeting along τ. The
+smoothness of the map is immediate from this description.
+Whenever the family Lz does not consist of translates, the Lagrangians Lz will have non-empty
+intersections. However, such intersections always take place outside some open neighbourhood νΣ
+of Σ, which we now fix. As before, the fibration Lz determines a projection νΣ → Σ. We say
+that a Lagrangian is graphical with respect to Lz if it is contained in this neighbourhood, and its
+projection to Σ is a diffeomorphism.
+Lemma 6. Every graphical Lagrangian with respect to Lz arises as the graph of a smoothing func-
+tion. Moreover, any smoothing function whose differential is sufficiently small defines a graphical
+Lagrangian.
+Proof. The correspondence between graphical Lagrangians and smoothing functions is local on
+Σ. It thus suffices to consider a point z ∈ Σ, and observe that a Lagrangian plane L∨
+z which is
+transverse to Lz at z will also be transverse to nearby fibres, so that a neighbourhood of z in νΣ
+is modelled after the conormal bundle of L∨
+z , by Weinstein’s tubular neighbourhood theorem. The
+result then follows by the standard construction of Lagrangians as graphs of closed 1-forms.
+In order for the previous result to be helpful, we need to be able to produce the desired functions;
+this is not completely obvious because the space of smoothing functions is not invariant under
+rescaling:
+Lemma 7. There exist smoothing functions of arbitrarily small C1-norm.
+Proof. As a preliminary step, choose a partition of unity P
+σ χσ = 1 on Σ, of bounded Ck-norms
+for all k, indexed by the strata of Σ, so that χσ vanishes outside a small neighbourhood of σ and
+its restriction to σ is identically 1 in the complement of a small neighbourhood of the boundary
+of σ. If χϵ
+σ is the composition of χσ with the dilation of the plane by 1 /ϵ, we obtain a family of
+partitions of unity which are uniformly bounded, and whose C1-norms are bounded by a constant
+multiple of 1/ϵ.
+We now choose a Lagrangian plane Λ σ which contains each stratum σ ⊂ Σ, and which is
+transverse to L, and let fσ denote the corresponding smoothing function. Note that the tangency
+conditions imply that the functions fσ and fσ′ agree to first order along σ ∩ σ′. Let f ϵ denote the
+function P χϵ
+σfσ. The fact that f ϵ
+σ is a family of smoothing functions follows from the partition of
+unity, and the fact that the C1-norm is bounded follows from the product rule and the observation
+that, while the norm of the gradient of χϵ
+σ grows like 1 /ϵ, it is supported in a region where the
+difference between fσ and fσ′ is bounded by a constant multiple of ϵ2.
+We now proceed with the global part of the argument, and thus return to the setting where K
+is a polyhedral Lagrangian surface in R4. The first step is to globalise the choice of L:
+Definition 4. A conormal fibration dual to K is a smoothly varying family Lz of (affine)-linear La-
+grangian planes in R4, parametrised by z ∈ K, which locally satisfies the properties from Definition
+3.
+Lemma 8. The surface K admits a dual conormal fibration which, near vertex, agrees with the
+choice given by Corollary 1.
+4
+
+===== PAGE 57 =====
+
+Proof. Lemma 4 implies that the choices near the vertices may be extended to the edges. Choosing
+a normal vector field to one of the faces that meets along an edge determines matched normals,
+and the extension to the interior of the faces is then standard, as the space of Lagrangian planes
+transverse to a given one is contractible.
+The conormal fibration determines a subset S (K) of the space of C1-functions consisting of
+those functions which are smooth in the interior of each face, and which are smoothing functions
+in the sense of Definition 2 near each edge and vertex.
+Lemma 9. There exist smoothing functions for K of arbitrarily small C1-norm.
+Proof. Choose a partition of unity P
+α ρα = 1 on K, indexed by the strata of K, so that ρα is
+supported in the open star of α (the union of all strata adjacent to it). Lemma 7 asserts the
+existence of smoothing functions fα of arbitrarily small C1-norm defined on the open star of α.
+The function P
+α ραfα satisfies the desired property.
+We now arrive at the proof of the main result, which mostly consists of assembling together all
+the previous steps:
+Proof of Proposition 1. We have a neighbourhood νK of K in R4 in which the conormal fibres Lz
+are disjoint. The statement of Lemma 6 and its proof apply verbatim to this space, replacing K
+by Σ. The existence of sufficiently many global smoothing functions is guaranteed by Lemma 9.
+As a consequence, we obtain a sequence Ki of smooth embedded Lagrangians, which are all
+isotopic to K by a piecewise smooth isotopy and converge to it, that are moreover graphs of
+differentials of smooth functions (over each other) with respect to the fibration{Lz}. This graphical
+description yields a smooth Hamiltonian path of graphical Lagrangians connecting Ki to Ki+1, and
+smoothing the concatenation of these paths yields the desired result.
+References
+[1] M. W. Hirsch. Differential Topology. Graduate Texts in Mathematics. Springer, 1976.
+[2] D. McDuff and D. Salamon. Introduction to Symplectic Topology. Oxford Mathematical Mono-
+graphs. Oxford University Press, third edition, 2017.
+5
+
+===== PAGE 58 =====
+
+Question
+Letn⩾5. LetA (1), . . . , A(n) ∈R 3×4 be Zariski-generic. Forα, β, γ, δ∈[n], construct
+Q(αβγδ) ∈R 3×3×3×3 so that its (i, j, k, ℓ) entry for 1⩽i, j, k, ℓ⩽3 is given byQ (αβγδ)
+ijkℓ =
+det
+
+A(α)(i,:);A (β)(j,:);A (γ)(k,:);A (δ)(ℓ,:)
+
+. HereA(i,:) denotes theith row of a matrixA, and
+semicolon denotes vertical concatenation. We are interested in algebraic relations on the set of
+tensors{Q (αβγδ) :α, β, γ, δ∈[n]}.
+More precisely, does there exist a polynomial mapF:R 81n4
+→R N that satisfies the following
+three properties?
+•The mapFdoes not depend onA (1), . . . A(n).
+•The degrees of the coordinate functions ofFdo not depend onn.
+•Letλ∈R n×n×n×n satisfyλ αβγδ ̸= 0 for preciselyα, β, γ, δ∈[n] that are not identical.
+ThenF(λ αβγδ Q(αβγδ) :α, β, γ, δ∈[n]) = 0 holds if and only if there existu, v, w, x∈(R ∗)n
+such thatλ αβγδ =u αvβwγxδ for allα, β, γ, δ∈[n] that are not identical.
+JK acknowledges support from NSF DMS 2309782, NSF CISE-IIS 2312746, DE SC0025312, and the Sloan
+Foundation.
+1
+
+===== PAGE 59 =====
+
+Answer(from work by Daniel Miao, Gilad Lerman, Joe Kileel)
+Yes, such algebraic relations do exist. Assemble the various tensors{Q (αβγδ) :α, β, γ, δ∈[n]}
+into one tensorQ∈R 3n×3n×3n×3n, thought of as ann×n×n×nblock tensor where the
+(α, β, γ, δ)-block isQ (αβγδ) ∈R 3×3×3×3. LetFbe the polynomial map sending{Q (αβγδ) :
+α, β, γ, δ∈[n]}to the 5×5 minors of the four 3n×27n 3 matrix flattenings ofQ. We will prove
+thatFsatisfies the desired properties.
+A key point is to discover the following algebraic identity.
+Lemma 1.ConsiderQ∈R 3n×3n×3n×3n as above. It admits a Tucker tensor decomposition
+Q=C × 1 A× 2 A× 3 A× 4 A,(1)
+forC ∈R 4×4×4×4 andA∈R 3n×4. Explicitly, we can take
+Cabcd =
+(
+sgn(abcd)ifa, b, c, d∈[4]are distinct
+0otherwise,
+where sgn is parity of a permutation, andAto be the vertical concatenation[A (1);. . .;A (n)].
+Proof.Let [n]×[3] stand for the indices ofQin each mode and for the row indices ofA. By
+definition of Tucker product, for all (α, i),(β, j),(γ, k),(δ, ℓ)∈[n]×[3] we have
+(C × 1 A× 2 A× 3 A× 4 A)(α,i),(β,j),(γ,k),(δ,ℓ) =
+X
+a,b,c,d∈[4]
+CabcdA(α,i),aA(β,j),b A(γ,k),c A(δ,ℓ),d
+=
+X
+a,b,c,d∈[4] distinct
+sgn(abcd)A(α)
+ia A(β)
+jb A(α)
+kc A(α)
+ℓd = det
+h
+A(α)(i,:);A (β)(j,:);A (γ)(k,:);A (δ)(ℓ,:)
+i
+=Q (αβγδ)
+ijkℓ =Q (α,i),(β,j),(γ,k),(δ,ℓ) .□
+The lemma explains whyFcaptures algebraic relations between the tensors{Q (αβγδ) :
+α, β, γ, δ∈[n]}. Indeed, the block tensorQhas multilinear rank bounded by (4,4,4,4) due to
+the Tucker decomposition in (1). Therefore, all 5×5 minors inFvanish.
+Below we break up the proof of the third property into two directions. The other properties
+are clear. Throughout the proof, forλ∈R n×n×n×n we letλ⊙ b Q∈R 3n×3n×3n×3n denote
+blockwise scalar multiplication, i.e., the (α, β, γ, δ)-block ofλ⊙ b Qisλ αβγδ Q(αβγδ) ∈R 3×3×3×3.
+Roughly speaking, we need to show that a blockwise scaling ofQpreserves multilinear rank if
+and only if the scaling is a rank-1 tensor off the diagonal.
+“If” Direction
+This follows easily from Lemma 1. Assumeλ∈R n×n×n×n agrees off-diagonal withu⊗v⊗w⊗x
+foru, v, w, x∈(R ∗)n and is 0 on the diagonal. Then
+λ⊙ b Q= (u⊗v⊗w⊗x)⊙ b Q,
+because the diagonal blocks ofQvanish. That is,Q (αααα) = 0 since each entry ofQ (αααα) is
+the determinant of a matrix with a repeated row. Note that blockwise scalar product with a
+rank-1 tensor with nonzero entries is equivalent to Tucker product with invertible matrices:
+(u⊗v⊗w⊗w)⊙ b Q=Q× 1 Du ×2 Dv ×3 Dw ×4 Dx.
+HereD u ∈R 3n×3n is the diagonal matrix triplicating the entries ofuand likewise forD v, Dw, Dx.
+Thusλ⊙ b QandQhave the same multilinear rank, and from the lemmaF(λ αβγδ Q(αβγδ) :
+α, β, γ, δ∈[n]) = 0.
+2
+
+===== PAGE 60 =====
+
+“Only If” Direction
+The converse takes more work. Letλ∈R n×n×n×n have nonzero entries precisely off the diagonal
+and assumeF(λ αβγδ Q(αβγδ) :α, β, γ, δ∈[n]) = 0. We further assumeλ α111 =λ 1β11 =λ 11γ1 =
+λ111δ = 1 for allα, β, γ, δ∈ {2, . . . , n}. We reduce to this case by replacingλby its entrywise
+product with ¯u⊗¯v⊗¯w⊗¯x, where
+¯uα =
+(
+1 forα= 1
+λ−1
+α111 forα∈ {2, . . . , n},
+and ¯v,¯w,¯xare defined similarly using the second, third and fourth modes respectively. The
+replacement preserves the multilinear rank ofλ⊙ b Qand whether or notλagrees off-diagonal
+with a rank-1 tensor. Hence it is without loss of generality.
+Through some explicit calculations, we will prove there existsc∈R ∗ such that
+•λ αβγδ =cif exactly two ofα, β, γ, δequal 1
+•λ αβγδ =c 2 if exactly one ofα, β, γ, δequals 1
+•λ αβγδ =c 3 if none ofα, β, γ, δequal 1 andα, β, γ, δare not identical.
+This will establish the “only if” direction, as settingu=v=w= (1, c, . . . , c) andx=
+( 1
+c ,1, . . . ,1) givesλ αβγδ =u αvβwγxδ wheneverα, β, γ, δare not identical. Our proof strategy is
+to examine appropriate coordinates ofF(λ αβγδ Q(αβγδ) :α, β, γ, δ∈[n]) = 0 in order to constrain
+λ. Equivalently, we will consider the vanishing of the determinants of certain well-chosen 5×5
+submatrices of the flattenings ofλ⊙ b Q. WriteQ (1) and (λ⊙ b Q)(1) for mode-1 flattenings in
+R3n×27n3
+. Rows correspond to the first tensor mode and are indexed by (α, i)∈[n]×[3], while
+columns correspond to the other modes and are indexed by ((β, j),(γ, k),(δ, ℓ))∈([n]×[3]) 3.
+Step 1: The first submatrix of (λ⊙bQ)(1) we consider has column indices ((α,1),(1,3),(1,2)),
+((1,2),(β,2),(1,1)), ((1,2),(β,3),(1,1)), ((1,3),(β,3),(1,2)), ((1,1),(β,1),(1,3)) and row in-
+dices (1,1), (1,2), (1,3), (α,1), (α,2), whereα, β∈ {2, . . . , n}. Explicitly, the submatrix is
+
+
+Q(1α11)
+1132 Q(11β1)
+1221 Q(11β1)
+1231 Q(11β1)
+1332 Q(11β1)
+1113
+Q(1α11)
+2132 Q(11β1)
+2221 Q(11β1)
+2231 Q(11β1)
+2332 Q(11β1)
+2113
+Q(1α11)
+3132 Q(11β1)
+3221 Q(11β1)
+3231 Q(11β1)
+3332 Q(11β1)
+3113
+λαα11Q(αα11)
+1132 λα1β1Q(α1β1)
+1221 λα1β1Q(α1β1)
+1231 λα1β1Q(α1β1)
+1332 λα1β1Q(α1β1)
+1113
+λαα11Q(αα11)
+2132 λα1β1Q(α1β1)
+2221 λα1β1Q(α1β1)
+2231 λα1β1Q(α1β1)
+2332 λα1β1Q(α1β1)
+2113
+
+
+,
+which we abbreviate as
+
+
+∗ ∗ ∗ ∗ ∗
+∗ ∗ ∗ ∗ ∗
+∗ ∗ ∗ ∗ ∗
+λαα11∗λ α1β1∗λ α1β1∗λ α1β1∗λ α1β1∗
+λαα11∗λ α1β1∗λ α1β1∗λ α1β1∗λ α1β1∗
+
+
+,(2)
+with asterisk denoting the corresponding entry inQ (1). We view the determinant of (2) as a
+polynomial with respect toλ. It has degree⩽2 in the variablesλ αα11, λα1β1. Observe that if
+λα1β1 = 0, the bottom two rows of the matrix are linearly independent. Also ifλα1β1 −λαα11 = 0,
+then (2) equals a 5×5 submatrix ofQ (1) with rows operations performed; therefore (2) is rank-
+deficient. It follows that the determinant of (2) takes the form
+sλα1β1(λα1β1 −λ αα11).
+3
+
+===== PAGE 61 =====
+
+Here the scales=s(A (1), A(α), A(β)) is a polynomial in theA-matrices. Due to polynomiality,
+sis nonzero Zariski-generically if we can exhibit asingleinstance of matricesA (1), A(α), A(β)
+where the determinant of (2) does not vanish identically for allλ α1β1, λαα11. Furthermore,
+we just need an instance withα=β, as this corresponds to a specialization of the caseα̸=
+β. Computational verification with a random numerical instance ofA (1), A(α) proves the non-
+vanishing (see attached code). Recalling the standing assumptions, we deduceλ α1β1 =λ αα11.
+We apply the same argument to modewise permutations ofλ⊙ b QandQ, and obtain
+λπ(α1β1) =λ π(αα11) for allα, β∈ {2, . . . , n}and permutationsπ.
+The argument goes through asπ·Qandπ·(λ⊙ b Q) have multilinear ranks bounded by (4,4,4,4)
+andπ·Q= sgn(π)Q. So (2) looks the same but with indices permuted and possibly a sign flip.
+We now see thatλ-entries with two 1-indices agree. Indeed, takingα=βabove gives
+λπ1(α1α1) =λ π2(αα11) for allπ 1 andπ 2 that fix (αα11) and (α1α1) respectively. So,λ αα11 =
+λπ(αα11) for allπ. Takingα̸=βgivesλ αα11 =λ π(α1β1) =λ ββ11 for allπ. Together, there exists
+c∈R ∗ such thatc=λ π(αβ11) for allα, β∈ {2, . . . , n}and permutationsπ.
+Step 2: Next we consider the submatrix of (λ⊙bQ)(1) with column indices ((β,1),(γ,3),(1,2)),
+((1,2),(β,2),(1,1)), ((1,2),(β,3),(1,1)), ((1,3),(β,3),(1,2)), ((1,1),(β,1),(1,3)) and row in-
+dices (1,1), (1,2), (1,3), (α,1), (α,2), whereα, β, γ∈ {2, . . . , n}. It looks like
+
+
+c∗ ∗ ∗ ∗ ∗
+c∗ ∗ ∗ ∗ ∗
+c∗ ∗ ∗ ∗ ∗
+λαβγ1 ∗c∗c∗c∗c∗
+λαβγ1 ∗c∗c∗c∗c∗
+
+
+,(3)
+where asterisks denote corresponding entries inQ (1). As a polynomial incandλ αβγ1, the
+determinant of (3) is a scalar multiple ofc(c 2 −λ αβγ1). This is because the polynomial has
+degree⩽3, ifc= 0 then the bottom two rows of (3) are linearly dependent, and ifc 2 =λ αβγ1
+then (3) is a 5×5 submatrix ofQ (1) with row and column operations performed. The scale is
+a polynomial inA (1), A(α), A(β), A(γ). It is Zariski-generically nonzero if we exhibit one instance
+ofA-matrices such that the determinant of (2) does not vanish for allc, λ αβγ1. Further, it
+suffices to find an instance whereα=β=γ, as all other cases specialize to this. Computational
+verification with a random numerical instance ofA (1), A(α) proves the non-vanishing. It follows
+thatc 2 =λ αβγ1. Appealing to symmetry like before,c 2 =λ π(αβγ1) for allα, β, γ∈ {2, . . . , n}
+and permutationsπ. Summarizing, allλ-entries with a single 1-index equalc 2.
+Step 3: Consider the submatrix of (λ⊙Q)(1) with columns ((β,1),(γ,3),(δ,2)), ((1,2),(α,2),
+(1,1)), ((1,2),(α,3),(1,1)), ((1,3),(α,3),(1,2)), ((1,1),(α,1),(1,3)) and rows (1,1), (1,2), (1,3),
+(α,1), (α,2), whereα, β, γ, δ∈ {2, . . . , n}andα, δare distinct. The submatrix looks like
+
+
+c2∗ ∗ ∗ ∗ ∗
+c2∗ ∗ ∗ ∗ ∗
+c2∗ ∗ ∗ ∗ ∗
+λαβγδ ∗c∗c∗c∗c∗
+λαβγδ ∗c∗c∗c∗c∗
+
+
+.(4)
+The determinant of (4) isc(c 3 −λ αβγδ ) multiplied by a polynomial inA (1), A(α), A(β), A(γ), A(δ).
+The most specialized case isα=β=γ. Computer verification with a random numerical
+instance proves the polynomial is not identically zero. We deduce thatc3 =λ αβγδ . By symmetry,
+c3 =λ π(αβγδ) for allα, β, γ, δ∈ {2, . . . , n}withα, δdistinct and all permutationsπ. In other
+words,λ-entries with no 1-indices and non-identical indices equalc 3.
+Steps 1, 2 and 3 show thatλtakes the announced form. So,λis rank-1 off the diagonal. This
+finishes the “only if” direction. Overall, we have proven that the 5×5 minors of the 3n×27n 3
+flattenings ofQgive algebraic relations on{Q (αβγδ) :α, β, γ, δ∈[n]}with the desired properties.
+4
+
+===== PAGE 62 =====
+
+Iterative Solution of Structured Problem
+Tamara G. Kolda
+February 3, 2026
+1 Problem
+Given a d-way tensor T ∈ Rn1×n2×···×nd such that the data is unaligned (meaning the tensor
+T has missing entries), we consider the problem of computing a CP decomposition of rank r
+where some modes are infinite-dimensional and constrained to be in a Reproducing Kernel
+Hilbert Space (RKHS). We want to solve this using an alternating optimization approach,
+and our question is focused on the mode- k subproblem for an infinite-dimensional mode.
+For the subproblem, then CP factor matrices A1, . . . , Ak−1, Ak+1, . . . , Ad are fixed, and we
+are solving for Ak.
+Our notation is as follows. Let N =Q
+i ni denote the product of all sizes. Let n ≡ nk be
+the size of mode k, let M =Q
+i̸=k ni be the product of all dimensions except k, and assume
+n ≪ M. Since the data are unaligned, this means only a subset of T ’s entries are observed,
+and we let q ≪ N denote the number of observed entries. We let T ∈ Rn×M denote the
+mode-k unfolding of the tensor T with all missing entries set to zero. The vec operations
+creates a vector from a matrix by stacking its columns, and we let S ∈ RN ×q denote the
+selection matrix (a subset of the N × N identity matrix) such that ST vec(T ) selects the
+q known entries of the tensor T from the vectorization of its mode- k unfolding. We let
+Z = Ad ⊙ · · · ⊙ Ak+1 ⊙ Ak−1 ⊙ · · · ⊙ A1 ∈ RM ×r be the Khatri-Rao product of the factor
+matrices corresponding to all modes except mode k. We let B = T Z denote the MTTKRP
+of the tensor T and Khatri-Rao product Z.
+We assume Ak = KW where K ∈ Rn×n denotes the psd RKHS kernel matrix for mode
+k. The matrix W of size n × r is the unknown for which we must solve. The system to be
+solved is 
+(Z ⊗ K)T SS T (Z ⊗ K) + λ(Ir ⊗ K)
+
+vec(W ) = (Ir ⊗ K) vec(B). (1)
+Here, Ir denotes the r × r identity matrix. This is a system of size nr × nr Using a standard
+linear solver costs O(n3r3), and explicitly forming the matrix is an additional expense.
+Explain how an iterative preconditioned conjugate gradient linear solver can be used
+to solve this problem more efficiently. Explain the method and choice of preconditioner.
+Explain in detail how the matrix-vector products are computed and why this works. Provide
+complexity analysis. We assume n, r < q ≪ N. Avoid any computation of order N.
+2 Context
+This is an optimization problem that arises in fitting a canonical tensor decomposition to
+real-world data. Such techniques are often used for data exploration, finding correlations
+1
+
+===== PAGE 63 =====
+
+among data elements (e.g., co-occurring gene expression), and data compression. The spe-
+cific problem here is fitting a relatively novel version of tensor decomposition that allows
+some modes to be infinite-dimensional from a Reproducing Kernel Hilbert Space (RKHS);
+in other words, the decomposition is in terms of functions rather than vectors. The opti-
+mization problem reduces to a structured regression problem, and the goal of the question
+is to find an efficient iterative method to solve it.
+3 Potential of Contamination
+The work on this project began long before the “1st Proof” project was conceived. As a
+result, it has and is using various online systems that may have fed our data to AI models.
+We don’t think this is the case, but the possibility exists. Specifically, the paper was written
+using Overleaf (thought not using their AI tools), various GitHub repositories contain the
+codes, and one author uses GitHub copilot for various tasks, mostly inline completion.
+4 Solution Notes
+What follows is a specific solution. As this is an open-ended question, there is the potential
+for many other possible solution. In particular, a relatively efficient solution is still possible
+without transforming the problem. There are a couple things to look for. . .
+1. Is the problem reasonably and correctly transformed using the eigendecomposition of
+the kernel matrix in a way that leads to good preconditioning? (This is very advanced,
+and I would be impressed if the AI can do this.)
+2. Does the solution include an explanation of how to do matrix-vector products effi-
+ciently? (This is relatively standard, and I think the AI should be able to solve this.)
+3. Does the method create any objects of size Q
+k nk orQ
+i̸=k ni? (This is bad because
+it would be even more expensive than the “standard solver” approach.)
+4. Does it propose a reasonable preconditioner? (There are a lot of options here, depend-
+ing on whether or not a transformation is used. The main criteria is that it must be
+easy to solve.)
+2
+
+===== PAGE 64 =====
+
+Solution Source:
+Johannes Brust and Tamara G. Kolda,
+Fast and Accurate CP-HIFI Solution (tentative title), 2025.
+We consider several approaches for solving Eq. (1) in the remainder of this section. We
+present a direct method for the symmetric linear system in Section 4.1, using an additional
+regularization term. In Section 4.2, we present a transformation of the symmetric system
+based on the eigendecomposition of K. In Section 4.4, we present an iterative method based
+on the transformed symmetric system, adding some regularization akin to the symmetric
+direct method. In Table 1 and Section 4.5, we provide an accounting of the costs and
+comparison of direct and iterative methods.
+4.1 Direct Solution of UI Subproblem (Symmetric Form)
+Equation (1) is an indefinite symmetric linear system of size rn × rn. Since it is indefinite,
+we add a regularization term parameterized by ρ > 0 to ensure positive definiteness. The
+modified system is
+[F T F + λ(Ir ⊗ K) + ρIrn] vec(W ) = vec(KB), (2)
+where F = ST (Z ⊗ U D). Observe that we have pulled K inside the vectorization on the
+right-hand side.
+To compute F , we want to avoid forming the N ×nr Kronecker product Z ⊗K explicitly.
+Instead, we create two special matrices: ˆK ∈ Rq×n and ˆZ ∈ Rq×r. Each index ℓ ∈ [q]
+corresponds to a known entry index that we denote as ( i(ℓ)
+1 , i(ℓ)
+2 , . . . , i(ℓ)
+d ) ∈ Ω. Then, for
+each ℓ ∈ [q], we let
+ˆZ(ℓ, :) =
+
+Ad(i(ℓ)
+d , :) ∗ · · · ∗ Ak+1(i(ℓ)
+k+1, :) ∗ Ak−1(i(ℓ)
+k−1, :) ∗ · · · ∗ A1(i(ℓ)
+1 , :)
+T
+, and (3)
+ˆK(ℓ, :) = K(i(ℓ)
+k , :). (4)
+Here, ∗ represents elementwise multiplication. In other words, ˆZ and ˆK represent the subset
+of rows of Z and K, respectively, that corresponds to the known entries of T . Then, row ℓ
+of F is given by
+F (ℓ, :) = ˆZ(ℓ, :) ⊗ ˆK(ℓ, :). (5)
+4.2 Transforming the UI Subproblem
+we can exploit a factorization of K to transform Eq. (1) into an equivalent but potentially
+better conditioned system. Assuming we have the eigendecomposition K = U DUT , we can
+rewrite Eq. (1) by factoring out ( Ir ⊗ U) to obtain
+[(Z ⊗ U D)T S| {z }
+¯F T
+ST (Z ⊗ U D)| {z }
+¯F
++λ(Ir ⊗ D)] vec(U T W|{z}
+¯W
+) = vec(DU T B| {z }
+¯B
+). (6)
+Now we have a transformed system in the variable ¯W = U T W , and we can solve for W via
+W = U ¯W after solving the system. Note that we cannot pull D into the definition of ¯W
+because it is indefinite. We define ¯F := ST (Z ⊗ U D) ∈ Rq×rn, which is analogous to F
+with K replaced by U D. We define ¯B := DU T B ∈ Rn×r. Adding a regularization term as
+before, we obtain the modified system
+[ ¯F T ¯F + λ(Ir ⊗ D) + ρ Irn] vec( ¯W ) = vec( ¯B). (7)
+3
+
+===== PAGE 65 =====
+
+4.3 Key Lemmas for PCG Solution of UI Subproblem
+Before we continue to the details of solving Eq. (7) via PCG, we present some key lemmas
+about working with matrices where each row is a Kronecker product of rows of two other
+matrices. These lemmas are important for efficiently computing the matrix-vector products
+and a preconditioner needed for PCG. We state these generically here so they can be reused
+in other contexts.
+Let A ∈ Rq×r and B ∈ Rq×n. Define the q × rn matrix C row-wise as
+C(ℓ, :) = A(ℓ, :) ⊗ B(ℓ, :), for ℓ = 1, . . . , q. (8)
+Recall that for the Kronecker product of an n-vector and an r-vector or the vectorization
+of an n × r matrix, there is a correspondence between k ∈ [rn] and the pair ( i, j) with
+i ∈ [n] and j ∈ [r] such that k = i + (j − 1)n. For the Kronecker product means, this means
+Cℓk = BℓiAℓj. For a vectorized matrix, we have (vec( X))k = Xij.
+Lemma 1 shows how to compute the matrix-vector product Cx efficiently. This would
+normally cost O(qrn) if we formed C explicitly. However, using the structure of C, we can
+compute it using only O(q(r + n)) operations. Moreover, we avoid forming C explicitly,
+which reduces the memory from O(qrn) to O(q(r + n)).
+Lemma 1. Given the setup in Eq. (8), let X ∈ Rn×r be a matrix and define x = vec(X).
+Then we have
+Cx = (A ∗ BX)1r.
+Here 1r denotes the r-vector of all ones.
+Proof. For all ℓ = 1, . . . , q we have
+(Cx)ℓ =
+rnX
+k=1
+Cℓkxk =
+nX
+j=1
+nX
+i=1
+BℓiXijAℓj =
+rX
+j=1
+(BX)ℓjAℓj.
+Lemma 2 shows how to compute the matrix-vector product C T v without forming C
+explicitly. The cost is unchanged at O(qrn), but the memory is reduced from O(qrn) to
+O(q(r + n)).
+Lemma 2. Given the setup in Eq. (8), let v ∈ Rq. Then we have
+C T v = vec(BT diag(v) A).
+Proof. Define k = i + (j − 1)n for i = 1, . . . , n and j = 1, . . . , r. Then, we have
+(C T v)k =
+qX
+ℓ=1
+Cℓkvℓ =
+qX
+ℓ=1
+BℓiAℓjvℓ = (BT diag(v) A)ij. =
+ 
+vec(BT diag(v) A)
+
+k .
+Lemma 3 shows how to compute the diagonal of C T C efficiently. We reduce the compu-
+tation from O(qr2n2) to O(q(r2+n2)) operations. And, again, we avoid forming C explicitly,
+which reduces the memory from O(qrn) to O(q(r + n)).
+Lemma 3. Given the setup in Eq. (8). Then
+diag(C T C) = vec
+ 
+(B ∗ B)T (A ∗ A)
+
+.
+4
+
+===== PAGE 66 =====
+
+Proof. Define k = i + (j − 1)n for i = 1, . . . , n and j = 1, . . . , r. Then, we have
+(C T C)kk =
+qX
+ℓ=1
+C2
+ℓk =
+qX
+ℓ=1
+B2
+ℓiA2
+ℓj
+=
+
+(B ∗ B)T (A ∗ A)
+
+ij =
+
+vec
+ 
+(B ∗ B)T (A ∗ A)
+
+k .
+We apply these results in the next section.
+4.4 PCG Solution of Transformed UI Subproblem
+We can form ¯F similarly to how we formed F . We define H = U D ∈ Rn×n and ˆH ∈ Rq×n
+such that ˆH(ℓ, :) = H(i(ℓ)
+k , :) for each ℓ ∈ [q]. Then, for each ℓ ∈ [q], we let
+¯F (ℓ, :) = ˆZ(ℓ, :) ⊗ ˆH(ℓ, :). (9)
+Let x ∈ Rrn be an arbitrary vector, and let X ∈ Rn×r be its matrix representation
+so that vec( X) = x. From Lemmas 1 and 2 in Section 4.3, we can compute ¯F T ¯F x as
+vec
+
+ˆH T diag
+
+( ˆZ ∗ ˆHX )1r
+
+ˆZ
+
+.
+Then, we can compute the matrix-vector products for the conjugate gradient iterations
+without forming any Kronecker products using
+  ¯F T ¯F + λ(Ir ⊗ D) + ρ Irn
+
+x = vec
+
+ˆH T diag
+
+( ˆZ ∗ ˆHX )1r
+
+ˆZ + λDX + ρX
+
+. (10)
+We propose a diagonal preconditioner of the form
+¯D = diag(diag( ¯F T ¯F )) + λ(Ir ⊗ D) + ρ Irn.
+Observe that ¯d := diag( ¯D) is easy to compute since
+¯d = diag(diag(diag( ¯F T ¯F )) + λ(Ir ⊗ D) + ρ Irn)
+= diag( ¯F T ¯F ) + λ(1r ⊗ diag(D)) + ρ 1rn
+= vec(( ˆH ∗ ˆH)T ( ˆZ ∗ ˆZ)) + λ(1r ⊗ diag(D)) + ρ 1rn
+(11)
+The last step comes from Lemma 3 in Section 4.3.
+4.5 Comparison of Costs
+A comparison of the direct solution of the original symmetric problem Eq. (2) and PCG
+iterative solutions of the transformed problem Eq. (7) are shown in Table 1. For PCG, we
+let p denote the number of iterations needed for convergence. Recall that d is the order
+of the tensor, n is the size of mode k, r is the target rank, and q is the number of known
+entries. In general, we do not make assumptions about the relative sizes of n and r. We do
+assume, however, that d < n, r ≪ q. Because we are working with an incomplete tensors,
+the MTTKRP is relatively cheap and never dominates the cost.
+F actorizing the kernel matrix K for the transformed system The eigendecompo-
+sition of K costs O(n3) flops. We stress once again that this is only done one time before
+the outermost alternating optimization iterations begin. In the methods we compare here,
+this is needed only for the PCG iterative method.
+5
+
+===== PAGE 67 =====
+
+Table 1: Comparison of costs to solve the mode-k unaligned infinite-dimensional subproblem
+Eq. (1) of size nr × nr where n is the size of mode k and r is the target tensor decomposition
+rank. The variable q is the number of known entries in the observed tensor T . For the PCG
+iterative method, p is the number of iterations.
+Description Direct Symmetric PCG Iterative
+Factorize K = U DUT one-time cost! — O(n3)
+Compute ˆZ and MTTKRP B := T Z O(qrd) O(qrd)
+Form F (and G) or H O(qrn) O(n2)
+Form matrix for linear solve O(qr2n2) —
+Form right-hand side O(n2r) O(n2r)
+Form Preconditioner ( ¯d) — O(qn2 + qr2)
+Solve system O(r3n3) O(pnqr)
+Recover W — O(n2r)
+Total Cost O(qn2r2 + n3r3) O(qn2 + qr2 + qnrp)
+Storage O(qnr + r2n2) O(qn + qr)
+Shared costs of all methods The q × r matrix ˆZ defined in Eq. (3) is used by both
+methods. Likewise, the n × r MTTKRP B = T Z is used by all methods. The cost to
+compute ˆZ is O(qrd), Computing B is an MTTKRP with an incomplete tensor (Ballard
+and Kolda, Tensor Decompositions for Data Science, Cambridge University Press, 2025 with
+PDF available freely online). This would normally cost O(qrd) operations, but we can use
+ˆZ to reduce the cost to O(qr) operations.
+Direct solve of symmetric regularized system We first analyze the cost to form and
+solve the system as discussed in Section 4.1. We have to explicitly form F to form the
+system in Eq. (2). The cost to compute the q × rn matrix F is O(qrn) and requires O(qrn)
+storage. Forming the rn × rn matrix F ′F + λ(Ir ⊗ K) + ρ Irn is dominated by the cost
+to compute F ′F , which costs O(qr2n2) operations. We also have to compute the right-
+hand side vec(KB), which costs O(n2r) operations. Finally, using a direct method such as
+Cholesky to solve the system costs O((rn)3) operations. The storage is either dominated
+by storing F or the system matrix, which is O(rnq + r2n2).
+PCG iterative solve of transformed system We now analyze the cost of using PCG
+to solve the transformed system Eq. (7) as discussed in Section 4.4. The right hand side
+vec( ¯B) = vec( DU T B) can be computed at a cost of O(n2r) operations. We first have to
+compute the n × n matrix H := U D, which costs O(n2) operations. Forming the diagonal
+preconditioner, the rn-vector ¯d in Eq. (11), costs O(qn2 + qr2) operations. We never form
+¯F explicitly, which saves both computation and storage. Each matrix vector product is
+computed as in Eq. (10) at a cost of O(qnr) operations. Each preconditioner application
+costs O(rn) operations. Assuming that PCG converges in p iterations, the total cost for
+the PCG iterations is O(pqnr) operations. Finally, after solving for ¯W , we have to recover
+W = U ¯W , which costs O(n2r) operations. The storage needed for PCG is dominated by
+storing ˆZ and ˆH, which is O(qn + qr).
+6
+
+===== PAGE 68 =====
+
+Summary and Comparison The direct method is cubic in the size of the unknown
+matrix W . In contrast, the PCG iterative method has a cost that is orders of magnitude
+lower, depending on the number of iterations p needed for convergence and the relative sizes
+of n, r, and p. In general, we expect the problem to be well conditioned so that p is not
+too large. The PCG method also has significantly lower storage requirements. Assuming
+r < n < rn < q , we have qrn storage for the direct methods versus qn storage for PCG.
+7
