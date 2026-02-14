@@ -65,6 +65,12 @@ Any prompt containing mathematical content must be **authored by Implementer (I)
 
 **If violated**: mark the problem as `CONTAMINATED_HUMAN_MATH` in audit.md. Do NOT claim ✅. Be honest.
 
+### New control artifacts (required for closeout-quality lanes)
+
+- `PXX/statement_lock.md` (use `common/templates/statement_lock_template.md`): frozen quantifier/scaling/definition contract.
+- `common/contradiction_gate_checklist.md`: required pre-`✅` polarity and contradiction checks.
+- `tools/final_form_normalization_check.py`: required before release packaging to catch stale mixed-status sections.
+
 ---
 
 ## 2. Repo structure (sprint mode)
@@ -164,6 +170,8 @@ These are valid follow-on research directions, but not part of the current sprin
 
 **G0 — Formalize**: Restate with explicit quantifiers and object types. Define every symbol. Describe what a counterexample would look like. *Cap: 10 messages.*
 
+G0 deliverable add-on: create and freeze `PXX/statement_lock.md` at first G0 acceptance.
+
 **G1 — Background**: List prerequisites, mark each: PROVE-INLINE / CITE (needs statement #) / BLOCKED (needs sourcing). If >3 BLOCKED: stop, request Producer sourcing. *Cap: 15 messages.*
 
 **G2 — Route map**: 2–4 strategies. Bottleneck lemma for each. For YES/NO: include explicit disproof track. *Cap: 15 messages.*
@@ -176,7 +184,11 @@ These are valid follow-on research directions, but not part of the current sprin
 
 **G6 — Adversarial review**: Reviewer tries to break weakest lemma. Edge/degenerate cases checked. Max 3 patch cycles. If fatal flaw persists → downgrade to 🟡. *Cap: 20 messages.*
 
+G6 deliverable add-on: run `common/contradiction_gate_checklist.md` and record PASS/FAIL block in `audit.md`.
+
 **G7 — Package**: `answer.md` clean standalone. `audit.md` complete. `transcript.md` complete.
+
+G7 deliverable add-on: run `python tools/final_form_normalization_check.py PXX/answer.md --strict` and record result.
 
 ### Verification stamp (required at top of `answer.md` for ✅ or 🟡)
 

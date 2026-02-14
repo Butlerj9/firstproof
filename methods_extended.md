@@ -163,6 +163,12 @@ Execution follows gate phases with required deliverables:
 - G6 Adversarial review: severity-ranked defects, patch cycles, acceptance gate
 - G7 Package: polished artifacts with citation precision and reproducibility pointers
 
+Additional integrity controls in this repo:
+
+- Statement lock (`PXX/statement_lock.md` from `common/templates/statement_lock_template.md`) created at G0 and frozen.
+- Contradiction gate (`common/contradiction_gate_checklist.md`) run before any `✅` upgrade.
+- Final-form normalization check (`tools/final_form_normalization_check.py`) run before release packaging.
+
 Gate/stop-loss/escalation policy is defined in:
 
 - `firstproof.md` (canonical)

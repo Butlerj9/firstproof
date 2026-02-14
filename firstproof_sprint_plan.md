@@ -59,6 +59,12 @@ Hard caps that prevent burning budget on dead ends.
 | G5 (proof draft) | 40 messages | If no complete draft → park with 🟡 or 📊 status. |
 | G6 (review) | 20 messages (3 cycles) | If fatal flaw persists → publish as 🟡 with flaw noted. |
 
+Required quality controls by gate:
+
+- G0: create `PXX/statement_lock.md` from `common/templates/statement_lock_template.md` and freeze it.
+- G6: run `common/contradiction_gate_checklist.md` and log PASS/FAIL in `audit.md`.
+- G7: run `python tools/final_form_normalization_check.py PXX/answer.md --strict` before marking ✅.
+
 ### Per-problem hard caps
 
 | Class | Total messages | Action at cap |

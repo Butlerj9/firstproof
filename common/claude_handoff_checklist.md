@@ -30,10 +30,12 @@ Ask Claude to return a compact execution plan before deep work:
 - Precise YES/NO restatement.
 - Counterexample shape (concrete falsifier template).
 - Truth mode selected (`PROVE`, `DISPROVE`, or `EXPLORE BOTH`) with rationale.
+- Create `PXX/statement_lock.md` from `common/templates/statement_lock_template.md`.
 
 Pass condition:
 - No hidden assumptions.
 - Ambiguities listed as open dependencies.
+- Statement lock frozen and referenced in `audit.md`.
 
 ## G1 Background (hard cap: 15 messages)
 
@@ -96,9 +98,11 @@ Pass condition:
   - what is only empirical
   - known gaps and risk flags
 - Include explicit "key questions for reviewer to attack".
+- Run `common/contradiction_gate_checklist.md` and append PASS/FAIL block.
 
 Pass condition:
 - Reviewer can falsify/test quickly without extra context hunting.
+- No unresolved contradiction-gate failures for `✅` upgrades.
 
 ## G7 Package
 
@@ -107,6 +111,7 @@ Pass condition:
 - `transcript.md` complete enough for reconstruction.
 - `README.md` and `RESULTS.md` status rows updated.
 - Commit with clear status label in message.
+- Run `python tools/final_form_normalization_check.py PXX/answer.md --strict`.
 
 Pass condition:
 - Repo reflects true state without overclaim.

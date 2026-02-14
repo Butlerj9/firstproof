@@ -87,3 +87,17 @@ python tools/model_capability_probe.py \
 Notes:
 - Defaults: `max_tokens=512`, `timeout=90`, `delay=0.5s`.
 - Results include per-question predictions and a scoreboard.
+
+## Final-form normalization check
+
+`tools/final_form_normalization_check.py` scans `PXX/answer.md` files for probable stale-status merges and unresolved-language conflicts.
+
+Examples:
+
+```bash
+python tools/final_form_normalization_check.py
+python tools/final_form_normalization_check.py P05/answer.md
+python tools/final_form_normalization_check.py P*/answer.md --strict
+```
+
+Use this before status upgrades and before release packaging.

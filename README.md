@@ -53,6 +53,32 @@ Status key: -- Not started | ✅ Submitted | 🟡 Candidate | 📊 Conjecture | 
 
 **9 of 10 problems submitted** across 28 sessions, ~414 agent messages, ~1M artifact tokens, ~10M total compute tokens, ~$400 estimated cost. One problem (P03) remains at Candidate status with an L5 barrier (n=2,3,4 proved; n>=5 not closed in-sprint). Operationally this was a time-allocation issue (late start on P03 + effort split across other lanes), not a hard compute-resource outage.
 
+## Conclusions: Throughput and Closure Economics
+
+The post-mortem indicates that the dominant residual errors were primarily **control-plane errors** (formalization, polarity control, contradiction gating), not a uniform lack of model capability. In practice, this makes the main optimization target an improved agent/model harness and orchestration pipeline.
+
+Estimated performance ranges versus an unaided baseline (scenario-dependent):
+
+| Operating mode | Throughput multiplier | Theorem-closure multiplier | Primary limiting factor |
+|---|---:|---:|---|
+| Current constrained run (observed stack) | ~3x-8x | ~1.5x-3x | Statement/polarity control gaps |
+| Expert orchestrator with stronger policy controls | ~10x-20x | ~3x-8x | Frontier invariant discovery |
+| Expert orchestrator + curated lemma corpus + automated contradiction checks | ~20x-50x | ~5x-15x | Novel structural bridge lemmas |
+
+Closure cost rises nonlinearly near the frontier: early lanes close cheaply, while the final one or two lanes absorb most marginal effort. The highest-ROI upgrades were identified as:
+
+1. Statement lock at G0 (`PXX/statement_lock.md`).
+2. Mandatory contradiction gate before `✅`.
+3. Mandatory independent opposition pass on binary-sign lanes.
+4. Early parallel compute pre-provisioning for projected long serial sweeps.
+5. Final-form normalization lint before release.
+
+See detailed analysis in:
+
+- `docs/results/post_mortem_2026-02-14.md` (forensic root-cause, ROI, debt, upgrade paths)
+- `docs/results/workflow_adjustment_impact_2026-02-14.md` (counterfactual uplift and cost model)
+- `docs/results/postmortem_root_cause_2026-02-14.md` (lane-by-lane root-cause matrix)
+
 ### Escalation levels used
 
 | Level | Description | Problems |
