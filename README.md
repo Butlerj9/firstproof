@@ -152,7 +152,7 @@ Shared scout tooling is in `tools/`:
 - `tools/model_capability_probe.py` — repeatable cross-model benchmark harness for quick model triage before using a scout in a proof loop.
 - `tools/README.md` — commands, provider setup, and probe usage.
 
-Scouts used: GPT-pro 5.2, Claude Opus Research, DeepSeek-R1, Qwen3-480B, Kimi K2.5. Best results from DeepSeek-R1 and Qwen3-480B on structured math problems; Kimi K2.5 irrecoverable on complex problems (spends all tokens on reasoning, zero usable output).
+Scouts used: GPT-pro 5.2, Claude Opus Research, DeepSeek-R1, Qwen3-480B, Kimi K2.5. Best results from GPT-pro and Claude Opus Research to address blockers with the agentic flow; DeepSeek-R1 and Qwen3-480B were good at structured math problems; Kimi K2.5 irrecoverable on complex problems (spends all tokens on reasoning, zero usable output).
 
 Recommended use:
 
